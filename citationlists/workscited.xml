@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../Documentation/PlaoulProjectODD.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../Documentation/PlaoulProjectODD.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+<teiHeader>
+    <fileDesc>
+        <titleStmt>
+            <title>Works Cited by Plaoul</title>
+        </titleStmt>
+        <editionStmt>
+            <edition n="2013.03">
+                <title>Works Cited by Plaoul</title>
+                <date when="2013-03-12">March 12, 2013</date>
+            </edition>
+        </editionStmt>
+        <publicationStmt>
+            <publisher>Petrus Plaoul Editio Critica Electronica (PPECE)</publisher>
+            <pubPlace>Baltimore, MD</pubPlace>
+            <availability status="free">
+                <p>Published under a <ref target="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution ShareAlike 3.0 License</ref></p>
+            </availability>
+            <date when="2013-03-12">March 12, 2013</date>  
+        </publicationStmt>
+        <sourceDesc>
+            <p>Born Digital</p>
+        </sourceDesc>
+    </fileDesc>
+</teiHeader>
+<text>
+    <body> 
+    <listBibl xml:id="worksCited" type="list">
+        <listBibl type="Arabic">
+            <bibl xml:id="PhysicsCommentary">
+                <title>Commentary on the Physics</title>
+                <author ref="#Averroes">Averroes</author>
+            </bibl>
+            <bibl xml:id="MetaphysicsCommentary">
+                <title>Commentary on the Metaphyscis</title>
+                <author ref="#Averroes">Averroes</author>
+            </bibl>
+            <bibl xml:id="AvicennaMetaphysics">
+                <title>Metaphysics (Avicenna)</title>
+                <author ref="#Avicenna">Avicenna</author>
+            </bibl>
+            <bibl xml:id="deRadiisStellicis">
+                <title>De Radiis Stellicis</title>
+                <author ref="#Alkindi">Alikindi</author>
+            </bibl>
+        </listBibl>
+        <listBibl type="Biblical">
+            <bibl xml:id="Genesis">
+                <title n="1">Genesis</title>
+                <author ref="#Moses">Moses</author>
+            </bibl>
+            <bibl xml:id="Exodus">
+                <title n="2">Exodus</title>
+                <author ref="#Moses">Moses</author>
+            </bibl>
+            <bibl xml:id="MatthewGospel">
+                <title>Matthew</title>
+                <author ref="#Mathew">Matthew</author>
+            </bibl>
+            <bibl xml:id="MarkGospel">
+                <title>Mark</title>
+                <author ref="#Mark">Mark</author>
+            </bibl>
+            <bibl xml:id="LukeGospel">
+                <title>Luke</title>
+                <author ref="#Luke">Luke</author>
+            </bibl>
+            <bibl xml:id="JohnGospel">
+                <title>John</title>
+                <author ref="#John">John</author>
+            </bibl>
+            <bibl xml:id="RomansEpistle">
+                <title>Romans</title>
+                <author ref="#Paul">Paul, the Apostle</author>
+            </bibl>
+            <bibl xml:id="JamesEpistle">
+                <title>James</title>
+                <author ref="#James">James, the Apostle</author>
+            </bibl>
+            <bibl xml:id="ICorinthiansEpistle">
+                <title>I Corinthians</title>
+                <author ref="#Paul">Paul, the Apostle</author>
+            </bibl>
+            <bibl xml:id="IICorinthiansEpistle">
+                <title>II Corinthians</title>
+                <author ref="#Paul">Paul, the Apostle</author>
+            </bibl>
+            <bibl xml:id="HebrewsEpistle">
+                <title>Hebrews</title>
+                <author ref="#Paul">Paul, the Apostle</author>
+            </bibl>
+            <bibl xml:id="HabakkukBook">
+                <title>Habakkuk</title>
+                <author ref="#Habakkuk">Habakkuk</author>
+            </bibl>
+            <bibl xml:id="BookOfWisdom">
+                <title>Wisdom</title>
+                <author ref="#Solomon">Solomon</author>
+            </bibl>
+            <bibl xml:id="Proverbs">
+                <title>Proverbs</title>
+                <author ref="#Solomon">Solomon</author>
+            </bibl>
+            <bibl xml:id="IJohnEpistle">
+                <title>I John</title>
+                <author ref="#John">John</author>
+            </bibl>
+            <bibl xml:id="ActsOfApostles">
+                <title>Acts of the Apostles</title>
+                <author ref="#Luke">Luke</author>
+            </bibl>
+            <bibl xml:id="Deuteronomy">
+                <title>Deuteronomy</title>
+                <author ref="#Moses">Moses</author>
+            </bibl>
+            <bibl xml:id="Psalms">
+                <title>Psalms</title>
+                <author ref="#David">David</author>
+            </bibl>
+            <bibl xml:id="IPeterEpistle">
+                <title>I Peter</title>
+                <author ref="#Peter">Peter</author>
+            </bibl>
+            <bibl xml:id="Revalations">
+                <title>Revelations</title>
+                <author ref="#John">John</author>
+            </bibl>
+            <bibl xml:id="CollosiansEpistle">
+                <title>Collosians</title>
+                <author ref="#Paul">Paul</author>
+            </bibl>
+            <bibl xml:id="IsaiahBook">
+                <title>Isaiah</title>
+                <author ref="#Isaiah">Isaiah</author>
+            </bibl>
+            <bibl xml:id="NumbersBook">
+                <title>Numbers</title>
+                <author ref="#Moses">Moses</author>
+            </bibl>
+            <bibl xml:id="SongOfSongs">
+                <title>Song of Songs</title>
+                <author ref="#Solomon">Solomon</author>
+            </bibl>
+            <bibl xml:id="Pentatuch">
+                <title>Pentatuch</title>
+                <author ref="#Moses">Moses</author>
+            </bibl>
+            <bibl xml:id="GalatiansEpistle">
+                <title>Galatians</title>
+                <author ref="#Paul">Paul</author>
+            </bibl>
+            <bibl xml:id="Ecclesiastes">
+                <title>Ecclesiastes</title>
+                <author ref="#Solomon">Solomon</author>
+            </bibl>
+            
+        </listBibl>
+        <listBibl type="Classical">
+                <bibl xml:id="Metaphysics">
+                    <title>Metaphysics</title>
+                    <author ref="#Aristotle">Aristotle</author>
+                </bibl>
+            <bibl xml:id="Physics">
+                    <title>Physics</title>
+                    <author ref="#Aristotle">Aristotle</author>
+                </bibl>
+            <bibl xml:id="Ethics">
+                <title>Ethics</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="deAnima">
+                <title>de Anima</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="Politics">
+                <title>Politics</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="Topics">
+                <title>Topics</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="Rhetoric">
+                <title>Rhetoric</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="SophisticalRefutations">
+                <title>Sophistical Refutations</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="Categories">
+                <title>Categories</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="deCaelo">
+                <title>On the Heavens</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="Perihermenias">
+                <title>On Interpretation</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="OnGeneration">
+                <title>On Generation and Corruption</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="deBonaFortuna">
+                <title>de Bona Fortuna</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="PosteriorAnalytics">
+                <title>Posterior Analytics</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="Meteorology">
+                <title>Meteorology</title>
+                <author ref="#Aristotle">Aristotle</author>
+            </bibl>
+            <bibl xml:id="DreamScipio">
+                <title>Commentary on the Dream of Scipio</title>
+                <author ref="#Macrobius">Macrobius</author>
+            </bibl>
+            <bibl xml:id="Bucolics">
+                <title>Bucolics</title>
+                <author ref="#Virgil">Virgil</author>
+            </bibl>
+            <bibl xml:id="Eneads">
+                <title>Eneads</title>
+                <author ref="#Virgil">Virgil</author>
+            </bibl>
+            <bibl xml:id="Almagest">
+                <title>Almagest</title>
+                <author ref="#Ptolemy">Ptolemy</author>
+            </bibl>
+            <bibl xml:id="SimpliciusCommentaryOnCategories">
+                <title>Commentary on the Categories (Simplicius)</title>
+                <author ref="#Simplicius">Simplicius</author>
+            </bibl>
+            <bibl xml:id="TuscanDisputations">
+                <title>Tuscan Disputations</title>
+                <author ref="#Cicero">Cicero</author>
+            </bibl>
+            <bibl xml:id="Antiquities">
+                <title>Antiquities of the Jews</title>
+                <author ref="#Josephus">Josephus Flavius</author>
+            </bibl>
+            <bibl xml:id="deNaturaDeorum">
+                <title>de natura deorum</title>
+                <author ref="#Cicero">Cicero</author>
+            </bibl>
+            <bibl xml:id="AstrologyFirmicus">
+                <title>Astrology (Firmicus)</title>
+                <author ref="#JuliusFirmicus">Julius Firmicus Maternus</author>
+                <note>Wikipedia: "Julius Firmicus Maternus was a Latin writer and notable astrologer, who received a pagan classical education that made him conversant with Greek; he lived in the reign of Constantine I and his successors. His triple career made him a public advocate, an astrologer and finally a Christian polemicist."</note>
+            </bibl>
+            <bibl xml:id="Centiloquium">
+                <title>Centiloquium</title>
+                <author ref="#Ptolemy">Ptolemy</author>
+                <note>Wikipedia: "A collection of one hundred aphorisms about astrology called the Centiloquium, ascribed to Ptolemy, was widely reproduced and commented on by Arabic, Latin and Hebrew scholars, and often bound together in medieval manuscripts after the Tetrabiblos as a kind of summation. It is now believed to be a much later pseudepigraphical composition. The identity and date of the actual author of the work, referred to now as Pseudo-Ptolemy, remains the subject of conjecture."</note>
+            </bibl>
+            <bibl xml:id="deVerboAeterno">
+                <title>de Verbo Aeterno</title>
+                <author ref="#Trismegistus">Hermes Trismegistus</author>
+            </bibl>
+            <bibl xml:id="deCausis">
+                <title>Book of Causes</title>
+                <author ref="#Proclus">Proclus</author>
+            </bibl>
+            <bibl xml:id="EthicsCommentaryEustratius">
+                <title>Commentary on the Ethics (Eustratius)</title>
+                <author ref="#Eustratius">Eustratius</author>
+            </bibl>
+            <bibl xml:id="Timaeus">
+                <title>Timaeus</title>
+                <author ref="#Plato">Plato</author>
+            </bibl>
+            
+        </listBibl>
+        <listBibl type="Patristic">
+            <bibl xml:id="deTrinitate">
+                <title>De Trinitate</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="onNatureAndGrace">
+                <title>On Nature and Grace</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="deVeraInnocentiae">
+                <title>de Vera Innocentiae</title>
+                <author ref="#Augustine">Augustine</author>
+                <note>I think this is Pseudo Augustinian</note>
+            </bibl>
+            <bibl xml:id="Consolation">
+                <title>Consolation of Philosophy</title>
+                <author ref="#Boethius">Boethius</author>
+            </bibl>
+            <bibl xml:id="deProblematibusBoethius">
+                <title>de Problematibus</title>
+                <author ref="#Boethius">Boethius</author>
+            </bibl>
+            <bibl xml:id="deTrinitateBoethius">
+                <title>de Trinitate (Boethius)</title>
+                <author ref="#Boethius">Boethius</author>
+            </bibl>
+            <bibl xml:id="DivineNames">
+                <title>On the Divine Names</title>
+                <author ref="#Dionysius">Pseudo-Dionysius</author>
+            </bibl>
+            <bibl xml:id="MoralsOfCatholicChurch">
+                <title>On the Morals of the Catholic Church</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="HomiliesOnJohn">
+                <title>Homilies on John</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="CityOfGod">
+                <title>City of God</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="deHebdomadibus">
+                <title>On the Hebdomads</title>
+                <author ref="#Boethius">Boethius</author>
+            </bibl>
+            <bibl xml:id="onGenesis">
+                <title>Literal Commentary on Genesis</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="OnFaithToPeter">
+                <title>To Peter on the Faith</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="CommentOnLukeAmbrose">
+                <title>Commentary on Luke (Ambrose)</title>
+                <author ref="#Ambrose">Ambrose</author>
+            </bibl>
+            <bibl xml:id="deIraDei">
+                <title>On the Wrath of God</title>
+                <author ref="#Lactantius">Lactantius</author>
+            </bibl>
+            <bibl xml:id="deCaelestiHierarchia">
+                <title>de Caelesti Hierarchia</title>
+                <author ref="#Dionysius">Ps-Dionysius</author>
+            </bibl>
+            <bibl xml:id="deDivinisNominibus">
+                <title>de Divinis Nominibus</title>
+                <author ref="#Dionysius">Ps-Dionysius</author>
+            </bibl>
+            <bibl xml:id="deDiversisQuaestionibus">
+                <title xml:lang="la">De diversis quaestionibus octaginta tribus</title>
+                <title>On eighty-three various questions</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="HexameronAmbrose">
+                <title>Hexameron (Ambrose)</title>
+                <author ref="#Ambrose">Ambrose</author>
+            </bibl>
+            <bibl xml:id="Confessions">
+                <title>Confessions</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="supraGenesim">
+                <title>Supra Genesim</title>
+                <author ref="#Augustine">Augustine</author>
+            </bibl>
+            <bibl xml:id="Decretals">
+                <title>Decretals</title>
+                <author ref="#Gratian">Gratian</author>
+            </bibl>
+        </listBibl>
+        <listBibl type="Scholastic">
+            <bibl xml:id="SummaTheologica">
+                <title>Summa Theologica</title>
+                <author ref="#Aquinas">Thomas Aquinas</author>
+            </bibl>
+            <bibl xml:id="SummaContraGentiles">
+                <title>Summa Contra Gentiles</title>
+                <author ref="#Aquinas">Thomas Aquinas</author>
+            </bibl>
+            <bibl xml:id="CausaDei">
+                <title>De Causa Dei</title>
+                <author ref="#Bradwardine">Thomas Bradwardine</author>
+            </bibl>
+            <bibl xml:id="Proslogion">
+                <title>Proslogion</title>
+                <author ref="#Anselm">Anselm</author>
+            </bibl>
+            <bibl xml:id="Monologion">
+                <title>Monologion</title>
+                <author ref="#Anselm">Anselm</author>
+            </bibl>
+            <bibl xml:id="SummaAurea">
+                <title>Summa Aurea</title>
+                <author ref="#WilliamOfAuxerre">William of Auxerre</author>
+            </bibl>
+            <bibl xml:id="OnFaithAndLaws">
+                <title>On Faith and the Laws</title>
+                <author ref="#WilliamOfParis">William of Auvergne</author>
+            </bibl>
+            <bibl xml:id="deTrinitateAuvergne">
+                <title>On the Trinity (Auvergne)</title>
+                <author ref="#WilliamOfParis">William of Auvergne</author>
+            </bibl>
+            <bibl xml:id="deUniverso">
+                <title>de Universo</title>
+                <author ref="#WilliamOfParis">William of Auvergne</author>
+            </bibl>
+            <bibl xml:id="deSacramentis">
+                <title>On the Sacraments</title>
+                <author ref="#HughOfStVictor">Hugh of St. Victor</author>
+            </bibl>
+            <bibl xml:id="SummaeQuaestionumOrdinariarum">
+                <title>Summae Quaestionum Ordinariarum</title>
+                <author ref="#HenryOfGhent">Henry of Ghent</author>
+            </bibl>
+            <bibl xml:id="Sentences">
+                <title>Sentences</title>
+                <author ref="#Lombard">Peter Lombard</author>
+            </bibl>
+            <bibl xml:id="AlbertCommentOnCauses">
+                <title>Commentary on the Book of Causes (Albert Magnus)</title>
+                <author ref="#Albert">Albert the Great</author>
+            </bibl>
+            <bibl xml:id="OnTheLoveOfGod">
+                <title>On the Love of God</title>
+                <author ref="#Bernard">Bernard of Clairveaux</author>
+            </bibl>
+            <bibl xml:id="OnTheOrderOfThings">
+                <title>On the Order of Things</title>
+                <author ref="#BartholomeusAnglicus">Bartholomeus Anglicus</author>
+            </bibl>
+            <bibl xml:id="Policraticus">
+                <title>Policraticus</title>
+                <author ref="#JohnOfSalisbury">John of Salisbury</author>
+            </bibl>
+            <bibl xml:id="deQuaestionibusArmenorum">
+                <title>Summa de quaestionibus Armenorum</title>
+                <author ref="#FitzRalph">Richard FitzRalph</author>
+            </bibl>
+            <bibl xml:id="deCommunicationeIdiomatum">
+                <title>de communicatione idiomatum</title>
+                <author ref="#NicholasOresme">Nicholas Oresme</author>
+            </bibl>
+            <bibl xml:id="SpeculumHistoriale">
+                <title>Speculum historiale</title>
+                <author ref="#VincentOfBeauvais>Vincent of Beauvais">Vincent of Beauvais</author>
+                <note>Wikipedia: "The vast tome of the Speculum Naturale (Mirror of Nature), divided into thirty-two books and 3,718 chapters, is a summary of all of the science and natural history known to Western Europe towards the middle of the 13th century, a mosaic of quotations from Latin, Greek, Arabic, and even Hebrew authors, with the sources given. Vincent distinguishes, however, his own remarks."</note>
+            </bibl>
+            <bibl xml:id="deConceptuVirginali">
+                <title>De Conceptu Virginali Et Originali Peccato</title>
+                <author ref="#Anselm">Anselm</author>
+            </bibl>
+            <bibl xml:id="deSomnoEtVigilia">
+                <title>Liber de Somno et Vigilia</title>
+                <author ref="#Albert">Albert the Great</author>
+            </bibl>
+            <bibl xml:id="deConcordia">
+                <title>de Concordia</title>
+                <author ref="#Anselm">Anselm</author>
+            </bibl>
+            <bibl xml:id="GuideForThePerplexed">
+                <title>Guide for the Perplexed</title>
+                <author ref="#Maimonides">Maimonides</author>
+            </bibl>
+            <bibl xml:id="deSapientiaAnimaeChristi">
+                <title>De Sapientia Animae Christi</title>
+                <author ref="HughOfStVictor">Hugh of St. Victor</author>
+            </bibl>
+            <bibl xml:id="SentencesRipa">
+                <title>Commentary on the Sentences (Ripa)</title>
+                <author ref="#Ripa">John de Ripa</author>
+            </bibl>
+            <bibl xml:id="SentencesAlbert">
+                <title>Commentary on the Sentences (Albert the Great)</title>
+                <author ref="#Albert">Albert the Great</author>
+            </bibl>
+            <bibl xml:id="deGenerationeAlbert">
+                <title>Commentary on Generation and Corruption (Albert)</title>
+                <author ref="#Albert">Albert the Great</author>
+            </bibl>
+            <bibl xml:id="QuodlibetsGilesOfRome">
+                <title>Quodlibetal Questions of Giles of Rome</title>
+                <author ref="#GilesOfRome">Giles of Rome</author>
+            </bibl>
+            <bibl xml:id="MagisteriumDivinale">
+                <title>Magisterium divinale et sapientiale</title>
+                <author ref="#WilliamOfParis">William of Paris</author>
+            </bibl>
+            <bibl xml:id="deSacramentisWilliamOfParis">
+                <title>de Sacramentis</title>
+                <author ref="#WilliamOfParis">William of Paris</author>
+            </bibl>
+            <bibl xml:id="PhysicsCommentaryAquinas">
+                <title>Commentary on the Physics (Aquinas)</title>
+                <author ref="#Aquinas">Thomas Aquinas</author>
+            </bibl>
+        </listBibl> 
+    </listBibl>
+   
+    </body>
+</text>
+</TEI>

@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../Documentation/PlaoulProjectODD.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../Documentation/PlaoulProjectODD.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader>
+    <fileDesc>
+        <titleStmt>
+            <title>Prosopography</title>
+        </titleStmt>
+        <editionStmt>
+            <edition n="2013.03">
+                <title>Prosopography</title>
+                <date when="2013-03-07">March 7, 2013</date>
+            </edition>
+        </editionStmt>
+        <publicationStmt>
+            <publisher>Petrus Plaoul Editio Critica Electronica (PPECE)</publisher>
+            <pubPlace>Baltimore, MD</pubPlace>
+            <availability status="free">
+                <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
+            </availability>
+            <date when="2013-03-07">March 7, 2013</date>  
+        </publicationStmt>
+        <sourceDesc>
+            <p>Born Digital</p>
+        </sourceDesc>
+    </fileDesc>
+</teiHeader>
+<text xml:lang="en">
+    <body>
+        <listPerson xml:id="prosopography">
+        <listPerson type="Arabic">
+            <person xml:id="Avicenna">
+                <persName>Avicenna</persName>
+            </person>
+            <person xml:id="Averroes">
+                <persName>Averroes</persName>
+            </person>
+            <person xml:id="Alkindi">
+                <persName>Alkindi</persName>
+            </person>
+            <person xml:id="Muhummad">
+                <persName>Muhammad</persName>
+            </person>
+            <person xml:id="Albumasar">
+                <persName>Albumasar</persName>
+            </person>
+            <person xml:id="Algasar">
+                <persName>Algasar</persName>
+            </person>
+            
+        </listPerson>
+        <listPerson type="Biblical">
+            <person xml:id="Paul">
+                <persName>Paul, the Apostle</persName>
+            </person>
+            <person xml:id="James">
+                <persName>James, the Apostle</persName>
+            </person>
+            <person xml:id="John">
+                <persName>John, the Apostle</persName>
+            </person>
+            <person xml:id="David">
+                <persName>David, King</persName>
+            </person>
+            <person xml:id="Saul">
+                <persName>Saul, King</persName>
+            </person>
+            <person xml:id="Nebuchadnezzar">
+                <persName>Nabuchadnezzar, King</persName>
+            </person>
+            <person xml:id="Caiaphas">
+                <persName>Caiaphas</persName>
+            </person>
+            <person xml:id="Esau">
+                <persName>Esau</persName>
+            </person>
+            <person xml:id="Jacob">
+                <persName>Jacob</persName>
+            </person>
+            <person xml:id="Lea">
+                <persName>Lea</persName>
+            </person>
+            <person xml:id="Jona">
+                <persName>Jonah</persName>
+            </person>
+            <person xml:id="Job">
+                <persName>Job</persName>
+            </person>
+            <person xml:id="Noah">
+                <persName>Noah</persName>
+            </person>
+            <person xml:id="Peter">
+                <persName>Peter, the Apostle</persName>
+            </person>
+            <person xml:id="Lucifer">
+                <persName>Lucifer</persName>
+            </person>
+            <person xml:id="Israel">
+                <persName>Israel</persName>
+            </person>
+            
+            <person xml:id="Mary">
+                <persName>Mary, Virgin</persName>
+            </person>
+            <person xml:id="Lot">
+                <persName>Lot</persName>
+            </person>
+            <person xml:id="Abraham">
+                <persName>Abraham</persName>
+            </person>
+            <person xml:id="Balaam">
+                <persName>Balaam</persName>
+            </person>
+            <person xml:id="Balak">
+                <persName>Balak</persName>
+                <note>So Balak son of Zippor, who was king of Moab at that time Cf. Numbers 22:4</note>
+            </person>
+            <person xml:id="Moses">
+                <persName>Moses</persName>
+            </person>
+            <person xml:id="Matthias">
+                <persName>Mathias</persName>
+                <note>Mathias is mentioned in Acts Chapter 1</note>
+            </person>
+            <person xml:id="JosephBarsabbas">
+                <persName>Joseph Barsabbas</persName>
+                <note>Joseph Barsabbas is mentioned in Acts Chapter 1</note>
+            </person>
+            
+            <person xml:id="SimonMagician">
+                <persName>Simon the Magician</persName>
+            </person>
+            
+            <person xml:id="Ezra">
+                <persName>Ezra</persName>
+            </person>
+            <person xml:id="Nehemiah">
+                <persName>Nehemiah</persName>
+            </person>
+            <person xml:id="MichaelArchangel">
+                <persName>Michael the Archangel</persName>
+            </person>
+            <person xml:id="Gamaliel">
+                <persName>Gamaliel</persName>
+                <note>Acts 5:34 "But a Pharisee named Gamaliel, a teacher of the law, who was honored by all the people, stood up in the Sanhedrin and ordered that the men be put outside for a little while."</note>
+            </person>
+            <person xml:id="Abel">
+                <persName>Abel</persName>
+            </person>
+            <person xml:id="Solomon">
+                <persName>Solomon</persName>
+            </person>
+            <person xml:id="JudasIscariot">
+                <persName>Judas Iscariot</persName>
+            </person>
+            <person xml:id="Jezebel">
+                <persName>Jezebel</persName>
+            </person>
+            <person xml:id="Adam">
+                <persName>Adam</persName>
+            </person>
+            <person xml:id="JohnTheBaptist">
+                <persName>John The Baptist</persName>
+            </person>
+        </listPerson>
+        <listPerson type="Classical">
+            <person xml:id="Aristotle">
+                <persName>Aristotle</persName>
+            </person>
+            <person xml:id="Cicero">
+                <persName>Cicero</persName>
+            </person>
+            <person xml:id="Plato">
+                <persName>Plato</persName>
+            </person>
+            <person xml:id="Anaxagoras">
+                <persName>Anaxagoras</persName>
+            </person>
+            <person xml:id="JuliusCaesar">
+                <persName>Julius Cesar</persName>
+            </person>
+            <person xml:id="Pompey">
+                <persName>Pompey</persName>
+            </person>
+            <person xml:id="Demosthenes">
+                <persName>Demosthenes</persName>
+            </person>
+            <person xml:id="Macrobius">
+                <persName>Macrobius</persName>
+            </person>
+            <person xml:id="Virgil">
+                <persName xml:lang="en">Virgil</persName>
+            </person>
+            <person xml:id="Seneca">
+                <persName>Seneca</persName>
+            </person>
+            <person xml:id="Epicurus">
+                <persName>Epicurus</persName>
+            </person>
+            <person xml:id="Trismegistus">
+                <persName>Hermes Trismegistus</persName>
+            </person>
+            <person xml:id="Sortes">
+                <persName>Sortes</persName>
+            </person>
+            <person xml:id="Socrates">
+                <persName>Socrates</persName>
+            </person>
+            <person xml:id="Porphyry">
+                <persName>Porphyry</persName>
+            </person>
+            <person xml:id="Ptolemy">
+                <persName>Ptolemy</persName>
+            </person>
+            <person xml:id="Achilles">
+                <persName>Achilles</persName>
+            </person>
+            <person xml:id="Plotinus">
+                <persName>Plotinus</persName>
+            </person>
+            <person xml:id="Simplicius">
+                <persName>Simplicius</persName>
+            </person>
+            <person xml:id="Apollo">
+                <persName>Apollo</persName>
+            </person>
+            <person xml:id="Melissus">
+                <persName>Melissus of Samos</persName>
+            </person>
+            <person xml:id="Diogenes">
+                <persName>Diogenes of Sinope</persName>
+            </person>
+            <person xml:id="Empedocles">
+                <persName>Diogenes of Sinope</persName>
+            </person>
+            <person xml:id="Josephus">
+                <persName>Josephus Flavius</persName>
+            </person>
+            <person xml:id="Solon">
+                <persName>Solon</persName>
+            </person>
+            <person xml:id="AlexanderTheGreat">
+                <persName>Alexander the Great</persName>
+            </person>
+            
+            <person xml:id="Parmenides">
+                <persName>Parmenides</persName>
+            </person>
+            <person xml:id="Jupiter">
+                <persName>Jupiter</persName>
+            </person>
+            <person xml:id="Saturn">
+                <persName>Saturn</persName>
+            </person>
+            
+            <person xml:id="Euclid">
+                <persName>Euclid</persName>
+            </person>
+            <person xml:id="Autolycus">
+                <persName>Autolycus of Pitane</persName>
+                <note>Spell MESSEELLACH by William of Auvergne edited Griet Galle, 2003 - GL http://books.google.com/books?id=A8PpoJAyJ3wC</note>
+            </person>
+            <person xml:id="Eustratius">
+                <persName>Eustratius</persName>
+                <note>Not really classical, but wrote commentary on Aristotle: Wikipedia: "Eustratius of Nicaea (Greek: Εὐστράτιος; c. 1050/1060-c. 1120)[1] was Metropolitan bishop of Nicaea in the early 12th century. He wrote commentaries to Aristotle's second book of Analytica and the Ethica Nicomachea."</note>
+            </person>
+            <person xml:id="JuliusFirmicus">
+                <persName>Julius Firmicus Maternus</persName>
+            </person>
+            <person xml:id="Clotho">
+                <persName>Clotho</persName>
+                <note>Wikipedia: "n Greek mythology, the Moirai (Ancient Greek: Μοῖραι, "apportioners", Latinized as Moerae)—often known in English as the Fates—were the white-robed incarnations of destiny (Roman equivalent: Parcae, euphemistically the "sparing ones", or Fata; also analogous to the Germanic Norns). Their number became fixed at three: Clotho (spinner), Lachesis (allotter) and Atropos (unturnable)."</note>
+            </person>
+            <person xml:id="Lachesis">
+                <persName>Lachesis</persName>
+                <note>Wikipedia: "n Greek mythology, the Moirai (Ancient Greek: Μοῖραι, "apportioners", Latinized as Moerae)—often known in English as the Fates—were the white-robed incarnations of destiny (Roman equivalent: Parcae, euphemistically the "sparing ones", or Fata; also analogous to the Germanic Norns). Their number became fixed at three: Clotho (spinner), Lachesis (allotter) and Atropos (unturnable)."</note>
+            </person>
+            <person xml:id="Atropos">
+                <persName>Atropos</persName>
+                <note>Wikipedia: "n Greek mythology, the Moirai (Ancient Greek: Μοῖραι, "apportioners", Latinized as Moerae)—often known in English as the Fates—were the white-robed incarnations of destiny (Roman equivalent: Parcae, euphemistically the "sparing ones", or Fata; also analogous to the Germanic Norns). Their number became fixed at three: Clotho (spinner), Lachesis (allotter) and Atropos (unturnable)."</note>
+            </person>
+            <person xml:id="Proclus">
+                <persName>Proclus</persName>
+            </person>
+            <person xml:id="Homer">
+                <persName>Homer</persName>
+            </person>
+            
+        </listPerson>
+        <listPerson type="Divine">
+            <person xml:id="God">
+                <persName>God</persName>
+            </person>
+            <person xml:id="Christ">
+                <persName>Christ</persName>
+            </person>
+            <person xml:id="Trinity">
+                <persName>Trinity</persName>
+            </person>
+            <person xml:id="Father">
+                <persName>Father</persName>
+            </person>
+            <person xml:id="Son">
+                <persName>Son</persName>
+            </person>
+            <person xml:id="HolySpirit">
+                <persName>Holy Spirit</persName>
+            </person>
+        </listPerson>
+        <listPerson type="Patristic">
+            
+            <person xml:id="Boethius">
+                <persName>Boethius</persName>
+            </person>
+            <person xml:id="Augustine">
+                <persName>Augustine</persName>
+            </person>
+            <person xml:id="Dionysius">
+                <persName>Pseudo-Dionysius</persName>
+            </person>
+            <person xml:id="Gratian" >
+                <persName>Gratian</persName>
+            </person>
+            <person xml:id="GregoryGreat">
+                <persName>Gregory the Great</persName>
+            </person>
+            <person xml:id="Jerome">
+                <persName>Jerome</persName>
+            </person>
+            <person xml:id="Lactantius">
+                <persName>Lactantius</persName>
+            </person>
+            <person xml:id="Pelagius">
+                <persName>Pelagius</persName>
+            </person>
+            <person xml:id="Origen">
+                <persName>Origen Admantius</persName>
+            </person>
+            <person xml:id="JohnDamascenus">
+                <persName>John the Damascene</persName>
+            </person>
+            <person xml:id="Arius">
+                <persName>Arius</persName>
+            </person>
+            <person xml:id="Ambrose">
+                <persName>Ambrose of Milan</persName>
+            </person>
+            <person xml:id="Cyprian">
+                <persName>Cyprian</persName>
+            </person>
+            <person xml:id="Claudianus">
+                <persName>Claudianus Mamertus</persName>
+            </person>
+            <person xml:id="Julian">
+                <persName>Julian</persName>
+                <note>The person Augustine argued with along with Pelagius (see lectio 98 for example)</note>
+            </person>
+            <person xml:id="Sabellius">
+                <persName>Sabellius</persName>
+            </person>
+            <person xml:id="Cyril">
+                <persName>Cyril</persName>
+            </person>
+            <person xml:id="Nestorius">
+                <persName>Nestorius</persName>
+            </person>
+            <person xml:id="Victorinus">
+                <persName>Victorinus</persName>
+            </person>
+            <person xml:id="IsidoreOfSeville">
+                <persName>Isidore of Seville</persName>
+            </person>
+            <person xml:id="PopeSylvesterI">
+                <persName>Pope Sylvester I</persName>
+            </person>
+            <person xml:id="PopeDamasusI">
+                <persName>Pope Damasus I</persName>
+            </person>
+            <person xml:id="Macedonius">
+                <persName>Macedonius I of Constantinople</persName>
+            </person>
+            <person xml:id="PopeLeoI">
+                <persName>Pope Leo I</persName>
+            </person>
+            <person xml:id="PopeInnocentIII">
+                <persName>Pope Innocent III</persName>
+            </person>
+            <person xml:id="PopeGregoryIV">
+                <persName>Pope Gregory IV</persName>
+            </person>
+            
+            <person xml:id="HilaryOfPoitiers">
+                <persName>Hilary of Poitiers</persName>
+            </person>
+            <person xml:id="Didymus">
+                <persName>Didymus</persName>
+            </person>
+            <person xml:id="JohnChrysostom">
+                <persName>John Chrysostam</persName>
+            </person>
+            
+        </listPerson>
+        <listPerson type="Scholastic">
+            <person xml:id="Aquinas">
+                <persName>Thomas Aquinas</persName>
+            </person>
+            <person xml:id="Holcot">
+                <persName>Robert Holcot</persName>
+            </person>
+            <person xml:id="Albert">
+                <persName>Albert the Great</persName>
+            </person>
+            <person xml:id="GilesOfRome">
+                <persName>Giles of Rome</persName>
+            </person>
+            <person xml:id="Wodeham">
+                <persName>Adam Wodeham</persName>
+            </person>
+            <person xml:id="Ockham">
+                <persName>William of Ockham</persName>
+            </person>
+            <person xml:id="Scotus">
+                <persName>John Duns Scotus</persName>
+            </person>
+            <person xml:id="Ripa">
+                <persName>John of Ripa</persName>
+            </person>
+            <person xml:id="Anselm">
+                <persName>Anselm</persName>
+            </person>
+            <person xml:id="Aureoli">
+                <persName>Peter Aureoli</persName>
+            </person>
+            <person xml:id="Bacon">
+                <persName>Roger Bacon</persName>
+            </person>
+            <person xml:id="WalterBurley">
+                <persName>Walter Burley</persName>
+            </person>
+            <person xml:id="Campsall">
+                <persName>Richard Campsall</persName>
+            </person>
+            <person xml:id="Bradwardine">
+                <persName>Thomas Bradwardine</persName>
+            </person>
+            <person xml:id="Durandus">
+                <persName>Durandus of St. Pourcain</persName>
+            </person>
+            <person xml:id="Rimini">
+                <persName>Gregory of Rimini</persName>
+            </person>
+            <person xml:id="HenryOfGhent">
+                <persName>Henry of Ghent</persName>
+            </person>
+            <person xml:id="WilliamOfAuxerre">
+                <persName>William of Auxerre</persName>
+            </person>
+            <person xml:id="WilliamOfParis">
+                <persName>William of Paris</persName>
+            </person>
+            <person xml:id="NicholasOfLyra">
+                <persName>Nicholas of Lyra</persName>
+            </person>
+            <person xml:id="Heytesbury">
+                <persName>William Hetesbury</persName>
+            </person>
+            <person xml:id="Kilvignton">
+                <persName>Richard of Kilvington</persName>
+            </person>
+            <person xml:id="RichardOfStVictor">
+                <persName>Richard of St. Victor</persName>
+            </person>
+            <person xml:id="Maimonides">
+                <persName>Moses Maimonides</persName>
+            </person>
+            <person xml:id="Chatton">
+                <persName>Walter Chatton</persName>
+            </person>
+            <person xml:id="Bonaventure">
+                <persName>Bonaventure</persName>
+            </person>
+            <person xml:id="Lombard">
+                <persName>Peter Lombard</persName>
+            </person>
+            <person xml:id="Oyta">
+                <persName>Henry Totting de Oyta</persName>
+            </person>
+            <person xml:id="Wyclif">
+                <persName>John Wyclif</persName>
+            </person>
+            <person xml:id="Candia">
+                <persName>Peter Candia</persName>
+            </person>
+            <person xml:id="HughOfStVictor">
+                <persName>Hugh of St. Victor</persName>
+            </person>
+            <person xml:id="Grosseteste">
+                <persName>Robert Grossetest</persName>
+            </person>
+            <person xml:id="Moderni">
+                <persName>Moderni</persName>
+            </person>
+            <person xml:id="Bernard">
+                <persName>Bernard of Clairvaux</persName>
+            </person>
+            <person xml:id="Langenstein">
+                <persName>Henry of Langenstein</persName>
+            </person>
+            <person xml:id="JohnOfSalisbury">
+                <persName>Henry of Langenstein</persName>
+            </person>
+            <person xml:id="HugolinoOfOrvieto">
+                <persName>Hugolino of Orvieto</persName>
+            </person>
+            <person xml:id="RichardFitzRalph">
+                <persName>RichardFitzRalph</persName>
+            </person>
+            <person xml:id="MarsiliusOfPadua">
+                <persName>Marsilius Of Padua</persName>
+            </person>
+            <person xml:id="RobertHalifax">
+                <persName>Robert Halifax</persName>
+            </person>
+            
+            <person xml:id="Lucidarius">
+                <persName>Lucidarius</persName>
+                <note>Wikipedia: "The Lucidarius, an anonymous medieval book, was the first German language summa,[1] written circa 1190-1195.[2] It was based on different sources, the chief one being the Elucidarium and other texts by Honorius Augustodunensis."</note>
+            </person>
+            <person xml:id="NicholasOresme">
+                <persName>Nicholas Oresme</persName>
+            </person>
+            <person xml:id="VincentOfBeauvais">
+                <persName>Vincent of Beauvais </persName>
+                <note>Wikipedia: The Dominican friar Vincent of Beauvais (Vincentius Bellovacensis or Vincentius Burgundus) (c. 1190 – 1264?) wrote the Speculum Maius, the main encyclopedia that was used in the Middle Ages.</note>
+            </person>
+            <person xml:id="BernardusSilvestris">
+                <persName>Bernardus Silvestris</persName>
+                <note>Wikipedia: "Bernard Silvestris, also known as Bernardus Silvestris and Bernard Silvester, was a Medieval Platonist philosopher and poet of the 12th century."</note>
+            </person>
+            <person xml:id="PeterOfSalliente">
+                <persName>Peter Of Salliente</persName>
+                <note>Socius -- see principium II for named reference -- probably refers to all references to bachaelor reading from Navarre. See Sullivan - list of people receiving degree in 1397</note>
+            </person>
+            <person xml:id="PeterLeMaistre">
+                <persName>Peter Le Maister</persName>
+                <note>See principium II for the following phrase: fratrem petrum dominum meum carissimum <choice><orig>bachalarium</orig><reg>bacalarium</reg></choice> 
+                    <lb ed="#V"/>actu legentem in domo beati augusti. See Sullivan - list of people receiving degree in 1397</note>
+            </person>
+            <person xml:id="AlexanderOfHales">
+                <persName>Alexander of Hales</persName>
+            </person>
+        </listPerson>
+        <listPerson type="Groups">
+            <personGrp xml:id="Astrologers">
+                <persName>Astrologers</persName>
+            </personGrp>
+            <personGrp xml:id="Sarracens">
+                <persName>Sarracens</persName>
+            </personGrp>
+            <personGrp xml:id="Jews">
+                <persName>Jews</persName>
+            </personGrp>
+            <personGrp xml:id="MagiOfPharaoh">
+                <persName>Magi of Pharaoh</persName>
+            </personGrp>
+            <personGrp xml:id="Apostles">
+                <persName>Apostles</persName>
+            </personGrp>
+            <personGrp xml:id="Chaldeans">
+                <persName>Chaldeans</persName>
+            </personGrp>
+            <personGrp xml:id="Greeks">
+                <persName>Greeks</persName>
+            </personGrp>
+            <personGrp xml:id="Romans">
+                <persName>Romans</persName>
+            </personGrp>
+            <personGrp xml:id="Pagans">
+                <persName>Pagans</persName>
+            </personGrp>
+            <personGrp xml:id="Platonists">
+                <persName>Platonists</persName>
+            </personGrp>
+            <personGrp xml:id="Latins">
+                <persName>Latins</persName>
+            </personGrp>
+            <personGrp xml:id="formalizantes">
+                <persName>Formalizantes</persName>
+            </personGrp>
+            <personGrp xml:id="Philosophers">
+                <persName>Philosophers</persName>
+            </personGrp>
+            <personGrp xml:id="Prophets">
+                <persName>Prophets</persName>
+            </personGrp>
+            <personGrp xml:id="Theologians">
+                <persName>Theologians</persName>
+            </personGrp>
+        </listPerson>
+            
+        </listPerson>
+       
+    </body>
+</text>
+</TEI>
