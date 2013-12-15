@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ODDSchema/odd4odds.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="ODDSchema/odd4odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xml:lang="en" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" >
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>LombardPress Customization File</title>
+        <author xml:id="JW">
+          <persName>Jeffrey C. Witt</persName>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <availability>
+          <p>[Statement of availability]</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>[Information about the creation of the ODD]</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc>
+      <change who="#JW" when="2012-05-08">[Description of changes]</change>
+      <change> </change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+
+    <!-- This template is intended to give you a quick starting point for
+           writing ODD files. You may find it useful to copy and paste 
+           specific constructs from odd_extended_template.xml, which contains
+           commented templates for specific ODD-writing tasks.
+      -->
+
+    <body>
+      <p>[One or more paragraphs describing the customization.]</p>
+      <!-- The <schemaSpec> element is in effect the root element for
+           the schema specification portion of the ODD. 
+              - @ident is required; it is allowed to be any name.
+              - @start says what element(s) are allowed as the root element
+                  of documents conforming to this schema.  -->
+      <schemaSpec ident="plaoulCriticalEdition" start="TEI">
+
+        <!-- Core Module -->
+
+        <moduleRef key="core"
+          include="abbr add analytic author bibl biblScope biblStruct cb choice cit corr date del desc editor emph expan foreign gap gb gloss graphic head hi imprint index item lb list listBibl mentioned milestone monogr name note num orig p pb ptr pubPlace publisher quote ref reg resp respStmt rs series sic teiCorpus term textLang title unclear"/>
+        
+        
+        <!-- element modifications to core module -->
+        <elementSpec ident="listBibl" module="core" mode="change">
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <valList type="semi" mode="change">
+                <valItem ident="Classical"/>
+                <valItem ident="Patristic"/>
+                <valItem ident="Biblical"/>
+                <valItem ident="Scholastic"/>
+                <valItem ident="Arabic"/>
+                <valItem ident="Primary">
+                  <gloss>Primary Source</gloss>
+                  <desc>Entries in this list represent a primary source, whether in manuscript, early printing, or modern edition form</desc>
+                </valItem>
+                <valItem ident="Secondary">
+                  <gloss>Secondary Source</gloss>
+                  <desc>Entries in this list represent a secondary source, whether in manuscript, early printing, or a modern edition form</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="subtype" mode="change" usage="rec">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <valList type="semi" mode="change">
+                <valItem ident="manuscript"/>
+                <valItem ident="earlyPrinting">
+                  <gloss>Early Printing</gloss>
+                  <desc>Indicates the the source in question is in early printing of the source. Early is defined here as roughly anything before 1800</desc>
+                </valItem>
+                <valItem ident="modernEdition">
+                  <gloss>Modern Edition</gloss>
+                  <desc>Indicates that the form of the source is a modern edition. For this purposes of this project this is roughly 1800 and after</desc>
+                </valItem>
+              </valList>
+              <exemplum>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <bibList type="Primary" subtype="earlyPrinting">
+                    <biblStruct>...</biblStruct>
+                  </bibList>
+                </egXML>
+              </exemplum>
+              <remarks>
+                <p>This type/subtype combination is necessary because the are many primary and
+                  secondary sources that nevertheless appear in old and modern editions. It's
+                  important to make separate of primary manuscripts, primary early printings,
+                  primary modern editions, and secondary sources that are in early printings or in
+                  modern editions.</p>
+              </remarks>
+            </attDef>
+          </attList>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <biblList type="Classcial"> </biblList>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <biblList type="Primary" subtype="modernPrinting">
+                <biblStruct> </biblStruct>
+              </biblList>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p/>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="fb" ns="http://petrusplaoul.org/ns/1.0" mode="add">
+          <gloss>Folio Break</gloss>
+          <desc>A milestone marker used to mark the beginning of new folio.</desc>
+          <classes mode="replace">
+            <memberOf key="model.milestoneLike"/>
+          </classes>
+          <content>
+            <rng:empty/>
+          </content>
+          <attList>
+            <attDef ident="n" mode="add" usage="req">
+              <datatype>
+                <rng:ref name="data.text"/>
+              </datatype>
+              <exemplum>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <fb n="54"/>
+                </egXML>
+
+              </exemplum>
+              <remarks>
+                <p>This is a specific milestone for folio breaks. These are distinct from page
+                  breaks which can be either recto or verso. Folios always include two page breaks
+                  and typically four column breaks.</p>
+              </remarks>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <elementSpec ident="del" module="core" mode="change">
+          <attList>
+            <attDef ident="rend" usage="rec" mode="change">
+              <valList type="semi" mode="add">
+                <valItem ident="strikethrough">
+                  <gloss>strikethrough</gloss>
+                  <desc>A deletion indicated by a line through the center of the text</desc>
+                </valItem>
+                <valItem ident="strikethrough/expunctuated">
+                  <gloss>strikethrough and expunctuated</gloss>
+                  <desc>A delition indicated by both strikeing out and expunctuating.</desc>
+                </valItem>
+                <valItem ident="expunctuated">
+                  <gloss>expunctuated</gloss>
+                  <desc>A deletion indicated by dots underneath the text</desc>
+                </valItem>
+                <valItem ident="blackout">
+                  <gloss>blacked out</gloss>
+                  <desc>A deletion indicated by blacking out the word or segment</desc>
+                </valItem>
+                <valItem ident="underline">
+                  <gloss>underline</gloss>
+                  <desc>A deletion indicated by underling the word or segment</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <elementSpec ident="note" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.placement"/>
+          </classes>
+          <attList>
+            <attDef ident="type" mode="change" usage="rec">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <constraintSpec ident="note-place-noplace" scheme="isoschematron">
+                <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='marginalNote']">
+                    <report test="not(./@place)">This is a marginal note. This means that it is a note that exist in the primary source. Therefore it has a physical location that needs to be recorded.</report>
+                  </rule>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='editorialNote']">
+                    <report test="./@place">This is an editorial note therefore no place attribute should be added.</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <valList type="semi" mode="change">
+                <valItem ident="editorialNote">
+                  <gloss>Editorial Note</gloss>
+                  <desc>Any note supplied by modern editors not actually present in the primary source</desc>
+                </valItem>
+                <valItem ident="marginalNote">
+                  <gloss>Marginal Note</gloss>
+                  <desc>A note present in the manuscript witness itself, but clear meant as annotation to the actual text. This note may either be in the same hand as the text or supplied by a latter reader.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="hand" mode="add" usage="opt">
+              <gloss>hand</gloss>
+              <desc>hand responsible for marginal note</desc>
+              <datatype>
+                <rng:ref name="data.text"/>
+              </datatype>
+            </attDef>
+            <attDef ident="subtype" usage="opt">
+              <gloss>subtype</gloss>
+              <desc>The subtype field should indicate what kind of marginal or editorial note this is. For Editorial notes there are two types: reference/quote identification or editorial explanation. For marginal notes there are generally three types: navigation, nameIdentification, summary</desc>
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <constraintSpec ident="note-place-noplace" scheme="isoschematron">
+                <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='marginalNote']">
+                    <report test="./@subtyp[text()='refIdentification'] or ./@subtyp[text()='edExplanation']">This is a marginal note. Therefore these two types of subtypes are not appropriate</report>
+                  </rule>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='editorialNote']">
+                    <report test="not(./@subtyp[text()='refIdentification'] or ./@subtyp[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <valList type="semi" mode="change">
+                <valItem ident="refIdentification">
+                  <gloss>reference/quotation identification</gloss>
+                  <desc>Any note supplied by modern editors to identify the source of a reference or quotation or both. This note should have a corresp attribute that points to the reference or quotation (or both that it is) identifying</desc>
+                </valItem>
+                <valItem ident="edExplanation">
+                  <gloss>Editorial explanation</gloss>
+                  <desc>A note that adds an editorial comment or explanation. Most anything that is not a reference identification should go here</desc>
+                </valItem>
+                <valItem ident="navigational">
+                  <gloss>Marginal navigation</gloss>
+                  <desc>An maringal note that says something like "prima conclusio" or "primus articulus" or "nota" should go here</desc>
+                </valItem>
+                <valItem ident="nameIdentification">
+                  <gloss>Marginal mention of a name</gloss>
+                  <desc>Any marginal note that indicates the name of an author discussed in the text should go here</desc>
+                </valItem>
+                <valItem ident="summary">
+                  <gloss>margin summary</gloss>
+                  <desc>Any marginal note that provides navigational summaries should go here -- this is most visible in the sorb and mazarine transcription of Adam Wodeham's ordinatio</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+
+        <moduleRef key="tei"/>
+
+        <!-- header module -->
+        <moduleRef key="header"
+          include="availability biblFull category catDesc classDecl edition editionStmt editorialDecl encodingDesc extent fileDesc licence publicationStmt quotation  rendition revisionDesc sourceDesc teiHeader titleStmt taxonomy idno"/>
+
+        <elementSpec ident="category" module="header" mode="change">
+          <attList>
+            <attDef ident="xml:id" usage="req" mode="change"/>
+          </attList>
+
+        </elementSpec>
+
+        <!-- text structure module -->
+        <moduleRef key="textstructure" include="TEI back body div front imprimatur text"/>
+
+        <!-- optional modules -->
+
+        <!-- linking module -->
+        <moduleRef key="linking" include="seg"/>
+
+        <!-- Name and Date Module -->
+        <moduleRef key="namesdates"
+          include="listPerson listPlace persName person personGrp place placeName forename settlement surname"/>
+        <elementSpec ident="listPerson" module="namesdates" mode="change">
+          <attList>
+            <attDef ident="type" mode="change">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <valList type="semi" mode="add">
+                <valItem ident="Arabic"/>
+                <valItem ident="Biblcical"/>
+                <valItem ident="Classical"/>
+                <valItem ident="Divine"/>
+                <valItem ident="Patristic"/>
+                <valItem ident="Scholastic"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+
+        <!-- Text Criticism Module -->
+        <moduleRef key="textcrit"
+          include="app lem listApp listWit rdg rdgGrp variantEncoding wit witDetail witEnd witStart witness"/>
+        
+        <elementSpec ident="rdg" module="textcrit" mode="change">
+          <attList>
+            <attDef ident="type" mode="change" usage="rec">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <constraintSpec ident="lemmatest" scheme="isoschematron">
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='add.sed.del.']">
+                    <report test="./preceding-sibling::tei:lem/text()">This is add. sed. del. reading. Therefore it's lemma element should be empty. If the deletion is of a text used in the edited text you should use the "del." type rather than the "add.sed.del." type.</report>
+                  </rule>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='del.']">
+                    <report test="./preceding-sibling::tei:lem/not(text())">This is a del. element, which means that the lemma element should not be empty. The delete type indicates that the lemma visibile in the edited text is present but deleted in the manuscript witness 
+                   </report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              
+              <valList type="semi" mode="add">
+                <valItem ident="om.">
+                  <gloss>omission</gloss>
+                  <desc>indicates that the witness in question omits the designated lemma</desc>
+                </valItem>
+                <valItem ident="add.">
+                  <gloss>addition</gloss>
+                  <desc>indicates that the current lemma was added to the text by some sort of external imposition, either by the same scribe or a later scribe. There are two options here. If the lemma is empty this indicates that, at this point, the witness in question includes a word or phrase that was chosen not to be included the edited text. If a lemma is included then the addition means that the word identified in the lemma is present in the witness, but is inserted in some way (either in the margin or inter-linearly).</desc>
+                </valItem>
+                <valItem ident="add.sed.del.">
+                  <gloss>added but then deleted</gloss>
+                  <desc>indicates that a segment of text was included in the text but then deleted. In such instances the lemma will most likely be left empty.</desc>
+                </valItem>
+                <valItem ident="del.">
+                  <gloss>present but deleted</gloss>
+                  <desc>Indicates that the text indicated in the lemma is present in the witness in question but is deleted. In the case the edited text has decided that this deletion is an error and is not the best reading.</desc>
+                </valItem>
+                <valItem ident="corr.ex.">
+                  <gloss>Corrected From</gloss>
+                  <desc>Indicates that the lemma text in the witness in question has been corrected from a previous form that has been deleted</desc>
+                </valItem>
+              </valList>
+              <exemplum>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <app><lem/><rdg with="#V" type="add.sed.del">fides</rdg></app>
+                </egXML>
+              </exemplum>
+            </attDef>
+            
+          </attList>
+          
+        </elementSpec>
+
+
+        <!-- Primary Source Transcription Module -->
+        <moduleRef key="transcr" include="facsimile space subst supplied surface zone"/>
+
+        <!-- Ms Description Module -->
+        <!-- not sure what elements need here; but I will probably need a lot more elements for the official bibliographyy of the mansucriopt witnesses -->
+        <moduleRef key="msdescription" include="msDesc msContents msItem msItemStruct summary incipit explicit msIdentifier repository history origin origDate"/>
+
+        <!-- Character and Glyph Documentat Module -->
+        <!-- may not be necessary once <pc> element replaces glyps -->
+        <moduleRef key="gaiji" include="g glyph glyphName"/>
+
+        <!-- analysis module -->
+        <moduleRef key="analysis" include="c interp interpGrp pc"/>
+
+<!-- attribute class modifications -->
+        
+        <classSpec ident="att.placement" type="atts" mode="change">
+          <attList>
+            <attDef ident="place" mode="change" usage="rec">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <valList type="semi" mode="replace">
+                <valItem ident="aboveLine">
+                  <gloss>Above Line</gloss>
+                  <desc>Inter-linearly, above the line in which it is being inserted</desc>
+                </valItem>
+                <valItem ident="marginLeft">
+                  <gloss>Left Margin</gloss>
+                  <desc>In the left margin of the page</desc>
+                </valItem>
+                <valItem ident="marginRight">
+                  <gloss>Right Margin</gloss>
+                  <desc>In the right margin of the page</desc>
+                </valItem>
+                <valItem ident="marginBottom">
+                  <gloss>Bottom Margin</gloss>
+                  <desc>In the bottom margin of the page</desc>
+                </valItem>
+                <valItem ident="marginTop">
+                  <gloss>Top Margin</gloss>
+                  <desc>In the top margin of the page</desc>
+                </valItem>
+                <valItem ident="inLine">
+                  <gloss>In line</gloss>
+                  <desc>the addition is made in the line itself</desc>
+                </valItem>
+                <valItem ident="inSpace">
+                  <gloss>In space</gloss>
+                  <desc>In a predefined space left for an addition, perhaps a space left by another scribe.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </classSpec>
+
+
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>
