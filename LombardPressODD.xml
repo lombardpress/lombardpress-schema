@@ -205,27 +205,21 @@
                 </valItem>
               </valList>
             </attDef>
-            <attDef ident="hand" mode="add" usage="opt">
-              <gloss>hand</gloss>
-              <desc>hand responsible for marginal note</desc>
-              <datatype>
-                <rng:ref name="data.text"/>
-              </datatype>
-            </attDef>
-            <attDef ident="subtype" usage="opt">
+            
+            <attDef ident="subtype" mode="change" usage="rec">
               <gloss>subtype</gloss>
               <desc>The subtype field should indicate what kind of marginal or editorial note this is. For Editorial notes there are two types: reference/quote identification or editorial explanation. For marginal notes there are generally three types: navigation, nameIdentification, summary</desc>
               <datatype>
                 <rng:ref name="data.enumerated"/>
               </datatype>
-              <constraintSpec ident="note-place-noplace" scheme="isoschematron">
+              <constraintSpec ident="note-subtypes" scheme="isoschematron">
                 <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='marginalNote']">
-                    <report test="./@subtyp[text()='refIdentification'] or ./@subtyp[text()='edExplanation']">This is a marginal note. Therefore these two types of subtypes are not appropriate</report>
+                    <report test="./@subtype[text()='refIdentification'] or ./@subtype[text()='edExplanation']">This is a marginal note. Therefore these two types of subtypes are not appropriate</report>
                   </rule>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='editorialNote']">
-                    <report test="not(./@subtyp[text()='refIdentification'] or ./@subtyp[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
+                    <report test="not(./@subtype[text()='refIdentification'] or ./@subtype[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
                   </rule>
                 </constraint>
               </constraintSpec>
@@ -240,7 +234,7 @@
                 </valItem>
                 <valItem ident="navigational">
                   <gloss>Marginal navigation</gloss>
-                  <desc>An maringal note that says something like "prima conclusio" or "primus articulus" or "nota" should go here</desc>
+                  <desc>An marginal note that says something like "prima conclusio" or "primus articulus" or "nota" should go here</desc>
                 </valItem>
                 <valItem ident="nameIdentification">
                   <gloss>Marginal mention of a name</gloss>
@@ -252,6 +246,15 @@
                 </valItem>
               </valList>
             </attDef>
+            
+            <attDef ident="hand" mode="add" usage="opt">
+              <gloss>hand</gloss>
+              <desc>hand responsible for marginal note</desc>
+              <datatype>
+                <rng:ref name="data.text"/>
+              </datatype>
+            </attDef>
+            
           </attList>
         </elementSpec>
 

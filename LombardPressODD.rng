@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2013-12-15T08:33:25Z. 
+Schema generated from ODD source 2013-12-15T09:29:56Z. 
 Edition: 2.3.0. Last updated on 17th January 2013.
 Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
 
@@ -3023,7 +3023,7 @@ Suggested values include: 1] refIdentification (reference/quotation identificati
                   <value>edExplanation</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (Editorial explanation) A note that adds an editorial comment or explanation. Most anything that is not a reference identification should go here</a:documentation>
                   <value>navigational</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (Marginal navigation) An maringal note that says something like "prima conclusio" or "primus articulus" or "nota" should go here</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (Marginal navigation) An marginal note that says something like "prima conclusio" or "primus articulus" or "nota" should go here</a:documentation>
                   <value>nameIdentification</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (Marginal mention of a name) Any marginal note that indicates the name of an author discussed in the text should go here</a:documentation>
                   <value>summary</value>
@@ -3035,17 +3035,17 @@ Suggested values include: 1] refIdentification (reference/quotation identificati
                 
                 
                   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="subtype-constraint-note-place-noplace">
+                  id="subtype-constraint-note-subtypes">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                   context="tei:note[@type='marginalNote']">
-                    <report test="./@subtyp[text()='refIdentification'] or ./@subtyp[text()='edExplanation']">This is a marginal note. Therefore these two types of subtypes are not appropriate</report>
+                    <report test="./@subtype[text()='refIdentification'] or ./@subtype[text()='edExplanation']">This is a marginal note. Therefore these two types of subtypes are not appropriate</report>
                   </rule>
          </pattern>
                   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="subtype-constraint-note-place-noplace">
+                  id="subtype-constraint-note-subtypes">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                   context="tei:note[@type='editorialNote']">
-                    <report test="not(./@subtyp[text()='refIdentification'] or ./@subtyp[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
+                    <report test="not(./@subtype[text()='refIdentification'] or ./@subtype[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
                   </rule>
          </pattern>
                 
@@ -3056,42 +3056,6 @@ Suggested values include: 1] refIdentification (reference/quotation identificati
             </attribute>
          </optional>
          <optional>
-            <attribute name="subtype">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (subtype) The subtype field should indicate what kind of marginal or editorial note this is. For Editorial notes there are two types: reference/quote identification or editorial explanation. For marginal notes there are generally three types: navigation, nameIdentification, summary
-Suggested values include: 1] refIdentification (reference/quotation identification) ; 2] edExplanation (Editorial explanation) ; 3] navigational (Marginal navigation) ; 4] nameIdentification (Marginal mention of a name) ; 5] summary (margin summary) </a:documentation>
-               <choice>
-                  <value>refIdentification</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (reference/quotation identification) Any note supplied by modern editors to identify the source of a reference or quotation or both. This note should have a corresp attribute that points to the reference or quotation (or both that it is) identifying</a:documentation>
-                  <value>edExplanation</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (Editorial explanation) A note that adds an editorial comment or explanation. Most anything that is not a reference identification should go here</a:documentation>
-                  <value>navigational</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (Marginal navigation) An maringal note that says something like "prima conclusio" or "primus articulus" or "nota" should go here</a:documentation>
-                  <value>nameIdentification</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (Marginal mention of a name) Any marginal note that indicates the name of an author discussed in the text should go here</a:documentation>
-                  <value>summary</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"> (margin summary) Any marginal note that provides navigational summaries should go here -- this is most visible in the sorb and mazarine transcription of Adam Wodeham's ordinatio</a:documentation>
-                  <data type="Name"/>
-               </choice>
-            </attribute>
-         </optional>
-                
-                
-                  <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="subtype-constraint-note-place-noplace">
-            <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  context="tei:note[@type='marginalNote']">
-                    <report test="./@subtyp[text()='refIdentification'] or ./@subtyp[text()='edExplanation']">This is a marginal note. Therefore these two types of subtypes are not appropriate</report>
-                  </rule>
-         </pattern>
-                  <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="subtype-constraint-note-place-noplace">
-            <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  context="tei:note[@type='editorialNote']">
-                    <report test="not(./@subtyp[text()='refIdentification'] or ./@subtyp[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
-                  </rule>
-         </pattern>
-                
-              <optional>
             <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
                        name="anchored"
                        a:defaultValue="true">
