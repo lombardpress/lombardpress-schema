@@ -219,7 +219,7 @@
                     <report test="./@subtype[text()='refIdentification'] or ./@subtype[text()='edExplanation']">This is a marginal note. Therefore these two types of subtypes are not appropriate</report>
                   </rule>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='editorialNote']">
-                    <report test="not(./@subtype[text()='refIdentification'] or ./@subtype[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
+                    <report test="not(./@subtype[text()='refIdentification']) or not(./@subtype[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
                   </rule>
                 </constraint>
               </constraintSpec>

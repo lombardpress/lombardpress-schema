@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2013-12-15T09:29:56Z. 
+Schema generated from ODD source 2013-12-15T13:50:07Z. 
 Edition: 2.3.0. Last updated on 17th January 2013.
 Edition Location: http://www.tei-c.org/Vault/P5/2.3.0/
 
@@ -3045,7 +3045,7 @@ Suggested values include: 1] refIdentification (reference/quotation identificati
                   id="subtype-constraint-note-subtypes">
             <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                   context="tei:note[@type='editorialNote']">
-                    <report test="not(./@subtype[text()='refIdentification'] or ./@subtype[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
+                    <report test="not(./@subtype[text()='refIdentification']) or not(./@subtype[text()='edExplanation'])">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
                   </rule>
          </pattern>
                 
