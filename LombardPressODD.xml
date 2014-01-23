@@ -277,7 +277,7 @@
         <!-- optional modules -->
 
         <!-- linking module -->
-        <moduleRef key="linking" include="seg"/>
+        <moduleRef key="linking" include="seg anchor"/>
 
         <!-- Name and Date Module -->
         <moduleRef key="namesdates"

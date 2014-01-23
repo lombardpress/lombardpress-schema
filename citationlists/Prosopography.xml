@@ -404,21 +404,25 @@
         <listPerson type="Scholastic">
             <person xml:id="Aquinas">
                 <persName>Thomas Aquinas</persName>
+                <note type="dbpedia-url">http://dbpedia.org/resource/Thomas_Aquinas</note>
             </person>
             <person xml:id="Holcot">
                 <persName>Robert Holcot</persName>
+                <note type="dbpedia-url">http://dbpedia.org/resource/Robert_Holcot</note>
             </person>
             <person xml:id="Albert">
                 <persName>Albert the Great</persName>
             </person>
             <person xml:id="GilesOfRome">
                 <persName>Giles of Rome</persName>
+                <note type="dbpedia-url">http://dbpedia.org/resource/Giles_of_Rome</note>
             </person>
             <person xml:id="Wodeham">
                 <persName>Adam Wodeham</persName>
             </person>
             <person xml:id="Ockham">
                 <persName>William of Ockham</persName>
+                <note type="dbpedia-url">http://dbpedia.org/resource/William_of_Ockham</note>
             </person>
             <person xml:id="Scotus">
                 <persName>John Duns Scotus</persName>
@@ -428,6 +432,7 @@
             </person>
             <person xml:id="Anselm">
                 <persName>Anselm</persName>
+                <note type="dbpedia-url">http://dbpedia.org/resource/Anselm_of_Canterbury</note>
             </person>
             <person xml:id="Aureoli">
                 <persName>Peter Aureoli</persName>
