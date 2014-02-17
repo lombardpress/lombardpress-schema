@@ -48,63 +48,63 @@
             </bibl>
         </listBibl>
         <listBibl type="Biblical">
-            <bibl xml:id="Genesis">
+            <bibl xml:id="gen">
                 <title n="1">Genesis</title>
                 <author ref="#Moses">Moses</author>
             </bibl>
-            <bibl xml:id="Exodus">
+            <bibl xml:id="ex">
                 <title n="2">Exodus</title>
                 <author ref="#Moses">Moses</author>
             </bibl>
-            <bibl xml:id="MatthewGospel">
+            <bibl xml:id="mt">
                 <title>Matthew</title>
                 <author ref="#Mathew">Matthew</author>
             </bibl>
-            <bibl xml:id="MarkGospel">
+            <bibl xml:id="mc">
                 <title>Mark</title>
                 <author ref="#Mark">Mark</author>
             </bibl>
-            <bibl xml:id="LukeGospel">
+            <bibl xml:id="lc">
                 <title>Luke</title>
                 <author ref="#Luke">Luke</author>
             </bibl>
-            <bibl xml:id="JohnGospel">
+            <bibl xml:id="io">
                 <title>John</title>
                 <author ref="#John">John</author>
             </bibl>
-            <bibl xml:id="RomansEpistle">
+            <bibl xml:id="rom">
                 <title>Romans</title>
                 <author ref="#Paul">Paul, the Apostle</author>
             </bibl>
-            <bibl xml:id="JamesEpistle">
+            <bibl xml:id="iac">
                 <title>James</title>
                 <author ref="#James">James, the Apostle</author>
             </bibl>
-            <bibl xml:id="ICorinthiansEpistle">
+            <bibl xml:id="1cor">
                 <title>I Corinthians</title>
                 <author ref="#Paul">Paul, the Apostle</author>
             </bibl>
-            <bibl xml:id="IICorinthiansEpistle">
+            <bibl xml:id="2cor">
                 <title>II Corinthians</title>
                 <author ref="#Paul">Paul, the Apostle</author>
             </bibl>
-            <bibl xml:id="HebrewsEpistle">
+            <bibl xml:id="hebr">
                 <title>Hebrews</title>
                 <author ref="#Paul">Paul, the Apostle</author>
             </bibl>
-            <bibl xml:id="HabakkukBook">
+            <bibl xml:id="hab">
                 <title>Habakkuk</title>
                 <author ref="#Habakkuk">Habakkuk</author>
             </bibl>
-            <bibl xml:id="BookOfWisdom">
+            <bibl xml:id="sap">
                 <title>Wisdom</title>
                 <author ref="#Solomon">Solomon</author>
             </bibl>
-            <bibl xml:id="Proverbs">
+            <bibl xml:id="prov">
                 <title>Proverbs</title>
                 <author ref="#Solomon">Solomon</author>
             </bibl>
-            <bibl xml:id="IJohnEpistle">
+            <bibl xml:id="1io">
                 <title>I John</title>
                 <author ref="#John">John</author>
             </bibl>
@@ -112,43 +112,39 @@
                 <title>Acts of the Apostles</title>
                 <author ref="#Luke">Luke</author>
             </bibl>
-            <bibl xml:id="Deuteronomy">
+            <bibl xml:id="deut">
                 <title>Deuteronomy</title>
                 <author ref="#Moses">Moses</author>
             </bibl>
-            <bibl xml:id="Psalms">
+            <bibl xml:id="ps">
                 <title>Psalms</title>
                 <author ref="#David">David</author>
             </bibl>
-            <bibl xml:id="IPeterEpistle">
+            <bibl xml:id="1petr">
                 <title>I Peter</title>
                 <author ref="#Peter">Peter</author>
             </bibl>
-            <bibl xml:id="Revalations">
-                <title>Revelations</title>
+            <bibl xml:id="ap">
+                <title>Revelation</title>
                 <author ref="#John">John</author>
             </bibl>
-            <bibl xml:id="CollosiansEpistle">
+            <bibl xml:id="col">
                 <title>Collosians</title>
                 <author ref="#Paul">Paul</author>
             </bibl>
-            <bibl xml:id="IsaiahBook">
+            <bibl xml:id="is">
                 <title>Isaiah</title>
                 <author ref="#Isaiah">Isaiah</author>
             </bibl>
-            <bibl xml:id="NumbersBook">
+            <bibl xml:id="num">
                 <title>Numbers</title>
                 <author ref="#Moses">Moses</author>
             </bibl>
-            <bibl xml:id="SongOfSongs">
+            <bibl xml:id="cant">
                 <title>Song of Songs</title>
                 <author ref="#Solomon">Solomon</author>
             </bibl>
-            <bibl xml:id="Pentatuch">
-                <title>Pentatuch</title>
-                <author ref="#Moses">Moses</author>
-            </bibl>
-            <bibl xml:id="GalatiansEpistle">
+            <bibl xml:id="gal">
                 <title>Galatians</title>
                 <author ref="#Paul">Paul</author>
             </bibl>
