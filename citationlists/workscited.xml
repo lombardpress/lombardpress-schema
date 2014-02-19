@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../Documentation/PlaoulProjectODD.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="../Documentation/PlaoulProjectODD.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
 <teiHeader>
     <fileDesc>
@@ -80,11 +78,11 @@
                 <title>James</title>
                 <author ref="#James">James, the Apostle</author>
             </bibl>
-            <bibl xml:id="1cor">
+            <bibl xml:id="Icor">
                 <title>I Corinthians</title>
                 <author ref="#Paul">Paul, the Apostle</author>
             </bibl>
-            <bibl xml:id="2cor">
+            <bibl xml:id="IIcor">
                 <title>II Corinthians</title>
                 <author ref="#Paul">Paul, the Apostle</author>
             </bibl>
@@ -104,11 +102,19 @@
                 <title>Proverbs</title>
                 <author ref="#Solomon">Solomon</author>
             </bibl>
-            <bibl xml:id="1io">
+            <bibl xml:id="Iio">
                 <title>I John</title>
                 <author ref="#John">John</author>
             </bibl>
-            <bibl xml:id="ActsOfApostles">
+            <bibl xml:id="IIio">
+                <title>II John</title>
+                <author ref="#John">John</author>
+            </bibl>
+            <bibl xml:id="IIIio">
+                <title>III John</title>
+                <author ref="#John">John</author>
+            </bibl>
+            <bibl xml:id="act">
                 <title>Acts of the Apostles</title>
                 <author ref="#Luke">Luke</author>
             </bibl>
@@ -120,8 +126,12 @@
                 <title>Psalms</title>
                 <author ref="#David">David</author>
             </bibl>
-            <bibl xml:id="1petr">
+            <bibl xml:id="Ipetr">
                 <title>I Peter</title>
+                <author ref="#Peter">Peter</author>
+            </bibl>
+            <bibl xml:id="IIpetr">
+                <title>II Peter</title>
                 <author ref="#Peter">Peter</author>
             </bibl>
             <bibl xml:id="ap">
@@ -148,9 +158,35 @@
                 <title>Galatians</title>
                 <author ref="#Paul">Paul</author>
             </bibl>
-            <bibl xml:id="Ecclesiastes">
+            <bibl xml:id="qoh">
                 <title>Ecclesiastes</title>
                 <author ref="#Solomon">Solomon</author>
+            </bibl>
+            <bibl xml:id="sir">
+                <title>Ecclesiasticus</title>
+                <author ref="#Solomon">Solomon</author>
+            </bibl>
+            <bibl xml:id="iob">
+                <title>Iob</title>
+                <author ref="#Solomon">Solomon</author>
+            </bibl>
+            <bibl xml:id="Itim">
+                <title>1 Timothy</title>
+                <author ref="#Paul">Paul</author>
+            </bibl>
+            <bibl xml:id="IItim">
+                <title>2 Timothy</title>
+                <author ref="#Paul">Paul</author>
+            </bibl>
+            <bibl xml:id="mal">
+                <title>Malachi</title>
+                <author ref="#Malachi">Malachi</author>
+            </bibl>
+            <bibl xml:id="Ireg">
+                <title>1 Kings</title>
+            </bibl>
+            <bibl xml:id="IIreg">
+                <title>2 Kings</title>
             </bibl>
             
         </listBibl>
