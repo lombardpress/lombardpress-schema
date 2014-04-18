@@ -184,9 +184,11 @@
             </bibl>
             <bibl xml:id="Ireg">
                 <title>1 Kings</title>
+                <author ref="#Jeremiah">Jeremiah</author>
             </bibl>
             <bibl xml:id="IIreg">
                 <title>2 Kings</title>
+                <author ref="#Jeremiah">Jeremiah</author>
             </bibl>
             
         </listBibl>

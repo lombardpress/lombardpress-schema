@@ -555,6 +555,10 @@
             <person xml:id="AlexanderOfHales">
                 <persName>Alexander of Hales</persName>
             </person>
+            <person xml:id="peter-plaoul">
+                <persName>Peter Plaoul</persName>
+                <note type="dbpedia-url">http://dbpedia.org/resource/Peter_Plaoul</note>
+            </person>
         </listPerson>
         <listPerson type="Groups">
             <personGrp xml:id="Astrologers">
