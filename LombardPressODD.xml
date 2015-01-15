@@ -262,7 +262,7 @@
 
         <!-- header module -->
         <moduleRef key="header"
-          include="availability biblFull category catDesc classDecl edition editionStmt editorialDecl encodingDesc extent fileDesc licence publicationStmt quotation  rendition revisionDesc sourceDesc teiHeader titleStmt taxonomy idno"/>
+          include="availability biblFull category catDesc classDecl edition editionStmt editorialDecl encodingDesc extent fileDesc licence publicationStmt quotation  rendition revisionDesc sourceDesc teiHeader titleStmt taxonomy idno listChange change"/>
 
         <elementSpec ident="category" module="header" mode="change">
           <attList>
