@@ -183,7 +183,7 @@
               <datatype>
                 <rng:ref name="data.enumerated"/>
               </datatype>
-              <!--
+              
               <constraintSpec ident="note-place-noplace" scheme="isoschematron">
                 <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
                  <constraint>
@@ -195,7 +195,7 @@
                   </rule>
                 </constraint>
               </constraintSpec>
-              -->
+              
               <valList type="semi" mode="change">
                 <valItem ident="editorialNote">
                   <gloss>Editorial Note</gloss>
@@ -207,49 +207,6 @@
                 </valItem>
               </valList>
             </attDef>
-            
-            <attDef ident="subtype" mode="change" usage="rec">
-              <gloss>subtype</gloss>
-              <desc>The subtype field should indicate what kind of marginal or editorial note this is. For Editorial notes there are two types: reference/quote identification or editorial explanation. For marginal notes there are generally three types: navigation, nameIdentification, summary</desc>
-              <datatype>
-                <rng:ref name="data.enumerated"/>
-              </datatype>
-              <!-- 
-              <constraintSpec ident="note-subtypes" scheme="isoschematron">
-                <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
-                <constraint>
-                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='marginalNote']">
-                    <report test="./@subtype='refIdentification' or ./@subtype='edExplanation'">This is a marginal note. Therefore these two types of subtypes are not appropriate</report>
-                  </rule>
-                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='editorialNote']">
-                    <report test="not(./@subtype='refIdentification') or not(./@subtype='edExplanation')">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
-                  </rule>
-                </constraint>
-              </constraintSpec> -->
-              <valList type="semi" mode="change">
-                <valItem ident="refIdentification">
-                  <gloss>reference/quotation identification</gloss>
-                  <desc>Any note supplied by modern editors to identify the source of a reference or quotation or both. This note should have a corresp attribute that points to the reference or quotation (or both that it is) identifying</desc>
-                </valItem>
-                <valItem ident="edExplanation">
-                  <gloss>Editorial explanation</gloss>
-                  <desc>A note that adds an editorial comment or explanation. Most anything that is not a reference identification should go here</desc>
-                </valItem>
-                <valItem ident="navigational">
-                  <gloss>Marginal navigation</gloss>
-                  <desc>An marginal note that says something like "prima conclusio" or "primus articulus" or "nota" should go here</desc>
-                </valItem>
-                <valItem ident="nameIdentification">
-                  <gloss>Marginal mention of a name</gloss>
-                  <desc>Any marginal note that indicates the name of an author discussed in the text should go here</desc>
-                </valItem>
-                <valItem ident="summary">
-                  <gloss>margin summary</gloss>
-                  <desc>Any marginal note that provides navigational summaries should go here -- this is most visible in the sorb and mazarine transcription of Adam Wodeham's ordinatio</desc>
-                </valItem>
-              </valList>
-            </attDef>
-            
             <attDef ident="hand" mode="add" usage="opt">
               <gloss>hand</gloss>
               <desc>hand responsible for marginal note</desc>
@@ -313,19 +270,6 @@
               <datatype>
                 <rng:ref name="data.enumerated"/>
               </datatype>
-              <!-- 
-              <constraintSpec ident="lemmatest" scheme="isoschematron">
-                <constraint>
-                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='add.sed.del.']">
-                    <report test="./preceding-sibling::tei:lem/text()">This is add. sed. del. reading. Therefore it's lemma element should be empty. If the deletion is of a text used in the edited text you should use the "del." type rather than the "add.sed.del." type.</report>
-                  </rule>
-                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='del.']">
-                    <report test="./preceding-sibling::tei:lem/not(text())">This is a del. element, which means that the lemma element should not be empty. The delete type indicates that the lemma visibile in the edited text is present but deleted in the manuscript witness 
-                   </report>
-                  </rule>
-                </constraint>
-              </constraintSpec>
-              -->
               <valList type="semi" mode="add">
                 <valItem ident="om.">
                   <gloss>omission</gloss>
