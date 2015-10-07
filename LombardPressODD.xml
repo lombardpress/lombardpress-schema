@@ -183,9 +183,10 @@
               <datatype>
                 <rng:ref name="data.enumerated"/>
               </datatype>
+              <!--
               <constraintSpec ident="note-place-noplace" scheme="isoschematron">
                 <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
-                <constraint>
+                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='marginalNote']">
                     <report test="not(./@place)">This is a marginal note. This means that it is a note that exist in the primary source. Therefore it has a physical location that needs to be recorded.</report>
                   </rule>
@@ -194,6 +195,7 @@
                   </rule>
                 </constraint>
               </constraintSpec>
+              -->
               <valList type="semi" mode="change">
                 <valItem ident="editorialNote">
                   <gloss>Editorial Note</gloss>
@@ -212,6 +214,7 @@
               <datatype>
                 <rng:ref name="data.enumerated"/>
               </datatype>
+              <!-- 
               <constraintSpec ident="note-subtypes" scheme="isoschematron">
                 <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
                 <constraint>
@@ -222,7 +225,7 @@
                     <report test="not(./@subtype='refIdentification') or not(./@subtype='edExplanation')">This is an editorial note. The only types of subtypes allowed are refIdentification and edExplanation.</report>
                   </rule>
                 </constraint>
-              </constraintSpec>
+              </constraintSpec> -->
               <valList type="semi" mode="change">
                 <valItem ident="refIdentification">
                   <gloss>reference/quotation identification</gloss>
@@ -310,6 +313,7 @@
               <datatype>
                 <rng:ref name="data.enumerated"/>
               </datatype>
+              <!-- 
               <constraintSpec ident="lemmatest" scheme="isoschematron">
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='add.sed.del.']">
@@ -321,32 +325,39 @@
                   </rule>
                 </constraint>
               </constraintSpec>
-              
+              -->
               <valList type="semi" mode="add">
                 <valItem ident="om.">
                   <gloss>omission</gloss>
                   <desc>indicates that the witness in question omits the designated lemma</desc>
                 </valItem>
-                <valItem ident="add.">
+                <valItem ident="corrAddition">
                   <gloss>addition</gloss>
                   <desc>indicates that the current lemma was added to the text by some sort of external imposition, either by the same scribe or a later scribe. There are two options here. If the lemma is empty this indicates that, at this point, the witness in question includes a word or phrase that was chosen not to be included the edited text. If a lemma is included then the addition means that the word identified in the lemma is present in the witness, but is inserted in some way (either in the margin or inter-linearly).</desc>
                 </valItem>
-                <valItem ident="add.sed.del.">
+                <valItem ident="corrDeletion">
                   <gloss>added but then deleted</gloss>
                   <desc>indicates that a segment of text was included in the text but then deleted. In such instances the lemma will most likely be left empty.</desc>
                 </valItem>
-                <valItem ident="del.">
-                  <gloss>present but deleted</gloss>
-                  <desc>Indicates that the text indicated in the lemma is present in the witness in question but is deleted. In the case the edited text has decided that this deletion is an error and is not the best reading.</desc>
-                </valItem>
-                <valItem ident="corr.ex.">
+                <valItem ident="corrReplace">
                   <gloss>Corrected From</gloss>
                   <desc>Indicates that the lemma text in the witness in question has been corrected from a previous form that has been deleted</desc>
+                </valItem>
+                <valItem ident="intextu">
+                  <gloss>in textu</gloss>
+                  <desc>Indicates that the rdg is present in the witness but has not been included in the critical text.</desc>
                 </valItem>
               </valList>
               <exemplum>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <app><lem/><rdg with="#V" type="add.sed.del">fides</rdg></app>
+                  <app>
+                    <lem>fides</lem>
+                    <rdg with="#V" type="corrDeletion">
+                      <corr>
+                        <del>fides</del>
+                      </corr>
+                    </rdg>
+                  </app>
                 </egXML>
               </exemplum>
             </attDef>
