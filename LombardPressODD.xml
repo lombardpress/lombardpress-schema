@@ -44,7 +44,7 @@
         <!-- Core Module -->
 
         <moduleRef key="core"
-          include="abbr add analytic author bibl biblScope biblStruct cb choice cit corr date del desc editor emph expan foreign gap gb gloss graphic head hi imprint index item lb list listBibl mentioned milestone monogr name note num orig p pb ptr pubPlace publisher quote ref reg resp respStmt rs series sic teiCorpus term textLang title unclear"/>
+          include="abbr add analytic author bibl biblScope biblStruct cb choice cit corr date del desc editor emph expan foreign gap gb gloss graphic head hi imprint index item lb list listBibl mentioned milestone monogr name note num orig p pb ptr pubPlace publisher quote ref reg resp respStmt rs said series sic teiCorpus term textLang title unclear"/>
         
         
         <!-- element modifications to core module -->
