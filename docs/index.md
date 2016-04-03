@@ -9,10 +9,10 @@ categories: schema
 
 ## Version 1.0.0 (in preparation)
 
-* [1.0.0-critical](/schema/1.0/critical/)
-* [1.0.0-diplomatic](/schema/1.0/critical/)
+* [1.0.0-critical](/schema/docs/1.0/critical/)
+* [1.0.0-diplomatic](/schema/docs/1.0/critical/)
 
 ## Version 0.0.0 (depreciated)
 
-* [0.0.0-critical](/schema/0.0/critical/)
-* [0.0.0-diplomatic](/schema/0.0/critical/)
+* [0.0.0-critical](/schema/0.0/docs/critical/)
+* [0.0.0-diplomatic](/schema/0.0/docs/critical/)
