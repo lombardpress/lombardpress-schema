@@ -9,10 +9,10 @@ categories: schema
 
 ## Version 1.0.0 (in preparation)
 
-* [1.0.0-critical](lombardpress-site/schema/docs/1.0/critical/)
-* [1.0.0-diplomatic](lombardpress-site/schema/docs/1.0/critical/)
+* [1.0.0-critical](1.0/critical/)
+* [1.0.0-diplomatic](1.0/critical/)
 
 ## Version 0.0.0 (depreciated)
 
-* [0.0.0-critical](lombardpress-site/schema/docs/0.0/critical/)
-* [0.0.0-diplomatic](lombardpress-site/schema/docs/0.0/critical/)
+* [0.0.0-critical](0.0/critical/)
+* [0.0.0-diplomatic](0.0/critical/)
