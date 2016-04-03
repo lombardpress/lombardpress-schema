@@ -14,5 +14,5 @@ categories: schema
 
 ## Version 0.0.0 (depreciated)
 
-* [0.0.0-critical](/schema/0.0/docs/critical/)
-* [0.0.0-diplomatic](/schema/0.0/docs/critical/)
+* [0.0.0-critical](/schema/docs/0.0/critical/)
+* [0.0.0-diplomatic](/schema/docs/0.0/critical/)
