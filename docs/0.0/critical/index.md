@@ -101,7 +101,7 @@ Version 0.0.0 is being depreciated. We provide a list of basic decisions made he
 ## cit/quote
 
 * `<quote>` **MAY** have an `@ana` atttribute pointing a known quotation that is being referred to
-* when has `@type=commentary` `<quote>` **MAY** have a `@target` that points to SCTA URL
+* when has `@type=commentary` `<quote>` **MAY** have a `@source` that points to SCTA URL
 
 ## ref
 

@@ -13,7 +13,7 @@ Document Status: Draft
 
 # Preamble
 
-The goal of the LombardPress diplomatic transcription specification is offer a set of guidelines for the markup of medieval Sentences commentary that conform as much as possible to existing standards. In this case of diplomatic transcriptions, this means following as closely as possible the EpiDoc specification. In most cases, we aim only to expand the EpiDoc specifications and offer a detailed list of available attributes and specificy where @xml:id and other attributes and elements are required, preferred, or simply available. Where specifications are not stated, the EpiDoc guidelines should be followed. Where the EpiDoc does not state a specification, the more general TEI specification should be followed.
+The goal of the LombardPress diplomatic transcription specification is to offer a set of guidelines for the markup of medieval Sentences Commentary (and other genres of texts that may find the specification useful) that conform as much as possible to existing standards. In this case of diplomatic transcriptions, this means following as closely as possible the EpiDoc specification. In most cases, we aim only to expand the EpiDoc specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the EpiDoc guidelines should be followed. Where the EpiDoc does not state a specification, the more general TEI specification should be followed.
 
 # teiHeader elements
 

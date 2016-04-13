@@ -16,3 +16,5 @@ categories: schema
 
 * [0.0.0-critical](0.0/critical/)
 * [0.0.0-diplomatic](0.0/diplomatic/)
+
+To submit a bug report, ask a question about how to encode a particular text, or make a feature request, please submit an issue here: [https://github.com/lombardpress/lombardpress-schema/issues](https://github.com/lombardpress/lombardpress-schema/issues)
