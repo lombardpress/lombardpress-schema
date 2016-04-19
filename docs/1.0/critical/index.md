@@ -110,25 +110,27 @@ The goal of the LombardPress critical transcription specification is to offer a 
 
 * every `<head>` **SHOULD** have an `@xml:id` attribute.
 * generic main titles for a given division **SHOULD** be represented with an `<head>` and should not include an `@type`
-* for questionTitle subtypes a second `<head>` **SHOULD** be added with an `@type=questionTitle`
+* for questionTitle header a second `<head>` **SHOULD** be added with an `@type=questionTitle`
 
 ## p
 
 * every `<p>` **SHOULD** have an `@xml:id` attribute.
 * a `<p>` element can contain the following elements as direct children
-    - `<cit>`
     - `<name>`
     - `<title>`
-    - `<app>`
-    - `<supplied>`
-    - `<mentioned>`
-    - `<ref>`
+    - `<cit>`
     - `<quote>`
-
-
+    - `<ref>` 
+    - `<note>`
+    - `<mentioned>`
+    - `<c>`
+    - `<supplied>`
+    - `<app>`
+    
 ## name
 
 * `<name>` elements shoud have an `@ref` that points to a name id in the xincluded prosopography list
+* if `<name>` is being used to encode a name being used purely as a "variable", often "Sortes", "Plato", or "Socrates", the `<name>` element **SHOULD** take an `@type="variable` attribute (analogous to use the of the `<c type="variable">` structure described below)
 
 ## title
 
@@ -157,6 +159,17 @@ The goal of the LombardPress critical transcription specification is to offer a 
 ## cit/bibl or ref/bibl
 
 * `<bibl>` **MAY** contain a `<ref>`
+
+## mention
+
+* `<mention>` should be used as specified in the TEI guidelines to identify words as phrases under discussion. In general these phrases correspond to words or phrases placed within single quotations.
+
+## c
+
+* `<c>` **SHOULD** be used to encapsulate characters functioning as variables. This normally occurs in a syllogism or argument of some kind
+* `<c>` used to encode a variable **SHOULD** take an `@type="variable"` attribute indicating that this character is an attribute.
+
+## supplied
 
 ## app
 
