@@ -6,8 +6,10 @@ categories: schema
 ---
 
 Editors: 
-    * Jeffrey C. Witt
-    * Nicolas Vaughan
+    
+* Jeffrey C. Witt
+* Nicolas Vaughan
+* Michael Stenskjær Christensen
 
 Document Status: Draft
 
@@ -97,7 +99,7 @@ The goal of the LombardPress diplomatic transcription specification is to offer 
 ## div
 
 * every div **SHOULD** contain an `@xml:id` that corresponds to the short id for the Expression Part that this div represents.
-* if the division in question corresponds to the one of the available expressTypes in the SCTA Ontology, this should be declared with an `@type` attribute. Otherwise no `@type` attribute should be added.
+* if the division in question corresponds to the one of the available expressionTypes in the SCTA Ontology, this should be declared with an `@type` attribute. Otherwise no `@type` attribute should be added.
     - For example: "quaestio" "articulus", "dubium"
 * the DIV **MAY** contain a secondary header with the `attribute type='questionTitle'`
 
@@ -150,4 +152,7 @@ The goal of the LombardPress diplomatic transcription specification is to offer 
 
 * **MUST** indicate via `@ed` the source text in which the column breaks occur
 * **MAY** indicate via `@n` the number of the line.
+
+
+
 

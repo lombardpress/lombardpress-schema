@@ -6,8 +6,10 @@ categories: schema
 ---
 
 Editors: 
-    * Jeffrey C. Witt
-    * Nicolas Vaughan
+
+* Jeffrey C. Witt
+* Nicolas Vaughan
+* Michael Stenskjær Christensen
 
 Document Status: Draft
 
@@ -100,7 +102,7 @@ The goal of the LombardPress critical transcription specification is to offer a 
 ## div
 
 * every div **SHOULD** contain an `@xml:id` that corresponds to the short id for the Expression Part that this div represents.
-* if the division in question corresponds to the one of the available expressTypes in the SCTA Ontology, this should be declared with an `@type` attribute. Otherwise no `@type` attribute should be added.
+* if the division in question corresponds to the one of the available expressionTypes in the SCTA Ontology, this should be declared with an `@type` attribute. Otherwise no `@type` attribute should be added.
     - For example: "quaestio" "articulus", "dubium"
 * the DIV **MAY** contain a secondary header with the `attribute type='questionTitle'`
 
@@ -121,7 +123,8 @@ The goal of the LombardPress critical transcription specification is to offer a 
     - `<supplied>`
     - `<mentioned>`
     - `<ref>`
-* The reason that `<quote>` is not listed here is because we expect every quote in a critical transcription to be wrapped in a `<cit>` element.
+    - `<quote>`
+
 
 ## name
 
@@ -133,7 +136,7 @@ The goal of the LombardPress critical transcription specification is to offer a 
 
 ## cit
 
-* **MUST** contain a `<quote` element
+* **MUST** contain a `<quote>` or `<ref>` element
 * **MUST** contain a `<bibl>` element
 
 ## cit/quote
@@ -143,8 +146,13 @@ The goal of the LombardPress critical transcription specification is to offer a 
 
 ## cit/ref
 
-* `<quote>` **MAY** have an `@ana` atttribute pointing a known quotation that is being referred to
-* when has `@type=commentary` `<ref>` **MAY** have a `@target` that points to SCTA URL
+* `<ref>` **MAY** have an `@ana` atttribute pointing a known quotation that is being referred to
+* when `<ref>` has an `@type=commentary` `<ref>` **MAY** have a `@target` that points to SCTA URL
+* if the ref corresponds to a `<quote>`. The `<ref>` should take a `@corresp` element that points to the id of the `<quote>`. In this way the bibliographical information associated with the quotation will also be associated with the `<ref>` element without redundancy.
+
+## cit/note
+
+* if an additional note is required to explain the citation, this should go in a `<note>` element in ordered to be separate from the strictly bibliograph information.
 
 ## cit/bibl or ref/bibl
 
