@@ -87,7 +87,7 @@ The goal of the LombardPress diplomatic transcription specification is to offer 
 * **SHOULD** have a `<div type="startsOn">`
     - should include `<cb` elements that indicate the column on which the text beings
 
-## body
+# body
 
 ## body/div
 
@@ -121,6 +121,7 @@ The goal of the LombardPress diplomatic transcription specification is to offer 
     - `<pc>`
     - `<quote>`
     - `<ref`>
+    - `<space`>
 
 ## name
 
@@ -139,6 +140,15 @@ The goal of the LombardPress diplomatic transcription specification is to offer 
 
 * `<ref>` **MAY** have an `@ana` atttribute pointing a known quotation that is being referred to
 * when has `@type=commentary` `<ref>` **MAY** have a `@target` that points to SCTA URL
+
+## space
+
+* `<space>` **SHOULD** be used to indicate places where a scribe intentionally leaves a blank to be filled in later
+* `<space>` **SHOULD** indicate the length of the space with two attributes `@quantity` and `@unit` 
+* Example:
+        <space quantity="1" unit="chars"/>
+
+# Milestones
 
 ## cb
 
