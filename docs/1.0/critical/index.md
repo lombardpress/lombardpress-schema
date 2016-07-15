@@ -9,13 +9,13 @@ categories: schema
 
 Editors: 
 
-* Jeffrey C. Witt
-* Nicolas Vaughan
-* Michael Stenskjær Christensen
+* Jeffrey C. Witt (Loyola University Maryland)
+* Michael Stenskjær Christensen (University of Copenhagen)
+* Nicolas Vaughan (Universidad de los Andes)
 
 Document Status: Draft
 
-Outline
+# Outline
 
 * [Preamble](#preamble)
 * [teiHeader](#teiheader)
@@ -28,6 +28,7 @@ Outline
   * [encodingDesc](#encodingdesc)
 * [Apparatus Criticus](#apparatus-criticus)
 * [Apparatus Fontium](#apparatus-fontium)
+* [Milestones](#milestones)
 
 
 # Preamble
@@ -806,7 +807,6 @@ acquisita
 
 # Apparatus Fontium
 
-
 ## Citation
 
 ### Description
@@ -934,30 +934,30 @@ The following example is expected to generate an *apparatus fontium* entry
 </cit>
 ```
 
-## Milestones
+# Milestones
 
-### `cb`
+## `cb`
 
-#### Rules
+### Rules
 
 - `@ed` **MUST** indicate the source text in which the column break occurs.
 - `@n` **MUST** indicate the column, e.g. a
 - `@facs` JEFF TODO: describe how to add IIIF id
 
-#### Examples
+### Examples
 
 <cb ed="#W" n="a"/>
 
 ### `pb`
 
-#### Rules
+### Rules
 
 - `@ed` **MUST** indicate the source text in which the page break occurs.
 - `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`. 
 - `@corresp` JEFF TODO: describe IIIF id connection here
 - `@type` **MAY**: Indicate the type of numbering as either paginated or foliated. If none is given, `type="folio"` is assumed.
 
-#### Examples
+### Examples
 
 Folio break example: 
 

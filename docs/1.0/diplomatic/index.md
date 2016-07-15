@@ -9,12 +9,12 @@ categories: schema
 Editors: 
     
 * Jeffrey C. Witt (Loyola University Maryland)
-s* Michael Stenskjær Christensen (University of Copenhagen)
+* Michael Stenskjær Christensen (University of Copenhagen)
 * Nicolas Vaughan (Universidad de los Andes)
 
 Document Status: Draft
 
-Outline
+# Outline
 
 * [Preamble](#preamble)
 * [teiHeader](#teiheader)
@@ -25,6 +25,16 @@ Outline
     * [sourceDesc](#sourcedesc)
   * [revisionDesc](#revisiondesc)
   * [encodingDesc](#encodingdesc)
+* [Editorial Emendations](#editorial-emendations)
+  * [Expansions](#expansions)
+  * [Corrections](#corrections)
+  * [Normalizations](#normalizations)
+* [Unclear and Illegible Readings](#unclear-and-illegibile-readings)
+* [Scribal Corrections](#scribal-corrections)
+* [References and Quotations](references-and-quotations)
+* [Punctuation](#punctuation)
+* [Milestones](#milestones)
+* [Marginalia](#marginalia)
 
 # Preamble
 
@@ -279,21 +289,21 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 </encodingDesc>
 ```
 
-## Editorial Emendations
+# Editorial Emendations
 
-### Expansions
+## Expansions
 
-#### Description
+### Description
 
 If it is not a priority to encode every abbreviation and expansion, the editor might want to indicate several possible expansions in cases of doubt.
 
 See the examples for the relation between `ex` and `expan`. Generally `ex` only gives the content that is added by the editor while `expan` gives the whole word, including the characters that constitute the abbreviation. 
 
-#### Rules
+### Rules
 
 Option 2 is preferred in cases dealing with characters glyphs that stand for an entire word.
 
-#### Examples
+### Examples
 
 Options 1
 
@@ -339,41 +349,41 @@ Option 2
 ```
 
 
-### Corrections
+## Corrections
 
-#### Description
+### Description
 
-#### Rules
+### Rules
 
-#### Examples
+### Examples
 
 <choice>
   <sic></sic>
   <corr></corr>
 </choice>
 
-### Normalization
+## Normalizations
 
-#### Description
+### Description
 
-#### Rules
+### Rules
 
-#### 
+### Examples 
+
 <choice>
   <orig></orig>
   <reg></reg>
 </choice>
 
+# Unclear and Illegible Readings
 
-## Unclear and Illegible Readings
-
-### Description
+## Description
 
 The situation where the editor has difficulties reading the text, it might either be caused by a physical damage to the manuscript or to the eidtor's inability to interpret the text although it is perfectly visible on the page. The difference between those two situations is indicated with the `@reason` tag.
 
 If the editor has a suggestion for a reading, the `unclear` element is used, otherwise the `gap` is used.
 
-### Rules
+## Rules
 
 1. `unclear` and `gap` **MAY** contain `@reason` to indicate the reason for the difficult reading. The possible values are:
   * `difficult` (default, assumed when nothing is stated)
@@ -385,7 +395,7 @@ If the editor has a suggestion for a reading, the `unclear` element is used, oth
 6. `unclear` **MAY** contain `note` for discussing the difficulty.
 7. `choice` **MAY** contain `note` for discussing the different possible suggestions.
 
-### Examples
+## Examples
 
 Simple case where the editor has a suggestion:
 ``` xml
@@ -434,15 +444,15 @@ Situation where the editor has no suggestion for a difficult reading.
 
 ```
 
-## Scribal Corrections
+# Scribal Corrections
 
-### add
+## add
 
 ``` xml
 <add place="above-line" hand="#N1">fides</add>
 ```
 
-### del
+## del
 
 Possible values of `@rend`:
 * erasure
@@ -457,8 +467,11 @@ Possible values of `@rend`:
 <del rend="erasure" hand="#N1">fides</del>
 ```
 
-### subst
+## subst
 
+### Description
+
+### Rules
 Possible values of `@rend`:
 * erasure
 * expunctuate (alias: expunctuated)
@@ -468,6 +481,8 @@ Possible values of `@rend`:
 * blackout (alias: black-out)
 * vacat
 * [Combinations are always possible, e.g. `rend="strikethrough vacat"`]
+
+### Examples
 
 ```xml
 <subst hand="#N1">
@@ -483,17 +498,17 @@ Possible values of `@rend`:
 </subst>
 ```
 
-### `seg@type=correction`
+## `seg@type=correction`
 
-#### Description
+### Description
 
 `seg@type` correction is used to wrap word that is being corrected through an addition, deletion, or substitution of only part of the word.
 
-#### Rules
+### Rules
 
 
 
-#### Examples
+### Examples
 
 ``` xml
 <seg type="correction">
@@ -507,39 +522,39 @@ carit
 
 ```
 
-## References and Quotations
+# References and Quotations
 
 References and quotations are simply marked `ref` and `quote` elements.
 
-### References
+## References
 
 
-#### Description
+### Description
 
 Reference is used when the author makes an internal or external reference. The whole reference to the target may contain several elements, which would usually be `title` and `name`, which we support here.
 
-#### Rules
+### Rules
+
 1. `ref` **MAY** contain `name` to indicate the author of the referenced work.
 2. `ref` **MAY** contain `title` to indicate the title of the referenced work.
 
-#### examples
+### examples
 
 ```xml
 Ut dicit <ref><name>Augustinus</name> in <title>De civitate dei</title></ref>
 ```
 
-### Quotation
+## Quotation
 
-
-#### Description
+### Description
 Reference is used when the author makes direct quote from another text (or a different passage of his own text).
 
 
-#### Rules
+### Rules
 1. **SHOULD** contain an `@xml:id`.
 2. **MAY** contain an `@ana` to point to external reference targets specifying or describing the passage in question.
 
-#### Examples
+### Examples
 
 Simple indication of a quote:
 ``` xml
@@ -562,12 +577,13 @@ Librum sic incipitur
 et cetera
 ```
 
-## Punctuation
+# Punctuation
 
-### `pc`
+## `pc`
+
+### Rules
 
 For now, we recommend a small subset of the many possible punctuation marks are included by the unicode glyph. Any unicode code point can be encoded, but not all media will be able to represent the adequately, so here we include some that are in a standard font set.
-
 
 Names, code points and renderings of the punctuation marks:
 
@@ -582,7 +598,8 @@ Names, code points and renderings of the punctuation marks:
 
 Afficionados for medieval font encoding will find glyphs and font suggestions to satisfy many of their heart's desires at http://folk.uib.no/hnooh/mufi/
 
-#### Examples
+### Examples
+
 ``` xml
 <pc type="pilcrow">¶</pc>
 <pc type="#virgula">/</pc>
@@ -592,9 +609,9 @@ Afficionados for medieval font encoding will find glyphs and font suggestions to
 <pc type="#punctus-medius">·</pc>
 ```
 
-## Milestones
+# Milestones
 
-### `lb`
+## `lb`
 
 ``` xml
 
@@ -612,24 +629,26 @@ new line content <lb n="4">
 new line content <lb n="5">
 ```
 
-### `cb`
+## `cb`
 
-#### Rules
+### Rules
 - `@ed` **MUST** indicate the source text in which the column break occurs.
 - `@n` **MUST** indicate the column, e.g. a
 - `@facs` JEFF TODO: describe how to add IIIF id
 
-#### Examples
+### Examples
 
 <cb ed="#W" n="a"/>
 
-### `pb`
+## `pb`
+
+### Rules
 - `@ed` **MUST** indicate the source text in which the page break occurs.
 - `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`. 
 - `@corresp` JEFF TODO: describe IIIF id connection here
 - `@type` **MAY**: Indicate the type of numbering as either paginated or foliated. If none is given, `type="folio"` is assumed.
 
-#### Examples
+### Examples
 
 Folio break example: 
 
@@ -649,13 +668,13 @@ page break in paged format
 <pb ed="#W" n="15" type="page" />
 ```
 
-## Marginalia
+# Marginalia
 
-### Description
+## Description
 
-### Rules
+## Rules
 
-### Examples
+## Examples
 
 Example where marginal note is simply in the vicinity of a paragraph or line
 
