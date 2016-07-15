@@ -249,6 +249,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 ```
 
 #### Example 2
+
 ```xml
 <revisionDesc status="draft">
   <listChange>
@@ -357,10 +358,12 @@ Option 2
 
 ### Examples
 
+```xml
 <choice>
   <sic></sic>
   <corr></corr>
 </choice>
+```
 
 ## Normalizations
 
@@ -370,10 +373,12 @@ Option 2
 
 ### Examples 
 
+```xml
 <choice>
   <orig></orig>
   <reg></reg>
 </choice>
+```
 
 # Unclear and Illegible Readings
 
@@ -398,6 +403,7 @@ If the editor has a suggestion for a reading, the `unclear` element is used, oth
 ## Examples
 
 Simple case where the editor has a suggestion:
+
 ``` xml
 <unclear>suggestion</unclear>
 ```
@@ -409,13 +415,14 @@ Simple case where the editor has no suggestion:
 
 In both of the above examples, the `@reason` is assumed to be *difficult*. If the problem is caused by a physical damage, it should be indicated like so:
 
-``` xml
-<unclear reason="damaga">suggestion</unclear>
+```xml
+<unclear reason="damage">suggestion</unclear>
 <gap reason="damage" extent="5" unit="characters"/>
 ```
 
 
 A case where multiple possibilities are noted could look as follows. The `@reason` is assumed to hold for all sibling nodes as the difficulties have the same cause. 
+
 ``` xml
 <choice>
   <unclear cert="high" reason="damage">scilicet</unclear>
@@ -425,7 +432,8 @@ A case where multiple possibilities are noted could look as follows. The `@reaso
 ```
 
 A case where multiple possibilities and the `note` is used:
-``` xml
+
+```xml
 <choice>
   <unclear cert="high" reason="damage">scilicet 
      <note>If what looks like a descender is a blotch</note>
@@ -436,7 +444,8 @@ A case where multiple possibilities and the `note` is used:
 ```
 
 Situation where the editor has no suggestion for a difficult reading. 
-``` xml
+
+```xml
   <unclear reason="damage">Fides et spes et caritas</unclear>
  <gap reason="damage" quantity="5" unit="word"/>
   
@@ -557,11 +566,13 @@ Reference is used when the author makes direct quote from another text (or a dif
 ### Examples
 
 Simple indication of a quote:
+
 ``` xml
 Librum sic incipitur <quote>In principio Deus creavit caelum</quote> et cetera
 ```
 
 Recommended indication with id:
+
 ``` xml
 Librum sic incipitur 
 <quote xml:id="mockid-1">In principio Deus creavit caelum</quote> 
@@ -569,6 +580,7 @@ et cetera
 ```
 
 Use of the `ana` attribute:
+
 ``` xml
 Librum sic incipitur 
 <quote ana="#gen1_1" xml:id="mockid-1">
@@ -638,7 +650,9 @@ new line content <lb n="5">
 
 ### Examples
 
+```xml
 <cb ed="#W" n="a"/>
+```
 
 ## `pb`
 
