@@ -761,14 +761,12 @@ possibility 4
 </subst>
 ```
 
-### conjecture
-#### Definition
+## conjecture
+
+### Definition
 These types refer to the situation where a (current or previous) editor suggests or introduces a emendation to the text that is not supported by the textual tradition.
 
 The relation between emendation and conjecture: When a suggestion for improvement is in the `<lem>`, it is an emendation, when it is in the `<rdg>` it is a conjecture.
-
-#### Rules
-#### Examples
 
 
 ### conjecture-supplied
@@ -803,7 +801,42 @@ acquisita
 #### Examples
 ##### Example 1
 
+## Overlapping Lemmas
 
+While parallel-segmentation encoding comes with a number of advantages, an editor invariably is faced with the challenge of overlapping lemmas and XML prohibition against cross-nesting elements. Here we offer guidelines of how to handles such cases 
+
+### Rules
+
+### Examples
+
+In this complex example, we imagine an omission in witness A that begins with the last word of paragraph 1 and continues into paragraph 2. But the last word of paragraph 1 is also the lemma for a variant between witness B and C.
+
+```xml
+<p xml:id="paragraph1">lorum 
+  <app xml:id="app1" next="#app2">
+    <lem>
+      <app>
+        <lem wit="#C">ipsum</lem>
+        <rdg wit="#B">ipsam</rdg>
+      </app>
+    </lem>
+    <rdg wit="#A" type="absent" cause="homeoteleuton"/>
+  </app>
+</p>
+<p xml:id="paragraph2">
+  <app xml:id="app2" prev="#app1">
+    <lem>this is the text</lem>
+    <rdg wit="#A" type="absent" cause="homeoteleuton"/>
+  </app> 
+  of the secod paragraph. The first part of which continues the homeoteleuton started in the previous paragraph
+</p> 
+```
+
+A processor is expected to handle the above example as follows. 
+
+Whenever an `app` is encountered with a `@next` attribute, the processor should begin looping through each connected `app` until it reaches an `app` that no longer has a `@next` attribute but only a `@prev` attribute. Throughout this loop it should concatenate the `lem` from each `app` and then concatenate the available readings.
+
+A processor can also choose to create this loop in the opposite direction, first ignoring all `apps` with a `@next` attribute until it comes to an `app` that only has an `@prev` attribute. It can then loop up to each connected app until it reaches an `app` without an `@prev` attribute.
 
 # Apparatus Fontium
 
