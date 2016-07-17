@@ -801,13 +801,15 @@ acquisita
 #### Examples
 ##### Example 1
 
-## Overlapping Lemmas
+## Connected Apparatus Entries
+
+### Overlapping Lemmas
 
 While parallel-segmentation encoding comes with a number of advantages, an editor invariably is faced with the challenge of overlapping lemmas and XML prohibition against cross-nesting elements. Here we offer guidelines of how to handles such cases 
 
-### Rules
+#### Rules
 
-### Examples
+#### Examples
 
 In this complex example, we imagine an omission in witness A that begins with the last word of paragraph 1 and continues into paragraph 2. But the last word of paragraph 1 is also the lemma for a variant between witness B and C.
 
@@ -837,6 +839,53 @@ A processor is expected to handle the above example as follows.
 Whenever an `app` is encountered with a `@next` attribute, the processor should begin looping through each connected `app` until it reaches an `app` that no longer has a `@next` attribute but only a `@prev` attribute. Throughout this loop it should concatenate the `lem` from each `app` and then concatenate the available readings.
 
 A processor can also choose to create this loop in the opposite direction, first ignoring all `apps` with a `@next` attribute until it comes to an `app` that only has an `@prev` attribute. It can then loop up to each connected app until it reaches an `app` without an `@prev` attribute.
+
+### Connected Apps
+
+### Descriptions
+
+Sometimes it is desirable to connect readings, even if an editor is not trying to avoid overlapping lemmas. The most likely scenario for this ideal for an app with a lemma and a second app with blank lemma to be rendered together. Despite the different motivation, this should be handled in the same way as the method used to deal with overlapping lemmas.
+
+### Examples
+
+```xml
+<app xml:id="app1" next="#app2">
+  <lem>ars</lem>
+  <rdg wit="#E" next="">ars artium</rdg>
+  <rdg wit="#Y #H" type="present">ars artium et scientia scientiarum</rdg>
+</app>
+<app xml:id="app2" prev="#app1">
+  <lem/>
+  <rdg wit="#E" type="correction-addition">
+    <add place="above-line" hand="#E1">et scientia scientiarum</add>
+  </rdg>
+</app>
+```
+
+This could render as: 
+
+10 ars] ars artium + et scientia scientiar *add. interl.* E ars artium et scientia scientiarum Y H
+
+or 
+
+10 ars] ars artium E + et scientia scientiarum E1 ars artium et scientia scientiarum Y H
+
+```xml
+non
+<app xml:id="app1" next="#app2">
+  <lem/>
+  <rdg wit="#E" type="variation-present">ars</rdg>
+  <rdg wit="#Y #H" type="variation-present">ars artium</rdg>
+</app>
+<app xml:id="app2" prev="#app1">
+  <rdg wit="#E" type="correction-addition">
+    <add place="above-line" hand="#E1">artium</add>
+  <rdg>
+```
+
+This could render as: 
+
+10 non] ars *in textu* E + artium *add.* E1 ars artium *in textu* Y H
 
 # Apparatus Fontium
 
