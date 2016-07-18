@@ -45,8 +45,8 @@
                   <desc>A deletion indicated by a line through the center of the text</desc>
                 </valItem>
                 <valItem ident="expunctuated">
-                  <gloss>strikethrough and expunctuated</gloss>
-                  <desc>A deletion indicated by both striking out and expunctuating.</desc>
+                  <gloss>expunctuated</gloss>
+                	<desc>A deletion indicated by dots underneath the text.</desc>
                 </valItem>
                 <valItem ident="expunctuation">
                   <gloss>expunctuated</gloss>
@@ -188,17 +188,66 @@
         <moduleRef key="textcrit"/>
         
         <elementSpec ident="rdg" module="textcrit" mode="change">
-          <attList>
+        	<attList>
             <attDef ident="type" mode="change" usage="rec">
               <datatype>
                 <rng:ref name="data.enumerated"/>
               </datatype>
+            	<!-- here are the rules for reading types -->
+            	<constraintSpec ident="variation-absent-rule" scheme="isoschematron">
+            		<desc>Requires an empty rdg element when rdg has type=variation-absent</desc>
+            		<constraint>
+            			<rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-absent']">
+            				<report test="./text()">This is a rdg type=variation-absent. The value of the rdg element cannot have any text nodes.</report>
+            			</rule>
+            			<rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-absent']">
+            				<report test="not(./preceding-sibling::tei:lem/node())">This is a rdg type=variation-absent. The preceding sibling lem must have a child node.</report>
+            			</rule>
+            		</constraint>
+            	</constraintSpec>
+            	<constraintSpec ident="variation-present-rule" scheme="isoschematron">
+            		<desc>Requires an empty lem element and rdg that is not empty when rdg has type=variation-present</desc>
+            		<constraint>
+            			<rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-present']">
+            				<report test="./preceding-sibling::tei:lem/node()">This is a rdg type=variation-present. The sibling lem cannot have any text nodes.</report>
+            			</rule>
+            			<rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-present']">
+            				<report test="not(./node())">This is a rdg type=variation-present. The rdg element must have a child node</report>
+            			</rule>
+            		</constraint>
+            	</constraintSpec>
+            	<constraintSpec ident="correction-addition-rule" scheme="isoschematron">
+            		<desc>Requires that rdg have a add child element when rdg has type=correction-addition</desc>
+            		<constraint>
+            			<rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-addition']">
+            				<report test="not(./tei:add)">This is a rdg type=correction-addition. The rdg must contain an add element</report>
+            			</rule>
+            		</constraint>
+            	</constraintSpec>
+            	<constraintSpec ident="correction-deletion-rule" scheme="isoschematron">
+            		<desc>Requires that rdg have a del child element when rdg has type=correction-deletion</desc>
+            		<constraint>
+            			<rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-deletion']">
+            				<report test="not(./tei:del)">This is a rdg type=correction-deletion. The rdg must contain an del element</report>
+            			</rule>
+            		</constraint>
+            	</constraintSpec>
+            	<constraintSpec ident="correction-substitution-rule" scheme="isoschematron">
+            		<desc>Requires that rdg have a del child element when rdg has type=correction-substitution</desc>
+            		<constraint>
+            			<rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-substitution']">
+            				<report test="not(./tei:subst)">This is a rdg type=correction-substitution. The rdg must contain an subst element</report>
+            			</rule>
+            		</constraint>
+            	</constraintSpec>
+            	
               <valList type="semi" mode="add">
               	<!-- variation rdg types -->
                 <valItem ident="variation-absent">
                   <gloss>variation-absent</gloss>
                   <desc>indicates that the witness in question lacks the designated lemma; 
                   often rendered as "omit." or "omitted"</desc>
+                	
                 </valItem>
               	<valItem ident="variation-present">
               		<gloss>variation-present</gloss>
