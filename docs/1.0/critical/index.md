@@ -33,7 +33,7 @@ Document Status: Draft
 
 # Preamble
 
-The goal of the LombardPress critical transcription specification is to offer a set of guidelines for the markup of medieval Sentences commentary that conform as much as possible to existing standards. In the case of critical editions and transcriptions, this means following as closely as possible the specifications and recommendations of the Digital Latin Library. In most cases, we aim only to expand the Digital Latin Library specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the Digitial Latin Library guidelines should be followed. Where the Digital Latin Library does not state a specification, the more general TEI specification should be followed.
+The goal of the LombardPress critical transcription specification is to offer a set of guidelines for the markup of medieval Sentences commentary that conform as much as possible to existing standards. In the case of critical editions and transcriptions, this means following as closely as possible the specifications and recommendations of the Digital Latin Library. In most cases, we aim only to expand the Digital Latin Library specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the Digital Latin Library guidelines should be followed. Where the Digital Latin Library does not state a specification, the more general TEI specification should be followed.
 
 
 # `teiHeader`
@@ -113,7 +113,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
   * We suggest to let the `authority` state the entity that makes the creation of the current document possible or the context where it belongs. See example below.
 2. The `authority` tag **MAY** contain a `ref` to provide an external link to the authority entity.
 3. **MUST** contain `availability`
-4. `availability` **MUST** containt `@status`
+4. `availability` **MUST** contain `@status`
 5. `availability` **SHOUL** contain a `p` describing the license under which the edition is published.
 
 #### Examples
@@ -224,8 +224,7 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
  location="internal"/> 
  <schemaRef 
    n="lbp-critical-1.0.0"
-   target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/critical.rng" 
-   type="critical">
+   target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/critical.rng">
 </schemaRef>
 <editorialDecl>
   <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a critical edition</p> 
@@ -294,8 +293,8 @@ The individual editor would usually not be responsible for maintaining the `revi
 ### Rules
 
 * `text` **MUST** take an `@type` attribute the value of which is "critical"
-  - the possibile values for `text@type` are "critical", "diplomatic", and "translation"
-* `text` **SHOULD** take an @xml:lang indicating the dominant language of the edition, usually `la` for "latin"
+  - the possible values for `text@type` are "critical", "diplomatic", and "translation"
+* `text` **SHOULD** take an `@xml:lang` attribute indicating the dominant language of the edition, usually `la` for "latin"
 
 ## `front`
 
@@ -308,7 +307,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ```xml
 <front>
-  <div xml:id="startOn">
+  <div xml:id="startsOn">
     <pb ed="#V" n="5-r" facs="V5r"/><cb ed="#V" n="b"/> <!-- V5rb -->
     <pb ed="#S" n="2-r" facs="S2r"/><cb ed="#S" n="a"/> <!-- S2ra -->
     <pb ed="#R" n="1-r" facs="R1r"/><cb ed="#R" n="a"/> <!-- R1ra -->
@@ -366,7 +365,9 @@ On a positive apparatus:
 > 10 fides] *BCD* spes *A*
 
 ### `variation-orthography`
+
 #### Definition
+
 The `variation-orthography` class is meant to separate variant instances, where there is no actual variation in the substance of the word or phrase in question, but simply an orthographic difference.
 
 #### Rules
@@ -400,7 +401,7 @@ The `variation-present` type should be used to indicate that a word or phrase is
 3. `lem` **MAY** have `@wit` or `@source` attribute.
 4. `rdg` **MUST** have `@wit` or `@source`.
 5. `rdg` **MUST** have `@type=present`.
-7. `rdg` **MAY** include `@type=cause` with the following available enumerated values:
+7. `rdg` **MAY** include `@cause` with the following available enumerated values:
   * `repetition`
   * ... 
 
@@ -435,12 +436,15 @@ spes
 
 
 ### `variation-absent`
+
 #### Description
+
 A word or phrase is absent from a witness but present in the transmitted text. This is most often rendered as simple "omission".
 
 > 10 fides] *om.* *A*
 
 #### Rules
+
 1. The `lem` **MUST** be present.
 2. The `lem` **MUST** have text node.
 3. The `lem` **MAY** include `@wit` or `@source` attributes.
@@ -448,7 +452,7 @@ A word or phrase is absent from a witness but present in the transmitted text. T
 5. The `rdg` **MUST** have no descendant text nodes. 
 6. The `rdg` **MAY** have a child space element. 
   * A `<space>` may be used when attempting to indicate a space left by the scribe intended to be filled in later.
-6. The `rdg` **SHOULD** include `@type=absent`.
+6. The `rdg` **SHOULD** include `@type=variation-absent`.
   * The reason this is not a **MUST** is because the pattern of a present `lem` with a text value and a present but empty `rdg` element is a unique pattern that corresponds to the `variation-absent` type.
 7. The `rdg` **MAY** include `@type=cause` with the following available enumerated values:
   * `homeoteleuton`
@@ -479,7 +483,7 @@ This would be an example of a conjecture where a word is added to the edition bu
 ``` xml
 <app>
   <lem type="conjecture-supplied"><supplied>fides</supplied></lem>
-  <rdg wit="#A" type="absent"/>
+  <rdg wit="#A" type="variation-absent"/>
 </app>
 est
 ```
@@ -530,16 +534,21 @@ fides non
 
 
 ## `correction`
+
 ### General Definition
+
 A correction is meant as any reading where it is assumed that the scribe/text/witness? corrects a perceived error in his transmitted text.
 This is *not* used to represent corrections made by the edition. That is reserved for the *conjecture* class (below).
 
 
 ### `correction-addition`
+
 #### Definition
+
 This indicates that a scribe (either the original or a later scribe) has realized that a word or phrase is missing in his text and subsequently added it. This be clearly distinguished from `variation-present` above where the editor only means to indicate that a word is present in a witness, but has not been added through a conscious correction.
 
 #### Rules
+
 1. It **MUST** have `lem`.
 2. The `lem` **MAY** be empty.
   * You may not want to include the `correction-addition` in the critical text but still indicate that the correction has been made in a witness. This is an instance where the correction-addition is also taking on the form parallel to that of a `variation-present`.
@@ -550,7 +559,9 @@ This indicates that a scribe (either the original or a later scribe) has realize
 6. The `add` **MAY** have a `@hand` attribute.
 
 #### Examples
+
 ##### Example 1
+
 ``` xml
 <app>
   <lem>fides</lem>1
@@ -565,6 +576,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 
 
 ##### Example 2
+
 Our scribe wrote "in nomine Patri et Spiritus Sancti", but a later hand (#L¹) realized the mistake and adds the missing phrase "Filii et" above the line.
 
 ``` xml
@@ -583,13 +595,14 @@ Spiritus Sancti.
 > Filli et] *om.* *L* *(corr. L¹)*
 
 
-
 ### `correction-deletion`
+
 #### Definition
 
 This indicates that a scribe (either the original or a later scribe) has realized that a word or phrase is erroneously present in his text and subsequently deleted it. 
 
 #### Rules
+
 1. It **MUST** have `lem`.
 2. The `lem` **MAY** be empty.
   * In most cases, the `lem` will be empty, since it is normal to note a deletion of word that does not appear in the critical text. However, an editor might want to include a word in the critical text that has been deleted in one or more witnesses. In this case, the `lem` **MUST NOT** be empty.
@@ -603,6 +616,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 #### Examples
  
 ##### Example 1
+
 ``` xml
 fides
 <app>
@@ -619,6 +633,7 @@ est
 
 
 ##### Example 2
+
 ``` xml
 sicut
 <app>
@@ -660,7 +675,7 @@ This indicates that a scribe (either the original or a later scribe) wants to co
 A possible argument against rule 8 is that an editor might desire to produce the following rendering for a correction to a particular word.
 
 > insidia N (s *add.* *N¹*)
-                
+
 However, we find this rendering ambiguous and therefore somewhat problematic. 
 
 Does this mean N1 has added the letter "s" after "insidia" or to the word itself? 
@@ -669,21 +684,21 @@ While in the case of "s", it is probably obvious to an editor that "s" is not a 
 
 However, what if the added letter were "a"? Then it would be much less clear. 
 
-Likewise scholastic text use a lot of variables, so its possible that a scribe could have been adding "b" or "c" as a separate word or character, and did not mean to add a new letter to the preceding word. 
+Likewise, scholastic texts use a lot of variables, so its possible that a scribe could have been adding "b" or "c" as a separate word or character, and did not mean to add a new letter to the preceding word. 
                 
 So for example this would be very ambiguous in a sequence where variable a, b, c, d, and e were in use: 
                 
 > insidia] *N* (e *add.* *N²*)
-                
+> 
 Does this mean that the correction was to "insidiae" or "insidia e"?
-                
+ 
 Thus I think would be best to handle this with a correction-substitution, which could render to 
                 
 > insidias] *corr. ex alia manu* insidia *N* 
-                
+
 or something else.
                 
-It's true that with something like: 
+It is true that with something like: 
                 
 ``` xml
 <app>
@@ -712,6 +727,7 @@ In our view, complex detail about a how correction was precisely made is best le
 #### Examples
 
 ##### Example 1
+
 ``` xml
 <app>
   <lem>fidem</lem>
@@ -744,6 +760,7 @@ est
 > 10 fides] *corr. ex* fidem *in alia manu* *A*
 
 ##### Example 3
+
 ``` xml
 <app>
   <lem>insidias</lem>
@@ -759,6 +776,7 @@ est
 > insidias] *corr. ex* insidia *N¹*
 
 ### `correction-cancellation`
+
 #### Definition
 
 A cancellation is a correction of a correction. This gives us nine theoretical types following the logic of the corrections as described above. The correction of a correction would simply be a correction wrapped in a correction. Some of those nine permutations are not materially possible. We consider the following corrections of corrections to be possible.
@@ -767,7 +785,6 @@ A cancellation is a correction of a correction. This gives us nine theoretical t
 
 1. `rdg` **MUST** take `@type=correction-cancellation`
 2. chilren of `rdg` must follow the logic of one of 4 or 5 accepted patterns described in
- 
 
 #### Examples
 
@@ -811,6 +828,7 @@ possibility 4
 ## conjecture
 
 ### Definition
+
 These types refer to the situation where a (current or previous) editor suggests or introduces a emendation to the text that is not supported by the textual tradition.
 
 The relation between emendation and conjecture: When a suggestion for improvement is in the `<lem>`, it is an emendation, when it is in the `<rdg>` it is a conjecture.
@@ -877,7 +895,7 @@ In this complex example, we imagine an omission in witness A that begins with th
     <lem>this is the text</lem>
     <rdg wit="#A" type="absent" cause="homeoteleuton"/>
   </app> 
-  of the secod paragraph. The first part of which continues the homeoteleuton started in the previous paragraph
+  of the second paragraph. The first part of which continues the homeoteleuton started in the previous paragraph
 </p> 
 ```
 
@@ -930,7 +948,7 @@ non
   <rdg>
 ```
 
-This could render as: 
+This could be rendered as: 
 
 10 non] ars *in textu* E + artium *add.* E1 ars artium *in textu* Y H
 
@@ -978,23 +996,29 @@ A quote, following the TEI guidelines, is intended to identify anything that is 
 2. `quote` **MAY** be the immediate child of a `cit` element thus appear in the *apparatus fontium*
 3. `quote` **MAY** contain `seg` elements.
   * This would be used to indicate segments of a quote that are interrupted by an *inquit*. 
+4. `quote` **MAY** take an `@type` attribute, the values of which can be:
+  * direct (this is the same as simply not declaring an @type)
+  * paraphrase 
 
 ### Examples
 
-The following example is not expected to generate an apparatus fontium entry
+The following example is not expected to generate an apparatus fontium entry:
+
 ```xml 
 <quote>In principio</quote> etc.
 ``` 
 
 The following example is expected to generate an *apparatus fontium* entry
+
 ``` xml
 <cit>
   <quote xml:id="quote1" ana="#gen1_1--gen2_1">In principio creavit Deus caelum</quote>
-  <note>I can't find this shit.</note>
+  <note>I can't find this.</note>
 </cit>
 ```
 
 A `cit` element with just a `quote` tag, but where the quote consists of two quote segments and an *inquit*:
+
 ``` xml
 <cit>
   <quote>
@@ -1006,6 +1030,7 @@ A `cit` element with just a `quote` tag, but where the quote consists of two quo
 ```
 
 This is another, equivalent way of doing the same:
+
 ```xml
 <cit>
   <quote 
@@ -1071,7 +1096,7 @@ The following example is expected to generate an *apparatus fontium* entry
 
 - `@ed` **MUST** indicate the source text in which the column break occurs.
 - `@n` **MUST** indicate the column, e.g. a
-- `@facs` JEFF TODO: describe how to add IIIF id
+- `@facs` **MAY** be present. If it contains a "hash" pointer, it is expected to refer to a surface or zone in the the `facsimile` element. If it does not contain a "hash" it is expected to be the last part of the IIIF image canvas id.
 
 ### Examples
 
@@ -1083,8 +1108,8 @@ The following example is expected to generate an *apparatus fontium* entry
 
 - `@ed` **MUST** indicate the source text in which the page break occurs.
 - `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`. 
-- `@corresp` JEFF TODO: describe IIIF id connection here
-- `@type` **MAY**: Indicate the type of numbering as either paginated or foliated. If none is given, `type="folio"` is assumed.
+- `@facs` **MAY** be present. If it contains a "hash" pointer, it is expected to refer to a surface or zone in the the `facsimile` element. If it does not contain a "hash" it is expected to be the last part of the IIIF image canvas id.
+- `@type` **MAY**: Indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `type="folio"` is assumed.
 
 ### Examples
 
