@@ -24,8 +24,8 @@ Document Status: Draft
     * [editionStmt](#editionstmt)
     * [publicationStmt](#publicationstmt)
     * [sourceDesc](#sourcedesc)
-  * [revisionDesc](#revisiondesc)
   * [encodingDesc](#encodingdesc)
+  * [revisionDesc](#revisiondesc)
 * [Apparatus Criticus](#apparatus-criticus)
 * [Apparatus Fontium](#apparatus-fontium)
 * [Milestones](#milestones)
@@ -200,6 +200,39 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 </listBibl>
 ```
 
+## `encodingDesc`
+
+### Description
+
+### Rules
+
+1. `encodingDesc` **MUST** be stated. 
+2. `encodingDesc` **MUST** contain `variantEncoding`.
+3. `variantEncoding` **MUST** contain `@method` which confirms that the method of variant encoding is *parallel-segmentation*.
+4. `encodingDesc` **MUST** contain a `schemaRef`.
+5. `schemaRef` **MUST** contain a `target` that points to the URL of the LBP schema.
+6. `schemaRef` **MUST** contain an `@n` pointing to the version number of the LBP schema.
+7. `encodingDesc` **MAY** take an `editorialDecl` that contains a `p` with a prose description of the guidelines followed in the preparation of this edition.
+
+NOTE: The rules concerning the `schemaRef` are subject to revision based on the exact implementation in the TEI schema.
+
+### Examples
+
+```xml
+<encodingDesc>
+ <variantEncoding method="parallel-segmentation"
+ location="internal"/> 
+ <schemaRef 
+   n="lbp-critical-1.0.0"
+   target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/critical.rng" 
+   type="critical">
+</schemaRef>
+<editorialDecl>
+  <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a critical edition</p> 
+  </editorialDecl>
+</encodingDesc>
+```
+
 ## `revisionDesc`
 
 ### Description
@@ -250,34 +283,48 @@ The individual editor would usually not be responsible for maintaining the `revi
 </revisionDesc>
 ```
 
-## `encodingDesc`
+# TEI->Text
+
+## `text`
 
 ### Description
 
+`text` is the main wrapper of the edition and sibling to the teiHeader
+
 ### Rules
 
-1. `encodingDesc` **MUST** be stated. 
-2. `encodingDesc` **MUST** contain `variantEncoding`.
-3. `variantEncoding` **MUST** contain `@method` which confirms that the method of variant encoding is *parallel-segmentation*.
-4. `encodingDesc` **MUST** contain a `schemaRef`.
-5. `schemaRef` **MUST** contain a `target` that points to the URL of the LBP schema.
-6. `schemaRef` **MUST** contain an `@n` pointing to the version number of the LBP schema.
+* `text` **MUST** take an `@type` attribute the value of which is "critical"
+  - the possibile values for `text@type` are "critical", "diplomatic", and "translation"
+* `text` **SHOULD** take an @xml:lang indicating the dominant language of the edition, usually `la` for "latin"
 
-NOTE: The rules concerning the `schemaRef` are subject to revision based on the exact implementation in the TEI schema.
+## `front`
+
+### Rules
+
+* `front` should take a `div` with the `xml:id="startsOn"`
+  - The content of this div should take only `pb` and `cb` is indicating the page and column on which the text begins.
 
 ### Examples
 
 ```xml
-<encodingDesc>
- <variantEncoding method="parallel-segmentation"
- location="internal"/> 
- <schemaRef 
-   n="lbp-critical-1.0.0"
-   target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/critical.rng" 
-   type="critical">
-</schemaRef>
-</encodingDesc>
+<front>
+  <div xml:id="startOn">
+    <pb ed="#V" n="5-r" facs="V5r"/><cb ed="#V" n="b"/> <!-- V5rb -->
+    <pb ed="#S" n="2-r" facs="S2r"/><cb ed="#S" n="a"/> <!-- S2ra -->
+    <pb ed="#R" n="1-r" facs="R1r"/><cb ed="#R" n="a"/> <!-- R1ra -->
+    <pb ed="#SV" n="187-r" facs="SV187r"/><cb ed="#SV" n="a"/> <!-- SV187ra -->
+  </div>
+</front>
 ```
+
+## `body`
+
+## `div`
+
+## `head`
+
+## `p`
+
 
 # Apparatus Criticus
 
