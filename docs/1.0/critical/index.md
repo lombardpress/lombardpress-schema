@@ -775,6 +775,33 @@ est
 > insidias] *corr. ex* insidia *alia manu* *N* 
 > insidias] *corr. ex* insidia *N¹*
 
+### `correction-transposition`
+
+#### Definition
+
+A `correction-transposition` is a special kind of `correction-substitution` and should follow the same rules and basic encoding pattern of a `correction-substitution`. The designation `correction-transposition` only serves to further specify the kind of substitution taking place.
+
+#### Rules
+
+* See the above rules for `correction-substitution`
+* the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. 
+  - This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
+
+#### Examples
+
+``` xml
+<app>
+  <lem>spiritus sanctus</lem>
+  <rdg wit="#A" type="correction-transposition">
+    <subst>
+      <del><seg n="2">sanctus</seg> <seg n="1">spiritus</seg></del>
+      <add>spiritus sanctus</add>
+    </subst>
+</app>
+```
+
+> sanctus *ante* spiritus *transp.* A
+
 ### `correction-cancellation`
 
 #### Definition
