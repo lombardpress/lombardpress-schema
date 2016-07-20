@@ -614,11 +614,11 @@ Afficionados for medieval font encoding will find glyphs and font suggestions to
 
 ``` xml
 <pc type="pilcrow">¶</pc>
-<pc type="#virgula">/</pc>
-<pc type="#punctus">.</pc>
-<pc type="#punctus-elevatus">;</pc>
-<pc type="#punctus-interrogativus">?</pc>
-<pc type="#punctus-medius">·</pc>
+<pc type="virgula">/</pc>
+<pc type="punctus">.</pc>
+<pc type="punctus-elevatus">;</pc>
+<pc type="punctus-interrogativus">?</pc>
+<pc type="punctus-medius">·</pc>
 ```
 
 # Milestones
