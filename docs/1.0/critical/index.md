@@ -330,10 +330,11 @@ The individual editor would usually not be responsible for maintaining the `revi
 Below are the basic reading and lemma types in three main categories, variation, correction, and conjecture. Before detailing those types, the general rules of any apparatus entry are described here.
 
 The general rules of any `app` element are:
-1. **MUST** contain `lem` element.
-2. **MUST** contain at least one `rdg` element.
-3. **MAY** contain a `note` element.
-4. `lem` **MAY** contain the `@n` element.
+1. `app` **MUST** contain `lem` element.
+2. `app` **MUST** contain at least one `rdg` element.
+3. `app` **MAY** contain a `note` element.
+4. `lem` **MAY** be empty.
+4. If `lem` is empty, it **MUST** contain the `@n` element.
 
 When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element must be left empty. But since there is then no lemma to anchor the apparatus entry in the critical text, another label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that.
 An example of that could look like this:
