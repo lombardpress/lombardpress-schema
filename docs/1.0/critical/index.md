@@ -785,6 +785,7 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 
 * See the above rules for `correction-substitution`
 * the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. 
+  - The `@n` indicates the relative order of the segments *after* the transposition has taken place.
   - This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
 
 #### Examples
