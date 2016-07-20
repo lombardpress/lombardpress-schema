@@ -782,6 +782,55 @@ est
 > insidias] *corr. ex* insidia *alia manu* *N* 
 > insidias] *corr. ex* insidia *N¹*
 
+### `correction-transposition`
+
+#### Definition
+
+A `correction-transposition` is a special kind of `correction-substitution` and should follow the same rules and basic encoding pattern of a `correction-substitution`. The designation `correction-transposition` only serves to further specify the kind of substitution taking place.
+
+#### Rules
+
+* See the above rules for `correction-substitution`
+* the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. 
+  - The `@n` indicates the relative order of the segments *after* the transposition has taken place.
+  - This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
+
+#### Examples
+
+##### Example 1
+
+A correction that simply inverts the order of two words.
+``` xml
+<app>
+  <lem>spiritus sanctus</lem>
+  <rdg wit="#A" type="correction-transposition">
+    <subst>
+      <del><seg n="2">sanctus</seg> <seg n="1">spiritus</seg></del>
+      <add>spiritus sanctus</add>
+    </subst>
+  </rdg>
+</app>
+```
+
+> sanctus *ante* spiritus *transp.* A
+
+##### Example 2
+
+A correction where a word is moved more than a single word.
+``` xml
+<app>
+  <lem>et spiritus sanctus</lem>
+  <rdg wit="#A" type="correction-transposition">
+    <subst>
+      <del><seg n="2">spiritus sanctus<seg/> <seg n="1">et</seg></del>
+      <add>et spiritus sanctus</add>
+    </subst>
+  </rdg>
+</app>
+```
+
+> et *ante* spiritus sanctus *transp.* A
+
 ### `correction-cancellation`
 
 #### Definition
