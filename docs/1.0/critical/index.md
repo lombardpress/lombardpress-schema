@@ -330,11 +330,15 @@ The individual editor would usually not be responsible for maintaining the `revi
 Below are basic reading and lemma types divided intro three main categories, variation, correction, and conjecture.
 
 ## `variation`
+
 ### General Definition
+
 A variation is meant as any reading that varies from the indicated lemma. At present we have identified six main variation times listed below.
 
 ### `variation-substance`
+
 #### Description
+
 A `variation-substance` is generally the most common type of variant, in which an editor simply wants to show that witness has a different word or phrase than what is included in the critical text.
 This kind of variant is most commonly seen in an apparatus as something like: 
 
@@ -352,7 +356,7 @@ This kind of variant is most commonly seen in an apparatus as something like:
 #### Example
 ``` xml
 <app>
-  <lem wit>fides</lem>
+  <lem wit="#B">fides</lem>
   <rdg wit="#A" type="variation-substance">spes</rdg>
 </app>
 
@@ -391,13 +395,16 @@ est
 
 
 ### `variation-present`
+
 #### Description
+
 The `variation-present` type should be used to indicate that a word or phrase is present in a witness, but has not been included in the critical text. It is important that this be distinguished from the type `correction-addition` which is meant to indicate that a word or phrase has been actively added as a conscious correction to the witness text.
 
 #### Rules
 1. It **MUST** have `lem`.
   * The `lem` must be present because a processor might render one of the readings in an `app` as the printed text. 
-2. `lem` **MUST** be an empty node.
+2. `lem` **MUST** be an empty node. 
+  * If `lem` is empty it should have an `@n="suggested-lemma"` attribute, the value of which should normally be the word to appear in the critical text that immediately proceeds the app. (This value makes it considerably easier for processors to find a suitable lemma for a print apparatus.)
 3. `lem` **MAY** have `@wit` or `@source` attribute.
 4. `rdg` **MUST** have `@wit` or `@source`.
 5. `rdg` **MUST** have `@type=present`.
@@ -411,7 +418,7 @@ The `variation-present` type should be used to indicate that a word or phrase is
 ``` xml
 fides
 <app>
-  <lem/>
+  <lem n="fides"/>
   <rdg wit="#A" type="variation-present">spes</rdg>
 </app>
 ```
@@ -426,7 +433,7 @@ Another example of the present type where the present word is caused by an (erro
 ``` xml
 spes
 <app>
-  <lem/>
+  <lem n="spes"/>
   <rdg wit="#A" type="variation-present" cause="repetition">spes</rdg>
 </app>
 
@@ -564,7 +571,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 
 ``` xml
 <app>
-  <lem>fides</lem>1
+  <lem>fides</lem>
   <rdg wit="#A" type="correction-addition">
     <add place="margin-left">fides</add>
   </rdg>
@@ -620,7 +627,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 ``` xml
 fides
 <app>
-  <lem/>
+  <lem n="fides"/>
   <rdg wit="#A" type="correction-deletion">
     <del>non</del>
   </rdg>
@@ -887,13 +894,13 @@ In this complex example, we imagine an omission in witness A that begins with th
         <rdg wit="#B">ipsam</rdg>
       </app>
     </lem>
-    <rdg wit="#A" type="absent" cause="homeoteleuton"/>
+    <rdg wit="#A" type="variation-absent" cause="homeoteleuton"/>
   </app>
 </p>
 <p xml:id="paragraph2">
   <app xml:id="app2" prev="#app1">
     <lem>this is the text</lem>
-    <rdg wit="#A" type="absent" cause="homeoteleuton"/>
+    <rdg wit="#A" type="variation-absent" cause="homeoteleuton"/>
   </app> 
   of the second paragraph. The first part of which continues the homeoteleuton started in the previous paragraph
 </p> 
@@ -916,11 +923,11 @@ Sometimes it is desirable to connect readings, even if an editor is not trying t
 ```xml
 <app xml:id="app1" next="#app2">
   <lem>ars</lem>
-  <rdg wit="#E" next="">ars artium</rdg>
-  <rdg wit="#Y #H" type="present">ars artium et scientia scientiarum</rdg>
+  <rdg wit="#E" next="#app2">ars artium</rdg>
+  <rdg wit="#Y #H" type="variation-present">ars artium et scientia scientiarum</rdg>
 </app>
 <app xml:id="app2" prev="#app1">
-  <lem/>
+  <lem n="ars"/>
   <rdg wit="#E" type="correction-addition">
     <add place="above-line" hand="#E1">et scientia scientiarum</add>
   </rdg>
@@ -929,16 +936,12 @@ Sometimes it is desirable to connect readings, even if an editor is not trying t
 
 This could render as: 
 
-10 ars] ars artium + et scientia scientiar *add. interl.* E ars artium et scientia scientiarum Y H
-
-or 
-
-10 ars] ars artium E + et scientia scientiarum E1 ars artium et scientia scientiarum Y H
+10 ars] ars artium E + et scientia scientiarum *add. interl.* E1 ars artium et scientia scientiarum Y H
 
 ```xml
 non
 <app xml:id="app1" next="#app2">
-  <lem/>
+  <lem n="non"/>
   <rdg wit="#E" type="variation-present">ars</rdg>
   <rdg wit="#Y #H" type="variation-present">ars artium</rdg>
 </app>
@@ -950,7 +953,7 @@ non
 
 This could be rendered as: 
 
-10 non] ars *in textu* E + artium *add.* E1 ars artium *in textu* Y H
+10 non] ars *in textu* E + artium *add. interl.* E1 ars artium *in textu* Y H
 
 # Apparatus Fontium
 
