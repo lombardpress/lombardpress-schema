@@ -797,6 +797,7 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
       <del><seg n="2">sanctus</seg> <seg n="1">spiritus</seg></del>
       <add>spiritus sanctus</add>
     </subst>
+  </rdg>
 </app>
 ```
 
