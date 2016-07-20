@@ -789,6 +789,9 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 
 #### Examples
 
+##### Example 1
+
+A correction that simply inverts the order of two words.
 ``` xml
 <app>
   <lem>spiritus sanctus</lem>
@@ -802,6 +805,23 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 ```
 
 > sanctus *ante* spiritus *transp.* A
+
+##### Example 2
+
+A correction where a word is moved more than a single word.
+``` xml
+<app>
+  <lem>et spiritus sanctus</lem>
+  <rdg wit="#A" type="correction-transposition">
+    <subst>
+      <del><seg n="2">spiritus sanctus<seg/> <seg n="1">et</seg></del>
+      <add>et spiritus sanctus</add>
+    </subst>
+  </rdg>
+</app>
+```
+
+> et *ante* spiritus sanctus *transp.* A
 
 ### `correction-cancellation`
 
