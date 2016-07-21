@@ -459,6 +459,7 @@ fides
 ```
 
 > 10 fides] spes *in textu* *A* 
+
 > 10 spes *post* fides *hab./scr./inest* *A*
 
 
