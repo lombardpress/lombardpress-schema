@@ -27,7 +27,14 @@ Document Status: Draft
   * [encodingDesc](#encodingdesc)
   * [revisionDesc](#revisiondesc)
 * [Apparatus Criticus](#apparatus-criticus)
+  - [varation](#variation)
+  - [correction](#correction)
+  - [conjecture](#conjecture)
+  - [Connected Apparatus Entries](#connected-apparatus-entries)
 * [Apparatus Fontium](#apparatus-fontium)
+  - [Citation](#citation)
+  - [Reference](#reference)
+  - [Quotation](#quotation)
 * [Milestones](#milestones)
 
 
@@ -347,6 +354,7 @@ Praeterea, sicut oculus
 </app>
 ad lumen solis
 ```
+
 This would make it easy to create this apparatus entry:
 > nicticoracis *post* oculus A
 
@@ -367,6 +375,7 @@ This kind of variant is most commonly seen in an apparatus as something like:
 > 10 fides] spes *A*
 
 #### Rules
+
 1. It **MUST** have `lem`.
 2. `lem` **MAY** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
 3. `rdg` **MAY** have `@type=variation-substance`.
@@ -376,7 +385,8 @@ This kind of variant is most commonly seen in an apparatus as something like:
 
 
 #### Example
-``` xml
+
+```xml
 <app>
   <lem wit="#B">fides</lem>
   <rdg wit="#A" type="variation-substance">spes</rdg>
@@ -397,6 +407,7 @@ On a positive apparatus:
 The `variation-orthography` class is meant to separate variant instances, where there is no actual variation in the substance of the word or phrase in question, but simply an orthographic difference.
 
 #### Rules
+
 1. It **MUST** have `lem`.
 2. `lem` **MAY** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
 3. `rdg` **MAY** have `@type=variation-orthographic`.
@@ -404,15 +415,16 @@ The `variation-orthography` class is meant to separate variant instances, where 
 4. `rdg` text node **MUST** be present.
 5. `rdg` **MUST** have either @wit or @source.
 
-
 #### Example
-``` xml
+
+```xml
 <app>
   <lem>sicut</lem>
   <rdg wit="#A" type="variation-orthography">sicud</rdg>
 </app>
 est
 ```
+
 > 10 sicut] sicud *A*
 
 
@@ -423,6 +435,7 @@ est
 The `variation-present` type should be used to indicate that a word or phrase is present in a witness, but has not been included in the critical text. It is important that this be distinguished from the type `correction-addition` which is meant to indicate that a word or phrase has been actively added as a conscious correction to the witness text.
 
 #### Rules
+
 1. It **MUST** have `lem`.
   * The `lem` must be present because a processor might render one of the readings in an `app` as the printed text. 
 2. `lem` **MUST** be an empty node. 
@@ -436,8 +449,10 @@ The `variation-present` type should be used to indicate that a word or phrase is
 
 
 #### Examples
+
 ##### Example 1
-``` xml
+
+```xml
 fides
 <app>
   <lem n="fides"/>
@@ -450,9 +465,10 @@ fides
 
 
 ##### Example 2
+
 Another example of the present type where the present word is caused by an (erroneous) repetition. 
 
-``` xml
+```xml
 spes
 <app>
   <lem n="spes"/>
@@ -460,9 +476,8 @@ spes
 </app>
 
 ```
+
 > 10 spes *iter.* *A*
-
-
 
 ### `variation-absent`
 
@@ -490,16 +505,18 @@ A word or phrase is absent from a witness but present in the transmitted text. T
   
   
 #### Examples
+
 ##### Example 1
-``` xml
+
+```xml
 <app>
   <lem>fides</lem>
   <rdg wit="#A" type="variation-absent"/>
 </app>
-
 ```
 
 In a positive apparatus this could be presented like this:
+
 > 10 fides] *B* *om.* *A*
 
 In a negative apparatus it would be like this:
@@ -507,9 +524,10 @@ In a negative apparatus it would be like this:
 
 
 ##### Example 2
+
 This would be an example of a conjecture where a word is added to the edition but missing in the transmitted text. For more on conjectures see below
 
-``` xml
+```xml
 <app>
   <lem type="conjecture-supplied"><supplied>fides</supplied></lem>
   <rdg wit="#A" type="variation-absent"/>
@@ -517,9 +535,9 @@ This would be an example of a conjecture where a word is added to the edition bu
 est
 ```
 
-
 ##### Example 3
-``` xml
+
+```xml
 fides 
 <app>
   <lem>non semper sic, sed non</lem>
@@ -530,21 +548,24 @@ fides
 
 
 ##### Example 4
-``` xml
+
+```xml
 <app>
   <lem>fides</lem>
   <rdg wit="#A" type="variation-absent"><space extent="5" unit="characters" /></rdg>
 </app>
-
 ```
+
 > 10 fides] *lac. (5 litt.)* *A*
 
-
 ### `variation-inversion`
+
 #### Definition
+
 `Variation-inversion` is meant to indicate a variant reading where two or more words have are inverted relative to the critical text.
 
 #### Rules
+
 1. It **MUST** have `lem`.
 2. `lem` **MAY** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
 3. `rdg` **MUST** have `@type=variation-inversion`.
@@ -552,15 +573,16 @@ fides
 5. `rdg` **MUST** have either `@wit` or `@source`. 
 
 #### Example
-``` xml
+
+```xml
 fides non
 <app>
   <lem>bona fides</lem>
   <rdg wit="#A" type="variation-inversion">fides bona</rdg>
 </app>
 ```
-> 10 bona fides] fides bona *A*
 
+> 10 bona fides] fides bona *A*
 
 ## `correction`
 
@@ -568,7 +590,6 @@ fides non
 
 A correction is meant as any reading where it is assumed that the scribe/text/witness? corrects a perceived error in his transmitted text.
 This is *not* used to represent corrections made by the edition. That is reserved for the *conjecture* class (below).
-
 
 ### `correction-addition`
 
@@ -598,7 +619,6 @@ This indicates that a scribe (either the original or a later scribe) has realize
     <add place="margin-left">fides</add>
   </rdg>
 </app>
-
 ```
 
 > 10 fides] *add. in mg.* *A*
@@ -608,7 +628,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 
 Our scribe wrote "in nomine Patri et Spiritus Sancti", but a later hand (#L¹) realized the mistake and adds the missing phrase "Filii et" above the line.
 
-``` xml
+```xml
 in nomine Patri et
 <app>
   <lem>Filii et</lem>
@@ -622,7 +642,6 @@ Spiritus Sancti.
 > Filii et] *add. s.l.* *L¹*
 > Filii et] *add. s.l. alia manu* *L*
 > Filli et] *om.* *L* *(corr. L¹)*
-
 
 ### `correction-deletion`
 
@@ -641,7 +660,6 @@ This indicates that a scribe (either the original or a later scribe) has realize
 5. The `del` **MUST** have a `@place` attribute.
 6. The `del` **MAY** have a `@hand` attribute.
 
-
 #### Examples
  
 ##### Example 1
@@ -659,7 +677,6 @@ est
 
 > 10 non *post* fides *del.* *A*
 > 10 fides] non *scr. sed del.* *A*
-
 
 ##### Example 2
 
@@ -698,7 +715,6 @@ This indicates that a scribe (either the original or a later scribe) wants to co
 9. The `del` **MAY** have a `@rend`.
 10. A `@hand` attribute **MAY** be placed on the `subst` or on the `add` and `del`. 
 
-
 #### Extended Commentary
 
 A possible argument against rule 8 is that an editor might desire to produce the following rendering for a correction to a particular word.
@@ -718,7 +734,7 @@ Likewise, scholastic texts use a lot of variables, so its possible that a scribe
 So for example this would be very ambiguous in a sequence where variable a, b, c, d, and e were in use: 
                 
 > insidia] *N* (e *add.* *N²*)
-> 
+
 Does this mean that the correction was to "insidiae" or "insidia e"?
  
 Thus I think would be best to handle this with a correction-substitution, which could render to 
@@ -727,9 +743,9 @@ Thus I think would be best to handle this with a correction-substitution, which 
 
 or something else.
                 
-It is true that with something like: 
+It is true that with something like 
                 
-``` xml
+```xml
 <app>
   <lem>insidias</lem>
   <rdg wit="#N" type="correction-substitution">
@@ -766,11 +782,9 @@ In our view, complex detail about a how correction was precisely made is best le
       <add>fidem</add>
     </subst>
 </app>
-
 ```
 
 > 10 fidem] *corr. ex* spem *A*
-
 
 ##### Example 2
 ``` xml
@@ -785,7 +799,9 @@ est
 ```
 
 > 10 fides] fidem *A* (*ante corr.* *A¹*)
-> 10 fides] *corr. ex* fidem *in mg.* *A¹*
+
+> 10 fides] *corr. ex* fidem *in mg.* *A¹
+ 
 > 10 fides] *corr. ex* fidem *in alia manu* *A*
 
 ##### Example 3
@@ -801,7 +817,9 @@ est
   </rdg>
 </app>
 ```
+
 > insidias] *corr. ex* insidia *alia manu* *N* 
+
 > insidias] *corr. ex* insidia *N¹*
 
 ### `correction-transposition`
@@ -822,6 +840,7 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 ##### Example 1
 
 A correction that simply inverts the order of two words.
+
 ``` xml
 <app>
   <lem>spiritus sanctus</lem>
@@ -839,6 +858,7 @@ A correction that simply inverts the order of two words.
 ##### Example 2
 
 A correction where a word is moved more than a single word.
+
 ``` xml
 <app>
   <lem>et spiritus sanctus</lem>
@@ -872,16 +892,21 @@ possibility 1
 ``` xml
 <del><add place="above-line">fides</add></del>
 ```
+
 possibility 2
+
 ``` xml
 <del><del>fides</del></del>
 ```
 
 possible alias: 
+
 ``` xml
 <add><del>fides</del></add>
 ```
+
 possibility 3
+
 ``` xml
 <del>
   <subst>
@@ -890,7 +915,9 @@ possibility 3
   </subst>
 </del>
 ```
+
 possibility 4
+
 ``` xml
 <subst>
   <del>
@@ -903,7 +930,7 @@ possibility 4
 </subst>
 ```
 
-## conjecture
+## `conjecture`
 
 ### Definition
 
@@ -917,7 +944,7 @@ General rules for conjectures:
 
 Notice that both these attributes are pointers. If they do not point to an existing `xml:id`, the string after `#` will generally be used in processing.
 
-### conjecture-supplied
+### `conjecture-supplied`
 
 #### Definition
 
@@ -930,9 +957,11 @@ According to the the judgement of the editor, an expression is missing from the 
 3. The `supplied` element **MUST** contain the added text.
 
 #### Examples
+
 ##### Example 1
 
 An emendation is introduced into the edited text. The text is absent from the textual tradition but added by an editor.
+
 ``` xml
 Utrum fides semper
 <app>
@@ -943,8 +972,8 @@ Utrum fides semper
 </app>
 acquisita
 ```
-> 10 *post* semper sit *suppl.*, *om*. PVL
 
+> 10 *post* semper sit *suppl.*, *om*. PVL
 
 ##### Example 2
 
@@ -963,6 +992,7 @@ Utrum fides semper
 </app>
 acquisita
 ```
+
 > 10 *post* semper *suppl.* sit John, *om.* PVL, erit *conj.* James
 
 
@@ -981,13 +1011,15 @@ Utrum fides
 </app>
 sit
 ```
+
 > 10 semper *post* fides *conj.*
 
 Alternative:
 
 > 10 *num* semper *post* fides *scribendum*?
 
-### conjecture-removed
+### `conjecture-removed`
+
 #### Definition
 
 A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.
@@ -1003,6 +1035,7 @@ A word or phrase is transmitted in some or all of the textual tradition, but the
 ##### Example 1
 
 Simple example with a unanimous transmission. The editor removes the word from the edited text.
+
 ``` xml
 ut
 <app>
@@ -1011,10 +1044,13 @@ ut
 </app>
 dicit Aristoteles
 ```
+
 If the printed text reads "ut [cum] dicit Aristoteles":
+
 > 10 [cum] ] *del.*, cum *in textu* ABC
 
 Alternative, if the printed text reads "ut dicit Aristoteles":
+
 > 10 cum *post* ut *del.*, cum *in textu* ABC
 
 ##### Example 2
@@ -1029,9 +1065,11 @@ ut
 </app>
 dicit Aristoteles
 ```
+
 > 10 cum ] ABC, *del.* James
 
-### conjecture-corrected
+### `conjecture-corrected`
+
 #### Definition
 
 Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.
@@ -1042,6 +1080,7 @@ Parts of all of the textual tradition supports one reading, but an editor or sch
 2. The `lem` or `rdg` element **MUST** contain a the content of the conjecture.
 
 #### Examples
+
 ##### Example 1
 
 The tradition is unambiguous, but the editor deems it useless and prints an emendation in the text.
@@ -1054,9 +1093,11 @@ Utrum fides
 </app>
 acquisita
 ```
+
 > 10 sit ] servus PVL
 
 The note might be more explict:
+
 > 10 sit ] *scr.*, servus PVL
 
 ##### Example 2
@@ -1072,8 +1113,8 @@ Utrum fides
 </app>
 acquisita
 ```
-> 10 semper ] C John, servus AB, sit *conj.*
 
+> 10 semper ] C John, servus AB, sit *conj.*
 
 ## Connected Apparatus Entries
 
@@ -1138,7 +1179,7 @@ Sometimes it is desirable to connect readings, even if an editor is not trying t
 
 This could render as: 
 
-10 ars] ars artium E + et scientia scientiarum *add. interl.* E1 ars artium et scientia scientiarum Y H
+>10 ars] ars artium E + et scientia scientiarum *add. interl.* E1 ars artium et scientia scientiarum Y H
 
 ```xml
 non
@@ -1155,7 +1196,7 @@ non
 
 This could be rendered as: 
 
-10 non] ars *in textu* E + artium *add. interl.* E1 ars artium *in textu* Y H
+>10 non] ars *in textu* E + artium *add. interl.* E1 ars artium *in textu* Y H
 
 # Apparatus Fontium
 
@@ -1181,6 +1222,7 @@ The `cit` element creates an entry in the apparatus fontium. The `bibl` element 
 ```
 
 A `cit` element that has a `quote` and includes `bibl` and `note`:
+
 ``` xml
 <cit>
   <quote>In the beginning God created a world</quote>
@@ -1305,7 +1347,9 @@ The following example is expected to generate an *apparatus fontium* entry
 
 ### Examples
 
+```xml
 <cb ed="#W" n="a"/>
+```
 
 ### `pb`
 
