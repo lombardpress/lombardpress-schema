@@ -43,9 +43,9 @@ Document Status: Draft
 The goal of the LombardPress critical transcription specification is to offer a set of guidelines for the markup of medieval Sentences commentary that conform as much as possible to existing standards. In the case of critical editions and transcriptions, this means following as closely as possible the specifications and recommendations of the Digital Latin Library. In most cases, we aim only to expand the Digital Latin Library specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the Digital Latin Library guidelines should be followed. Where the Digital Latin Library does not state a specification, the more general TEI specification should be followed.
 
 
-# `teiHeader`
+# teiHeader
 
-## `fileDesc`
+## fileDesc
 
 ### Description
 
@@ -58,7 +58,7 @@ The `fileDesc` contains the full bibliographic description of an electronic file
 3. `fileDesc` **MUST** contain `publicationStmt`.
 
 
-### `titleStmt`
+### titleStmt
 
 #### Description
 
@@ -87,7 +87,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 ```
 
 
-### `editionStmt`
+### editionStmt
 
 #### Description
 
@@ -110,7 +110,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 </editionStmt>
 ```
 
-### `publicationStmt`
+### publicationStmt
 
 #### Description
 
@@ -163,7 +163,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
   </publicationStmt>
 ``` 
 
-### `sourceDesc`
+### sourceDesc
 
 #### Description
 
@@ -181,7 +181,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 ##### Example 1
 
-``` xml
+```xml
 <listWit>
   <witness xml:id="P" n="bnf15705">Paris, Lat 15705
     <msDesc>
@@ -207,7 +207,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 </listBibl>
 ```
 
-## `encodingDesc`
+## encodingDesc
 
 ### Description
 
@@ -239,13 +239,12 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 </encodingDesc>
 ```
 
-## `revisionDesc`
+## revisionDesc
 
 ### Description
 
 The `revisionDesc` contains a description of the current and previous versions of the current edition.
 The individual editor would usually not be responsible for maintaining the `revisionDesc`, as it should (ideally) be generated as part of the publication workflow. 
-
 
 ### Rules
 
@@ -274,10 +273,10 @@ The individual editor would usually not be responsible for maintaining the `revi
     </change>
   </listChange>
 </revisionDesc>
-    
 ```
 
 #### Example 2
+
 ```xml
 <revisionDesc status="draft">
   <listChange>
@@ -291,7 +290,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 # TEI->Text
 
-## `text`
+## text
 
 ### Description
 
@@ -303,7 +302,7 @@ The individual editor would usually not be responsible for maintaining the `revi
   - the possible values for `text@type` are "critical", "diplomatic", and "translation"
 * `text` **SHOULD** take an `@xml:lang` attribute indicating the dominant language of the edition, usually `la` for "latin"
 
-## `front`
+## front
 
 ### Rules
 
@@ -323,14 +322,13 @@ The individual editor would usually not be responsible for maintaining the `revi
 </front>
 ```
 
-## `body`
+## body
 
-## `div`
+## div
 
-## `head`
+## head
 
-## `p`
-
+## p
 
 # Apparatus Criticus
 
@@ -356,16 +354,16 @@ ad lumen solis
 ```
 
 This would make it easy to create this apparatus entry:
+
 > nicticoracis *post* oculus A
 
-
-## `variation`
+## variation
 
 ### General Definition
 
 A variation is meant as any reading that varies from the indicated lemma. At present we have identified six main variation times listed below.
 
-### `variation-substance`
+### variation-substance
 
 #### Description
 
@@ -395,12 +393,14 @@ This kind of variant is most commonly seen in an apparatus as something like:
 ```
 
 On a negative apparatus:
+
 > 10 fides] spes *A*
 
 On a positive apparatus:
+
 > 10 fides] *BCD* spes *A*
 
-### `variation-orthography`
+### variation-orthography
 
 #### Definition
 
@@ -427,7 +427,6 @@ est
 
 > 10 sicut] sicud *A*
 
-
 ### `variation-present`
 
 #### Description
@@ -446,7 +445,6 @@ The `variation-present` type should be used to indicate that a word or phrase is
 7. `rdg` **MAY** include `@cause` with the following available enumerated values:
   * `repetition`
   * ... 
-
 
 #### Examples
 
@@ -474,12 +472,11 @@ spes
   <lem n="spes"/>
   <rdg wit="#A" type="variation-present" cause="repetition">spes</rdg>
 </app>
-
 ```
 
 > 10 spes *iter.* *A*
 
-### `variation-absent`
+### variation-absent
 
 #### Description
 
@@ -520,6 +517,7 @@ In a positive apparatus this could be presented like this:
 > 10 fides] *B* *om.* *A*
 
 In a negative apparatus it would be like this:
+
 > 10 fides] *om.* *A*
 
 
@@ -544,6 +542,7 @@ fides
   <rdg wit="#A" type="variation-absent" cause="homeoteleuton"/>
 </app>
 ```
+
 > 10 non semper sic, sed non] *om.* *A* *(hom.)*
 
 
@@ -558,7 +557,7 @@ fides
 
 > 10 fides] *lac. (5 litt.)* *A*
 
-### `variation-inversion`
+### variation-inversion
 
 #### Definition
 
@@ -584,14 +583,14 @@ fides non
 
 > 10 bona fides] fides bona *A*
 
-## `correction`
+## correction
 
 ### General Definition
 
 A correction is meant as any reading where it is assumed that the scribe/text/witness? corrects a perceived error in his transmitted text.
 This is *not* used to represent corrections made by the edition. That is reserved for the *conjecture* class (below).
 
-### `correction-addition`
+### correction-addition
 
 #### Definition
 
@@ -623,7 +622,6 @@ This indicates that a scribe (either the original or a later scribe) has realize
 
 > 10 fides] *add. in mg.* *A*
 
-
 ##### Example 2
 
 Our scribe wrote "in nomine Patri et Spiritus Sancti", but a later hand (#L¹) realized the mistake and adds the missing phrase "Filii et" above the line.
@@ -640,10 +638,12 @@ Spiritus Sancti.
 ```
 
 > Filii et] *add. s.l.* *L¹*
+
 > Filii et] *add. s.l. alia manu* *L*
+
 > Filli et] *om.* *L* *(corr. L¹)*
 
-### `correction-deletion`
+### correction-deletion
 
 #### Definition
 
@@ -676,6 +676,7 @@ est
 ```
 
 > 10 non *post* fides *del.* *A*
+ 
 > 10 fides] non *scr. sed del.* *A*
 
 ##### Example 2
@@ -692,9 +693,10 @@ Aristoteles
 ```
 
 > 10 sicut] dicit *scr. sed del.* *S*
+ 
 > 10 dicit *post* sicut *del.* *S*
 
-### `correction-substitution`
+### correction-substitution
 
 #### Definition
 
@@ -822,7 +824,7 @@ est
 
 > insidias] *corr. ex* insidia *N¹*
 
-### `correction-transposition`
+### correction-transposition
 
 #### Definition
 
@@ -930,7 +932,7 @@ possibility 4
 </subst>
 ```
 
-## `conjecture`
+## conjecture
 
 ### Definition
 
@@ -944,7 +946,7 @@ General rules for conjectures:
 
 Notice that both these attributes are pointers. If they do not point to an existing `xml:id`, the string after `#` will generally be used in processing.
 
-### `conjecture-supplied`
+### conjecture-supplied
 
 #### Definition
 
@@ -995,7 +997,6 @@ acquisita
 
 > 10 *post* semper *suppl.* sit John, *om.* PVL, erit *conj.* James
 
-
 ##### Example 3
 
 The editor suspects that a word is missing from the text, but is not certain enough to add it to the text. This might as well have been another scholar, and in that case, the `@source` should indicate
@@ -1018,7 +1019,7 @@ Alternative:
 
 > 10 *num* semper *post* fides *scribendum*?
 
-### `conjecture-removed`
+### conjecture-removed
 
 #### Definition
 
@@ -1337,7 +1338,7 @@ The following example is expected to generate an *apparatus fontium* entry
 
 # Milestones
 
-## `cb`
+## cb
 
 ### Rules
 
@@ -1351,7 +1352,7 @@ The following example is expected to generate an *apparatus fontium* entry
 <cb ed="#W" n="a"/>
 ```
 
-### `pb`
+### pb
 
 ### Rules
 
