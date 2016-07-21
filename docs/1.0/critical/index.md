@@ -909,40 +909,171 @@ possibility 4
 
 These types refer to the situation where a (current or previous) editor suggests or introduces a emendation to the text that is not supported by the textual tradition.
 
-The relation between emendation and conjecture: When a suggestion for improvement is in the `<lem>`, it is an emendation, when it is in the `<rdg>` it is a conjecture.
+Terminologically on might consider an improvement that is adopted in the text (it is put in the `<lem>` element) to be an *emendation*, while an improvement that is merely suggested but not adopted in the text (and therefore put in a `<rdg>` element) can be referred to as a *conjecture*. To maintain a higher degree of flexibility and reduce the amount of necessary types, we adopt the term *conjecture* in the typology to signify both emendations and conjectures in the more restricted sense.
 
+General rules for conjectures:
+1. `@resp` **MAY** be used to indicate an internal editor responsible for suggesting or including the conjecture.
+2. `@source` **MAY** be used to indicate an external scholar who has suggested the conjecture.
+
+Notice that both these attributes are pointers. If they do not point to an existing `xml:id`, the string after `#` will generally be used in processing.
 
 ### conjecture-supplied
 
 #### Definition
 
-According to the the judgement of the editor, an expression is missing from transmitted text. Ideas for improvement of the text may then either be added to the edited text itself or indicated in apparatus note.
+According to the the judgement of the editor, an expression is missing from the transmitted text. Ideas for improvement of the text may then either be added to the edited text itself or indicated in apparatus note.
 
 #### Rules
+
+1. Either `lem` or a `rdg` **MUST** contain `@type="conjecture-supplied"`.
+2. The `lem` or `rdg` element **MUST** contain a `supplied` element as its first child.
+3. The `supplied` element **MUST** contain the added text.
+
 #### Examples
 ##### Example 1
+
+An emendation is introduced into the edited text. The text is absent from the textual tradition but added by an editor.
 ``` xml
 Utrum fides semper
 <app>
   <lem type="conjecture-supplied" resp="#Michael">
-      <supplied>sit</supplied
-    </lem>
-    <rdg type="absent" wit="#P #V #L"/>
+    <supplied>sit</supplied>
+  </lem>
+  <rdg type="absent" wit="#P #V #L"/>
 </app>
 acquisita
 ```
+> 10 *post* semper sit *suppl.*, *om*. PVL
+
+
+##### Example 2
+
+A scholar has suggested one conjecture for the passage, but the editor suggests another conjecture, which is adopted.
+
+``` xml
+Utrum fides semper
+<app>
+  <lem type="conjecture-supplied" resp="#John">
+    <supplied>sit</supplied>
+  </lem
+  <rdg type="absent" wit="#P #V #L"/>
+  <rdg type="conjecture-supplied" source="#James">
+    <supplied>erit</supplied>
+  </rdg>
+</app>
+acquisita
+```
+> 10 *post* semper *suppl.* sit John, *om.* PVL, erit *conj.* James
+
+
+##### Example 3
+
+The editor suspects that a word is missing from the text, but is not certain enough to add it to the text. This might as well have been another scholar, and in that case, the `@source` should indicate
+
+``` xml
+Utrum fides
+<app>
+  <lem n="fides"/>
+  <rdg type="absent" wit="#P #V #L"/>
+  <rdg type="conjecture-supplied">
+    <supplied>semper</supplied>
+  </rdg>
+</app>
+sit
+```
+> 10 semper *post* fides *conj.*
+
+Alternative:
+
+> 10 *num* semper *post* fides *scribendum*?
 
 ### conjecture-removed
 #### Definition
+
+A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.
+
 #### Rules
+
+1. Either `lem` or a `rdg` **MUST** contain `@type="conjecture-removed"`.
+2. The `lem` or `rdg` element **MUST** contain a `surplus` element as its first child.
+3. The `surplus` element **MUST** contain the removed text.
+
 #### Examples
+
 ##### Example 1
+
+Simple example with a unanimous transmission. The editor removes the word from the edited text.
+``` xml
+ut
+<app>
+  <lem type="conjecture-removed"><surplus>cum</surplus></lem>
+  <rdg wit="#A #B #C">cum</rdg>
+</app>
+dicit Aristoteles
+```
+If the printed text reads "ut [cum] dicit Aristoteles":
+> 10 [cum] ] *del.*, cum *in textu* ABC
+
+Alternative, if the printed text reads "ut dicit Aristoteles":
+> 10 cum *post* ut *del.*, cum *in textu* ABC
+
+##### Example 2
+
+Another scholar has suggested that a word be removed, but it is supported by the textual tradition and the editor chooses to keep it in the text.
+
+``` xml
+ut
+<app>
+  <lem wit="#A #B #C">cum</lem>
+  <rdg src="#James" type="conjecture-removed"><surplus>cum</surplus></rdg>
+</app>
+dicit Aristoteles
+```
+> 10 cum ] ABC, *del.* James
 
 ### conjecture-corrected
 #### Definition
+
+Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.
+
 #### Rules
+
+1. Either `lem` or a `rdg` **MUST** contain `@type="conjecture-corrected"`.
+2. The `lem` or `rdg` element **MUST** contain a the content of the conjecture.
+
 #### Examples
 ##### Example 1
+
+The tradition is unambiguous, but the editor deems it useless and prints an emendation in the text.
+
+``` xml
+Utrum fides
+<app>
+  <lem type="conjecture-corrected">sit</lem>
+  <rdg wit="#P #V #L">servus</rdg>
+</app>
+acquisita
+```
+> 10 sit ] servus PVL
+
+The note might be more explict:
+> 10 sit ] *scr.*, servus PVL
+
+##### Example 2
+
+The tradition is mixed and the editor has a conjecture that he does not dare put in the edited text, so he chooses the most appropriate of the transmitted readings (in light of his general editorial principles), which is also supported by another scholar.
+
+``` xml
+Utrum fides
+<app>
+  <lem wit="#C" source="#John">semper</lem>
+  <rdg wit="#A #B">servus</rdg>
+  <rdg resp="#Ed" type="conjecture-corrected">sit</rdg>
+</app>
+acquisita
+```
+> 10 semper ] C John, servus AB, sit *conj.*
+
 
 ## Connected Apparatus Entries
 
