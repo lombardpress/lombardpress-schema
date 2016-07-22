@@ -93,6 +93,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Description
 
+`editionStmt` indicates the edition of the document within the context of its source history.
+
 #### Rules
 
 1. `editionStmt` **MUST** contain an `edition` element.
@@ -115,6 +117,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 ### publicationStmt
 
 #### Description
+
+`publicationStmt` indicates the authority supporting this edition (usually a sponsoring or funding research group). It should also list the licence and availablity of the text. 
 
 #### Rules
 
@@ -169,6 +173,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Description
 
+`sourceDesc` should list the witnesses and sources used to construct the edition.
+
 #### Rules
 
 1. `SourceDesc` **MUST** contain either a `listWit` or `listBibl` or both
@@ -212,6 +218,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 ## encodingDesc
 
 ### Description
+
+`encodingDesc` provides deetails about the encoding methods used in the text and the schema followed.
 
 ### Rules
 
@@ -391,6 +399,7 @@ Example using e-codices IIIF canvas id
 Below are the basic reading and lemma types in three main categories, variation, correction, and conjecture. Before detailing those types, the general rules of any apparatus entry are described here.
 
 The general rules of any `app` element are:
+
 1. `app` **MUST** contain `lem` element.
 2. `app` **MUST** contain at least one `rdg` element.
 3. `app` **MAY** contain a `note` element.
