@@ -33,6 +33,7 @@ Document Status: Draft
   - [correction](#correction)
   - [conjecture](#conjecture)
   - [Connected Apparatus Entries](#connected-apparatus-entries)
+  - [manual](#manual)
 * [Apparatus Fontium](#apparatus-fontium)
   - [Citation](#citation)
   - [Reference](#reference)
@@ -1244,11 +1245,11 @@ A processor can also choose to create this loop in the opposite direction, first
 
 ### Generic App Connections
 
-### Descriptions
+#### Description
 
 Sometimes it is desirable to connect readings, even if an editor is not trying to avoid overlapping lemmas. The most likely scenario for this is when it is ideal for an app with a lemma and a second app with a blank lemma to be rendered together. Despite the different motivation, this should be handled in the same way as the method used to deal with overlapping lemmas.
 
-### Examples
+#### Examples
 
 ```xml
 <app xml:id="app1" next="#app2">
@@ -1284,6 +1285,51 @@ non
 This could be rendered as: 
 
 >10 non] ars *in textu* E + artium *add. interl.* E1 ars artium *in textu* Y H
+
+## Manual
+
+### Description
+
+Because we recognize there may be cases where an editor feels that a reading is so unique that it fits into no existing typology, we support the use of a `rdg@type="manual"`, despite highly discouraging its use. 
+
+The use of the `manual` type should be avoided at all costs, and in subsequent versions of the lbp schema we aim to identify all instances of `manual` and either explain how these cases fit into the existing typology or expand the typology to encompass this instance.
+
+### Rules
+
+1. the `rdg` must have an `@type="manual`.
+2. The rdg should include precisely what the editors hope will appear after the lemma
+3. The description of the variant (normally the part of the reading placed in italics) should be wrapped in an `desc` element
+4. The sigla should be wrapped in a `wit` element.
+
+### Examples
+
+*Note: for both of the examples below, there are appropriate type categorizes for these rdg types, and thus there is no need for a manual override here. These are provided just for the sake of example.*
+
+```xml
+<app>
+  <lem>fides</lem>
+  <rdg wit="#V" type="manual">
+    fides <desc>corr. interl. ex</desc> fide <wit>V</wit>
+  </rdg>
+</app>
+xml
+
+This would likely be redered as: 
+
+> 10 fides] fides *corr. interl. ex* fide V
+
+```xml
+<app>
+  <lem>fides</lem>
+  <rdg wit="#V" type="manual">
+    <desc>om.</desc> <wit>V</wit>
+  </rdg>
+</app>
+```
+
+This would likely be redered as: 
+
+> 10 fides] *om.* V
 
 # Apparatus Fontium
 
