@@ -28,6 +28,7 @@ Document Status: Draft
   * [revisionDesc](#revisiondesc)
 * [Facsimile](#facsimile)
 * [Text](#text)
+  * [Front](#front)
 * [Apparatus Criticus](#apparatus-criticus)
   - [varation](#variation)
   - [correction](#correction)
@@ -369,10 +370,14 @@ Example using e-codices IIIF canvas id
 
 ## front
 
+### Description
+
+`front` is used to make prefatory declarations about the text. For now that only includes the starting location of the text in the witnesses.
+
 ### Rules
 
-* `front` should take a `div` with the `xml:id="starts-on"`
-  - The content of this div should take only `pb` and `cb` is indicating the page and column on which the text begins.
+* `front` **MUST** take a `div` with the `xml:id="starts-on"`
+  - The content of this div should only be `pb` and `cb` indicating the page and column on which the text begins in the different witnesses.
 
 ### Examples
 

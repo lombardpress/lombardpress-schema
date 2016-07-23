@@ -25,6 +25,8 @@ Document Status: Draft
     * [sourceDesc](#sourcedesc)
   * [revisionDesc](#revisiondesc)
   * [encodingDesc](#encodingdesc)
+* [Text](#text)
+  * [Front](#front)
 * [Editorial Emendations](#editorial-emendations)
   * [Expansions](#expansions)
   * [Corrections](#corrections)
@@ -292,6 +294,48 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
   </editorialDecl>
 </encodingDesc>
 ```
+
+# text
+
+## Description
+
+`text` is the main wrapper of the edition and sibling to the `teiHeader`
+
+## Rules
+
+* `text` **MUST** take an `@type` attribute the value of which is "diplomatic"
+  - the possible values for `text@type` are "critical", "diplomatic", and "translation"
+* `text` **SHOULD** take an `@xml:lang` attribute indicating the dominant language of the edition, usually `la` for "latin"
+
+## front
+
+### Description
+
+`front` is used to make prefatory declarations about the text. For now that only includes the starting location of the text in the witness.
+
+### Rules
+
+* `front` **MUST** take a `div` with the `xml:id="starts-on"`
+  - The content of this div should only be `pb` and `cb` indicating the page and column on which the text begins in the witness of the edition.
+
+### Examples
+
+```xml
+<front>
+  <div xml:id="starts-on">
+    <pb ed="#V" n="5-r" facs="V5r"/><cb ed="#V" n="b"/> <!-- V5rb -->
+  </div>
+</front>
+```
+
+## body
+
+## div
+
+## head
+
+## p
+
 
 # Editorial Emendations
 
