@@ -288,7 +288,7 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
     type="diplomatic">
   </schemaRef>
   <editorialDecl>
-    <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a critical edition</p>
+    <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a diplomatic edition</p>
   </editorialDecl>
 </encodingDesc>
 ```
