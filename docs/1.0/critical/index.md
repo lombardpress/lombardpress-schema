@@ -238,14 +238,14 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 
 ```xml
 <encodingDesc>
- <variantEncoding method="parallel-segmentation"
- location="internal"/> 
- <schemaRef 
-   n="lbp-critical-1.0.0"
-   target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/critical.rng">
-</schemaRef>
-<editorialDecl>
-  <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a critical edition</p> 
+  <variantEncoding method="parallel-segmentation"
+    location="internal"/>
+  <schemaRef
+    n="lbp-critical-1.0.0"
+    target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/critical.rng">
+  </schemaRef>
+  <editorialDecl>
+    <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a critical edition</p>
   </editorialDecl>
 </encodingDesc>
 ```
