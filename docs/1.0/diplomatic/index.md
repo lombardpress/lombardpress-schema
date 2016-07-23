@@ -25,6 +25,8 @@ Document Status: Draft
     * [sourceDesc](#sourcedesc)
   * [revisionDesc](#revisiondesc)
   * [encodingDesc](#encodingdesc)
+* [Text](#text)
+  * [Front](#front)
 * [Editorial Emendations](#editorial-emendations)
   * [Expansions](#expansions)
   * [Corrections](#corrections)

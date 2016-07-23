@@ -28,6 +28,7 @@ Document Status: Draft
   * [revisionDesc](#revisiondesc)
 * [Facsimile](#facsimile)
 * [Text](#text)
+  * [Front](#front)
 * [Apparatus Criticus](#apparatus-criticus)
   - [varation](#variation)
   - [correction](#correction)
