@@ -44,7 +44,7 @@ Document Status: Draft
 
 # Preamble
 
-The goal of the LombardPress critical transcription specification is to offer a set of guidelines for the markup of medieval Sentences commentary that conform as much as possible to existing standards. In the case of critical editions and transcriptions, this means following as closely as possible the specifications and recommendations of the Digital Latin Library. In most cases, we aim only to expand the Digital Latin Library specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the Digital Latin Library guidelines should be followed. Where the Digital Latin Library does not state a specification, the more general TEI specification should be followed.
+The goal of the LombardPress critical transcription specification is to offer a set of guidelines for the markup of medieval Scholastic Commentaries and Texts that conform as much as possible to existing standards. In the case of critical editions and transcriptions, this means following as closely as possible the specifications and recommendations of the Digital Latin Library. In most cases, we aim only to expand the Digital Latin Library specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the Digital Latin Library guidelines should be followed. Where the Digital Latin Library does not state a specification, the more general TEI specification should be followed.
 
 
 # teiHeader
@@ -409,8 +409,11 @@ The general rules of any `app` element are:
 1. `app` **MUST** contain `lem` element.
 2. `app` **MUST** contain at least one `rdg` element.
 3. `app` **MAY** contain a `note` element.
-4. `lem` **MAY** be empty.
-4. If `lem` is empty, it **MUST** contain the `@n` element.
+4. `app` **MAY** contain a `witDetail` element.
+  * the `witDetail` **MUST** take a pointer `@wit` 
+5. `lem` **MAY** be empty.
+6. If `lem` is empty, it **MUST** contain the `@n` element.
+7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
 
 When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. But since there is then no lemma to anchor the apparatus entry in the critical text, another label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that.
 An example of that could look like this:
@@ -432,7 +435,7 @@ This would make it easy to create this apparatus entry:
 
 ### General Definition
 
-A variation is meant as any reading that varies from the indicated lemma. At present, we have identified six main variation types listed below.
+A variation is meant as any reading that varies from the indicated lemma. At present, we have identified five main variation types listed below.
 
 ### variation-substance
 
@@ -482,8 +485,8 @@ The `variation-orthography` class is meant to separate variant instances, where 
 
 1. It **MUST** have `lem`.
 2. `lem` **MAY** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
-3. `rdg` **MAY** have `@type=variation-orthographic`.
-  * The requirement for `@type` is only a "**MAY**" because this `@type` is so common and can be inferred by a processor from the following encoding pattern. Thus it is not necessary for an editor to state it on every reading.
+3. `rdg` **MUST** have `@type=variation-orthography`.
+  * The requirement for `@type` is "**MUST**" because without the `@type` value, the encoding pattern is indistinguishable from the `@type="variation-substance` encoding pattern.
 4. `rdg` text node **MUST** be present.
 5. `rdg` **MUST** have either @wit or @source.
 
@@ -503,20 +506,20 @@ est
 
 #### Description
 
-The `variation-present` type should be used to indicate that a word or phrase is present in a witness, but has not been included in the critical text. It is important that this be distinguished from the type `correction-addition` which is meant to indicate that a word or phrase has been actively added as a conscious correction to the witness text.
+The `variation-present` type should be used to indicate that a word or phrase is present in a witness but has not been included in the critical text. It is important that this be distinguished from the type `correction-addition` which is meant to indicate that a word or phrase has been actively added as a conscious correction to the witness text.
 
 #### Rules
 
 1. It **MUST** have `lem`.
   * The `lem` must be present because a processor might render one of the readings in an `app` as the printed text. 
 2. `lem` **MUST** be an empty node. 
-  * If `lem` is empty it should have an `@n="suggested-lemma-value"` attribute, the value of which should normally be the word to appear in the critical text that immediately proceeds the app. (This value makes it considerably easier for processors to find a suitable lemma for a print apparatus.)
+  * If `lem` is empty it should have an `@n="suggested-lemma-value"` attribute, the value of which should normally be the word to appear in the critical text that immediately proceeds the `app`. (This value makes it considerably easier for processors to find a suitable lemma for a print apparatus.)
 3. `lem` **MAY** have `@wit` or `@source` attribute.
 4. `rdg` **MUST** have `@wit` or `@source`.
 5. `rdg` **MUST** have `@type=present`.
 7. `rdg` **MAY** include `@cause` with the following available enumerated values:
   * `repetition`
-  * ... 
+  * ...
 
 #### Examples
 
@@ -567,7 +570,7 @@ A word or phrase is absent from a witness but present in the transmitted text. T
 6. The `rdg` **MAY** have a child space element. 
   * A `<space>` may be used when attempting to indicate a space left by the scribe intended to be filled in later.
 6. The `rdg` **SHOULD** include `@type=variation-absent`.
-  * The reason this is not a **MUST** is because the pattern of a present `lem` with a text value and a present but empty `rdg` element is a unique pattern that corresponds to the `variation-absent` type.
+  * The reason this is not a **MUST** is because the pattern of a present `lem` with a text value and a present, but empty `rdg` element is a unique pattern that corresponds to the `variation-absent` type.
 7. The `rdg` **MAY** include `@type=cause` with the following available enumerated values:
   * `homeoteleuton`
   * `homeoarchon` 
@@ -596,7 +599,7 @@ In a negative apparatus it would be like this:
 
 ##### Example 2
 
-This would be an example of a conjecture where a word is added to the edition but missing in the transmitted text. For more on [conjectures](#conjecture) see below.
+This would be an example of a conjecture where a word is added to the edition but missing in the transmitted text. For more on conjectures [see below](#conjecture).
 
 ```xml
 <app>
@@ -638,11 +641,10 @@ fides
 
 #### Rules
 
-1. It **MUST** have `lem`.
-2. `lem` **MAY** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
-3. `rdg` **MUST** have `@type=variation-inversion`.
-4. `rdg` text node **MUST** be present.
-5. `rdg` **MUST** have either `@wit` or `@source`. 
+1. It **MUST** have a `lem`.
+2. `rdg` **MUST** have `@type=variation-inversion`.
+3. `rdg` text node **MUST** be present.
+4. `rdg` **MUST** have either `@wit` or `@source`. 
 
 #### Example
 
@@ -662,7 +664,7 @@ fides non
 
 A correction is meant as any reading where it is assumed that the witness corrects a perceived error in the transmitted text.
 
-This is *not* used to represent corrections made by the edition. That is reserved for the [conjecture](#conjecture) class (below).
+This is *not* used to represent corrections made by the edition. That is reserved for the conjecture class [below](#conjecture).
 
 ### correction-addition
 
@@ -674,7 +676,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 
 1. It **MUST** have `lem`.
 2. The `lem` **MAY** be empty.
-  * In this case, an editor may not want to include the `correction-addition` in the critical text, but still indicate that the correction has been made in a witness. This is an instance where the `correction-addition` is also taking on the form parallel to that of a `variation-present`.
+  * In this case, an editor may not want to include the `correction-addition` in the critical text, but still indicate that the correction has been made in a witness. This is an instance where the `correction-addition` is also taking on the form parallel to that of a `variation-present`. In such a case the additional `varation-present` type can be inferred from the empty lemma.
 3. The `rdg` **SHOULD** have `@type="correction-addition"`.
 4. The `rdg` **MUST** contain an `add` element.
 5. The `rdg` **MUST NOT** contain any content outside of the `add` element.
@@ -698,7 +700,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 
 ##### Example 2
 
-Our scribe wrote "in nomine Patri et Spiritus Sancti", but a later hand (#L1) realized the mistake and adds the missing phrase "Filii et" above the line.
+A scribe wrote "in nomine Patri et Spiritus Sancti", but a later hand (#L1) realized the mistake and added the missing phrase "Filii et" above the line.
 
 ```xml
 in nomine Patri et
@@ -813,12 +815,12 @@ So for example, the following would be very ambiguous in a sequence where variab
 
 Does this mean that the correction was to "insidiae" or "insidia e"?
  
-Thus we think it would be best to handle this with a correction-substitution, which could render to:
+Thus we think it would be best to handle this with a `correction-substitution`, which could render to:
                 
-> insidias] *corr. ex alia manu* insidia *N* 
-                
+> insidias] *corr. ex* insidia *alia manu* *N* 
+ 
 It is true that with something like 
-                
+
 ```xml
 <app>
   <lem>insidias</lem>
@@ -835,7 +837,7 @@ we certainly sacrifice some specificity about how the correction was made (namel
       
 **In sum**: The problem we face with the language of "addition, correction, substitution" etc. is that it becomes tempting to record two distinct types of phenomena: 1) the ultimate meaning of the correction and 2) the material way in which that correction was made. 
                 
-In the example above the addition of "s" to "insidias" is, in meaning, really a `correction-substitution`, even though the way that the correction was materially made make it look like a simple `correction-addition`. 
+In the example above the addition of "s" to "insidias" is, in meaning, really a `correction-substitution`, even though the way that the correction was materially made makes it look like a simple `correction-addition`. 
 
 By adding "s" the scribe, did not meant to simply add an "s", but rather meant to replace the word "insidia" with "insidias".
                 
@@ -904,8 +906,8 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 
 #### Rules
 
-* See the above rules for `correction-substitution`
-* the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. 
+1. See the above rules for `correction-substitution`
+2. the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. 
   - The `@n` indicates the relative order of the segments *after* the transposition has taken place.
   - This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
 
@@ -953,9 +955,7 @@ A correction where a word is moved more than a single word.
 
 *note: correction-cancellation is a particularly complicated variation type and should be considered very likely to recieve change and alteration in the next release of the guidelines*
 
-A cancellation is a correction of a correction. This gives us nine theoretical types following the logic of the corrections as described above. The correction of a correction would simply be a correction wrapped in a paretn correction. Some of those nine permutations are not materially possible. 
-
-We support the following types of *corrections of corrections* :
+A cancellation is a correction of a correction. This gives us nine theoretical (resulting from the combination of `correction-addition`, `correction-deletion`, and `correction-substitution`) types following the logic of the corrections described above. Thus a correction of a correction would simply be a correction wrapped in a parent correction. Some of those nine permutations are not materially possible, and thus we support the following 4 types of *corrections of corrections* :
 
 1. deletion-of-addition
 2. deletion-of-deletion
@@ -963,12 +963,9 @@ We support the following types of *corrections of corrections* :
 4. substitution-of-addition 
   * similar to `deletion-of-addition`, but the cancellation also adds a new word in the place of the now deleted addition.
 
-
-
-
 #### Rules
 
-1. `rdg` **MUST** take `@type=<value-of-cancellation-type`
+1. `rdg` **MUST** take `@type=<value-of-cancellation-type>`
 2. children of `rdg` must follow the logic of one of 4 accepted patterns described in the examples below.
 
 #### Examples
@@ -1026,9 +1023,10 @@ We support the following types of *corrections of corrections* :
 
 These types refer to the situation where a (current or previous) editor suggests or introduces a emendation to the text that is not supported by the textual tradition.
 
-Terminologically, one might consider an improvement that is adopted in the text (it is put in the `<lem>` element) to be an *emendation*, while an improvement that is merely suggested but not adopted in the text (and therefore put in a `<rdg>` element) can be referred to as a *conjecture*. To maintain a higher degree of flexibility and reduce the amount of necessary types, we adopt the term *conjecture* in the typology to signify both emendations and conjectures in the more restricted sense.
+Terminologically, one might consider an improvement that is adopted in the text (i.e. it is placed in the `<lem>` element) to be an *emendation*, while an improvement that is merely suggested but not adopted in the text (and therefore put in a `<rdg>` element) can be referred to as a *conjecture*. To maintain a higher degree of flexibility and reduce the amount of necessary types, we adopt the term *conjecture* in the typology to signify both emendations and conjectures in the more restricted sense.
 
 General rules for conjectures:
+
 1. `@resp` **MAY** be used to indicate an internal editor responsible for suggesting or including the conjecture.
 2. `@source` **MAY** be used to indicate an external scholar who has suggested the conjecture.
 
@@ -1209,7 +1207,7 @@ acquisita
 
 ### Overlapping Lemmas
 
-While parallel-segmentation encoding comes with a number of advantages, an editor invariably is faced with the challenge of overlapping lemmas and XML's prohibition against cross-nesting elements. Here we offer guidelines of how to handles such cases. 
+While parallel-segmentation encoding comes with a number of advantages, an editor invariably faces the challenge of overlapping lemmas and XML's prohibition against cross-nesting elements. Here we offer guidelines of how to handles such cases. 
 
 #### Rules
 
@@ -1244,15 +1242,15 @@ In this complex example, we imagine an omission in witness A that begins with th
 
 A processor is expected to handle the above example as follows. 
 
-Whenever an `app` is encountered with a `@next` attribute, the processor should begin looping through each connected `app` until it reaches an `app` that no longer has a `@next` attribute but only a `@prev` attribute. Throughout this loop it should concatenate the `lem` from each `app` and then concatenate the available readings, matching `rdg` by the value of the `@wit` attribute. (In complicated cases, it is advisable to give each witness a separate `rdg` to make the connection of `rdg` elements as easy as possible.). Once having looped through all connected apps. The processor should ignore all subsequent apps that have an `@prev` attribute because these have presumably been dealt with in the previous loop.
+Whenever an `app` is encountered with a `@next` attribute, the processor should begin looping through each connected `app` until it reaches an `app` that no longer has a `@next` attribute but only a `@prev` attribute. Throughout this loop it should concatenate the `lem` from each `app` and then concatenate the available readings, matching `rdg` by the value of the `@wit` attribute. (In complicated cases, it is advisable to give each witness a separate `rdg` to make the connection of `rdg` elements as easy as possible.) Once having looped through all connected apps. The processor should ignore all subsequent apps that have an `@prev` attribute because these have presumably been dealt with in the previous loop.
 
-A processor can also choose to create this loop in the opposite direction, first ignoring all `apps` with a `@next` attribute until it comes to an `app` that only has an `@prev` attribute. It can then loop up to each connected app until it reaches an `app` without an `@prev` attribute.
+A processor can also choose to create this loop in the opposite direction, first ignoring all `apps` with a `@next` attribute until it comes to an `app` that only has a `@prev` attribute. It can then loop up to each connected app until it reaches an `app` without a `@prev` attribute.
 
 ### Generic App Connections
 
 #### Description
 
-Sometimes it is desirable to connect readings, even if an editor is not trying to avoid overlapping lemmas. The most likely scenario for this is when it is ideal for an app with a lemma and a second app with a blank lemma to be rendered together. Despite the different motivation, this should be handled in the same way as the method used to deal with overlapping lemmas.
+Sometimes it is desirable to connect readings even if an editor is not trying to avoid overlapping lemmas. The most likely scenario for this is when it is ideal for an `app` with a lemma and a second `app` with a blank lemma to be rendered together. Despite the different motivation, this should be handled in the same way as the method used to deal with overlapping lemmas.
 
 #### Examples
 
