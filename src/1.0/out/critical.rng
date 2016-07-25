@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-07-19T09:54:38Z. .
+Schema generated from ODD source 2016-07-25T16:04:38Z. .
 TEI Edition: Version 2.8.0. Last updated on
 	6th April 2015, revision 13197
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.8.0/
@@ -9587,7 +9587,7 @@ Sample values include: 1] homeoteleuton; 2] homeoarchy; 3] paleographicConfusion
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">classifies the reading according to some useful typology.
-Suggested values include: 1] variation-absent(variation-absent) ; 2] variation-present(variation-present) ; 3] variation-substance(variation-substance) ; 4] variation-spelling(variation-orthography) ; 5] correction-addition(addition) ; 6] correction-deletion(included but then deleted) ; 7] correction-substitution(Correction Substitution) ; 8] correction-cancellation(Correction Cancellation) ; 9] conjecture-supplied(Conjecture Supplied) ; 10] conjecture-removed(Conjecture Removed) ; 11] conjecture-corrected(Conjecture Corrected) </a:documentation>
+Suggested values include: 1] variation-absent(variation-absent) ; 2] variation-present(variation-present) ; 3] variation-substance(variation-substance) ; 4] variation-orthography(variation-orthography) ; 5] correction-addition(addition) ; 6] correction-deletion(included but then deleted) ; 7] correction-substitution(Correction Substitution) ; 8] correction-cancellation(Correction Cancellation) ; 9] conjecture-supplied(Conjecture Supplied) ; 10] conjecture-removed(Conjecture Removed) ; 11] conjecture-corrected(Conjecture Corrected) </a:documentation>
                <choice>
                   <value>variation-absent</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(variation-absent) indicates that the witness in question lacks the designated lemma; often rendered as "omit." or "omitted"</a:documentation>
@@ -9595,7 +9595,7 @@ Suggested values include: 1] variation-absent(variation-absent) ; 2] variation-p
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(variation-present) indicates that the witness in question contains a word or phrase not included in the critical text.</a:documentation>
                   <value>variation-substance</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(variation-substance) This is the default variation type, for a simple variation of words or phrases between witnesses.</a:documentation>
-                  <value>variation-spelling</value>
+                  <value>variation-orthography</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(variation-orthography) Indicates a simple orthographic variation.</a:documentation>
                   <value>correction-addition</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(addition) indicates that the current lemma was added to the text by some sort of external imposition, either by the same scribe or a later scribe. There are two options here. If the lemma is empty this indicates that, at this point, the witness in question includes a word or phrase that was chosen not to be included the edited text. If a lemma is included then the addition means that the word identified in the lemma is present in the witness, but is inserted in some way (either in the margin or inter-linearly).</a:documentation>

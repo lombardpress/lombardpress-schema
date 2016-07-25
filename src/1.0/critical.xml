@@ -296,7 +296,7 @@
               		<desc>This is the default variation type, for a simple variation of 
               			words or phrases between witnesses.</desc>
               	</valItem>
-              	<valItem ident="variation-spelling">
+              	<valItem ident="variation-orthography">
               		<gloss>variation-orthography</gloss>
               		<desc>Indicates a simple orthographic variation.</desc>
               	</valItem>
