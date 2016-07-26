@@ -29,11 +29,15 @@ Document Status: Draft
 * [Facsimile](#facsimile)
 * [Text](#text)
   * [Front](#front)
+  * [Text](#text)
+  * [Body](#body)
+  * [Div](#div)
+  * [P](#p)
 * [Apparatus Criticus](#apparatus-criticus)
-  - [varation](#variation)
+  - [variation](#variation)
   - [correction](#correction)
   - [conjecture](#conjecture)
-  - [Connected Apparatus Entries](#connected-apparatus-entries)
+  - [connected apparatus entries](#connected-apparatus-entries)
   - [manual](#manual)
 * [Apparatus Fontium](#apparatus-fontium)
   - [Citation](#citation)
@@ -73,7 +77,6 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 1. **MUST** have a title
 2. **MUST** have an author
 3. **SHOULD** have editor
-  * [reconsider this]
 4. **MAY** have responseStmt
 
 #### Examples
@@ -82,7 +85,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 <titleStmt>
   <title>Dicta super librum De anima</title>
   <author>Simon Magister</author>
-    <editor>Michael Stenskjær Christensen</editor>
+  <editor>Michael Stenskjær Christensen</editor>
   <respStmt>
     <name xml:id="comments-JJ">John Johnson</name>
     <resp>Editorial suggestions</resp>
@@ -120,16 +123,16 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Description
 
-`publicationStmt` indicates the authority supporting this edition (usually a sponsoring or funding research group). It should also list the licence and availablity of the text. 
+`publicationStmt` indicates the authority supporting this edition (usually a sponsoring or funding research group). It should also list the license and availability of the text. 
 
 #### Rules
 
 1. **MUST** contain an `authority` element.
-  * We suggest to let the `authority` state the entity that makes the creation of the current document possible or the context where it belongs. See example below.
+  * We suggest to let the `authority` state the entity that makes the creation of the current document possible or the context where it belongs. See examples below.
 2. The `authority` tag **MAY** contain a `ref` to provide an external link to the authority entity.
 3. **MUST** contain `availability`
 4. `availability` **MUST** contain `@status`
-5. `availability` **SHOUL** contain a `p` describing the license under which the edition is published.
+5. `availability` **SHOULD** contain a `p` describing the license under which the edition is published.
 
 #### Examples
 
@@ -179,7 +182,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
-1. `SourceDesc` **MUST** contain either a `listWit` or `listBibl` or both
+1. `sourceDesc` **MUST** contain either a `listWit` or `listBibl` or both
 2. `listWit` **MUST** contain at least one `wit`
 3. `listBibl` **MUST** contain at least on `bibl`
 4. `witness` **MUST** have a `@xml:id`
@@ -221,7 +224,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 ### Description
 
-`encodingDesc` provides deetails about the encoding methods used in the text and the schema followed.
+`encodingDesc` provides details about the encoding methods used in the text and the schema followed.
 
 ### Rules
 
@@ -271,7 +274,7 @@ The individual editor would usually not be responsible for maintaining the `revi
   * out-for-review
   * peer-reviewed (alias: published)
 7. `change` **MUST** contain `@n`
-8. `change` **MUST** contain either `@corresp` pointing to a description of the change or a `p` describing the change.
+8. `change` **MUST** contain either `@corresp` pointing to a description of the change in another file or a `p` describing the change.
 
 ### Examples
 
@@ -305,7 +308,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 The Facsimile tag is used to record information about images or image regions that correspond to the various parts of the edition.
 
-Our specifications may differ from examples used in the TEI guidelines because we currently only support image connections via the IIIF API. This first and foremost means that image references and coordinate regions only apply to the the idea of a IIIF canvas, rather than any particular image. 
+Our specifications may differ from examples used in the TEI guidelines because we currently only support image connections via the IIIF API. This first and foremost means that image references and coordinate regions only apply to the idea of a IIIF canvas, rather than any particular image. 
 
 This means that that no `graphic` element is allowed within the `surface` element. It also means that coordinates actually refer to the coordinates of the abstract canvas rather than any actual image.
 
@@ -314,16 +317,16 @@ The full canvas id is always expected to be constructed from the `xml:base` of t
 ## Rules
 
 * the `witness` in the `sourceDesc` **SHOULD** have a `@xml:base` attribute
-* `facsimile` **MUST** have a `surface` element as a child
+* `facsimile` **MUST** have at least one `surface` element as a child
 * the `surface` element **MUST** have an `xml:id` which is identical to the short id of the IIIF canvas.
 * the `surface` **SHOULD NOT** have a `graphic` element.
 * the `surface` **MUST** have a `corresp` element pointing to the `witness` it is a `surface` of.
 * the `surface` **MAY** take an `n` attribute as helpful label for the surface. Following the same pattern as used in the `pb@n` is recommended. 
 * `surface` **SHOULD** take `zones` as children
 * `zones` **MAY** either have an `xml:id` or a `start` attribute or both
-* the value of `start` attribute **SHOULD** be the `xml:id` of the `p` they refer to. 
-  - Because paragraphs can run onto multiple surfaces, and therefore have two zones, they **MUST** have an `@n` attribute indicating their sequence order.
-  - `zones` for paragraphs **SHOULD** be recorded in the diplomatic transcription for each witness, but they **MAY** be recorded in the critical transcription file.
+* the value of `start` attribute **SHOULD** be the `xml:id` of the element the zones in question refer to. 
+  - Because elements representing the "content hierarchy" (rather than the material hierarchy, such as `pb`, `cb`, or `lb`) can run onto multiple surfaces, and therefore have more than one zone, they **MUST** have an `@n` attribute indicating their sequence order.
+  - `zones` for content hierarchy elements **SHOULD** be recorded in the diplomatic transcription for each witness, but they **MAY** be recorded in the critical transcription file if deemed necessary.
 * elements in the body text **MAY** point to a zone or surface via the `@facs` attribute with a pointer `#` to the id of the zone or surface
 * an element, usually a `pb`, **MAY** short cut to the canvas id by using the `@facs` attribute and providing the value of the IIIF canvas short id without using a pointer `#`. See the examples below. 
 
@@ -352,7 +355,7 @@ Example using e-codices IIIF canvas id
   <pb ed="#A" n="1-v" facs="#kba-WettF0015_107v.json"/>
 <!-- or it can point directly to the canvas id without a pointer -->
   <pb ed="#A" n="1-v" facs="kba-WettF0015_107v.json"/>
-<!-- paragraphs require no facs attribute, because they are connected via the `zone@start` attribute -->
+<!-- content hierarchy elements require no facs attribute, because they are connected via the `zone@start` attribute -->
   <p xml:id="l1-scoesi">
 ```
 
@@ -377,7 +380,7 @@ Example using e-codices IIIF canvas id
 ### Rules
 
 * `front` **MUST** take a `div` with the `xml:id="starts-on"`
-  - The content of this div should only be `pb` and `cb` indicating the page and column on which the text begins in the different witnesses.
+  - The content of this div should only be `pb` and `cb` elements indicating the page and column on which the text begins in the different witnesses.
 
 ### Examples
 
@@ -402,6 +405,8 @@ Example using e-codices IIIF canvas id
 
 # Apparatus Criticus
 
+## General Rules
+
 Below are the basic reading and lemma types in three main categories, variation, correction, and conjecture. Before detailing those types, the general rules of any apparatus entry are described here.
 
 The general rules of any `app` element are:
@@ -413,10 +418,7 @@ The general rules of any `app` element are:
   * the `witDetail` **MUST** take a pointer `@wit` 
 5. `lem` **MAY** be empty.
 6. If `lem` is empty, it **MUST** contain the `@n` element.
-7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
-
-When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. But since there is then no lemma to anchor the apparatus entry in the critical text, another label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that.
-An example of that could look like this:
+  * When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. But since there is then no lemma to anchor the apparatus entry in the critical text, another label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that. An example of that could look like this:
 
 ```xml
 Praeterea, sicut oculus
@@ -426,10 +428,37 @@ Praeterea, sicut oculus
 </app>
 ad lumen solis
 ```
-
 This would make it easy to create this apparatus entry:
 
 > nicticoracis *post* oculus A
+
+7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
+
+## Basic rdg types
+
+The basic structure of the `rdg` typology can be described as follows
+
+* variation
+  - varation-substance
+  - variation-orthography
+  - variation-inversion
+  - variation-present
+  - variation-absent
+* correction
+  - correction-addition
+  - correction-deletion
+  - correction-substitution
+    + correction-transposition
+  - correction-cancellation
+    + deletion-of-addition
+    + deletion-of-deletion
+    + deletion-of-substitution
+    + substitution-of-addition
+* conjecture
+  - conjecture-supplied
+  - conjecture-removed
+  - conjecture-corrected
+* manual
 
 ## variation
 
@@ -450,7 +479,7 @@ This kind of variant is most commonly seen in an apparatus as something like:
 #### Rules
 
 1. It **MUST** have `lem`.
-2. `lem` **MAY** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
+2. `lem` **MAY NOT** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
 3. `rdg` **MAY** have `@type=variation-substance`.
   * The requirement for `@type` is only a "**MAY**" because this `@type` is so common and can be inferred by a processor from the following encoding pattern. Thus it is not necessary for an editor to state it on every reading.
 4. `rdg` text node **MUST** be present.
@@ -479,7 +508,7 @@ On a positive apparatus:
 
 #### Definition
 
-The `variation-orthography` class is meant to separate variant instances, where there is no actual variation in the substance of the word or phrase in question, but simply an orthographic difference.
+The `variation-orthography` class is meant to identify a class of variant instances where there is no actual variation in the substance of the word or phrase in question but simply an orthographic difference.
 
 #### Rules
 
@@ -502,6 +531,32 @@ est
 
 > 10 sicut] sicud *A*
 
+### variation-inversion
+
+#### Definition
+
+`variation-inversion` is meant to indicate a variant reading where two or more words have been inverted relative to the critical text.
+
+#### Rules
+
+1. It **MUST** have a `lem`.
+2. The `lem` **MUST** not be empty
+3. `rdg` **MUST** have `@type=variation-inversion`.
+4. `rdg` text node **MUST** be present.
+5. `rdg` **MUST** have either `@wit` or `@source`. 
+
+#### Example
+
+```xml
+fides non
+<app>
+  <lem>bona fides</lem>
+  <rdg wit="#A" type="variation-inversion">fides bona</rdg>
+</app>
+```
+
+> 10 bona fides] fides bona *A*
+
 ### `variation-present`
 
 #### Description
@@ -511,9 +566,8 @@ The `variation-present` type should be used to indicate that a word or phrase is
 #### Rules
 
 1. It **MUST** have `lem`.
-  * The `lem` must be present because a processor might render one of the readings in an `app` as the printed text. 
 2. `lem` **MUST** be an empty node. 
-  * If `lem` is empty it should have an `@n="suggested-lemma-value"` attribute, the value of which should normally be the word to appear in the critical text that immediately proceeds the `app`. (This value makes it considerably easier for processors to find a suitable lemma for a print apparatus.)
+  * As stated above in the general rules, when a `lem` is empty it should have an `@n="suggested-lemma-value"` attribute, the value of which should be the word to appear in the critical text that immediately proceeds the `app`. 
 3. `lem` **MAY** have `@wit` or `@source` attribute.
 4. `rdg` **MUST** have `@wit` or `@source`.
 5. `rdg` **MUST** have `@type=present`.
@@ -563,14 +617,14 @@ A word or phrase is absent from a witness but present in the transmitted text. T
 #### Rules
 
 1. The `lem` **MUST** be present.
-2. The `lem` **MUST** have text node.
+2. The `lem` **MUST** have a text node.
 3. The `lem` **MAY** include `@wit` or `@source` attributes.
 4. The `rdg` **MUST** include `@wit` or `@source` attributes.
 5. The `rdg` **MUST** have no descendant text nodes. 
-6. The `rdg` **MAY** have a child space element. 
-  * A `<space>` may be used when attempting to indicate a space left by the scribe intended to be filled in later.
+6. The `rdg` **MAY** have a child `space` element. 
+  * A `space` may be used when attempting to indicate a space left by the scribe intended to be filled in later.
 6. The `rdg` **SHOULD** include `@type=variation-absent`.
-  * The reason this is not a **MUST** is because the pattern of a present `lem` with a text value and a present, but empty `rdg` element is a unique pattern that corresponds to the `variation-absent` type.
+  * The reason this is not a **MUST** is because the pattern of a present `lem` with a text value and a present but empty `rdg` element is a unique pattern that corresponds to the `variation-absent` type.
 7. The `rdg` **MAY** include `@type=cause` with the following available enumerated values:
   * `homeoteleuton`
   * `homeoarchon` 
@@ -599,7 +653,7 @@ In a negative apparatus it would be like this:
 
 ##### Example 2
 
-This would be an example of a conjecture where a word is added to the edition but missing in the transmitted text. For more on conjectures [see below](#conjecture).
+The following is an example of a conjecture where a word is added to the edition but missing in the transmitted text. For more on conjectures [see below](#conjecture).
 
 ```xml
 <app>
@@ -633,30 +687,6 @@ fides
 
 > 10 fides] *lac. (5 litt.)* *A*
 
-### variation-inversion
-
-#### Definition
-
-`variation-inversion` is meant to indicate a variant reading where two or more words have been inverted relative to the critical text.
-
-#### Rules
-
-1. It **MUST** have a `lem`.
-2. `rdg` **MUST** have `@type=variation-inversion`.
-3. `rdg` text node **MUST** be present.
-4. `rdg` **MUST** have either `@wit` or `@source`. 
-
-#### Example
-
-```xml
-fides non
-<app>
-  <lem>bona fides</lem>
-  <rdg wit="#A" type="variation-inversion">fides bona</rdg>
-</app>
-```
-
-> 10 bona fides] fides bona *A*
 
 ## correction
 
@@ -723,17 +753,19 @@ Spiritus Sancti.
 
 #### Definition
 
-This indicates that a scribe (either the original or a later scribe) has realized that a word or phrase is erroneously present in his text and subsequently deleted it. 
+This indicates that a scribe (either the original or a later scribe) has realized that a word or phrase is erroneously present in the text and subsequently deleted it. 
 
 #### Rules
 
-1. It **MUST** have `lem`.
+1. It **MUST** have a `lem`.
 2. The `lem` **MAY** be empty.
   * In most cases, the `lem` will be empty, since it is normal to note a deletion of word that does not appear in the critical text. However, an editor might want to include a word in the critical text that has been deleted in one or more witnesses. In this case, the `lem` **MUST NOT** be empty.
 3. The `rdg` **SHOULD** have `@type="correction-deletion"`.
 4. The `rdg` **MUST** contain an `del` element.
 5. The `rdg` **MUST NOT** contain any content outside of the `del` element.
-5. The `del` **MUST** have a `@place` attribute.
+5. The `del` **MAY** have a `@place` attribute.
+  * generally, it is assumed that a deletiong happines `in-line`. A deletion of something not `in-line` should generally be treated as a `correction-cancellation`, [see below](#correction-cancellation).
+6. The `del` **SHOULD** have a `@rend` attribute.
 6. The `del` **MAY** have a `@hand` attribute.
 
 #### Examples
@@ -780,22 +812,23 @@ This indicates that a scribe (either the original or a later scribe) wants to co
 
 #### Rules
 
-1. It **MAY** have a `lem`.
+1. It **MUST** have a `lem`.
+2. The `lem` **MAY** be empty.
   * In most cases the lemma would be included, but the editor might want to include the substitution made in the witness without including either of the possible readings in the edited text.
-2. It **MUST** have a `rdg`.
-3. `rdg` **MUST** have a `@wit`.
-4. `rdg` **SHOULD** have `@type="correction-substitution"`.
-5. `rdg` **MUST** contain a `subst` element as a direct child.
-6. The `subst` element **MUST** contain a `del` and a `add` element.
-7. `subst` **MUST NOT** contain any nodes other than the `del` and `add` elements.
-8. The smallest unit of substitution **MUST** be a word.
-9. The `add` **MAY** have a `@place`.
-10. The `del` **MAY** have a `@rend`.
-11. A `@hand` attribute **MAY** be placed on either the `subst` element or on the `add` and `del` elements. 
+3. It **MUST** have a `rdg`.
+4. `rdg` **MUST** have a `@wit`.
+5. `rdg` **SHOULD** have `@type="correction-substitution"`.
+6. `rdg` **MUST** contain a `subst` element as a direct child.
+7. The `subst` element **MUST** contain a `del` and a `add` element.
+8. `subst` **MUST NOT** contain any nodes other than the `del` and `add` elements.
+9. The smallest unit of substitution **MUST** be a word.
+10. The `add` **MAY** have a `@place`.
+11. The `del` **MAY** have a `@rend`.
+12. A `@hand` attribute **MAY** be placed on either the `subst` element or on the `add` and `del` elements. 
 
 #### Extended Commentary
 
-A possible argument against rule 8 is that an editor might desire to produce the following rendering for a correction to a particular word.
+A possible argument against rule 9 is that an editor might desire to produce the following rendering for a correction to a particular word.
 
 > insidia N (s *add.* *N1*)
 
@@ -841,7 +874,7 @@ In the example above the addition of "s" to "insidias" is, in meaning, really a 
 
 By adding "s" the scribe, did not meant to simply add an "s", but rather meant to replace the word "insidia" with "insidias".
                 
-In its rendering, it looks equivalent to the addition of a missing word, but the effect or meaning of the correction is to substitute one word with another.
+In its rendering, it looks equivalent to the addition of a missing word or letter, but the effect or meaning of the correction is to substitute one word with another.
                 
 In our view, complex detail about a how correction was precisely made is best left recorded in a `@witDetail` and in an accompanying diplomatic transcription of the witness.
 
@@ -867,16 +900,18 @@ In our view, complex detail about a how correction was precisely made is best le
 <app>
   <lem>fides</lem>
   <rdg wit="#A" type="correction-substitution">
-    <del>fidem</del>
-    <add hand="#A¹" place="margin-right">fides</add>
+    <subst>
+      <del>fidem</del>
+      <add hand="#A1" place="margin-right">fides</add>
+    </subst>
   </rdg>
 </app>
 est
 ```
 
-> 10 fides] fidem *A* (*ante corr.* *A¹*)
+> 10 fides] fidem *A* (*ante corr.* *A1*)
 
-> 10 fides] *corr. ex* fidem *in mg.* *A¹
+> 10 fides] *corr. ex* fidem *in mg.* *A1*
  
 > 10 fides] *corr. ex* fidem *in alia manu* *A*
 
@@ -955,7 +990,7 @@ A correction where a word is moved more than a single word.
 
 *note: correction-cancellation is a particularly complicated variation type and should be considered very likely to recieve change and alteration in the next release of the guidelines*
 
-A cancellation is a correction of a correction. This gives us nine theoretical (resulting from the combination of `correction-addition`, `correction-deletion`, and `correction-substitution`) types following the logic of the corrections described above. Thus a correction of a correction would simply be a correction wrapped in a parent correction. Some of those nine permutations are not materially possible, and thus we support the following 4 types of *corrections of corrections* :
+A cancellation is a correction of a correction. This gives us nine theoretical types (resulting from the combination of `correction-addition`, `correction-deletion`, and `correction-substitution`) following the logic of the corrections described above. Thus a correction of a correction would simply be a correction wrapped in a parent correction. Some of those nine permutations are not materially possible, and thus we support the following 4 types of *corrections of corrections* :
 
 1. deletion-of-addition
 2. deletion-of-deletion
@@ -1019,9 +1054,9 @@ A cancellation is a correction of a correction. This gives us nine theoretical (
 
 ## conjecture
 
-### Definition
+### Description
 
-These types refer to the situation where a (current or previous) editor suggests or introduces a emendation to the text that is not supported by the textual tradition.
+These types refer to the situation where a (current or previous) editor suggests or introduces an emendation to the text that is not supported by the textual tradition.
 
 Terminologically, one might consider an improvement that is adopted in the text (i.e. it is placed in the `<lem>` element) to be an *emendation*, while an improvement that is merely suggested but not adopted in the text (and therefore put in a `<rdg>` element) can be referred to as a *conjecture*. To maintain a higher degree of flexibility and reduce the amount of necessary types, we adopt the term *conjecture* in the typology to signify both emendations and conjectures in the more restricted sense.
 
@@ -1030,7 +1065,7 @@ General rules for conjectures:
 1. `@resp` **MAY** be used to indicate an internal editor responsible for suggesting or including the conjecture.
 2. `@source` **MAY** be used to indicate an external scholar who has suggested the conjecture.
 
-Notice that both these attributes are pointers. If they do not point to an existing `xml:id`, the string after `#` will generally be used in processing.
+Notice that both of these attributes are pointers. If they do not point to an existing `xml:id`, the string after `#` will generally be used in processing.
 
 ### conjecture-supplied
 
@@ -1056,7 +1091,7 @@ Utrum fides semper
   <lem type="conjecture-supplied" resp="#Michael">
     <supplied>sit</supplied>
   </lem>
-  <rdg type="absent" wit="#P #V #L"/>
+  <rdg type="variation-absent" wit="#P #V #L"/>
 </app>
 acquisita
 ```
@@ -1164,7 +1199,8 @@ Parts of all of the textual tradition supports one reading, but an editor or sch
 #### Rules
 
 1. Either `lem` or a `rdg` **MUST** contain `@type="conjecture-corrected"`.
-2. The `lem` or `rdg` element **MUST** contain a the content of the conjecture.
+2. The `lem` or `rdg` element **MUST** contain a `corr` element as its first child.
+3. The `corr` element **MUST** contain the corrected text.
 
 #### Examples
 
@@ -1176,7 +1212,7 @@ The tradition is unambiguous, but the editor deems it useless and prints an emen
 Utrum fides
 <app>
   <lem type="conjecture-corrected">sit</lem>
-  <rdg wit="#P #V #L">servus</rdg>
+  <rdg wit="#P #V #L"><corr>servus</corr></rdg>
 </app>
 acquisita
 ```
@@ -1196,16 +1232,16 @@ Utrum fides
 <app>
   <lem wit="#C" source="#John">semper</lem>
   <rdg wit="#A #B">servus</rdg>
-  <rdg resp="#Ed" type="conjecture-corrected">sit</rdg>
+  <rdg resp="#Ed" type="conjecture-corrected"><corr>sit</corr></rdg>
 </app>
 acquisita
 ```
 
 > 10 semper ] C John, servus AB, sit *conj.*
 
-## Connected Apparatus Entries
+## connected apparatus entries
 
-### Overlapping Lemmas
+### Overlapping Elements
 
 While parallel-segmentation encoding comes with a number of advantages, an editor invariably faces the challenge of overlapping lemmas and XML's prohibition against cross-nesting elements. Here we offer guidelines of how to handles such cases. 
 
@@ -1213,7 +1249,7 @@ While parallel-segmentation encoding comes with a number of advantages, an edito
 
 1. all connected `apps` **MUST** have an `@xml:id` 
 2. The first `app` **MUST** contain a `@next` pointing to the next connected `app` element.
-3. the last `app` **MUST** contai a `@prev` pointing to the last connected `app`
+3. the last `app` **MUST** contain a `@prev` pointing to the last connected `app`
 
 #### Examples
 
@@ -1315,7 +1351,7 @@ The use of the `manual` type should be avoided at all costs, and in subsequent v
     fides <desc>corr. interl. ex</desc> fide <wit>V</wit>
   </rdg>
 </app>
-xml
+```
 
 This would likely be redered as: 
 
@@ -1330,7 +1366,7 @@ This would likely be redered as:
 </app>
 ```
 
-This would likely be redered as: 
+This would likely be rendered as: 
 
 > 10 fides] *om.* V
 
