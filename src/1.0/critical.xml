@@ -314,9 +314,23 @@
                   <desc>Indicates that the witness in question has deleted a word 
                   	and then added a word to replaces the deletion.</desc>
                 </valItem>
-              	<valItem ident="correction-cancellation">
-              		<gloss>Correction Cancellation</gloss>
-              		<desc></desc>
+              	<!-- correction-cancellation types -->
+              	<valItem ident="deletion-of-addition">
+              		<gloss>Correction cancellation: deletion of addition</gloss>
+              		<desc>Indicates that a witness has deleted (or attempted to undo) a previous addition</desc>
+              	</valItem>
+              	<valItem ident="deletion-of-deletion">
+              		<gloss>Correction cancellation: deletion of deletion</gloss>
+              		<desc>Indicates that a witness has deleted (or attempted to undo) a previous deletion</desc>
+              	</valItem>
+              	<valItem ident="deletion-of-substitution">
+              		<gloss>Correction cancellation: deletion of substitution</gloss>
+              		<desc>Indicates that a witness has deleted (or attempted to undo or cancel) a previous substitution</desc>
+              	</valItem>
+              	<valItem ident="substitution-of-addition">
+              		<gloss>Correction cancellation: substitution of addition</gloss>
+              		<desc>Indicates that a witness has is not only cancelling an addition (as in the case of deletion-of-addition) 
+              			but is also supplying a new word or phrase to take the old addition's place.</desc>
               	</valItem>
               	<!-- conjecture types -->
               	<valItem ident="conjecture-supplied">

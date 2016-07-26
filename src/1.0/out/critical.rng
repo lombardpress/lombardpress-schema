@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2016-07-25T16:04:38Z. .
+Schema generated from ODD source 2016-07-26T11:36:39Z. .
 TEI Edition: Version 2.8.0. Last updated on
 	6th April 2015, revision 13197
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 2.8.0/
@@ -9587,7 +9587,7 @@ Sample values include: 1] homeoteleuton; 2] homeoarchy; 3] paleographicConfusion
          <optional>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">classifies the reading according to some useful typology.
-Suggested values include: 1] variation-absent(variation-absent) ; 2] variation-present(variation-present) ; 3] variation-substance(variation-substance) ; 4] variation-orthography(variation-orthography) ; 5] correction-addition(addition) ; 6] correction-deletion(included but then deleted) ; 7] correction-substitution(Correction Substitution) ; 8] correction-cancellation(Correction Cancellation) ; 9] conjecture-supplied(Conjecture Supplied) ; 10] conjecture-removed(Conjecture Removed) ; 11] conjecture-corrected(Conjecture Corrected) </a:documentation>
+Suggested values include: 1] variation-absent(variation-absent) ; 2] variation-present(variation-present) ; 3] variation-substance(variation-substance) ; 4] variation-orthography(variation-orthography) ; 5] correction-addition(addition) ; 6] correction-deletion(included but then deleted) ; 7] correction-substitution(Correction Substitution) ; 8] deletion-of-addition(Correction cancellation: deletion of addition) ; 9] deletion-of-deletion(Correction cancellation: deletion of deletion) ; 10] deletion-of-substitution(Correction cancellation: deletion of substitution) ; 11] substitution-of-addition(Correction cancellation: substitution of addition) ; 12] conjecture-supplied(Conjecture Supplied) ; 13] conjecture-removed(Conjecture Removed) ; 14] conjecture-corrected(Conjecture Corrected) </a:documentation>
                <choice>
                   <value>variation-absent</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(variation-absent) indicates that the witness in question lacks the designated lemma; often rendered as "omit." or "omitted"</a:documentation>
@@ -9603,8 +9603,14 @@ Suggested values include: 1] variation-absent(variation-absent) ; 2] variation-p
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(included but then deleted) indicates that a segment of text was included in the text but then deleted. In such instances the lemma will most likely be left empty.</a:documentation>
                   <value>correction-substitution</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Correction Substitution) Indicates that the witness in question has deleted a word and then added a word to replaces the deletion.</a:documentation>
-                  <value>correction-cancellation</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Correction Cancellation) </a:documentation>
+                  <value>deletion-of-addition</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Correction cancellation: deletion of addition) Indicates that a witness has deleted (or attempted to undo) a previous addition</a:documentation>
+                  <value>deletion-of-deletion</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Correction cancellation: deletion of deletion) Indicates that a witness has deleted (or attempted to undo) a previous deletion</a:documentation>
+                  <value>deletion-of-substitution</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Correction cancellation: deletion of substitution) Indicates that a witness has deleted (or attempted to undo or cancel) a previous substitution</a:documentation>
+                  <value>substitution-of-addition</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Correction cancellation: substitution of addition) Indicates that a witness has is not only cancelling an addition (as in the case of deletion-of-addition) but is also supplying a new word or phrase to take the old addition's place.</a:documentation>
                   <value>conjecture-supplied</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Conjecture Supplied) </a:documentation>
                   <value>conjecture-removed</value>
