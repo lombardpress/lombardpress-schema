@@ -1211,8 +1211,8 @@ The tradition is unambiguous, but the editor deems it useless and prints an emen
 ``` xml
 Utrum fides
 <app>
-  <lem type="conjecture-corrected">sit</lem>
-  <rdg wit="#P #V #L"><corr>servus</corr></rdg>
+  <lem type="conjecture-corrected"><corr>sit</corr></lem>
+  <rdg wit="#P #V #L">servus</rdg>
 </app>
 acquisita
 ```
