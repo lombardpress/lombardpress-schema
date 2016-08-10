@@ -7,7 +7,7 @@ categories: schema
 
 # LombardPress Critical Transcription Guidelines
 
-Editors: 
+Editors:
 
 * Jeffrey C. Witt (Loyola University Maryland)
 * Michael Stenskjær Christensen (University of Copenhagen)
@@ -19,7 +19,7 @@ Document Status: Draft
 
 * [Preamble](#preamble)
 * [teiHeader](#teiheader)
-  * [fileDesc](#filedesc) 
+  * [fileDesc](#filedesc)
     * [titleStmt](#titlestmt)
     * [editionStmt](#editionstmt)
     * [publicationStmt](#publicationstmt)
@@ -70,7 +70,7 @@ The `fileDesc` contains the full bibliographic description of an electronic file
 
 #### Description
 
-The `titleStmt` determines the bibliographical information of the encoded file. 
+The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
@@ -104,9 +104,9 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 1. `editionStmt` **MUST** contain an `edition` element.
 2. `edition@n` **MUST** be `n=X.X.X-dev`; usually, when starting a new document it should be listed as `n=0.0.0-dev`
-3. `edition` **MUST** contain a `date` element 
+3. `edition` **MUST** contain a `date` element
   * **MUST** include a machine-formatted `date@when` element corresponding to the date in the text node.
-4. `edition` **SHOULD NOT** contain any other children besides the date. 
+4. `edition` **SHOULD NOT** contain any other children besides the date.
 
 
 #### Examples
@@ -123,7 +123,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Description
 
-`publicationStmt` indicates the authority supporting this edition (usually a sponsoring or funding research group). It should also list the license and availability of the text. 
+`publicationStmt` indicates the authority supporting this edition (usually a sponsoring or funding research group). It should also list the license and availability of the text.
 
 #### Rules
 
@@ -145,7 +145,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
     </availability>
   </publicationStmt>
-``` 
+```
 
 ##### Example 2
 
@@ -160,7 +160,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
     </availability>
   </publicationStmt>
-``` 
+```
 
 ##### Example 3
 
@@ -172,7 +172,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
     </availability>
   </publicationStmt>
-``` 
+```
 
 ### sourceDesc
 
@@ -228,7 +228,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 ### Rules
 
-1. `encodingDesc` **MUST** be stated. 
+1. `encodingDesc` **MUST** be stated.
 2. `encodingDesc` **MUST** contain `variantEncoding`.
 3. `variantEncoding` **MUST** contain `@method` which confirms that the method of variant encoding is *parallel-segmentation*.
 4. `encodingDesc` **MUST** contain a `schemaRef`.
@@ -259,13 +259,13 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 ### Description
 
 The `revisionDesc` contains a description of the current and previous versions of the current edition.
-The individual editor would usually not be responsible for maintaining the `revisionDesc`, as it should (ideally) be generated as part of the publication workflow. 
+The individual editor would usually not be responsible for maintaining the `revisionDesc`, as it should (ideally) be generated as part of the publication workflow.
 
 ### Rules
 
 1. `revisionDesc` **SHOULD** be stated.
 2. `revisionDesc` **MUST** contain `@status`
-3. `revisionDesc` **MUST** contain `listChange` 
+3. `revisionDesc` **MUST** contain `listChange`
 4. `listChange` **MUST** contain at least one `change`
 5. `change` **MUST** contain `@when`
 6. `change` **MUST** contain `@status`. Possible values of the attribute are:
@@ -302,13 +302,14 @@ The individual editor would usually not be responsible for maintaining the `revi
   </listChange>
 </revisionDesc>
 ```
+
 # Facsimile
 
 ## Description
 
 The Facsimile tag is used to record information about images or image regions that correspond to the various parts of the edition.
 
-Our specifications may differ from examples used in the TEI guidelines because we currently only support image connections via the IIIF API. This first and foremost means that image references and coordinate regions only apply to the idea of a IIIF canvas, rather than any particular image. 
+Our specifications may differ from examples used in the TEI guidelines because we currently only support image connections via the IIIF API. This first and foremost means that image references and coordinate regions only apply to the idea of a IIIF canvas, rather than any particular image.
 
 This means that that no `graphic` element is allowed within the `surface` element. It also means that coordinates actually refer to the coordinates of the abstract canvas rather than any actual image.
 
@@ -321,14 +322,14 @@ The full canvas id is always expected to be constructed from the `xml:base` of t
 * the `surface` element **MUST** have an `xml:id` which is identical to the short id of the IIIF canvas.
 * the `surface` **SHOULD NOT** have a `graphic` element.
 * the `surface` **MUST** have a `corresp` element pointing to the `witness` it is a `surface` of.
-* the `surface` **MAY** take an `n` attribute as helpful label for the surface. Following the same pattern as used in the `pb@n` is recommended. 
+* the `surface` **MAY** take an `n` attribute as helpful label for the surface. Following the same pattern as used in the `pb@n` is recommended.
 * `surface` **SHOULD** take `zones` as children
 * `zones` **MAY** either have an `xml:id` or a `start` attribute or both
-* the value of `start` attribute **SHOULD** be the `xml:id` of the element the zones in question refer to. 
+* the value of `start` attribute **SHOULD** be the `xml:id` of the element the zones in question refer to.
   - Because elements representing the "content hierarchy" (rather than the material hierarchy, such as `pb`, `cb`, or `lb`) can run onto multiple surfaces, and therefore have more than one zone, they **MUST** have an `@n` attribute indicating their sequence order.
   - `zones` for content hierarchy elements **SHOULD** be recorded in the diplomatic transcription for each witness, but they **MAY** be recorded in the critical transcription file if deemed necessary.
 * elements in the body text **MAY** point to a zone or surface via the `@facs` attribute with a pointer `#` to the id of the zone or surface
-* an element, usually a `pb`, **MAY** short cut to the canvas id by using the `@facs` attribute and providing the value of the IIIF canvas short id without using a pointer `#`. See the examples below. 
+* an element, usually a `pb`, **MAY** short cut to the canvas id by using the `@facs` attribute and providing the value of the IIIF canvas short id without using a pointer `#`. See the examples below.
 
 ## Examples
 
@@ -415,7 +416,7 @@ The general rules of any `app` element are:
 2. `app` **MUST** contain at least one `rdg` element.
 3. `app` **MAY** contain a `note` element.
 4. `app` **MAY** contain a `witDetail` element.
-  * the `witDetail` **MUST** take a pointer `@wit` 
+  * the `witDetail` **MUST** take a pointer `@wit`
 5. `lem` **MAY** be empty.
 6. If `lem` is empty, it **MUST** contain the `@n` element.
   * When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. But since there is then no lemma to anchor the apparatus entry in the critical text, another label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that. An example of that could look like this:
@@ -472,7 +473,7 @@ A variation is meant as any reading that varies from the indicated lemma. At pre
 
 A `variation-substance` is generally the most common type of variant, in which an editor simply wants to show that the witness has a different word or phrase than what is included in the critical text.
 
-This kind of variant is most commonly seen in an apparatus as something like: 
+This kind of variant is most commonly seen in an apparatus as something like:
 
 > 10 fides] spes *A*
 
@@ -543,7 +544,7 @@ est
 2. The `lem` **MUST** not be empty
 3. `rdg` **MUST** have `@type=variation-inversion`.
 4. `rdg` text node **MUST** be present.
-5. `rdg` **MUST** have either `@wit` or `@source`. 
+5. `rdg` **MUST** have either `@wit` or `@source`.
 
 #### Example
 
@@ -566,8 +567,8 @@ The `variation-present` type should be used to indicate that a word or phrase is
 #### Rules
 
 1. It **MUST** have `lem`.
-2. `lem` **MUST** be an empty node. 
-  * As stated above in the general rules, when a `lem` is empty it should have an `@n="suggested-lemma-value"` attribute, the value of which should be the word to appear in the critical text that immediately proceeds the `app`. 
+2. `lem` **MUST** be an empty node.
+  * As stated above in the general rules, when a `lem` is empty it should have an `@n="suggested-lemma-value"` attribute, the value of which should be the word to appear in the critical text that immediately proceeds the `app`.
 3. `lem` **MAY** have `@wit` or `@source` attribute.
 4. `rdg` **MUST** have `@wit` or `@source`.
 5. `rdg` **MUST** have `@type=present`.
@@ -587,14 +588,14 @@ fides
 </app>
 ```
 
-> 10 fides] spes *in textu* *A* 
+> 10 fides] spes *in textu* *A*
 
 > 10 spes *post* fides *hab./scr./inest* *A*
 
 
 ##### Example 2
 
-Another example of the present type where the present word is caused by an (erroneous) repetition. 
+Another example of the present type where the present word is caused by an (erroneous) repetition.
 
 ```xml
 spes
@@ -620,17 +621,17 @@ A word or phrase is absent from a witness but present in the transmitted text. T
 2. The `lem` **MUST** have a text node.
 3. The `lem` **MAY** include `@wit` or `@source` attributes.
 4. The `rdg` **MUST** include `@wit` or `@source` attributes.
-5. The `rdg` **MUST** have no descendant text nodes. 
-6. The `rdg` **MAY** have a child `space` element. 
+5. The `rdg` **MUST** have no descendant text nodes.
+6. The `rdg` **MAY** have a child `space` element.
   * A `space` may be used when attempting to indicate a space left by the scribe intended to be filled in later.
 6. The `rdg` **SHOULD** include `@type=variation-absent`.
   * The reason this is not a **MUST** is because the pattern of a present `lem` with a text value and a present but empty `rdg` element is a unique pattern that corresponds to the `variation-absent` type.
 7. The `rdg` **MAY** include `@type=cause` with the following available enumerated values:
   * `homeoteleuton`
-  * `homeoarchon` 
+  * `homeoarchon`
   * ...
-  
-  
+
+
 #### Examples
 
 ##### Example 1
@@ -666,7 +667,7 @@ est
 ##### Example 3
 
 ```xml
-fides 
+fides
 <app>
   <lem>non semper sic, sed non</lem>
   <rdg wit="#A" type="variation-absent" cause="homeoteleuton"/>
@@ -753,7 +754,7 @@ Spiritus Sancti.
 
 #### Definition
 
-This indicates that a scribe (either the original or a later scribe) has realized that a word or phrase is erroneously present in the text and subsequently deleted it. 
+This indicates that a scribe (either the original or a later scribe) has realized that a word or phrase is erroneously present in the text and subsequently deleted it.
 
 #### Rules
 
@@ -769,7 +770,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 6. The `del` **MAY** have a `@hand` attribute.
 
 #### Examples
- 
+
 ##### Example 1
 
 ``` xml
@@ -784,7 +785,7 @@ est
 ```
 
 > 10 non *post* fides *del.* *A*
- 
+
 > 10 fides] non *scr. sed del.* *A*
 
 ##### Example 2
@@ -801,7 +802,7 @@ Aristoteles
 ```
 
 > 10 sicut] dicit *scr. sed del.* *S*
- 
+
 > 10 dicit *post* sicut *del.* *S*
 
 ### correction-substitution
@@ -824,7 +825,7 @@ This indicates that a scribe (either the original or a later scribe) wants to co
 9. The smallest unit of substitution **MUST** be a word.
 10. The `add` **MAY** have a `@place`.
 11. The `del` **MAY** have a `@rend`.
-12. A `@hand` attribute **MAY** be placed on either the `subst` element or on the `add` and `del` elements. 
+12. A `@hand` attribute **MAY** be placed on either the `subst` element or on the `add` and `del` elements.
 
 #### Extended Commentary
 
@@ -832,27 +833,27 @@ A possible argument against rule 9 is that an editor might desire to produce the
 
 > insidia N (s *add.* *N1*)
 
-However, we find this rendering ambiguous and therefore somewhat problematic. 
+However, we find this rendering ambiguous and therefore somewhat problematic.
 
-Does this mean N1 has added the letter "s" after "insidia" or to the word itself? 
+Does this mean N1 has added the letter "s" after "insidia" or to the word itself?
 
-While in the case of "s", it is probably obvious to an editor that "s" is not a word by itself and therefore the editor probably meant that "s" was added to "insidia". 
+While in the case of "s", it is probably obvious to an editor that "s" is not a word by itself and therefore the editor probably meant that "s" was added to "insidia".
 
-However, what if the added letter were "a"? Then it would be much less clear. 
+However, what if the added letter were "a"? Then it would be much less clear.
 
-Likewise, scholastic texts use a lot of variables, so it is possible that a scribe could have been adding "b" or "c" as a separate word or character, and did not mean to add a new letter to the preceding word. 
-                
-So for example, the following would be very ambiguous in a sequence where variables a, b, c, d, and e were in use: 
-                
+Likewise, scholastic texts use a lot of variables, so it is possible that a scribe could have been adding "b" or "c" as a separate word or character, and did not mean to add a new letter to the preceding word.
+
+So for example, the following would be very ambiguous in a sequence where variables a, b, c, d, and e were in use:
+
 > insidia] *N* (e *add.* *N2*)
 
 Does this mean that the correction was to "insidiae" or "insidia e"?
- 
+
 Thus we think it would be best to handle this with a `correction-substitution`, which could render to:
-                
-> insidias] *corr. ex* insidia *alia manu* *N* 
- 
-It is true that with something like 
+
+> insidias] *corr. ex* insidia *alia manu* *N*
+
+It is true that with something like
 
 ```xml
 <app>
@@ -867,15 +868,15 @@ It is true that with something like
 ```  
 
 we certainly sacrifice some specificity about how the correction was made (namely, by simply adding an "s" rather that crossing out the whole word and replacing it with the new word). However, we gain considerable clarity about the meaning of the correction.
-      
-**In sum**: The problem we face with the language of "addition, correction, substitution" etc. is that it becomes tempting to record two distinct types of phenomena: 1) the ultimate meaning of the correction and 2) the material way in which that correction was made. 
-                
-In the example above the addition of "s" to "insidias" is, in meaning, really a `correction-substitution`, even though the way that the correction was materially made makes it look like a simple `correction-addition`. 
+
+**In sum**: The problem we face with the language of "addition, correction, substitution" etc. is that it becomes tempting to record two distinct types of phenomena: 1) the ultimate meaning of the correction and 2) the material way in which that correction was made.
+
+In the example above the addition of "s" to "insidias" is, in meaning, really a `correction-substitution`, even though the way that the correction was materially made makes it look like a simple `correction-addition`.
 
 By adding "s" the scribe, did not meant to simply add an "s", but rather meant to replace the word "insidia" with "insidias".
-                
+
 In its rendering, it looks equivalent to the addition of a missing word or letter, but the effect or meaning of the correction is to substitute one word with another.
-                
+
 In our view, complex detail about a how correction was precisely made is best left recorded in a `@witDetail` and in an accompanying diplomatic transcription of the witness.
 
 #### Examples
@@ -912,7 +913,7 @@ est
 > 10 fides] fidem *A* (*ante corr.* *A1*)
 
 > 10 fides] *corr. ex* fidem *in mg.* *A1*
- 
+
 > 10 fides] *corr. ex* fidem *in alia manu* *A*
 
 ##### Example 3
@@ -929,7 +930,7 @@ est
 </app>
 ```
 
-> insidias] *corr. ex* insidia *alia manu* *N* 
+> insidias] *corr. ex* insidia *alia manu* *N*
 
 > insidias] *corr. ex* insidia *N¹*
 
@@ -942,7 +943,7 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 #### Rules
 
 1. See the above rules for `correction-substitution`
-2. the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. 
+2. the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases.
   - The `@n` indicates the relative order of the segments *after* the transposition has taken place.
   - This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
 
@@ -995,7 +996,7 @@ A cancellation is a correction of a correction. This gives us nine theoretical t
 1. deletion-of-addition
 2. deletion-of-deletion
 3. deletion-of-substitution
-4. substitution-of-addition 
+4. substitution-of-addition
   * similar to `deletion-of-addition`, but the cancellation also adds a new word in the place of the now deleted addition.
 
 #### Rules
@@ -1006,7 +1007,7 @@ A cancellation is a correction of a correction. This gives us nine theoretical t
 #### Examples
 
 
-1. `deletion-of-addition` 
+1. `deletion-of-addition`
 
 ``` xml
 <rdg wit="#A" type="deletion-of-addition">
@@ -1243,11 +1244,11 @@ acquisita
 
 ### Overlapping Elements
 
-While parallel-segmentation encoding comes with a number of advantages, an editor invariably faces the challenge of overlapping lemmas and XML's prohibition against cross-nesting elements. Here we offer guidelines of how to handles such cases. 
+While parallel-segmentation encoding comes with a number of advantages, an editor invariably faces the challenge of overlapping lemmas and XML's prohibition against cross-nesting elements. Here we offer guidelines of how to handles such cases.
 
 #### Rules
 
-1. all connected `apps` **MUST** have an `@xml:id` 
+1. all connected `apps` **MUST** have an `@xml:id`
 2. The first `app` **MUST** contain a `@next` pointing to the next connected `app` element.
 3. the last `app` **MUST** contain a `@prev` pointing to the last connected `app`
 
@@ -1256,7 +1257,7 @@ While parallel-segmentation encoding comes with a number of advantages, an edito
 In this complex example, we imagine an omission in witness A that begins with the last word of paragraph 1 and continues into paragraph 2. But the last word of paragraph 1 is also the lemma for a variant between witness B and C.
 
 ```xml
-<p xml:id="paragraph1">lorum 
+<p xml:id="paragraph1">lorum
   <app xml:id="app1" next="#app2">
     <lem>
       <app>
@@ -1271,12 +1272,12 @@ In this complex example, we imagine an omission in witness A that begins with th
   <app xml:id="app2" prev="#app1">
     <lem>this is the text</lem>
     <rdg wit="#A" type="variation-absent" cause="homeoteleuton"/>
-  </app> 
+  </app>
   of the second paragraph. The first part of which continues the homeoteleuton started in the previous paragraph
-</p> 
+</p>
 ```
 
-A processor is expected to handle the above example as follows. 
+A processor is expected to handle the above example as follows.
 
 Whenever an `app` is encountered with a `@next` attribute, the processor should begin looping through each connected `app` until it reaches an `app` that no longer has a `@next` attribute but only a `@prev` attribute. Throughout this loop it should concatenate the `lem` from each `app` and then concatenate the available readings, matching `rdg` by the value of the `@wit` attribute. (In complicated cases, it is advisable to give each witness a separate `rdg` to make the connection of `rdg` elements as easy as possible.) Once having looped through all connected apps. The processor should ignore all subsequent apps that have an `@prev` attribute because these have presumably been dealt with in the previous loop.
 
@@ -1304,7 +1305,7 @@ Sometimes it is desirable to connect readings even if an editor is not trying to
 </app>
 ```
 
-This could render as: 
+This could render as:
 
 >10 ars] ars artium E + et scientia scientiarum *add. interl.* E1 ars artium et scientia scientiarum Y H
 
@@ -1321,7 +1322,7 @@ non
   <rdg>
 ```
 
-This could be rendered as: 
+This could be rendered as:
 
 >10 non] ars *in textu* E + artium *add. interl.* E1 ars artium *in textu* Y H
 
@@ -1329,7 +1330,7 @@ This could be rendered as:
 
 ### Description
 
-Because we recognize there may be cases where an editor feels that a reading is so unique that it fits into no existing typology, we support the use of a `rdg@type="manual"`, despite highly discouraging its use. 
+Because we recognize there may be cases where an editor feels that a reading is so unique that it fits into no existing typology, we support the use of a `rdg@type="manual"`, despite highly discouraging its use.
 
 The use of the `manual` type should be avoided at all costs, and in subsequent versions of the lbp schema we aim to identify all instances of `manual` and either explain how these cases fit into the existing typology or expand the typology to encompass this instance.
 
@@ -1353,7 +1354,7 @@ The use of the `manual` type should be avoided at all costs, and in subsequent v
 </app>
 ```
 
-This would likely be redered as: 
+This would likely be redered as:
 
 > 10 fides] fides *corr. interl. ex* fide V
 
@@ -1366,7 +1367,7 @@ This would likely be redered as:
 </app>
 ```
 
-This would likely be rendered as: 
+This would likely be rendered as:
 
 > 10 fides] *om.* V
 
@@ -1380,7 +1381,7 @@ The `cit` element creates an entry in the apparatus fontium. The `bibl` element 
 
 ### Rules
 
-1. `cit` **MUST** contain either a `quote` or `ref`. 
+1. `cit` **MUST** contain either a `quote` or `ref`.
 2. `cit` **MAY** contain a `bibl` element.
 3. `cit` **MAY** contain a `note` element.
 
@@ -1388,7 +1389,7 @@ The `cit` element creates an entry in the apparatus fontium. The `bibl` element 
 
 ``` xml
 <cit>
-  <!-- May contain either a `quote` or `ref` element. 
+  <!-- May contain either a `quote` or `ref` element.
        About those, see below -->
 </cit>
 ```
@@ -1414,18 +1415,18 @@ A quote, following the TEI guidelines, is intended to identify anything that is 
 1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of an `cit` element and thus not appear in the *apparatus fontium*
 2. `quote` **MAY** be the immediate child of a `cit` element thus appear in the *apparatus fontium*
 3. `quote` **MAY** contain `seg` elements.
-  * This would be used to indicate segments of a quote that are interrupted by an *inquit*. 
+  * This would be used to indicate segments of a quote that are interrupted by an *inquit*.
 4. `quote` **MAY** take an `@type` attribute, the values of which can be:
   * direct (this is the same as simply not declaring an @type)
-  * paraphrase 
+  * paraphrase
 
 ### Examples
 
 The following example is not expected to generate an apparatus fontium entry:
 
-```xml 
+```xml
 <quote>In principio</quote> etc.
-``` 
+```
 
 The following example is expected to generate an *apparatus fontium* entry
 
@@ -1441,8 +1442,8 @@ A `cit` element with just a `quote` tag, but where the quote consists of two quo
 ``` xml
 <cit>
   <quote>
-    <seg type="qs">lorum</seg>, 
-    inquit, 
+    <seg type="qs">lorum</seg>,
+    inquit,
     <seg type="qs">ipsum</seg>
   <bibl>Sample text</bibl>
 <cit>
@@ -1452,20 +1453,20 @@ The following is another, equivalent way, of doing the same thing:
 
 ```xml
 <cit>
-  <quote 
-    xml:id="quote-part-1" 
-    next="#quote-part-2" 
-    ana="#gen1_1" 
+  <quote
+    xml:id="quote-part-1"
+    next="#quote-part-2"
+    ana="#gen1_1"
     n="1">
   In principio creavit Deus caelum
   </quote>
   <bibl>Genesis 1_1</bibl>
-</cit> 
-scilicet angelicam naturam, 
-sed adhuc informem, ut quibusdam placet: 
-<quote 
-  xml:id="quote-part-2" 
-  prev="#quote-part-1" 
+</cit>
+scilicet angelicam naturam,
+sed adhuc informem, ut quibusdam placet:
+<quote
+  xml:id="quote-part-2"
+  prev="#quote-part-1"
   n="2">
 et terram
 </quote>
@@ -1475,7 +1476,7 @@ et terram
 
 ### Description
 
-A reference, following the TEI guidelines, is intended to identify anything that is considered a reference to another source. 
+A reference, following the TEI guidelines, is intended to identify anything that is considered a reference to another source.
 
 ### Rules
 
@@ -1499,7 +1500,7 @@ The following example is expected to generate an *apparatus fontium* entry
 ``` xml
 <cit>
   <ref xml:id="ref1" ana="#gen1_1">
-    <title ref="#gen">Genesis</title> 
+    <title ref="#gen">Genesis</title>
     1:1
   </ref>
   <bibl>Genesis 1:1</bibl>
@@ -1528,13 +1529,13 @@ The following example is expected to generate an *apparatus fontium* entry
 ### Rules
 
 - `@ed` **MUST** indicate the source text in which the page break occurs.
-- `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`. 
+- `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
 - `@facs` **MAY** be present. If it contains a "hash" pointer, it is expected to refer to a surface or zone in the the `facsimile` element. If it does not contain a "hash" it is expected to be the last part of the IIIF image canvas id. See the [Facsimile](#facsimile) section above.
 - `@type` **MAY**: Indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `type="folio"` is assumed.
 
 ### Examples
 
-Folio break example: 
+Folio break example:
 
 @type=
 * folio (default)
@@ -1542,7 +1543,7 @@ Folio break example:
 
 page break in folio format
 
-```xml 
+```xml
 <pb ed="#W" n="15-b"/>
 ```
 
