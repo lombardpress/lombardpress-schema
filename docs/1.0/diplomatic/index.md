@@ -1,13 +1,13 @@
 ---
 layout: page
 title:  "Lombard Press Schema 1.0.0 - Diplomatic Transcription Guidelines"
-date:   2016-07-15 
+date:   2016-07-15
 categories: schema
 ---
 # LombardPress Diplomatic Transcription Guidelines
 
-Editors: 
-    
+Editors:
+
 * Jeffrey C. Witt (Loyola University Maryland)
 * Michael Stenskjær Christensen (University of Copenhagen)
 * Nicolas Vaughan (Universidad de los Andes)
@@ -18,7 +18,7 @@ Document Status: Draft
 
 * [Preamble](#preamble)
 * [teiHeader](#teiheader)
-  * [fileDesc](#filedesc) 
+  * [fileDesc](#filedesc)
     * [titleStmt](#titlestmt)
     * [editionStmt](#editionstmt)
     * [publicationStmt](#publicationstmt)
@@ -61,7 +61,7 @@ The `fileDesc` contains the full bibliographic description of an electronic file
 
 #### Description
 
-The `titleStmt` determines the bibliographical information of the encoded file. 
+The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
@@ -94,9 +94,9 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 1. `editionStmt` **MUST** contain an `edition` element.
 2. `edition@n` **MUST** be `n=X.X.X-dev`; usually, when starting a new document it should be listed as `n=0.0.0-dev`.
-3. `edition` **MUST** contain a `date` element. 
+3. `edition` **MUST** contain a `date` element.
 4. The `date` that is the child of `edition` **MUST** include a machine-formatted `@when` attribute corresponding to the date in the text node.
-5. `edition` **SHOULD NOT** contain any other children besides the date. 
+5. `edition` **SHOULD NOT** contain any other children besides the date.
 
 
 #### Examples
@@ -133,7 +133,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
     </availability>
   </publicationStmt>
-``` 
+```
 
 ##### Example 2
 
@@ -148,7 +148,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
     </availability>
   </publicationStmt>
-``` 
+```
 
 ##### Example 3
 
@@ -160,7 +160,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
     </availability>
   </publicationStmt>
-``` 
+```
 
 ## `sourceDesc`
 
@@ -217,14 +217,14 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 ### Description
 
 The `revisionDesc` contains a description of the current and previous versions of the current edition.
-The individual editor would usually not be responsible for maintaining the `revisionDesc`, as it should (ideally) be generated as part of the publication workflow. 
+The individual editor would usually not be responsible for maintaining the `revisionDesc`, as it should (ideally) be generated as part of the publication workflow.
 
 
 ### Rules
 
 1. `revisionDesc` **SHOULD** be stated.
 2. `revisionDesc` **MUST** contain `@status`
-3. `revisionDesc` **MUST** contain `listChange` 
+3. `revisionDesc` **MUST** contain `listChange`
 4. `listChange` **MUST** contain at least one `change`
 5. `change` **MUST** contain `@when`.
 6. `change` **MUST** contain `@status`. Possible values of the attribute are:
@@ -247,7 +247,7 @@ The individual editor would usually not be responsible for maintaining the `revi
     </change>
   </listChange>
 </revisionDesc>
-    
+
 ```
 
 #### Example 2
@@ -345,7 +345,7 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 
 If it is not a priority to encode every abbreviation and expansion, the editor might want to indicate several possible expansions in cases of doubt.
 
-See the examples for the relation between `ex` and `expan`. Generally `ex` only gives the content that is added by the editor while `expan` gives the whole word, including the characters that constitute the abbreviation. 
+See the examples for the relation between `ex` and `expan`. Generally `ex` only gives the content that is added by the editor while `expan` gives the whole word, including the characters that constitute the abbreviation.
 
 ### Rules
 
@@ -418,7 +418,7 @@ Option 2
 
 ### Rules
 
-### Examples 
+### Examples
 
 ```xml
 <choice>
@@ -468,7 +468,7 @@ In both of the above examples, the `@reason` is assumed to be *difficult*. If th
 ```
 
 
-A case where multiple possibilities are noted could look as follows. The `@reason` is assumed to hold for all sibling nodes as the difficulties have the same cause. 
+A case where multiple possibilities are noted could look as follows. The `@reason` is assumed to hold for all sibling nodes as the difficulties have the same cause.
 
 ``` xml
 <choice>
@@ -482,7 +482,7 @@ A case where multiple possibilities and the `note` is used:
 
 ```xml
 <choice>
-  <unclear cert="high" reason="damage">scilicet 
+  <unclear cert="high" reason="damage">scilicet
      <note>If what looks like a descender is a blotch</note>
   </unclear>
   <unclear>sicud</unclear>
@@ -490,12 +490,12 @@ A case where multiple possibilities and the `note` is used:
 </choice>
 ```
 
-Situation where the editor has no suggestion for a difficult reading. 
+Situation where the editor has no suggestion for a difficult reading.
 
 ```xml
   <unclear reason="damage">Fides et spes et caritas</unclear>
  <gap reason="damage" quantity="5" unit="word"/>
-  
+
   <gap reason="difficult" quantity="5" unit="word"/>
 
 ```
@@ -621,18 +621,18 @@ Librum sic incipitur <quote>In principio Deus creavit caelum</quote> et cetera
 Recommended indication with id:
 
 ``` xml
-Librum sic incipitur 
-<quote xml:id="mockid-1">In principio Deus creavit caelum</quote> 
+Librum sic incipitur
+<quote xml:id="mockid-1">In principio Deus creavit caelum</quote>
 et cetera
 ```
 
 Use of the `ana` attribute:
 
 ``` xml
-Librum sic incipitur 
+Librum sic incipitur
 <quote ana="#gen1_1" xml:id="mockid-1">
   In principio Deus creavit caelum
-</quote> 
+</quote>
 et cetera
 ```
 
@@ -653,7 +653,7 @@ Names, code points and renderings of the punctuation marks:
 | punctus elevatus | U+003B | ;     | regular semi colon |
 | punctus medius | U+00B7   | ·     | middle dot |
 | virgula   | U+002F        | /     | solidus, regular slash |
-| punctus interrogativus | U+003F | ? | regular question mark | 
+| punctus interrogativus | U+003F | ? | regular question mark |
 
 Afficionados for medieval font encoding will find glyphs and font suggestions to satisfy many of their heart's desires at http://folk.uib.no/hnooh/mufi/
 
@@ -674,11 +674,11 @@ Afficionados for medieval font encoding will find glyphs and font suggestions to
 
 ``` xml
 
-<lb n="1"/> line content word<lb n="2" break="no">break 
-new line content 
-<lb n="3"> new line content 
-<lb n="4"> new line content 
-<lb n="5"> new line content 
+<lb n="1"/> line content word<lb n="2" break="no">break
+new line content
+<lb n="3"> new line content
+<lb n="4"> new line content
+<lb n="5"> new line content
 
 
 line content word<lb n="1"/>break
@@ -705,13 +705,13 @@ new line content <lb n="5">
 
 ### Rules
 - `@ed` **MUST** indicate the source text in which the page break occurs.
-- `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`. 
+- `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
 - `@corresp` JEFF TODO: describe IIIF id connection here
 - `@type` **MAY**: Indicate the type of numbering as either paginated or foliated. If none is given, `type="folio"` is assumed.
 
 ### Examples
 
-Folio break example: 
+Folio break example:
 
 @type=
 * folio (default)
@@ -719,8 +719,8 @@ Folio break example:
 
 page break in folio format
 
-```xml 
-<pb ed="#W" n="15-b"/>
+```xml
+<pb ed="#W" n="15-v"/>
 ```
 
 page break in paged format
@@ -743,7 +743,7 @@ Example where marginal note is simply in the vicinity of a paragraph or line
 <p>
   <lb ed="#A"/>
   <note type="marginal-note" place="margin-right" hand="#N1">
-      <lb ed="#A"/>this marginal note 
+      <lb ed="#A"/>this marginal note
       <lb ed="#A"/>is in the right margin
       <lb ed="#A"/>and spans three liens in the margin
     </note>
@@ -758,10 +758,10 @@ Example of where a marginal note is made about a word or phrase in the text, suc
 
 ``` xml
 <p>
-  <lb ed="#A"/>The word 
+  <lb ed="#A"/>The word
   <seg>fides
     <note type="marginal-note" place="margin-right "hand="#N1">
-      <lb ed="#A"/>this is a gloss on the 
+      <lb ed="#A"/>this is a gloss on the
       <lb ed="#A"/>word fides that spans
       <lb ed="#A"/>three lines
     </note>

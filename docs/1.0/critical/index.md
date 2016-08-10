@@ -1544,7 +1544,7 @@ Folio break example:
 page break in folio format
 
 ```xml
-<pb ed="#W" n="15-b"/>
+<pb ed="#W" n="15-v"/>
 ```
 
 page break in paged format
