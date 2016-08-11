@@ -1213,7 +1213,7 @@ The tradition is unambiguous, but the editor deems it useless and prints an emen
 Utrum fides
 <app>
   <lem type="conjecture-corrected">sit</lem>
-  <rdg wit="#P #V #L"><corr>servus</corr></rdg>
+  <rdg wit="#P #V #L">servus</rdg>
 </app>
 acquisita
 ```
