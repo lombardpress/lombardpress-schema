@@ -1373,34 +1373,51 @@ This would likely be rendered as:
 
 # Apparatus Fontium
 
-## Citation
+## General description
 
-### Description
+Any entry to the *apparatus fontium* is created with the `<cit>` element.
 
-The `cit` element creates an entry in the apparatus fontium. The `bibl` element can be used to write the target of the reference or quotation directly into the encoded document. The `note` tag can be used for writing any arbitrary note about the reference or quotation.
+`<ref>` encodes the reference made by the original author.
 
-### Rules
+`<quote>` encodes the original quotation.
+
+`<bibl>` is reserved for the modern editor's attempt to encode a modern reference identification for the quotation. `<bibl>` is only allowed inside a `<cit>` wrapper.
+
+`<note>` tag can be used for writing any arbitrary note about the reference or quotation.
+
+In this way, the following scenarios are simple to encode:
+
+1. A reference to a passage that is not quoted.
+2. A quotation without any original reference.
+3. A quotation with an original reference.
+
+In the following sections examples of those scenarios are given.
+
+## Rules
 
 1. `cit` **MUST** contain either a `quote` or `ref`.
 2. `cit` **MAY** contain a `bibl` element.
 3. `cit` **MAY** contain a `note` element.
 
-### Examples
+## Examples
+
+A `cit` element with a `ref` and the reference in a `bibl` element:
 
 ``` xml
+Pater per
 <cit>
-  <!-- May contain either a `quote` or `ref` element.
-       About those, see below -->
+  <ref><name>Augustinum<name> in libro X <title>de Civitate</title></ref>
+  <bibl><author>Augustinus</author>, <title>De civitate Dei</title>, X, c. 1 (PL XX:XX)</bibl>
 </cit>
 ```
 
-A `cit` element that has a `quote` and includes `bibl` and `note`:
+A `cit` element that has a `quote` as well as a `bibl` and `note`:
 
 ``` xml
 <cit>
   <quote>In the beginning God created a world</quote>
   <bibl>Genesis 1:1</bibl>
-  <note>And so it begins...</note>
+  <note>This reference to <title>Genesis</title> is ...</note>
 </cit>
 ```
 
@@ -1412,27 +1429,29 @@ A quote, following the TEI guidelines, is intended to identify anything that is 
 
 ### Rules
 
-1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of an `cit` element and thus not appear in the *apparatus fontium*
-2. `quote` **MAY** be the immediate child of a `cit` element thus appear in the *apparatus fontium*
+1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of an `cit` element and thus not appear in the *apparatus fontium*.
+2. `quote` **MAY** be the immediate child of a `cit` element thus appear in the *apparatus fontium*.
 3. `quote` **MAY** contain `seg` elements.
   * This would be used to indicate segments of a quote that are interrupted by an *inquit*.
+  * Note that this can also be encoded by use of the `@next` and `@prev` attributes. See the examples below.
 4. `quote` **MAY** take an `@type` attribute, the values of which can be:
   * direct (this is the same as simply not declaring an @type)
   * paraphrase
+5. `quote` **MAY** take an `@ana` attribute, used to indicate a canonical reference for the quote.
 
 ### Examples
 
-The following example is not expected to generate an apparatus fontium entry:
+The following example will not generate an apparatus fontium entry:
 
 ```xml
 <quote>In principio</quote> etc.
 ```
 
-The following example is expected to generate an *apparatus fontium* entry
+The following example will generate an *apparatus fontium* entry
 
 ``` xml
 <cit>
-  <quote xml:id="quote1" ana="#gen1_1--gen2_1">In principio creavit Deus caelum</quote>
+  <quote xml:id="quote1" ana="#gen1_1">In principio creavit Deus caelum</quote>
   <note>I can't find this.</note>
 </cit>
 ```
@@ -1442,7 +1461,7 @@ A `cit` element with just a `quote` tag, but where the quote consists of two quo
 ``` xml
 <cit>
   <quote>
-    <seg type="qs">lorum</seg>,
+    <seg type="qs">lorum</seg>, <!-- Is @type="qs" the best way to do this? -->
     inquit,
     <seg type="qs">ipsum</seg>
   <bibl>Sample text</bibl>
@@ -1453,22 +1472,14 @@ The following is another, equivalent way, of doing the same thing:
 
 ```xml
 <cit>
-  <quote
-    xml:id="quote-part-1"
-    next="#quote-part-2"
-    ana="#gen1_1"
-    n="1">
-  In principio creavit Deus caelum
+  <quote xml:id="quote-part-1" next="#quote-part-2" ana="#gen1_1" n="1">
+    In principio creavit Deus caelum
   </quote>
   <bibl>Genesis 1_1</bibl>
 </cit>
-scilicet angelicam naturam,
-sed adhuc informem, ut quibusdam placet:
-<quote
-  xml:id="quote-part-2"
-  prev="#quote-part-1"
-  n="2">
-et terram
+scilicet angelicam naturam, sed adhuc informem, ut quibusdam placet:
+<quote xml:id="quote-part-2" prev="#quote-part-1" n="2">
+  et terram
 </quote>
 ```
 
@@ -1480,22 +1491,23 @@ A reference, following the TEI guidelines, is intended to identify anything that
 
 ### Rules
 
-1. `ref` **MAY** stand alone, i.e. it **MAY** not be a child of an `cit` element and thus not appear in the *apparatus fontium*
+1. `ref` **MAY** stand alone, i.e. it **MAY** not be a child of an `cit` element and thus not appear in the *apparatus fontium*.
 2. `ref` **MAY** be the immediate child of a `cit` element and thus appear in the *apparatus fontium*.
-3. `ref` **MAY** contain a `title`, `name`, and `num` element
-4. `ref` **MAY** contain a `seg@type="incipit"` for references that include a incipit for the referenced section.
+3. `ref` **MAY** contain an `@ana` attribute, used to indicate a canonical reference for the reference.
+3. `ref` **MAY** contain a `title`, `name`, and `num` element.
+4. `ref` **MAY** contain a `<seg>` with `@type="incipit"` for references that include an incipit for the referenced section.
 
 ### Examples
 
-The following example is not expected to generate an *apparatus fontium*
+The following example is not expected to generate an *apparatus fontium*:
 
 ```xml
 <ref corresp="#quote-id">
-Ockham dicit in prologo
+  <name>Ockham</name> dicit in prologo
 </ref>
 ```
 
-The following example is expected to generate an *apparatus fontium* entry
+The following example is expected to generate an *apparatus fontium* entry:
 
 ``` xml
 <cit>
@@ -1504,9 +1516,26 @@ The following example is expected to generate an *apparatus fontium* entry
     1:1
   </ref>
   <bibl>Genesis 1:1</bibl>
-  <note></note>
 </cit>
 ```
+
+## Complex cases
+
+When a text contains both a reference and a quotation, both a `<ref>` and a `<quote>` are encoded, but often only the `<ref>` or the `<quote>` should be wrapped in a `<cit>` element and not both. In many cases the reference is separated from the quotation by some amount of words which do not belong in the `<cit>` element. We recommend citing the `<quote>` since we see this as primary. We would then associate the `<ref>` with the `<quote>` it is related to via the `@corresp` attribute. An example:
+
+```xml
+<p>Patet per
+  <ref corresp="#quote1">
+    <name>Augustinum<name> in libro X <title>de Civitate</title>
+  </ref>
+  dicit quod:
+  <cit>
+    <quote xml:id="quote1" ana="#aug-cd-10_1">lorum ipsum lorum ipsum</quote>
+    <bibl><author>Augustinus</author>, <title>De civitate Dei</title>, X, c. 1 (PL XX:XX)</bibl>
+  </cit>
+</p>
+```
+
 
 # Milestones
 
