@@ -439,7 +439,8 @@ If the editor has a suggestion for a reading, the `unclear` element is used, oth
 
 1. `unclear` and `gap` **MAY** contain `@reason` to indicate the reason for the difficult reading. The possible values are:
   * `difficult` (default, assumed when nothing is stated)
-  * `damage`
+  * `damage` (referring to a physical damage of the manuscript)
+  * `reproduction` (referring to the quality of the reproduction)
 2. Two or more `unclear` elements **MAY** be wrapped in a `choice` element to indicate any number of possible but mutually exclusive suggestions.
 3. In the case of several suggestions, `unclear` **SHOULD** contain `@cert` to indicate the relative certainty of the suggestions. Possible values are ??? [TODO: values, here?]
 4. In the case of several suggestions, the editor **SHOULD** put the suggestion that she deems most likely at the top of the list.
