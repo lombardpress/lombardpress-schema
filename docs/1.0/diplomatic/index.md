@@ -31,7 +31,7 @@ Document Status: Draft
   * [Expansions](#expansions)
   * [Corrections](#corrections)
   * [Normalizations](#normalizations)
-* [Unclear and Illegible Readings](#unclear-and-illegibile-readings)
+* [Unclear and Illegible Readings](#unclear-and-illegible-readings)
 * [Scribal Corrections](#scribal-corrections)
 * [References and Quotations](references-and-quotations)
 * [Punctuation](#punctuation)
@@ -442,7 +442,12 @@ If the editor has a suggestion for a reading, the `unclear` element is used, oth
   * `damage` (referring to a physical damage of the manuscript)
   * `reproduction` (referring to the quality of the reproduction)
 2. Two or more `unclear` elements **MAY** be wrapped in a `choice` element to indicate any number of possible but mutually exclusive suggestions.
-3. In the case of several suggestions, `unclear` **SHOULD** contain `@cert` to indicate the relative certainty of the suggestions. Possible values are ??? [TODO: values, here?]
+3. In the case of several suggestions, `unclear` **SHOULD** contain `@cert` to indicate the relative certainty of the suggestions.
+  * Available values (pulled from generic TEI guidelines)
+    * high
+    * low
+    * medium
+    * unknown
 4. In the case of several suggestions, the editor **SHOULD** put the suggestion that she deems most likely at the top of the list.
 5. `gap` **MUST** contain `@quantity` and `@unit` indicating the extent of the gap. The values of `@unit` are given in the appendix. [TODO: check the reference and the values.]
 6. `unclear` **MAY** contain `note` for discussing the difficulty.
