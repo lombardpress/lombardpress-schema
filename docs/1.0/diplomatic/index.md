@@ -77,7 +77,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 <titleStmt>
   <title>Dicta super librum De anima</title>
   <author>Simon Magister</author>
-	<editor>Michael Stenskjær Christensen</editor>
+    <editor>Michael Stenskjær Christensen</editor>
   <respStmt>
     <name xml:id="comments-JJ">John Johnson</name>
     <resp>Editorial suggestions</resp>
@@ -191,7 +191,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 ``` xml
 <listBibl>
   <bibl></bibl>
-	<!-- Info about id's for the `@source` goes here-->
+    <!-- Info about id's for the `@source` goes here-->
 </listBibl>
 ```
 
@@ -200,14 +200,14 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 ``` xml
 <listWit>
   <witness xml:id="P" n="bnf15705">Paris, Lat 15705
-  	<msDesc>
-	  <physDesc>
-	  	<handDesc hands="2">
-		  <handNote sameAs='#P'>This is the main hand of the text. German hand of the XIIIc with an inclination toward particularly complex majuscules.</handNote>
-    	  <handNote xml:id="#P1">Flemish hand of the XVc written in mauve ink. Used for minor corrections.</handNote>
-		</handDesc>
-	  </physDesc>
-	</msDesc>
+    <msDesc>
+      <physDesc>
+        <handDesc hands="2">
+          <handNote sameAs='#P'>This is the main hand of the text. German hand of the XIIIc with an inclination toward particularly complex majuscules.</handNote>
+          <handNote xml:id="#P1">Flemish hand of the XVc written in mauve ink. Used for minor corrections.</handNote>
+        </handDesc>
+      </physDesc>
+    </msDesc>
   </witness>
 </listWit>
 ```
@@ -243,7 +243,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 <revisionDesc status="draft">
   <listChange>
     <change when="2015-11-11" status="draft" n="0.0.0">
-      <p>Created file for the first time.</p>  
+      <p>Created file for the first time.</p>
     </change>
   </listChange>
 </revisionDesc>
@@ -462,6 +462,7 @@ Simple case where the editor has a suggestion:
 ```
 
 Simple case where the editor has no suggestion:
+
 ``` xml
 <gap extent="5" unit="characters"/>
 ```
@@ -470,9 +471,13 @@ In both of the above examples, the `@reason` is assumed to be *difficult*. If th
 
 ```xml
 <unclear reason="damage">suggestion</unclear>
-<gap reason="damage" extent="5" unit="characters"/>
 ```
 
+Or
+
+``` xml
+<gap reason="damage" extent="5" unit="characters"/>
+```
 
 A case where multiple possibilities are noted could look as follows. The `@reason` is assumed to hold for all sibling nodes as the difficulties have the same cause.
 
@@ -499,10 +504,13 @@ A case where multiple possibilities and the `note` is used:
 Situation where the editor has no suggestion for a difficult reading.
 
 ```xml
-  <unclear reason="damage">Fides et spes et caritas</unclear>
- <gap reason="damage" quantity="5" unit="word"/>
+<gap reason="damage" quantity="5" unit="word"/>
+```
 
-  <gap reason="difficult" quantity="5" unit="word"/>
+Or
+
+``` xml
+<gap reason="difficult" quantity="5" unit="word"/>
 
 ```
 
