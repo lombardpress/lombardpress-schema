@@ -445,6 +445,7 @@ The basic structure of the `rdg` typology can be described as follows
   - variation-inversion
   - variation-present
   - variation-absent
+  - variation-choice
 * correction
   - correction-addition
   - correction-deletion
@@ -688,6 +689,69 @@ fides
 
 > 10 fides] *lac. (5 litt.)* *A*
 
+### variation-choice
+
+The `variation-choice` type can be used when a single witness (however the concept of witness is defined) contains two or more parallel readings, and it is not clear which reading was preferred by the scribe (in which case it would be a correction). The distinction between the two can be difficult, and one editor might feel convinced that the text contains a correction, while another might see it as two readings of potentially equivalent weight or value.
+
+The `seg` elements are used to distinguish the different readings. If the editor wishes to indicate the chronological order of the readings, he may
+
+#### Rules
+
+- `rdg` **MUST** contain a `choice` element.
+- `choice` **MUST** contain two or more `seg` elements.
+- `seg` elements **MAY** use `@n` to indicate their relative order of the readings, when they are on the same baseline.
+- A `seg` element **MAY** contain an `add` element to indicate whether and where the reading was added, when it is not on the baseline of the text.
+- `seg` or `add` **MAY** use `@hand` to indicate an alternative scribe.
+
+#### Examples
+
+##### Example 1
+
+A simple example could look like this:
+
+``` xml
+<app>
+  <lem>vel</lem>
+  <rdg wit="#G" type="variation-choice">
+    <choice>
+      <seg>et</seg>
+      <seg><add place="above-live">vel</add></seg>
+    </choice>
+  </rdg>
+</app>
+```
+
+The representation in the apparatus would depend on the processor. But a suggestion could be:
+
+> vel ] et *et* vel (s.l.)
+
+##### Example 2
+
+In this more complex example M and V have the correct reading “instare”. S originally had “dicere” and then corrected it to “instare”. T includes both “dicere” and “instare” as options, but isn't sure which one is correct and simply writes “dicere vel instare”.
+
+```xml
+<app>
+  <lem wit="#M #V">instare</lem>
+  <rdg wit="#S" type="correction-substitution">
+    <subst>
+       <del>dicere</del>
+       <add>instare</add>
+    </subst>
+  </rdg>
+  <rdg wit="#T" type="variation-choice">
+     <choice>
+       <seg>dicere</seg>
+       <seg>instare</seg>
+     </choice>
+   </rdg>
+</app>
+```
+
+Since this is the critical encoding, and the editor interprets the “vel” in “dicere vel instare” of T to mean that the scribe believes one of the two to be the correct reading, this is encoded as a choice between the two. If the editor also produces a diplomatic edition of the witness G, it should reveal the more low level reading of “dicere vel instare”.
+
+An apparatus representation of this could look like this:
+
+> instare ] instare MV ; instare *corr. ex.* dicere S ; dicere *et* instare T
 
 ## correction
 
