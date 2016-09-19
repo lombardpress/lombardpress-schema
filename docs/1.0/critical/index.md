@@ -419,7 +419,10 @@ The general rules of any `app` element are:
   * the `witDetail` **MUST** take a pointer `@wit`
 5. `lem` **MAY** be empty.
 6. If `lem` is empty, it **MUST** contain the `@n` element.
-  * When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. But since there is then no lemma to anchor the apparatus entry in the critical text, another label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that. An example of that could look like this:
+7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
+
+
+When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. Such an encoding would signify that some readings are present in a part of the tradition, but not included in the established text. When the lemma is left empty, it is more difficult for the processor to anchor the entry in the text, so a label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that. An example of that could look like this:
 
 ```xml
 Praeterea, sicut oculus
@@ -433,7 +436,6 @@ This would make it easy to create this apparatus entry:
 
 > nicticoracis *post* oculus A
 
-7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
 
 ## Basic rdg types
 
