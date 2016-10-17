@@ -1174,7 +1174,7 @@ Utrum fides semper
 <app>
   <lem type="conjecture-supplied" resp="#John">
     <supplied>sit</supplied>
-  </lem
+  </lem>
   <rdg type="absent" wit="#P #V #L"/>
   <rdg type="conjecture-supplied" source="#James">
     <supplied>erit</supplied>
