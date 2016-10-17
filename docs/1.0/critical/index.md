@@ -1009,7 +1009,7 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 #### Rules
 
 1. See the above rules for `correction-substitution`
-2. the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases.
+2. the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. This is necessary for proper processing when the `add` element contains more than two words.
   - The `@n` indicates the relative order of the segments *after* the transposition has taken place.
   - This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
 
@@ -1024,7 +1024,7 @@ A correction that simply inverts the order of two words.
   <lem>spiritus sanctus</lem>
   <rdg wit="#A" type="correction-transposition">
     <subst>
-      <del><seg n="2">sanctus</seg> <seg n="1">spiritus</seg></del>
+      <del>sanctus spiritus</del>
       <add>spiritus sanctus</add>
     </subst>
   </rdg>
