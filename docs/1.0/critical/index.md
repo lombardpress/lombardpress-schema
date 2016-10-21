@@ -1251,7 +1251,7 @@ Another scholar has suggested that a word be removed, but it is supported by the
 ut
 <app>
   <lem wit="#A #B #C">cum</lem>
-  <rdg src="#James" type="conjecture-removed"><surplus>cum</surplus></rdg>
+  <rdg source="#James" type="conjecture-removed"><surplus>cum</surplus></rdg>
 </app>
 dicit Aristoteles
 ```
