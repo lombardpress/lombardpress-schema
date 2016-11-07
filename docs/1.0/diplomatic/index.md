@@ -751,16 +751,16 @@ page break in paged format
 
 ## Examples
 
-Example where marginal note is simply in the vicinity of a paragraph or line
+Example where marginal note is simply in the vicinity of a paragraph or line.
 
 ```xml
 <p>
   <lb ed="#A"/>
   <note type="marginal-note" place="margin-right" hand="#N1">
-      <lb ed="#A"/>this marginal note
-      <lb ed="#A"/>is in the right margin
-      <lb ed="#A"/>and spans three liens in the margin
-    </note>
+    <lb ed="#A"/>this marginal note
+    <lb ed="#A"/>is in the right margin
+    <lb ed="#A"/>and spans three liens in the margin
+  </note>
   The main text is here and
   <lb ed="#A"/>there is a marginal note
   <lb ed="#A"/>in the margin near
@@ -794,13 +794,10 @@ Example of where a marginal note that is best seen as a note about a quotation i
   <lb ed="#A"/>Augustine says
   <quote>the commonwealth is united by a common love
     <note type="marginal-note" place="margin-right" hand="#N1">
-      <lb ed="#A"/>
-      <ref>Augustine, City of God</ref>
+      <lb ed="#A"/><ref>Augustine, City of God</ref>
     </note>
   </quote>
-  this is still part of the first line
-  <lb ed="#A"/>more lines continue
-  <lb ed="#A"/>in the margin near
-  <lb ed="#A"/>this line. And now the text continues.
+  this is still part of the first line of the main text,
+  <lb ed="#A"/> and this is then a new line in the main text
 </p>
 ```

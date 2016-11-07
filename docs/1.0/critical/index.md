@@ -1009,7 +1009,7 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 #### Rules
 
 1. See the above rules for `correction-substitution`
-2. the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases.
+2. the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. This is necessary for proper processing when the `add` element contains more than two words.
   - The `@n` indicates the relative order of the segments *after* the transposition has taken place.
   - This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
 
@@ -1024,7 +1024,7 @@ A correction that simply inverts the order of two words.
   <lem>spiritus sanctus</lem>
   <rdg wit="#A" type="correction-transposition">
     <subst>
-      <del><seg n="2">sanctus</seg> <seg n="1">spiritus</seg></del>
+      <del>sanctus spiritus</del>
       <add>spiritus sanctus</add>
     </subst>
   </rdg>
@@ -1140,6 +1140,8 @@ Notice that both of these attributes are pointers. If they do not point to an ex
 
 According to the the judgement of the editor, an expression is missing from the transmitted text. Ideas for improvement of the text may then either be added to the edited text itself or indicated in an apparatus note.
 
+Notice this reading type is only relevant if a note in the apparatus is desired or required. If the addition of some material is sufficiently reflected by appropriate symbols in the text (such as <added> or {added}), the `supplied` element can simply be put in the main text.
+
 #### Rules
 
 1. Either `lem` or a `rdg` **MUST** contain `@type="conjecture-supplied"`.
@@ -1155,7 +1157,7 @@ An emendation is introduced into the edited text. The text is absent from the te
 ``` xml
 Utrum fides semper
 <app>
-  <lem type="conjecture-supplied" resp="#Michael">
+  <lem type="conjecture-supplied" source="#Michael">
     <supplied>sit</supplied>
   </lem>
   <rdg type="variation-absent" wit="#P #V #L"/>
@@ -1163,7 +1165,11 @@ Utrum fides semper
 acquisita
 ```
 
-> 10 *post* semper sit *suppl.*, *om*. PVL
+> 10 sit ] *suppl.*
+
+Note: If the reading of the other witnesses had been `variation-absent`, a processor could render it like so: 
+
+> 10 sit ] *suppl.*, *om.* PVL
 
 ##### Example 2
 
@@ -1172,9 +1178,9 @@ A scholar has suggested one conjecture for the passage, but the editor suggests 
 ``` xml
 Utrum fides semper
 <app>
-  <lem type="conjecture-supplied" resp="#John">
+  <lem type="conjecture-supplied" source="#John">
     <supplied>sit</supplied>
-  </lem
+  </lem>
   <rdg type="absent" wit="#P #V #L"/>
   <rdg type="conjecture-supplied" source="#James">
     <supplied>erit</supplied>
@@ -1183,7 +1189,7 @@ Utrum fides semper
 acquisita
 ```
 
-> 10 *post* semper *suppl.* sit John, *om.* PVL, erit *conj.* James
+> 10 sit ] *suppl.* John, *om.* PVL, erit *suppl.* James
 
 ##### Example 3
 
@@ -1193,19 +1199,14 @@ The editor suspects that a word is missing from the text, but is not certain eno
 Utrum fides
 <app>
   <lem n="fides"/>
-  <rdg type="absent" wit="#P #V #L"/>
-  <rdg type="conjecture-supplied" source="#other-scholar">
+  <rdg type="conjecture-supplied">
     <supplied>semper</supplied>
   </rdg>
 </app>
 sit
 ```
 
-> 10 semper *post* fides *conj.*
-
-Alternative:
-
-> 10 *num* semper *post* fides *scribendum*?
+> 10 *num* semper *post* fides *scribendum?*
 
 ### conjecture-removed
 
@@ -1250,7 +1251,7 @@ Another scholar has suggested that a word be removed, but it is supported by the
 ut
 <app>
   <lem wit="#A #B #C">cum</lem>
-  <rdg src="#James" type="conjecture-removed"><surplus>cum</surplus></rdg>
+  <rdg source="#James" type="conjecture-removed"><surplus>cum</surplus></rdg>
 </app>
 dicit Aristoteles
 ```
