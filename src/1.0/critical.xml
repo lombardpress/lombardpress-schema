@@ -31,7 +31,7 @@
               - @ident is required; it is allowed to be any name.
               - @start says what element(s) are allowed as the root element
                   of documents conforming to this schema.  -->
-      <schemaSpec ident="lombardress-schema" start="TEI">
+      <schemaSpec ident="lombardpress-schema" start="TEI">
       	<!-- Core Module -->
       	<moduleRef key="core"/>
       	
