@@ -31,7 +31,7 @@
               - @ident is required; it is allowed to be any name.
               - @start says what element(s) are allowed as the root element
                   of documents conforming to this schema.  -->
-      <schemaSpec ident="lombardress-schema" start="TEI">
+      <schemaSpec ident="lombardpress-schema" start="TEI">
       	<!-- Core Module -->
       	<moduleRef key="core"/>
       	
@@ -333,18 +333,18 @@
               			but is also supplying a new word or phrase to take the old addition's place.</desc>
               	</valItem>
               	<!-- conjecture types -->
-              	<valItem ident="conjecture-supplied">
-              		<gloss>Conjecture Supplied</gloss>
-              		<desc></desc>
-              	</valItem>
-              	<valItem ident="conjecture-removed">
-              		<gloss>Conjecture Removed</gloss>
-              		<desc></desc>
-              	</valItem>
-              	<valItem ident="conjecture-corrected">
-              		<gloss>Conjecture Corrected</gloss>
-              		<desc></desc>
-              	</valItem>
+                <valItem ident="conjecture-supplied">
+                  <gloss>Conjecture Supplied</gloss>
+                  <desc>According to the the judgement of the editor, an expression is missing from the transmitted text.</desc>
+                </valItem>
+                <valItem ident="conjecture-removed">
+                  <gloss>Conjecture Removed</gloss>
+                  <desc>A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.</desc>
+                </valItem>
+                <valItem ident="conjecture-corrected">
+                  <gloss>Conjecture Corrected</gloss>
+                  <desc>Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.</desc>
+                </valItem>
               </valList>
             	<!-- example of adding code examples 
               <exemplum>
@@ -364,6 +364,35 @@
             
           </attList>
           
+        </elementSpec>
+
+        <!-- The lem element -->
+        <elementSpec ident="lem" module="textcrit" mode="change">
+          <attList>
+            <attDef ident="type" mode="change" usage="opt">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+
+              <valList type="semi" mode="add">
+                <!-- conjecture types -->
+                <valItem ident="conjecture-supplied">
+                  <gloss>Conjecture Supplied</gloss>
+                  <desc>According to the the judgement of the editor, an expression is missing from the transmitted text.</desc>
+                </valItem>
+                <valItem ident="conjecture-removed">
+                  <gloss>Conjecture Removed</gloss>
+                  <desc>A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.</desc>
+                </valItem>
+                <valItem ident="conjecture-corrected">
+                  <gloss>Conjecture Corrected</gloss>
+                  <desc>Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+
+          </attList>
+
         </elementSpec>
 
 
