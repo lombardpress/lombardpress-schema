@@ -375,7 +375,6 @@
               </datatype>
 
               <valList type="semi" mode="add">
-                <!-- variation rdg types -->
                 <!-- conjecture types -->
                 <valItem ident="conjecture-supplied">
                   <gloss>Conjecture Supplied</gloss>
@@ -390,20 +389,6 @@
                   <desc>Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.</desc>
                 </valItem>
               </valList>
-              <!-- example of adding code examples
-              <exemplum>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <app>
-                    <lem>fides</lem>
-                    <rdg with="#V" type="corrDeletion">
-                      <corr>
-                        <del>fides</del>
-                      </corr>
-                    </rdg>
-                  </app>
-                </egXML>
-              </exemplum>
-              -->
             </attDef>
 
           </attList>
