@@ -7,8 +7,8 @@
       <titleStmt>
         <title>LombardPress Customization File</title>
         <author xml:id="JeffreyWitt">Jeffrey C. Witt</author>
-      	<author xml:id="MichaelChristensen">Michael Stenskjær Christensen</author>
-      	<author xml:id="NicolasVaughan">Nicolas Vaughan</author>
+        <author xml:id="MichaelChristensen">Michael Stenskjær Christensen</author>
+        <author xml:id="NicolasVaughan">Nicolas Vaughan</author>
       </titleStmt>
       <publicationStmt>
         <availability>
@@ -24,57 +24,59 @@
     </revisionDesc>
   </teiHeader>
   <text>
-  	<body>
+    <body>
       <p>[One or more paragraphs describing the customization.]</p>
       <!-- The <schemaSpec> element is in effect the root element for
            the schema specification portion of the ODD. 
               - @ident is required; it is allowed to be any name.
               - @start says what element(s) are allowed as the root element
                   of documents conforming to this schema.  -->
-      <schemaSpec ident="lombardpress-schema" start="TEI">
-      	<!-- Core Module -->
-      	<moduleRef key="core"/>
-      	
-      	<!--  BEGIN adding schemaRef element until officiall adopted by TEI -->
-      	<!-- this is temporary, it should be deleted once schemaRef is official added by TEI consortium -->
-      	<elementSpec ident="schemaRef" mode="add">
-      		<gloss>schemaRef</gloss>
-      		<desc>A element used to identify the validating schema</desc>
-      		<classes mode="replace">
-      			<memberOf key="model.encodingDescPart"/>
-      		</classes>
-      		<content>
-      			<rng:empty/>
-      		</content>
-      		<attList>
-      			<attDef ident="n" mode="add" usage="req">
-      				<datatype>
-      					<rng:ref name="data.text"/>
-      				</datatype>
-      				<exemplum>
-      					<egXML xmlns="http://www.tei-c.org/ns/Examples">
-      						<schemaRef n="lbp-1.0.0-critical"/>
-      					</egXML>
-      				</exemplum>
-      			</attDef>
-      			<!-- TODO this can be removed when new build of TEI guidlines are adopted -->
-      			<attDef ident="target" mode="add" usage="req">
-      				<datatype>
-      					<rng:ref name="data.text"/>
-      				</datatype>
-      				<exemplum>
-      					<egXML xmlns="http://www.tei-c.org/ns/Examples">
-      						<schemaRef target="url-of-validating-schema"/>
-      					</egXML>
-      				</exemplum>
-      			</attDef>
-      		</attList>
-      	</elementSpec>
-      	<!-- END addition of schemaRef element -->
-      	
-      	
-      	<!-- Begin modifications to del element -->
-      	<elementSpec ident="del" module="core" mode="change">
+      
+      <schemaSpec ident="lombardpress-schema" start="TEI"
+          source="http://www.tei-c.org/Vault/P5/3.0.0/xml/tei/odd/p5subset.xml">
+        <!-- Core Module -->
+        <moduleRef key="core"/>
+        
+        <!--  BEGIN adding schemaRef element until officiall adopted by TEI -->
+        <!-- this is temporary, it should be deleted once schemaRef is official added by TEI consortium -->
+        <elementSpec ident="schemaRef" mode="add">
+          <gloss>schemaRef</gloss>
+          <desc>A element used to identify the validating schema</desc>
+          <classes mode="replace">
+            <memberOf key="model.encodingDescPart"/>
+          </classes>
+          <content>
+            <rng:empty/>
+          </content>
+          <attList>
+            <attDef ident="n" mode="add" usage="req">
+              <datatype>
+                <rng:ref name="data.text"/>
+              </datatype>
+              <exemplum>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <schemaRef n="lbp-1.0.0-critical"/>
+                </egXML>
+              </exemplum>
+            </attDef>
+            <!-- TODO this can be removed when new build of TEI guidlines are adopted -->
+            <attDef ident="target" mode="add" usage="req">
+              <datatype>
+                <rng:ref name="data.text"/>
+              </datatype>
+              <exemplum>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <schemaRef target="url-of-validating-schema"/>
+                </egXML>
+              </exemplum>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <!-- END addition of schemaRef element -->
+        
+        
+        <!-- Begin modifications to del element -->
+        <elementSpec ident="del" module="core" mode="change">
           <attList>
             <attDef ident="rend" usage="rec" mode="change">
               <valList type="semi" mode="add">
@@ -84,7 +86,7 @@
                 </valItem>
                 <valItem ident="expunctuated">
                   <gloss>expunctuated</gloss>
-                	<desc>A deletion indicated by dots underneath the text.</desc>
+                  <desc>A deletion indicated by dots underneath the text.</desc>
                 </valItem>
                 <valItem ident="expunctuation">
                   <gloss>expunctuated</gloss>
@@ -98,60 +100,60 @@
                   <gloss>underline</gloss>
                   <desc>A deletion indicated by underling the word or segment</desc>
                 </valItem>
-              	<valItem ident="erasure">
-              		<gloss>erasure</gloss>
-              		<desc>Deletion by erasure</desc>
-              	</valItem>
+                <valItem ident="erasure">
+                  <gloss>erasure</gloss>
+                  <desc>Deletion by erasure</desc>
+                </valItem>
               </valList>
             </attDef>
           </attList>
         </elementSpec>
-      	<!-- end del element -->
-      	
-      	<!-- begin add element -->
-      	<elementSpec ident="add" module="core" mode="change">
-      		<attList>
-      			<attDef ident="place" usage="rec" mode="change">
-      				<valList type="semi" mode="add">
-      					<valItem ident="margin">
-      						<gloss>margin</gloss>
-      						<desc>A generic place locator for an addition appearing in some margin</desc>
-      					</valItem>
-      					<valItem ident="margin-right">
-      						<gloss>margin-right</gloss>
-      						<desc>Indicates an addition in the margin to the right of the text in question</desc>
-      					</valItem>
-      					<valItem ident="margin-left">
-      						<gloss>margin-left</gloss>
-      						<desc>Indicates an addition in the margin to the left of the text in question</desc>
-      					</valItem>
-      					<valItem ident="margin-above">
-      						<gloss>margin-above</gloss>
-      						<desc>Indicates an addition in the margin to the above of the text in question</desc>
-      					</valItem>
-      					<valItem ident="margin-below">
-      						<gloss>margin-below</gloss>
-      						<desc>Indicates an addition in the margin to the below of the text in question</desc>
-      					</valItem>
-      					<valItem ident="above-line">
-      						<gloss>above-line</gloss>
-      						<desc>Indicates an addition inserted above the line in question</desc>
-      					</valItem>
-      					<valItem ident="below-line">
-      						<gloss>below-line</gloss>
-      						<desc>Indicates an addition inserted below the line in question</desc>
-      					</valItem>
-      					<valItem ident="in-line">
-      						<gloss>in-line</gloss>
-      						<desc>Indicates an addition inserted in the line</desc>
-      					</valItem>
-      				</valList>
-      			</attDef>
-      		</attList>
-      	</elementSpec>
-      	<!-- end add element -->
-      	
-      	
+        <!-- end del element -->
+        
+        <!-- begin add element -->
+        <elementSpec ident="add" module="core" mode="change">
+          <attList>
+            <attDef ident="place" usage="rec" mode="change">
+              <valList type="semi" mode="add">
+                <valItem ident="margin">
+                  <gloss>margin</gloss>
+                  <desc>A generic place locator for an addition appearing in some margin</desc>
+                </valItem>
+                <valItem ident="margin-right">
+                  <gloss>margin-right</gloss>
+                  <desc>Indicates an addition in the margin to the right of the text in question</desc>
+                </valItem>
+                <valItem ident="margin-left">
+                  <gloss>margin-left</gloss>
+                  <desc>Indicates an addition in the margin to the left of the text in question</desc>
+                </valItem>
+                <valItem ident="margin-above">
+                  <gloss>margin-above</gloss>
+                  <desc>Indicates an addition in the margin to the above of the text in question</desc>
+                </valItem>
+                <valItem ident="margin-below">
+                  <gloss>margin-below</gloss>
+                  <desc>Indicates an addition in the margin to the below of the text in question</desc>
+                </valItem>
+                <valItem ident="above-line">
+                  <gloss>above-line</gloss>
+                  <desc>Indicates an addition inserted above the line in question</desc>
+                </valItem>
+                <valItem ident="below-line">
+                  <gloss>below-line</gloss>
+                  <desc>Indicates an addition inserted below the line in question</desc>
+                </valItem>
+                <valItem ident="in-line">
+                  <gloss>in-line</gloss>
+                  <desc>Indicates an addition inserted in the line</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <!-- end add element -->
+        
+        
         <elementSpec ident="note" module="core" mode="change">
           <classes mode="change">
             <memberOf key="att.placement"/>
@@ -195,7 +197,7 @@
 
 
         <!--
-        	<elementSpec ident="category" module="header" mode="change">
+          <elementSpec ident="category" module="header" mode="change">
           <attList>
             <attDef ident="xml:id" usage="req" mode="change"/>
           </attList>
@@ -213,7 +215,7 @@
         <!-- Name and Date Module -->
         <moduleRef key="namesdates"/>
         
-      	<!-- Text Criticism Module -->
+        <!-- Text Criticism Module -->
         <moduleRef key="textcrit"/>
         
         <!-- Primary Source Transcription Module -->
@@ -263,7 +265,7 @@
                   <gloss>In line</gloss>
                   <desc>the addition is made in the line itself</desc>
                 </valItem>
-              	<!-- TODO: do we need to support this -->
+                <!-- TODO: do we need to support this -->
                 <valItem ident="in-space">
                   <gloss>In space</gloss>
                   <desc>In a predefined space left for an addition, perhaps a space left by another scribe.</desc>
