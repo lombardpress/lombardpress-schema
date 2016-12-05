@@ -548,8 +548,11 @@ est
 3. `rdg` **MUST** have `@type=variation-inversion`.
 4. `rdg` text node **MUST** be present.
 5. `rdg` **MUST** have either `@wit` or `@source`.
+6. `rdg` **MAY** have two `seg`-elements which indicate which elements have been inverted.
 
-#### Example
+#### Example 1
+
+In this simple example the `rdg` only contains two words.
 
 ```xml
 fides non
@@ -560,6 +563,24 @@ fides non
 ```
 
 > 10 bona fides] fides bona *A*
+
+#### Example 2
+
+In this example the `rdg` contains more than two words, and it is therefore necessary to indicate which words have been moved around with the `seg`-element.
+
+```xml
+Ad demonstrationem tria requirantur: subiectum, passio, et
+principium per quod ostenditur passio de subiecto. Ubi est
+<app>
+  <lem>ista tria invenire</lem>
+  <rdg wit="#B">ista tria invenire</rdg>
+  <rdg wit="#O" type="variation-inversion">
+    <seg n="1">invenire</seg>
+    <seg n="2">ista tria</seg>
+  </rdg>
+</app>
+, ibi contingit ponere scientiam.
+```
 
 ### `variation-present`
 

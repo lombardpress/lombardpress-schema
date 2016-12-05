@@ -31,7 +31,9 @@
               - @ident is required; it is allowed to be any name.
               - @start says what element(s) are allowed as the root element
                   of documents conforming to this schema.  -->
-      <schemaSpec ident="lombardpress-schema" start="TEI">
+      <schemaSpec ident="lombardpress-schema" start="TEI"
+                  source="http://www.tei-c.org/Vault/P5/3.0.0/xml/tei/odd/p5subset.xml">
+
       	<!-- Core Module -->
       	<moduleRef key="core"/>
       	
