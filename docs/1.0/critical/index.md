@@ -421,6 +421,7 @@ The general rules of any `app` element are:
 6. If `lem` is empty, it **MUST** contain the `@n` element.
 7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
 
+### Encoding empty lemmas
 
 When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. Such an encoding would signify that some readings are present in a part of the tradition, but not included in the established text. When the lemma is left empty, it is more difficult for the processor to anchor the entry in the text, so a label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that. An example of that could look like this:
 
@@ -436,6 +437,24 @@ This would make it easy to create this apparatus entry:
 
 > nicticoracis *post* oculus A
 
+
+### Encoding reading notes with `witDetail`
+
+Under normal circumstances the processor will generate text describing the particular reading. But a reading might represent a certain situation that the editor would like to described, but is not handled by the processor. In that case the `witDetail` is handy, as its content should be added by the processor after the standard text of the reading type, but before the witness siglum.
+
+For example, we might have a witness with a *q* and the following three characters erased. Although it could be encoded, the processor might not have a way of reflecting that in the apparatus. Using `witDetail` it could look like this:
+
+``` xml
+non sicut alia
+<app>
+  <lem type="conjecture-correction">quae</lem>
+  <rdg wit="#V">q</rdg>
+  <witDetail wit="#V"><desc>cum 3 litteris rasibus</desc></witDetail>
+</app>
+possibilia sunt
+```
+
+> quae ] conj., q *cum 3 litteris rasibus* V
 
 ## Basic rdg types
 
