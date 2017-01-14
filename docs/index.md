@@ -7,8 +7,8 @@ categories: schema
 
 # The LombardPress Schema
 
-* [Introduction to the LombardPress-Schema][intro-to-lbp-schema.md]
-* [Statement on Versioning][statement-on-versioning.md]
+* [Introduction to the LombardPress-Schema](intro-to-lbp-schema.md)
+* [Statement on Versioning](statement-on-versioning.md)
 * [Schema Change Log](changelog.md)
 
 We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://tools.ietf.org/html/rfc2119) for key words and definitions indicating compliance to the LombardPress schema specifications.
