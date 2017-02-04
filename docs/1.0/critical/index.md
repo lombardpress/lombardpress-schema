@@ -398,11 +398,50 @@ Example using e-codices IIIF canvas id
 
 ## body
 
+### Description
+
+`body` is the primary wrapper of the edited text.
+
+### Rules
+
+* `body` **MUST** immediately follow `front`
+* `body` **MUST** take a `div` as an immediate child
+
 ## div
+
+### Description
+
+`div` is the fundamental section unit of an edition.
+
+### Rules
+
+* There **MUST** be one `div` in each edition as a direct child of `body`
+* `div` **MAY** only contain `head` and `p` as children
+* `div` **MAY NOT** contain any text nodes as direct children
 
 ## head
 
+`head` is the wrapper heading declaration for a `div`
+
+### Rules
+
+* `head` **MUST** be an immediate child of a `div`
+* `head` **MUST** precede `p` elements in parent `div`
+* `head` **MAY** take an `@type` attribute
+  - `@type` values include:
+    - subtitle
+    - question-title
+
 ## p
+
+### Description
+
+`p` is the wrapper of text nodes
+
+### Rules
+
+* all text nodes of the edition **MUST** be descendants of a `p` element
+* `p` **MUST** be an immediate child of a `div`
 
 # Apparatus Criticus
 
