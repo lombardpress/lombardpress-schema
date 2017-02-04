@@ -1,15 +1,17 @@
 ---
 layout: page
 title:  Schema Home
-date:   2016-04-01 09:46:33 -0400
+date:   2016-04-01
 categories: schema
 ---
 
 # The LombardPress Schema
 
-For versioning, we follow the standards for semantic versioning [http://semver.org/](http://semver.org/)
+* [Introduction to the LombardPress-Schema](intro-to-lbp-schema.md)
+* [Statement on Versioning](statement-on-versioning.md)
+* [Schema Change Log](changelog.md)
 
-We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://tools.ietf.org/html/rfc2119) for key words and definitions indiciating compliance to the LombardPress schema specifications.
+We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://tools.ietf.org/html/rfc2119) for key words and definitions indicating compliance to the LombardPress schema specifications.
 
 ## Version 1.0.0 (in preparation)
 

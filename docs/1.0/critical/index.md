@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "Lombard Press Schema 1.0.0 - Critical Transcription Guidelines"
-date:   2016-07-015
+date:   2016-07-15
 categories: schema
 ---
 
@@ -1188,7 +1188,7 @@ acquisita
 
 > 10 sit ] *suppl.*
 
-Note: If the reading of the other witnesses had been `variation-absent`, a processor could render it like so: 
+Note: If the reading of the other witnesses had been `variation-absent`, a processor could render it like so:
 
 > 10 sit ] *suppl.*, *om.* PVL
 
