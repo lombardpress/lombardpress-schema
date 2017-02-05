@@ -34,11 +34,14 @@ Document Status: Draft
   * [Div](#div)
   * [P](#p)
 * [Apparatus Criticus](#apparatus-criticus)
-  - [variation](#variation)
-  - [correction](#correction)
-  - [conjecture](#conjecture)
-  - [connected apparatus entries](#connected-apparatus-entries)
-  - [manual](#manual)
+  * [Basic Rdg Types][#basic-rdg-types]
+    * [variation](#variation)
+    * [correction](#correction)
+    * [conjecture](#conjecture)
+    * [connected apparatus entries](#connected-apparatus-entries)
+    * [manual](#manual)
+  * [witDetail](#witDetail)
+  * [note](#note)
 * [Apparatus Fontium](#apparatus-fontium)
   - [Citation](#citation)
   - [Reference](#reference)
@@ -421,6 +424,7 @@ The general rules of any `app` element are:
 6. If `lem` is empty, it **MUST** contain the `@n` element.
 7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
 
+### Note on encoding empty lemmas
 
 When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. Such an encoding would signify that some readings are present in a part of the tradition, but not included in the established text. When the lemma is left empty, it is more difficult for the processor to anchor the entry in the text, so a label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that. An example of that could look like this:
 
@@ -435,7 +439,6 @@ ad lumen solis
 This would make it easy to create this apparatus entry:
 
 > nicticoracis *post* oculus A
-
 
 ## Basic rdg types
 
@@ -1442,7 +1445,7 @@ The use of the `manual` type should be avoided at all costs, and in subsequent v
 </app>
 ```
 
-This would likely be redered as:
+This would likely be rendered as:
 
 > 10 fides] fides *corr. interl. ex* fide V
 
@@ -1458,6 +1461,39 @@ This would likely be redered as:
 This would likely be rendered as:
 
 > 10 fides] *om.* V
+
+## WitDetail
+
+### Description
+
+Under normal circumstances the processor will generate, from the above described `rdg` types, text describing the particular reading. But a reading might represent a certain situation that the editor would like to described, but is not handled by the processor. In that case the `witDetail` is handy (and preferred to resorting to the use of `rdg` `@type` "manual"), as its content should be added by the processor after the standard text of the reading type, but before the witness siglum.
+
+### Rules
+
+* `witDetail` **MAY** take as children only text nodes and the `mentioned` element.
+* All references to the content of the established text or witness within `witDetail` should be wrapped in a `mentioned` element.
+* `witDetail` **MUST** have an `@wit` that points to the reading associated with this `witDetail`
+  * `witDetail` information should target only one reading. General notes meant to offer detail or information about the entire apparatus should a `note` element that should appear at the end of the `app`
+* For ease of processing and clarity, `witDetail` elements should come immediately after the `rdg` with which it is associated.
+
+### Example
+
+```xml
+<app>
+  <lem type="conjecture-correction">quae</lem>
+  <rdg wit="#V">q</rdg>
+  <witDetail wit="#V">cum 3 litteris rasibus</witDetail>
+</app>
+```
+A processor could render this as follows
+
+> quae ] conj., q *cum 3 litteris rasibus* V
+
+## Note
+
+### Description
+
+### Rules
 
 # Apparatus Fontium
 
