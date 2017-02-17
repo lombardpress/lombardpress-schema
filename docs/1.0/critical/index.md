@@ -51,7 +51,7 @@ Document Status: Draft
 
 # Preamble
 
-The goal of the LombardPress critical transcription specification is to offer a set of guidelines for the markup of medieval Scholastic Commentaries and Texts that conform as much as possible to existing standards. In the case of critical editions and transcriptions, this means following as closely as possible the specifications and recommendations of the Digital Latin Library. In most cases, we aim only to expand the Digital Latin Library specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the Digital Latin Library guidelines should be followed. Where the Digital Latin Library does not state a specification, the more general TEI specification should be followed.
+The goal of the LombardPress Critical Transcription specification is to offer a set of guidelines for the markup of medieval Scholastic Commentaries and Texts that conform, as much as possible, to existing standards. Therefore, these guidelines adopt the rules and conventions of the [TEI guidelines](http://www.tei-c.org/) and, within these constraints, work to proscribe a single encoding practice where TEI offers multiple possibilities.
 
 
 # teiHeader
