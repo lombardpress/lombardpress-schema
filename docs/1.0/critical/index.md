@@ -34,7 +34,7 @@ Document Status: Draft
   * [Div](#div)
   * [P](#p)
 * [Apparatus Criticus](#apparatus-criticus)
-  * [Basic Rdg Types][#basic-rdg-types]
+  * [Basic Rdg Types](#basic-rdg-types)
     * [variation](#variation)
     * [correction](#correction)
     * [conjecture](#conjecture)
@@ -1528,11 +1528,48 @@ A processor could render this as follows
 
 > quae ] conj., q *cum 3 litteris rasibus* V
 
-## Note
+## App/Note
 
 ### Description
 
+The `note` element used within the app is the appropriate place for an extended prose discussion of the apparatus entry as a whole. Generally, a traditional print rendering of the apparatus does not have room for such notes, and it is not expected that such a note would appear directly in the apparatus. More likely, in a print rendering, these notes would appear in an appendix. Digital representations can offer alternative ways of displaying these notes. For example, see [http://lombardpress.org/conceiving-the-digital-critical-apparatus/](http://lombardpress.org/conceiving-the-digital-critical-apparatus/).
+
 ### Rules
+
+* `note` **SHOULD** be placed in the last position within the `app` entry, after all other `rdgs` and `witDetail`
+* `note` **SHOULD** include an `@xml:lang` attribute
+* `note` **MUST** include either text nodes or `ab` elements as direct children
+* Within `note`, in order to segmenting text into 2 or more conceptual `ab` elements **MUST** be used.
+* `note` **MAY NOT** include `p` or `div` elements within it descendant nodes.
+
+### Examples
+
+```xml
+<app>
+  <lem>quae</lem>
+  <rdg wit="#V">qod</rdg>
+  <note xml:lang="la">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </note>
+</app>
+```xml
+
+Or
+
+```xml
+<app>
+  <lem>quae</lem>
+  <rdg wit="#V">qod</rdg>
+  <note xml:lang="la">
+    <ab>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </ab>
+    <ab>
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <ab>
+  </note>
+</app>
+```
 
 # Apparatus Fontium
 
