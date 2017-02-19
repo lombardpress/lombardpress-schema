@@ -26,7 +26,6 @@ Document Status: Draft
     * [sourceDesc](#sourcedesc)
   * [encodingDesc](#encodingdesc)
   * [revisionDesc](#revisiondesc)
-* [Facsimile](#facsimile)
 * [Text](#text)
   * [Front](#front)
   * [Text](#text)
@@ -210,7 +209,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
     </msDesc>
   </witness>witness>
   <witness xml:id="Pb" n="bda446">Paris, Bibliotheque de l'Arsenal, ms. lat. 446</witness>
-  <witness xml:id="Z" n="zbsSII72" xml:base="http://www.e-codices.unifr.ch/metadata/iiif/zbs-SII-0072/canvas/">Solothurn, Zentralbibliothek, Cod. S II 72</witness>
+  <witness xml:id="Z" n="zbsSII72">Solothurn, Zentralbibliothek, Cod. S II 72</witness>
 </listWit>
 ```
 
@@ -305,64 +304,6 @@ The individual editor would usually not be responsible for maintaining the `revi
   </listChange>
 </revisionDesc>
 ```
-
-# Facsimile
-
-## Description
-
-The Facsimile tag is used to record information about images or image regions that correspond to the various parts of the edition.
-
-Our specifications may differ from examples used in the TEI guidelines because we currently only support image connections via the IIIF API. This first and foremost means that image references and coordinate regions only apply to the idea of a IIIF canvas, rather than any particular image.
-
-This means that that no `graphic` element is allowed within the `surface` element. It also means that coordinates actually refer to the coordinates of the abstract canvas rather than any actual image.
-
-The full canvas id is always expected to be constructed from the `xml:base` of the targeted `witness` and the short canvas id which should be the same as the id of the surface.
-
-## Rules
-
-* the `witness` in the `sourceDesc` **SHOULD** have a `@xml:base` attribute
-* `facsimile` **MUST** have at least one `surface` element as a child
-* the `surface` element **MUST** have an `xml:id` which is identical to the short id of the IIIF canvas.
-* the `surface` **SHOULD NOT** have a `graphic` element.
-* the `surface` **MUST** have a `corresp` element pointing to the `witness` it is a `surface` of.
-* the `surface` **MAY** take an `n` attribute as helpful label for the surface. Following the same pattern as used in the `pb@n` is recommended.
-* `surface` **SHOULD** take `zones` as children
-* `zones` **MAY** either have an `xml:id` or a `start` attribute or both
-* the value of `start` attribute **SHOULD** be the `xml:id` of the element the zones in question refer to.
-  - Because elements representing the "content hierarchy" (rather than the material hierarchy, such as `pb`, `cb`, or `lb`) can run onto multiple surfaces, and therefore have more than one zone, they **MUST** have an `@n` attribute indicating their sequence order.
-  - `zones` for content hierarchy elements **SHOULD** be recorded in the diplomatic transcription for each witness, but they **MAY** be recorded in the critical transcription file if deemed necessary.
-* elements in the body text **MAY** point to a zone or surface via the `@facs` attribute with a pointer `#` to the id of the zone or surface
-* an element, usually a `pb`, **MAY** short cut to the canvas id by using the `@facs` attribute and providing the value of the IIIF canvas short id without using a pointer `#`. See the examples below.
-
-## Examples
-
-Example using e-codices IIIF canvas id
-
-```xml
-<!-- witness in sourceDesc -->
-<witness xml:id="A" n="wettf15" xml:base="http://www.e-codices.unifr.ch/metadata/iiif/kba-WettF0015/canvas/">Aarau, Aargauer Kantonsbibliothek, MsWettF 15</witness>
-
-<!-- surface block in facsimile element -->
-  <surface xml:id="kba-WettF0015_107v.json" corresp="#A" n="107-v">
-<!-- zones for paragraphs -->
-    <zone start="#l1-scoesi" ulx="220" uly="1648" lrx="870" lry="1809" n="1"/>
-    <zone start="#l1-scoesi" ulx="870" uly="107" lrx="1520" lry="268" n="2"/>
-    <zone start="#l1-chpnpn" ulx="870" uly="104" lrx="1520" lry="361" n="1"/>
-<!-- zones referred to via a @facs attribute -->
-    <zone xml:id="zone-of-column-1" ulx="0" uly="0" lrx="750" lry="1500"/>
-  </surface>
-
-<!-- examples of reference to zones in the text -->    
-  <cb ed='#A' n="a" facs="#zone-of-column-1">
-<!-- two ways a page break can point to the canvas -->
-<!--It can point to the surface element with a pointer -->
-  <pb ed="#A" n="1-v" facs="#kba-WettF0015_107v.json"/>
-<!-- or it can point directly to the canvas id without a pointer -->
-  <pb ed="#A" n="1-v" facs="kba-WettF0015_107v.json"/>
-<!-- content hierarchy elements require no facs attribute, because they are connected via the `zone@start` attribute -->
-  <p xml:id="l1-scoesi">
-```
-
 # text
 
 ## Description
@@ -391,10 +332,10 @@ Example using e-codices IIIF canvas id
 ```xml
 <front>
   <div xml:id="starts-on">
-    <pb ed="#V" n="5-r" facs="V5r"/><cb ed="#V" n="b"/> <!-- V5rb -->
-    <pb ed="#S" n="2-r" facs="S2r"/><cb ed="#S" n="a"/> <!-- S2ra -->
-    <pb ed="#R" n="1-r" facs="R1r"/><cb ed="#R" n="a"/> <!-- R1ra -->
-    <pb ed="#SV" n="187-r" facs="SV187r"/><cb ed="#SV" n="a"/> <!-- SV187ra -->
+    <pb ed="#V" n="5-r"/><cb ed="#V" n="b"/> <!-- V5rb -->
+    <pb ed="#S" n="2-r"/><cb ed="#S" n="a"/> <!-- S2ra -->
+    <pb ed="#R" n="1-r"/><cb ed="#R" n="a"/> <!-- R1ra -->
+    <pb ed="#SV" n="187-r"/><cb ed="#SV" n="a"/> <!-- SV187ra -->
   </div>
 </front>
 ```
@@ -1708,7 +1649,6 @@ When a text contains both a reference and a quotation, both a `<ref>` and a `<qu
 
 - `@ed` **MUST** indicate the source text in which the column break occurs.
 - `@n` **MUST** indicate the column, e.g. a
-- `@facs` **MAY** be present. If it contains a "hash" pointer, it is expected to refer to a surface or zone in the the `facsimile` element. If it does not contain a "hash" it is expected to be the last part of the IIIF image canvas id. See the [Facsimile](#facsimile) section above.
 
 ### Examples
 
@@ -1722,7 +1662,6 @@ When a text contains both a reference and a quotation, both a `<ref>` and a `<qu
 
 - `@ed` **MUST** indicate the source text in which the page break occurs.
 - `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
-- `@facs` **MAY** be present. If it contains a "hash" pointer, it is expected to refer to a surface or zone in the the `facsimile` element. If it does not contain a "hash" it is expected to be the last part of the IIIF image canvas id. See the [Facsimile](#facsimile) section above.
 - `@type` **MAY**: Indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `type="folio"` is assumed.
 
 ### Examples
