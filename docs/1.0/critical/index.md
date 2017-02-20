@@ -1485,7 +1485,7 @@ Any entry to the *apparatus fontium* is created with the `<cit>` element.
 
 `<quote>` encodes the original quotation.
 
-`<bibl>` is reserved for the modern editor's attempt to encode a modern reference identification for the quotation. `<bibl>` is only allowed inside a `<cit>` wrapper.
+`<bibl>` is reserved for the modern editor's attempt to encode a modern reference identification for the quotation. `<bibl>` is only allowed inside a `<cit>` wrapper. `<bibl>` should only contain one reference, as it is considered *the* reference object for the `<cit>` entry.
 
 `<note>` tag can be used for writing any arbitrary note about the reference or quotation.
 
@@ -1502,6 +1502,7 @@ In the following sections examples of those scenarios are given.
 1. `cit` **MUST** contain either a `quote` or `ref`.
 2. `cit` **MAY** contain a `bibl` element.
 3. `cit` **MAY** contain a `note` element.
+4. `bibl` **MUST** contain a reference to exactly one bibliographical object.
 
 ## Examples
 
