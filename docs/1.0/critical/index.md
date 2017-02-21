@@ -32,6 +32,10 @@ Document Status: Draft
   * [Body](#body)
   * [Div](#div)
   * [P](#p)
+* [Inline critical elements](#inline-critical-elements)
+  * [Supplied](#supplied)
+  * [Surplus](#surplus)
+  * [Sic](#sic)
 * [Apparatus Criticus](#apparatus-criticus)
   * [Basic Rdg Types](#basic-rdg-types)
     * [variation](#variation)
@@ -386,6 +390,73 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 * all text nodes of the edition **MUST** be descendants of a `p` element
 * `p` **MUST** be an immediate child of a `div`
+
+# Inline critical elements
+
+In some situations a note in the critical apparatus is not necessary for indicating a critical evaluation by the editor. The following inline elements will usually have a semantically relevant rendering in the text. 
+
+In most cases correlated notes in the critical apparatus are also available. In only the most simple situations will this be sufficient for avoiding ambiguities. As soon as the text is not uniformly transmitted or the change is not made by the current editor, one should resort to critical notes.
+
+## supplied
+
+### Description
+
+`<supplied>` signifies text supplied by the editor because it is believed to be missing from the text, and it can be argued that must have been part of the original text as intended by the author.
+
+For the use of this in a critical note, se [conjecture-supplied](#conjecture-supplied)
+### Rules
+
+1. `<supplied>` **MUST** contain the supplied text, and nothing but that.
+
+### Example
+
+```xml
+Utrum fides semper <supplied>sit</supplied> acquisita
+```
+
+In a processed text, this could for example result in the following text:
+> Utrum fides semper <sit> acquisita
+
+## surplus
+
+### Description 
+
+`<surplus>` marks text present in the source which the editor believes to be superfluous or redundant. According to the editor, the word(s) marked with `<surplus>` is therefore not to be considered part of the established text.
+
+For the use of this in a critical note, see [conjecture-removed](#conjecture-removed).
+
+### Rules
+
+1. `<surplus>` **MUST** contain the removed text, and nothing but that.
+
+### Example
+
+```xml
+Ergo non sequitur quod <surplus>quia</surplus> in probationem dicitur.
+```
+
+In a processed text, this could for example result in the following text:
+> Ergo non sequitur quod [quia] in probationem dicitur.
+
+## sic
+
+
+### Description
+
+`<sic>` is used to indicate that according to the best judgement of the editor the demarcated text is corrupt, and the editor does not know how to solve the problem satisfyingly. Notice that this does not mean that there is a passage that the editor is not able to read, nor that a gap is left in the text, nor a physical damage is in the manuscript, but that the text as transmitted is unsolvably incomprehensible.
+
+### Rules
+
+1. `<sic>` **MUST** contain the text considered to be corrupt.
+
+### Example
+
+```xml
+subsidiis magnis <sic>epicuri</sic> constabilitas
+```
+
+In a processed text, this could for example result in the following text:
+> subsidiis magnis †epicuri† constabilitas
 
 # Apparatus Criticus
 
