@@ -404,12 +404,12 @@ In most cases correlated notes in the critical apparatus are also available. In 
 
 ### Description
 
-`<supplied>` signifies text supplied by the editor because it is believed to be missing from the text, and it can be argued that must have been part of the original text as intended by the author.
+`supplied` signifies text supplied by the editor because it is believed to be missing from the text, and it can be argued that must have been part of the original text as intended by the author.
 
 For the use of this in a critical note, se [conjecture-supplied](#conjecture-supplied)
 ### Rules
 
-1. `<supplied>` **MUST** contain the supplied text, and nothing but that.
+1. `supplied` **MUST** contain the supplied text, and nothing but that.
 
 ### Example
 
@@ -424,13 +424,13 @@ In a processed text, this could for example result in the following text:
 
 ### Description 
 
-`<surplus>` marks text present in the source which the editor believes to be superfluous or redundant. According to the editor, the word(s) marked with `<surplus>` is therefore not to be considered part of the established text.
+`surplus` marks text present in the source which the editor believes to be superfluous or redundant. According to the editor, the word(s) marked with `surplus` is therefore not to be considered part of the established text.
 
 For the use of this in a critical note, see [conjecture-removed](#conjecture-removed).
 
 ### Rules
 
-1. `<surplus>` **MUST** contain the removed text, and nothing but that.
+1. `surplus` **MUST** contain the removed text, and nothing but that.
 
 ### Example
 
@@ -446,11 +446,11 @@ In a processed text, this could for example result in the following text:
 
 ### Description
 
-`<sic>` is used to indicate that according to the best judgement of the editor the demarcated text is corrupt, and the editor does not know how to solve the problem satisfyingly. Notice that this does not mean that there is a passage that the editor is not able to read, nor that a gap is left in the text, nor a physical damage is in the manuscript, but that the text as transmitted is unsolvably incomprehensible.
+`sic` is used to indicate that according to the best judgement of the editor the demarcated text is corrupt, and the editor does not know how to solve the problem satisfyingly. Notice that this does not mean that there is a passage that the editor is not able to read, nor that a gap is left in the text, nor a physical damage is in the manuscript, but that the text as transmitted is unsolvably incomprehensible.
 
 ### Rules
 
-1. `<sic>` **MUST** contain the text considered to be corrupt.
+1. `sic` **MUST** contain the text considered to be corrupt.
 
 ### Example
 
