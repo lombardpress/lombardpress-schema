@@ -1487,7 +1487,7 @@ Any entry to the *apparatus fontium* is created with the `<cit>` element.
 
 `<bibl>` is reserved for the modern editor's attempt to encode a modern reference identification for the quotation. `<bibl>` is only allowed inside a `<cit>` wrapper.
 
-`<note>` tag can be used for writing any arbitrary note about the reference or quotation.
+`<note>` tag can be used for writing explanatory notes for the apparatus.
 
 In this way, the following scenarios are simple to encode:
 
@@ -1622,6 +1622,53 @@ The following example is expected to generate an *apparatus fontium* entry:
   <bibl>Genesis 1:1</bibl>
 </cit>
 ```
+
+## Notes
+
+### Description
+
+The `<note>` element is available for cases where the editor finds it necessary to give a prose discussion of the passage or sources. A limited set of inline elements are available for markup of the text. They can be used to give bibliographical references (`<bibl>`), quotes from the sources (`<quote>`), refer to words in the established text (`<mentioned>`) and references to other parts of the established text (`<ref>`). The `<ab>` can be used for separating the text into paragraph-like blocks.
+
+### Rules
+
+1. `<note>` **SHOULD** be placed in the last position within the `<cit>` entry.
+2. `<note>` **SHOULD** include an `@xml:lang` attribute.
+3. `<note>` **MUST** include either text nodes or `<ab>` elements as direct children.
+4. `<note>` **MAY** include the following elements: `<bibl>`, `<quote>`, `<mentioned>`, `<ref>`.
+4. `<note>` **MAY NOT** include `<p>` or `<div>` elements within it descendant nodes.
+
+### Examples
+
+The simple examples with very short notes are already given above, but to reiterate:
+```xml
+<cit>
+  <quote xml:id="quote1" ana="#gen1_1">In principio creavit Deus caelum</quote>
+  <note>I can't find this.</note>
+</cit>
+```
+
+A more complex example where most of the allowed elements are used could look like this:
+```xml
+sic, cum <name ref="#Aristotle">Philosophus</name> ponit
+<cit>
+  <quote type="paraphrase">
+    species abstractas a phantasmatibus intelligibiles
+  </quote>
+  <note>
+    <ab>
+      This is probably based on <bibl><title ref="#Arist.DA">De anima</title> 
+      III.8 432a8-9</bibl> cf. <bibl><name ref="#Aquinas">Aquinas</name>, <title
+      ref="#Aquin.SentDA">Sent. de anima</title> lib. 3, cap. 7, p.
+      236, ll. 72--89</bibl>. See also <bibl><title ref="#Aquin.SentDA">ibid.</title> 
+      lib. 3, cap. 4, p. 218, ll. 8--23 and p. 220, ll. 101--121.</bibl>
+    </ab>
+    <ab>
+      This statement is not reflected directly in the Aristotelian text ...
+    </ab>
+  </note>
+</cit>
+```
+
 
 ## Complex cases
 
