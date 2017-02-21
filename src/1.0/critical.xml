@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../sample/odd4odds.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../../sample/odd4odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xml:lang="en" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" >
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>LombardPress Customization File</title>
+        <author xml:id="JeffreyWitt">Jeffrey C. Witt</author>
+        <author xml:id="MichaelChristensen">Michael Stenskjær Christensen</author>
+        <author xml:id="NicolasVaughan">Nicolas Vaughan</author>
+      </titleStmt>
+      <publicationStmt>
+        <availability>
+          <p>[Statement of availability]</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Born Digital</p>
+      </sourceDesc>
+    </fileDesc>
+    <revisionDesc status="draft">
+      <change who="#JW" when="2012-05-08" n="0.0.0-dev"></change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>[One or more paragraphs describing the customization.]</p>
+      <!-- The <schemaSpec> element is in effect the root element for
+           the schema specification portion of the ODD. 
+              - @ident is required; it is allowed to be any name.
+              - @start says what element(s) are allowed as the root element
+                  of documents conforming to this schema.  -->
+      <schemaSpec ident="lombardpress-schema" start="TEI"
+                  source="http://www.tei-c.org/Vault/P5/3.0.0/xml/tei/odd/p5subset.xml">
+
+        <!-- Core Module -->
+        <moduleRef key="core"/>
+        
+        <!--  BEGIN adding schemaRef element until officiall adopted by TEI -->
+        <!-- this is temporary, it should be deleted once schemaRef is official added by TEI consortium -->
+        <elementSpec ident="schemaRef" mode="add">
+          <gloss>schemaRef</gloss>
+          <desc>A element used to identify the validating schema</desc>
+          <classes mode="replace">
+            <memberOf key="model.encodingDescPart"/>
+          </classes>
+          <content>
+            <rng:empty/>
+          </content>
+          <attList>
+            <attDef ident="n" mode="add" usage="req">
+              <datatype>
+                <rng:ref name="data.text"/>
+              </datatype>
+              <exemplum>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <schemaRef n="lbp-1.0.0-critical"/>
+                </egXML>
+              </exemplum>
+            </attDef>
+            <attDef ident="target" mode="add" usage="req">
+              <datatype>
+                <rng:ref name="data.text"/>
+              </datatype>
+              <exemplum>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <schemaRef target="url-of-validating-schema"/>
+                </egXML>
+              </exemplum>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <!-- END addition of schemaRef element -->
+        
+        
+        <!-- Begin modifications to del element -->
+        <elementSpec ident="del" module="core" mode="change">
+          <attList>
+            <attDef ident="rend" usage="rec" mode="change">
+              <valList type="semi" mode="add">
+                <valItem ident="strikethrough">
+                  <gloss>strikethrough</gloss>
+                  <desc>A deletion indicated by a line through the center of the text</desc>
+                </valItem>
+                <valItem ident="expunctuated">
+                  <gloss>expunctuated</gloss>
+                  <desc>A deletion indicated by dots underneath the text.</desc>
+                </valItem>
+                <valItem ident="expunctuation">
+                  <gloss>expunctuated</gloss>
+                  <desc>Alias of expunctuated: A deletion indicated by dots underneath the text</desc>
+                </valItem>
+                <valItem ident="blackout">
+                  <gloss>blacked out</gloss>
+                  <desc>A deletion indicated by blacking out the word or segment</desc>
+                </valItem>
+                <valItem ident="underline">
+                  <gloss>underline</gloss>
+                  <desc>A deletion indicated by underling the word or segment</desc>
+                </valItem>
+                <valItem ident="erasure">
+                  <gloss>erasure</gloss>
+                  <desc>Deletion by erasure</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <!-- end del element -->
+        
+        <!-- begin add element -->
+        <elementSpec ident="add" module="core" mode="change">
+          <attList>
+            <attDef ident="place" usage="rec" mode="change">
+              <valList type="semi" mode="add">
+                <valItem ident="margin">
+                  <gloss>margin</gloss>
+                  <desc>A generic place locator for an addition appearing in some margin</desc>
+                </valItem>
+                <valItem ident="margin-right">
+                  <gloss>margin-right</gloss>
+                  <desc>Indicates an addition in the margin to the right of the text in question</desc>
+                </valItem>
+                <valItem ident="margin-left">
+                  <gloss>margin-left</gloss>
+                  <desc>Indicates an addition in the margin to the left of the text in question</desc>
+                </valItem>
+                <valItem ident="margin-above">
+                  <gloss>margin-above</gloss>
+                  <desc>Indicates an addition in the margin to the above of the text in question</desc>
+                </valItem>
+                <valItem ident="margin-below">
+                  <gloss>margin-below</gloss>
+                  <desc>Indicates an addition in the margin to the below of the text in question</desc>
+                </valItem>
+                <valItem ident="above-line">
+                  <gloss>above-line</gloss>
+                  <desc>Indicates an addition inserted above the line in question</desc>
+                </valItem>
+                <valItem ident="below-line">
+                  <gloss>below-line</gloss>
+                  <desc>Indicates an addition inserted below the line in question</desc>
+                </valItem>
+                <valItem ident="in-line">
+                  <gloss>in-line</gloss>
+                  <desc>Indicates an addition inserted in the line</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <!-- end add element -->
+        
+        <!-- I don't think this is needed in the critial schema; but diplomatic schema can take a note marginal note
+        <elementSpec ident="note" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.placement"/>
+          </classes>
+          <attList>
+            <attDef ident="type" mode="change" usage="rec">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <constraintSpec ident="note-place-noplace" scheme="isoschematron">
+                <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
+                 <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='marginalNote']">
+                    <report test="not(./@place)">This is a marginal note. This means that it is a note that exist in the primary source. Therefore it has a physical location that needs to be recorded.</report>
+                  </rule>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='editorialNote']">
+                    <report test="./@place">This is an editorial note therefore no place attribute should be added.</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              
+              
+              <valList type="semi" mode="change">
+                <valItem ident="editorialNote">
+                  <gloss>Editorial Note</gloss>
+                  <desc>Any note supplied by modern editors not actually present in the primary source</desc>
+                </valItem>
+                <valItem ident="marginalNote">
+                  <gloss>Marginal Note</gloss>
+                  <desc>A note present in the manuscript witness itself, but clear meant as annotation to the actual text. This note may either be in the same hand as the text or supplied by a latter reader.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="hand" mode="add" usage="opt">
+              <gloss>hand</gloss>
+              <desc>hand responsible for marginal note</desc>
+              <datatype>
+                <rng:ref name="data.text"/>
+              </datatype>
+            </attDef>
+            
+          </attList>
+        </elementSpec>
+        -->
+
+        <moduleRef key="tei"/>
+
+        <!-- header module -->
+        <moduleRef key="header"/>
+
+
+        <!--
+          <elementSpec ident="category" module="header" mode="change">
+          <attList>
+            <attDef ident="xml:id" usage="req" mode="change"/>
+          </attList>
+        </elementSpec>
+        -->
+
+        <!-- text structure module -->
+        <moduleRef key="textstructure"/>
+
+        <!-- optional modules -->
+
+        <!-- linking module -->
+        <moduleRef key="linking"/>
+
+        <!-- Name and Date Module -->
+        <moduleRef key="namesdates"/>
+        
+        <!-- Text Criticism Module -->
+        <moduleRef key="textcrit"/>
+        
+        <elementSpec ident="rdg" module="textcrit" mode="change">
+          <attList>
+            <attDef ident="type" mode="change" usage="rec">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <!-- here are the rules for reading types -->
+              <constraintSpec ident="variation-absent-rule" scheme="isoschematron">
+                <desc>Requires an empty rdg element when rdg has type=variation-absent</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-absent']">
+                    <report test="./text()">This is a rdg type=variation-absent. The value of the rdg element cannot have any text nodes.</report>
+                  </rule>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-absent']">
+                    <report test="not(./preceding-sibling::tei:lem/node())">This is a rdg type=variation-absent. The preceding sibling lem must have a child node.</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="variation-present-rule" scheme="isoschematron">
+                <desc>Requires an empty lem element and rdg that is not empty when rdg has type=variation-present</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-present']">
+                    <report test="./preceding-sibling::tei:lem/node()">This is a rdg type=variation-present. The sibling lem cannot have any text nodes.</report>
+                  </rule>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-present']">
+                    <report test="not(./node())">This is a rdg type=variation-present. The rdg element must have a child node</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="correction-addition-rule" scheme="isoschematron">
+                <desc>Requires that rdg have a add child element when rdg has type=correction-addition</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-addition']">
+                    <report test="not(./tei:add)">This is a rdg type=correction-addition. The rdg must contain an add element</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="correction-deletion-rule" scheme="isoschematron">
+                <desc>Requires that rdg have a del child element when rdg has type=correction-deletion</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-deletion']">
+                    <report test="not(./tei:del)">This is a rdg type=correction-deletion. The rdg must contain an del element</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="correction-substitution-rule" scheme="isoschematron">
+                <desc>Requires that rdg have a del child element when rdg has type=correction-substitution</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-substitution']">
+                    <report test="not(./tei:subst)">This is a rdg type=correction-substitution. The rdg must contain an subst element</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              
+              <valList type="semi" mode="add">
+                <!-- variation rdg types -->
+                <valItem ident="variation-absent">
+                  <gloss>variation-absent</gloss>
+                  <desc>indicates that the witness in question lacks the designated lemma; 
+                  often rendered as "omit." or "omitted"</desc>
+                  
+                </valItem>
+                <valItem ident="variation-present">
+                  <gloss>variation-present</gloss>
+                  <desc>indicates that the witness in question contains a word 
+                    or phrase not included in the critical text.</desc>
+                </valItem>
+                <valItem ident="variation-substance">
+                  <gloss>variation-substance</gloss>
+                  <desc>This is the default variation type, for a simple variation of 
+                    words or phrases between witnesses.</desc>
+                </valItem>
+                <valItem ident="variation-orthography">
+                  <gloss>variation-orthography</gloss>
+                  <desc>Indicates a simple orthographic variation.</desc>
+                </valItem>
+                <!-- variation correction types -->
+                <valItem ident="correction-addition">
+                  <gloss>addition</gloss>
+                  <desc>indicates that the current lemma was added to the text by some sort of external imposition, either by the same scribe or a later scribe. There are two options here. If the lemma is empty this indicates that, at this point, the witness in question includes a word or phrase that was chosen not to be included the edited text. If a lemma is included then the addition means that the word identified in the lemma is present in the witness, but is inserted in some way (either in the margin or inter-linearly).</desc>
+                </valItem>
+                <valItem ident="correction-deletion">
+                  <gloss>included but then deleted</gloss>
+                  <desc>indicates that a segment of text was included in the text but then deleted. In such instances the lemma will most likely be left empty.</desc>
+                </valItem>
+                <valItem ident="correction-substitution">
+                  <gloss>Correction Substitution</gloss>
+                  <desc>Indicates that the witness in question has deleted a word 
+                    and then added a word to replaces the deletion.</desc>
+                </valItem>
+                <!-- correction-cancellation types -->
+                <valItem ident="deletion-of-addition">
+                  <gloss>Correction cancellation: deletion of addition</gloss>
+                  <desc>Indicates that a witness has deleted (or attempted to undo) a previous addition</desc>
+                </valItem>
+                <valItem ident="deletion-of-deletion">
+                  <gloss>Correction cancellation: deletion of deletion</gloss>
+                  <desc>Indicates that a witness has deleted (or attempted to undo) a previous deletion</desc>
+                </valItem>
+                <valItem ident="deletion-of-substitution">
+                  <gloss>Correction cancellation: deletion of substitution</gloss>
+                  <desc>Indicates that a witness has deleted (or attempted to undo or cancel) a previous substitution</desc>
+                </valItem>
+                <valItem ident="substitution-of-addition">
+                  <gloss>Correction cancellation: substitution of addition</gloss>
+                  <desc>Indicates that a witness has is not only cancelling an addition (as in the case of deletion-of-addition) 
+                    but is also supplying a new word or phrase to take the old addition's place.</desc>
+                </valItem>
+                <!-- conjecture types -->
+                <valItem ident="conjecture-supplied">
+                  <gloss>Conjecture Supplied</gloss>
+                  <desc>According to the the judgement of the editor, an expression is missing from the transmitted text.</desc>
+                </valItem>
+                <valItem ident="conjecture-removed">
+                  <gloss>Conjecture Removed</gloss>
+                  <desc>A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.</desc>
+                </valItem>
+                <valItem ident="conjecture-corrected">
+                  <gloss>Conjecture Corrected</gloss>
+                  <desc>Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.</desc>
+                </valItem>
+              </valList>
+              <!-- example of adding code examples 
+              <exemplum>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <app>
+                    <lem>fides</lem>
+                    <rdg with="#V" type="corrDeletion">
+                      <corr>
+                        <del>fides</del>
+                      </corr>
+                    </rdg>
+                  </app>
+                </egXML>
+              </exemplum>
+              -->
+            </attDef>
+            
+          </attList>
+          
+        </elementSpec>
+
+        <!-- The lem element -->
+        <elementSpec ident="lem" module="textcrit" mode="change">
+          <attList>
+            <attDef ident="type" mode="change" usage="opt">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+
+              <valList type="semi" mode="add">
+                <!-- conjecture types -->
+                <valItem ident="conjecture-supplied">
+                  <gloss>Conjecture Supplied</gloss>
+                  <desc>According to the the judgement of the editor, an expression is missing from the transmitted text.</desc>
+                </valItem>
+                <valItem ident="conjecture-removed">
+                  <gloss>Conjecture Removed</gloss>
+                  <desc>A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.</desc>
+                </valItem>
+                <valItem ident="conjecture-corrected">
+                  <gloss>Conjecture Corrected</gloss>
+                  <desc>Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+
+          </attList>
+
+        </elementSpec>
+
+
+        <!-- Primary Source Transcription Module -->
+        <moduleRef key="transcr"/>
+
+        <!-- Ms Description Module -->
+        <!-- not sure what elements need here; but I will probably need a lot more elements for the official bibliographyy of the mansucriopt witnesses -->
+        <moduleRef key="msdescription"/>
+
+        <!-- Character and Glyph Documentat Module -->
+        <!-- may not be necessary once <pc> element replaces glyps -->
+        <moduleRef key="gaiji"/>
+
+        <!-- analysis module -->
+        <moduleRef key="analysis"/>
+
+<!-- attribute class modifications -->
+        
+        <classSpec ident="att.placement" type="atts" mode="change">
+          <attList>
+            <attDef ident="place" mode="change" usage="rec">
+              <datatype>
+                <rng:ref name="data.enumerated"/>
+              </datatype>
+              <valList type="semi" mode="replace">
+                <valItem ident="aboveLine">
+                  <gloss>Above Line</gloss>
+                  <desc>Inter-linearly, above the line in which it is being inserted</desc>
+                </valItem>
+                <valItem ident="margin-left">
+                  <gloss>Left Margin</gloss>
+                  <desc>In the left margin of the page</desc>
+                </valItem>
+                <valItem ident="margin-right">
+                  <gloss>Right Margin</gloss>
+                  <desc>In the right margin of the page</desc>
+                </valItem>
+                <valItem ident="margin-bottom">
+                  <gloss>Bottom Margin</gloss>
+                  <desc>In the bottom margin of the page</desc>
+                </valItem>
+                <valItem ident="margin-top">
+                  <gloss>Top Margin</gloss>
+                  <desc>In the top margin of the page</desc>
+                </valItem>
+                <valItem ident="in-line">
+                  <gloss>In line</gloss>
+                  <desc>the addition is made in the line itself</desc>
+                </valItem>
+                <!-- TODO: do we need to support this -->
+                <valItem ident="in-space">
+                  <gloss>In space</gloss>
+                  <desc>In a predefined space left for an addition, perhaps a space left by another scribe.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </classSpec>
+
+
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>
