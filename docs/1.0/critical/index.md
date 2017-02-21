@@ -105,8 +105,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 #### Rules
 
 1. `editionStmt` **MUST** contain an `edition` element.
-2. `edition@n` **MUST** be `n=X.X.X-dev`; usually, when starting a new document it should be listed as `n=0.0.0-dev`
-3. `edition` **MUST** contain a `date` element
+2. `edition@n` **MUST** be `n=X.X.X-dev`; usually, when starting a new document it should be listed as `n=0.0.0-dev`.
+3. `edition` **MUST** contain a `date` element.
   * **MUST** include a machine-formatted `date@when` element corresponding to the date in the text node.
 4. `edition` **SHOULD NOT** contain any other children besides the date.
 
@@ -129,11 +129,11 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
-1. **MUST** contain an `authority` element.
+1. `publicationStmt` **MUST** contain an `authority` element.
   * We suggest to let the `authority` state the entity that makes the creation of the current document possible or the context where it belongs. See examples below.
-2. The `authority` tag **MAY** contain a `ref` to provide an external link to the authority entity.
-3. **MUST** contain `availability`
-4. `availability` **MUST** contain `@status`
+2. `authority`  **MAY** contain a `ref` to provide an external link to the authority entity.
+3. **MUST** contain `availability`.
+4. `availability` **MUST** contain `@status`.
 5. `availability` **SHOULD** contain a `p` describing the license under which the edition is published.
 
 #### Examples
@@ -184,12 +184,12 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
-1. `sourceDesc` **MUST** contain either a `listWit` or `listBibl` or both
-2. `listWit` **MUST** contain at least one `wit`
-3. `listBibl` **MUST** contain at least on `bibl`
-4. `witness` **MUST** have a `@xml:id`
+1. `sourceDesc` **MUST** contain either a `listWit` or `listBibl` or both.
+2. `listWit` **MUST** contain at least one `wit`.
+3. `listBibl` **MUST** contain at least on `bibl`.
+4. `witness` **MUST** have a `@xml:id`.
 5. `witness` **SHOULD** have a `n` giving a short id of the witness.
-  * The value of `@n` **SHOULD** correspond to the short id for the manuscript in the SCTA database. If the value is not known, leave it out. It will be added later during processing.
+  * The value of `@n` **SHOULD** correspond to the short id for the manuscript or codex in the SCTA database. If the value is not known, leave it out. It will be added later during processing.
 6. For adding `handDesc`, follow TEI guidelines.
 
 #### Examples
@@ -266,16 +266,16 @@ The individual editor would usually not be responsible for maintaining the `revi
 ### Rules
 
 1. `revisionDesc` **SHOULD** be stated.
-2. `revisionDesc` **MUST** contain `@status`
-3. `revisionDesc` **MUST** contain `listChange`
-4. `listChange` **MUST** contain at least one `change`
-5. `change` **MUST** contain `@when`
+2. `revisionDesc` **MUST** contain `@status`.
+3. `revisionDesc` **MUST** contain `listChange`.
+4. `listChange` **MUST** contain at least one `change`.
+5. `change` **MUST** contain `@when`.
 6. `change` **MUST** contain `@status`. Possible values of the attribute are:
   * private-draft
   * public-draft (alias: draft)
   * out-for-review
   * peer-reviewed (alias: published)
-7. `change` **MUST** contain `@n`
+7. `change` **MUST** contain `@n`.
 8. `change` **MUST** contain either `@corresp` pointing to a description of the change in another file or a `p` describing the change.
 
 ### Examples
@@ -312,9 +312,12 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ## Rules
 
-* `text` **MUST** take an `@type` attribute the value of which is "critical"
-  - the possible values for `text@type` are "critical", "diplomatic", and "translation"
-* `text` **SHOULD** take an `@xml:lang` attribute indicating the dominant language of the edition, usually `la` for "latin"
+1. `text` **SHOULD** take an `@type` attribute the value of which is "critical".
+  * The possible values for `text@type` are:
+    * critical
+    * diplomatic
+    * translation
+2. `text` **SHOULD** take an `@xml:lang` attribute indicating the dominant language of the edition, usually `la` for "latin".
 
 ## front
 
@@ -324,8 +327,8 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ### Rules
 
-* `front` **MUST** take a `div` with the `xml:id="starts-on"`
-  - The content of this div should only be `pb` and `cb` elements indicating the page and column on which the text begins in the different witnesses.
+1. `front` **MUST** take a `div` with the `xml:id="starts-on"`.
+  * The content of this div should only be `pb` and `cb` elements indicating the page and column on which the text begins in the different witnesses.
 
 ### Examples
 
@@ -348,8 +351,8 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ### Rules
 
-* `body` **MUST** immediately follow `front`
-* `body` **MUST** take a `div` as an immediate child
+1. `body` **MUST** immediately follow `front`.
+2. `body` **MUST** take a `div` as an immediate child.
 
 ## div
 
@@ -359,9 +362,9 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ### Rules
 
-* There **MUST** be one `div` in each edition as a direct child of `body`
-* `div` **MAY** only contain `head` and `p` as children
-* `div` **MAY NOT** contain any text nodes as direct children
+1. There **MUST** be one `div` in each edition as a direct child of `body`.
+2. `div` **MAY** only contain `head` and `p` as children.
+3. `div` **MAY NOT** contain any text nodes as direct children.
 
 ## head
 
@@ -369,12 +372,12 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ### Rules
 
-* `head` **MUST** be an immediate child of a `div`
-* `head` **MUST** precede `p` elements in parent `div`
-* `head` **MAY** take an `@type` attribute
-  - `@type` values include:
-    - subtitle
-    - question-title
+1. `head` **MUST** be an immediate child of a `div`.
+2. `head` **MUST** precede `p` elements in parent `div`.
+3. `head` **MAY** take an `@type` attribute.
+  * `@type` values include:
+    * subtitle
+    * question-title
 
 ## p
 
@@ -384,8 +387,8 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ### Rules
 
-* all text nodes of the edition **MUST** be descendants of a `p` element
-* `p` **MUST** be an immediate child of a `div`
+1. All text nodes of the edition, other than those that are descendants of `head` element, **MUST** be descendants of a `p` element.
+2. `p` **MUST** be an immediate child of a `div`.
 
 # Apparatus Criticus
 
@@ -399,7 +402,7 @@ The general rules of any `app` element are:
 2. `app` **MUST** contain at least one `rdg` element.
 3. `app` **MAY** contain a `note` element.
 4. `app` **MAY** contain a `witDetail` element.
-  * the `witDetail` **MUST** take a pointer `@wit`
+  * `witDetail` **MUST** take a pointer `@wit`.
 5. `lem` **MAY** be empty.
 6. If `lem` is empty, it **MUST** contain the `@n` element.
 7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
@@ -465,7 +468,7 @@ This kind of variant is most commonly seen in an apparatus as something like:
 
 #### Rules
 
-1. It **MUST** have `lem`.
+1. `app` **MUST** have `lem`.
 2. `lem` **MAY NOT** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
 3. `rdg` **MAY** have `@type=variation-substance`.
   * The requirement for `@type` is only a "**MAY**" because this `@type` is so common and can be inferred by a processor from the following encoding pattern. Thus it is not necessary for an editor to state it on every reading.
@@ -477,7 +480,7 @@ This kind of variant is most commonly seen in an apparatus as something like:
 
 ```xml
 <app>
-  <lem wit="#B">fides</lem>
+  <lem wit="#B #C #D">fides</lem>
   <rdg wit="#A" type="variation-substance">spes</rdg>
 </app>
 
@@ -499,12 +502,12 @@ The `variation-orthography` class is meant to identify a class of variant instan
 
 #### Rules
 
-1. It **MUST** have `lem`.
+1. `app` **MUST** have `lem`.
 2. `lem` **MAY** have a `@wit` or `@source` when it is contained by no other `app` element. It **MUST** have `@wit` when it is contained by a parent `app` element.
 3. `rdg` **MUST** have `@type=variation-orthography`.
-  * The requirement for `@type` is "**MUST**" because without the `@type` value, the encoding pattern is indistinguishable from the `@type="variation-substance` encoding pattern.
+  * The requirement for `@type` is "**MUST**" because without the `@type` value, the encoding pattern is indistinguishable from the `@type="variation-substance"` encoding pattern.
 4. `rdg` text node **MUST** be present.
-5. `rdg` **MUST** have either @wit or @source.
+5. `rdg` **MUST** have either `@wit` or `@source`.
 
 #### Example
 
@@ -526,8 +529,8 @@ est
 
 #### Rules
 
-1. It **MUST** have a `lem`.
-2. The `lem` **MUST** not be empty
+1. `app` **MUST** have a `lem`.
+2. `lem` **MUST** not be empty.
 3. `rdg` **MUST** have `@type=variation-inversion`.
 4. `rdg` text node **MUST** be present.
 5. `rdg` **MUST** have either `@wit` or `@source`.
@@ -573,7 +576,7 @@ The `variation-present` type should be used to indicate that a word or phrase is
 
 #### Rules
 
-1. It **MUST** have `lem`.
+1. `app` **MUST** have `lem`.
 2. `lem` **MUST** be an empty node.
   * As stated above in the general rules, when a `lem` is empty it should have an `@n="suggested-lemma-value"` attribute, the value of which should be the word to appear in the critical text that immediately proceeds the `app`.
 3. `lem` **MAY** have `@wit` or `@source` attribute.
@@ -581,7 +584,6 @@ The `variation-present` type should be used to indicate that a word or phrase is
 5. `rdg` **MUST** have `@type=present`.
 7. `rdg` **MAY** include `@cause` with the following available enumerated values:
   * `repetition`
-  * ...
 
 #### Examples
 
@@ -624,19 +626,18 @@ A word or phrase is absent from a witness but present in the transmitted text. T
 
 #### Rules
 
-1. The `lem` **MUST** be present.
-2. The `lem` **MUST** have a text node.
-3. The `lem` **MAY** include `@wit` or `@source` attributes.
-4. The `rdg` **MUST** include `@wit` or `@source` attributes.
-5. The `rdg` **MUST** have no descendant text nodes.
-6. The `rdg` **MAY** have a child `space` element.
+1. `app` **MUST** have `lem`.
+2. `lem` **MUST** have a text node.
+3. `lem` **MAY** include `@wit` or `@source` attributes.
+4. `rdg` **MUST** include `@wit` or `@source` attributes.
+5. `rdg` **MUST** have no descendant text nodes.
+6. `rdg` **MAY** have a child `space` element.
   * A `space` may be used when attempting to indicate a space left by the scribe intended to be filled in later.
-6. The `rdg` **SHOULD** include `@type=variation-absent`.
+6. `rdg` **SHOULD** include `@type=variation-absent`.
   * The reason this is not a **MUST** is because the pattern of a present `lem` with a text value and a present but empty `rdg` element is a unique pattern that corresponds to the `variation-absent` type.
-7. The `rdg` **MAY** include `@type=cause` with the following available enumerated values:
+7. `rdg` **MAY** include `@cause` with the following available enumerated values:
   * `homeoteleuton`
   * `homeoarchon`
-  * ...
 
 
 #### Examples
@@ -697,17 +698,18 @@ fides
 
 ### variation-choice
 
-The `variation-choice` type can be used when a single witness (however the concept of witness is defined) contains two or more parallel readings, and it is not clear which reading was preferred by the scribe (in which case it would be a correction). The distinction between the two can be difficult, and one editor might feel convinced that the text contains a correction, while another might see it as two readings of potentially equivalent weight or value.
+The `variation-choice` type can be used when a single witness (however the concept of witness is defined) contains two or more parallel readings, and it is not clear which reading was preferred by the scribe. The distinction between this case and a correction can be difficult to discern, and one editor might feel convinced that the text contains a correction, while another might see it as two readings of potentially equivalent weight or value.
 
-The `seg` elements are used to distinguish the different readings. If the editor wishes to indicate the chronological order of the readings, he may
+The `seg` elements are used to distinguish the different readings. If the editor wishes to indicate the chronological order of the readings, she may do so by adding the `@n` attribute as described below.
 
 #### Rules
 
-- `rdg` **MUST** contain a `choice` element.
-- `choice` **MUST** contain two or more `seg` elements.
-- `seg` elements **MAY** use `@n` to indicate their relative order of the readings, when they are on the same baseline.
-- A `seg` element **MAY** contain an `add` element to indicate whether and where the reading was added, when it is not on the baseline of the text.
-- `seg` or `add` **MAY** use `@hand` to indicate an alternative scribe.
+1. `app` **MUST** have `lem`.
+2. `rdg` **MUST** contain a `choice` element.
+3. `choice` **MUST** contain two or more `seg` elements.
+4. `seg` elements **MAY** use `@n` to indicate their relative order of the readings, when they are on the same baseline.
+5. A `seg` element **MAY** contain an `add` element to indicate whether and where the reading was added, when it is not on the baseline of the text.
+6. `seg` or `add` **MAY** use `@hand` to indicate an alternative scribe.
 
 #### Examples
 
@@ -765,7 +767,7 @@ An apparatus representation of this could look like this:
 
 A correction is meant as any reading where it is assumed that the witness corrects a perceived error in the transmitted text.
 
-This is *not* used to represent corrections made by the edition. That is reserved for the conjecture class [below](#conjecture).
+This is *not* used to represent corrections made by the edition. These kinds of corrections are reserved for the conjecture class [below](#conjecture).
 
 ### correction-addition
 
@@ -775,14 +777,14 @@ This indicates that a scribe (either the original or a later scribe) has realize
 
 #### Rules
 
-1. It **MUST** have `lem`.
-2. The `lem` **MAY** be empty.
+1. `app` **MUST** have `lem`.
+2. `lem` **MAY** be empty.
   * In this case, an editor may not want to include the `correction-addition` in the critical text, but still indicate that the correction has been made in a witness. This is an instance where the `correction-addition` is also taking on the form parallel to that of a `variation-present`. In such a case the additional `varation-present` type can be inferred from the empty lemma.
-3. The `rdg` **SHOULD** have `@type="correction-addition"`.
-4. The `rdg` **MUST** contain an `add` element.
-5. The `rdg` **MUST NOT** contain any content outside of the `add` element.
-5. The `add` **MUST** have a `@place` attribute.
-6. The `add` **MAY** have a `@hand` attribute.
+3. `rdg` **SHOULD** have `@type="correction-addition"`.
+4. `rdg` **MUST** contain an `add` element.
+5. `rdg` **MUST NOT** contain any content outside of the `add` element.
+5. `add` **MUST** have a `@place` attribute.
+6. `add` **MAY** have a `@hand` attribute.
 
 #### Examples
 
@@ -828,16 +830,16 @@ This indicates that a scribe (either the original or a later scribe) has realize
 
 #### Rules
 
-1. It **MUST** have a `lem`.
-2. The `lem` **MAY** be empty.
+1. `app` **MUST** have a `lem`.
+2. `lem` **MAY** be empty.
   * In most cases, the `lem` will be empty, since it is normal to note a deletion of word that does not appear in the critical text. However, an editor might want to include a word in the critical text that has been deleted in one or more witnesses. In this case, the `lem` **MUST NOT** be empty.
-3. The `rdg` **SHOULD** have `@type="correction-deletion"`.
-4. The `rdg` **MUST** contain an `del` element.
-5. The `rdg` **MUST NOT** contain any content outside of the `del` element.
-5. The `del` **MAY** have a `@place` attribute.
-  * generally, it is assumed that a deletiong happines `in-line`. A deletion of something not `in-line` should generally be treated as a `correction-cancellation`, [see below](#correction-cancellation).
-6. The `del` **SHOULD** have a `@rend` attribute.
-6. The `del` **MAY** have a `@hand` attribute.
+3. `rdg` **SHOULD** have `@type="correction-deletion"`.
+4. `rdg` **MUST** contain a `del` element.
+5. `rdg` **MUST NOT** contain any content outside of the `del` element.
+5. `del` **MAY** have a `@place` attribute.
+  * Generally, it is assumed that a deletion happens `in-line`. A deletion of something not `in-line` should generally be treated as a `correction-cancellation`. [See below](#correction-cancellation).
+6. `del` **SHOULD** have a `@rend` attribute.
+6. `del` **MAY** have a `@hand` attribute.
 
 #### Examples
 
@@ -883,18 +885,18 @@ This indicates that a scribe (either the original or a later scribe) wants to co
 
 #### Rules
 
-1. It **MUST** have a `lem`.
-2. The `lem` **MAY** be empty.
+1. `app` **MUST** have a `lem`.
+2. `lem` **MAY** be empty.
   * In most cases the lemma would be included, but the editor might want to include the substitution made in the witness without including either of the possible readings in the edited text.
-3. It **MUST** have a `rdg`.
+3. `app` **MUST** have a `rdg`.
 4. `rdg` **MUST** have a `@wit`.
 5. `rdg` **SHOULD** have `@type="correction-substitution"`.
 6. `rdg` **MUST** contain a `subst` element as a direct child.
-7. The `subst` element **MUST** contain a `del` and a `add` element.
+7. `subst` **MUST** contain a `del` and a `add` element.
 8. `subst` **MUST NOT** contain any nodes other than the `del` and `add` elements.
 9. The smallest unit of substitution **MUST** be a word.
-10. The `add` **MAY** have a `@place`.
-11. The `del` **MAY** have a `@rend`.
+10. `add` **MAY** have a `@place`.
+11. `del` **MAY** have a `@rend`.
 12. A `@hand` attribute **MAY** be placed on either the `subst` element or on the `add` and `del` elements.
 
 #### Extended Commentary
@@ -937,7 +939,7 @@ It is true that with something like
 </app>
 ```  
 
-we certainly sacrifice some specificity about how the correction was made (namely, by simply adding an "s" rather that crossing out the whole word and replacing it with the new word). However, we gain considerable clarity about the meaning of the correction.
+We certainly sacrifice some specificity about how the correction was made (namely, by simply adding an "s" rather than crossing out the whole word and replacing it with the new word). However, we gain considerable clarity about the meaning of the correction.
 
 **In sum**: The problem we face with the language of "addition, correction, substitution" etc. is that it becomes tempting to record two distinct types of phenomena: 1) the ultimate meaning of the correction and 2) the material way in which that correction was made.
 
@@ -947,7 +949,7 @@ By adding "s" the scribe, did not meant to simply add an "s", but rather meant t
 
 In its rendering, it looks equivalent to the addition of a missing word or letter, but the effect or meaning of the correction is to substitute one word with another.
 
-In our view, complex detail about a how correction was precisely made is best left recorded in a `@witDetail` and in an accompanying diplomatic transcription of the witness.
+In our view, complex detail about a how correction was precisely made is best left recorded in a `witDetail` ([see below](#witDetail)) and in an accompanying diplomatic transcriptions of the witness.
 
 #### Examples
 
@@ -1012,10 +1014,10 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 
 #### Rules
 
-1. See the above rules for `correction-substitution`
-2. the `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. This is necessary for proper processing when the `add` element contains more than two words.
-  - The `@n` indicates the relative order of the segments *after* the transposition has taken place.
-  - This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
+1. See the above rules for `correction-substitution`.
+2. The `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. This is necessary for proper processing when the `add` element contains more than two words.
+  * The `@n` indicates the relative order of the segments *after* the transposition has taken place.
+  * This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
 
 #### Examples
 
@@ -1071,8 +1073,8 @@ A cancellation is a correction of a correction. This gives us nine theoretical t
 
 #### Rules
 
-1. `rdg` **MUST** take `@type=<value-of-cancellation-type>`
-2. children of `rdg` must follow the logic of one of 4 accepted patterns described in the examples below.
+1. `rdg` **MUST** take `@type=<value-of-cancellation-type>`.
+2. Children of `rdg` must follow the logic of one of 4 accepted patterns described in the examples below.
 
 #### Examples
 
@@ -1148,9 +1150,9 @@ Notice this reading type is only relevant if a note in the apparatus is desired 
 
 #### Rules
 
-1. Either `lem` or a `rdg` **MUST** contain `@type="conjecture-supplied"`.
-2. The `lem` or `rdg` element **MUST** contain a `supplied` element as its first child.
-3. The `supplied` element **MUST** contain the added text.
+1. Either `lem` or `rdg` **MUST** contain `@type="conjecture-supplied"`.
+2. `lem` or `rdg` element **MUST** contain a `supplied` element as its first child.
+3. `supplied` element **MUST** contain the added text.
 
 #### Examples
 
@@ -1220,9 +1222,9 @@ A word or phrase is transmitted in some or all of the textual tradition, but the
 
 #### Rules
 
-1. Either `lem` or a `rdg` **MUST** contain `@type="conjecture-removed"`.
-2. The `lem` or `rdg` element **MUST** contain a `surplus` element as its first child.
-3. The `surplus` element **MUST** contain the removed text.
+1. Either a `lem` or a `rdg` **MUST** contain `@type="conjecture-removed"`.
+2. `lem` or `rdg` element **MUST** contain a `surplus` element as its first child.
+3. `surplus` element **MUST** contain the removed text.
 
 #### Examples
 
@@ -1270,9 +1272,9 @@ Parts of all of the textual tradition supports one reading, but an editor or sch
 
 #### Rules
 
-1. Either `lem` or a `rdg` **MUST** contain `@type="conjecture-corrected"`.
-2. The `lem` or `rdg` element **MUST** contain a `corr` element as its first child.
-3. The `corr` element **MUST** contain the corrected text.
+1. Either a `lem` or a `rdg` **MUST** contain `@type="conjecture-corrected"`.
+2. `lem` or `rdg` element **MUST** contain a `corr` element as its first child.
+3. `corr` element **MUST** contain the corrected text.
 
 #### Examples
 
@@ -1319,9 +1321,9 @@ While parallel-segmentation encoding comes with a number of advantages, an edito
 
 #### Rules
 
-1. all connected `apps` **MUST** have an `@xml:id`
+1. All connected `apps` **MUST** have an `@xml:id`.
 2. The first `app` **MUST** contain a `@next` pointing to the next connected `app` element.
-3. the last `app` **MUST** contain a `@prev` pointing to the last connected `app`
+3. The last `app` **MUST** contain a `@prev` pointing to the last connected `app`.
 
 #### Examples
 
@@ -1442,19 +1444,21 @@ This would likely be rendered as:
 
 > 10 fides] *om.* V
 
-## WitDetail
+## witDetail
 
 ### Description
 
-Under normal circumstances the processor will generate, from the above described `rdg` types, text describing the particular reading. But a reading might represent a certain situation that the editor would like to described, but is not handled by the processor. In that case the `witDetail` is handy (and preferred to resorting to the use of `rdg` `@type` "manual"), as its content should be added by the processor after the standard text of the reading type, but before the witness siglum.
+Under normal circumstances the processor will generate, from the above described `rdg` types, text describing the particular reading. But a reading might represent a certain situation that the editor would like to describe, but is not handled by the processor. In that case the `witDetail` is handy (and preferred to resorting to the use of `rdg@type="manual"`), as its content should be added by the processor after the standard text of the reading type, but before the witness siglum.
 
 ### Rules
 
-* `witDetail` **MAY** take as children only text nodes and the `mentioned` element.
-* All references to the content of the established text or witness within `witDetail` should be wrapped in a `mentioned` element.
-* `witDetail` **MUST** have an `@wit` that points to the reading associated with this `witDetail`
-  * `witDetail` information should target only one reading. General notes meant to offer detail or information about the entire apparatus should a `note` element that should appear at the end of the `app`
-* For ease of processing and clarity, `witDetail` elements should come immediately after the `rdg` with which it is associated.
+1. The `witDetail` **MAY** take as children only text nodes and the `mentioned` element.
+2. All references to the content of the established text or witness within `witDetail` should be wrapped in a `mentioned` element.
+3. The `witDetail` **MUST** have an `@wit` that points to the reading associated with this `witDetail`.
+  * The `witDetail` information should target only one reading. General notes meant to offer detail or information about the entire apparatus should be included in a `note` element which should appear at the end of the `app`.
+4. For ease of processing and clarity, `witDetail` elements should come immediately after the `rdg` with which it is associated.
+5. The `witDetail` **SHOULD** include an `@xml:lang`.
+6. The `witDetail` **SHOULD** be longer than 100 words, since it is expected that this note will be included in a printed *apparatus criticus*. Longer notes should be included in an `app/note`.
 
 ### Example
 
@@ -1465,7 +1469,7 @@ Under normal circumstances the processor will generate, from the above described
   <witDetail wit="#V">cum 3 litteris rasibus</witDetail>
 </app>
 ```
-A processor could render this as follows
+A processor could render this as follows:
 
 > quae ] conj., q *cum 3 litteris rasibus* V
 
@@ -1477,11 +1481,11 @@ The `note` element used within the app is the appropriate place for an extended 
 
 ### Rules
 
-* `note` **SHOULD** be placed in the last position within the `app` entry, after all other `rdgs` and `witDetail`
-* `note` **SHOULD** include an `@xml:lang` attribute
-* `note` **MUST** include either text nodes or `ab` elements as direct children
-* Within `note`, in order to segmenting text into 2 or more conceptual `ab` elements **MUST** be used.
-* `note` **MAY NOT** include `p` or `div` elements within it descendant nodes.
+1. `note` **SHOULD** be placed in the last position within the `app` entry, after all other `rdgs` and `witDetail`.
+2. `note` **SHOULD** include an `@xml:lang` attribute.
+3. `note` **MUST** include either text nodes or `ab` elements as direct children.
+4. Within `note`, in order to segment the text into 2 or more conceptual parts, the `ab` element **MUST** be used.
+5. `note` **MAY NOT** include `p` or `div` elements within it descendant nodes.
 
 ### Examples
 
@@ -1518,21 +1522,15 @@ Or
 
 Any entry to the *apparatus fontium* is created with the `<cit>` element.
 
-`<ref>` encodes the reference made by the original author.
+`<ref>` encodes the reference made by the original author. `<quote>` encodes the original quotation. `<bibl>` is reserved for the modern editor's attempt to encode a modern reference identification for the quotation. `<bibl>` is only allowed inside a `<cit>` wrapper. `<bibl>` should only contain one reference, as it is considered *the* reference object for the `<cit>` entry. `<note>` tag can be used for writing explanatory notes for the apparatus.
 
-`<quote>` encodes the original quotation.
-
-`<bibl>` is reserved for the modern editor's attempt to encode a modern reference identification for the quotation. `<bibl>` is only allowed inside a `<cit>` wrapper. `<bibl>` should only contain one reference, as it is considered *the* reference object for the `<cit>` entry.
-
-`<note>` tag can be used for writing explanatory notes for the apparatus.
-
-In this way, the following scenarios are simple to encode:
+In this way, the following scenarios are fairly simple to encode:
 
 1. A reference to a passage that is not quoted.
 2. A quotation without any original reference.
 3. A quotation with an original reference.
 
-In the following sections examples of those scenarios are given.
+In the following sections, examples of those scenarios are given.
 
 ## Rules
 
@@ -1571,8 +1569,8 @@ A quote, following the TEI guidelines, is intended to identify anything that is 
 
 ### Rules
 
-1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of an `cit` element and thus not appear in the *apparatus fontium*.
-2. `quote` **MAY** be the immediate child of a `cit` element thus appear in the *apparatus fontium*.
+1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of a `cit` element. In such a case it is generally expect that it would not appear in the *apparatus fonitum*.
+2. `quote` **MAY** be the immediate child of a `cit` element. In such a case, the quote is expected to appear in the *apparatus fontium*.
 3. `quote` **MAY** contain `seg` elements.
   * This would be used to indicate segments of a quote that are interrupted by an *inquit*.
   * Note that this can also be encoded by use of the `@next` and `@prev` attributes. See the examples below.
@@ -1669,11 +1667,11 @@ The `<note>` element is available for cases where the editor finds it necessary 
 
 ### Rules
 
-1. `<note>` **SHOULD** be placed in the last position within the `<cit>` entry.
-2. `<note>` **SHOULD** include an `@xml:lang` attribute.
-3. `<note>` **MUST** include either text nodes or `<ab>` elements as direct children.
-4. `<note>` **MAY** include the following elements: `<bibl>`, `<quote>`, `<mentioned>`, `<ref>`.
-4. `<note>` **MAY NOT** include `<p>` or `<div>` elements within it descendant nodes.
+1. `note` **SHOULD** be placed in the last position within the `<cit>` entry.
+2. `note` **SHOULD** include an `@xml:lang` attribute.
+3. `note` **MUST** include either text nodes or `<ab>` elements as direct children.
+4. `note` **MAY** include the following elements: `<bibl>`, `<quote>`, `<mentioned>`, `<ref>`.
+4. `note` **MAY NOT** include `<p>` or `<div>` elements within it descendant nodes.
 
 ### Examples
 
@@ -1694,10 +1692,10 @@ sic, cum <name ref="#Aristotle">Philosophus</name> ponit
   </quote>
   <note>
     <ab>
-      This is probably based on <bibl><title ref="#Arist.DA">De anima</title> 
+      This is probably based on <bibl><title ref="#Arist.DA">De anima</title>
       III.8 432a8-9</bibl> cf. <bibl><name ref="#Aquinas">Aquinas</name>, <title
       ref="#Aquin.SentDA">Sent. de anima</title> lib. 3, cap. 7, p.
-      236, ll. 72--89</bibl>. See also <bibl><title ref="#Aquin.SentDA">ibid.</title> 
+      236, ll. 72--89</bibl>. See also <bibl><title ref="#Aquin.SentDA">ibid.</title>
       lib. 3, cap. 4, p. 218, ll. 8--23 and p. 220, ll. 101--121.</bibl>
     </ab>
     <ab>
@@ -1732,8 +1730,8 @@ When a text contains both a reference and a quotation, both a `<ref>` and a `<qu
 
 ### Rules
 
-- `@ed` **MUST** indicate the source text in which the column break occurs.
-- `@n` **MUST** indicate the column, e.g. a
+1. `@ed` **MUST** indicate the source text in which the column break occurs.
+2. `@n` **MUST** indicate the column, e.g. a
 
 ### Examples
 
@@ -1745,17 +1743,11 @@ When a text contains both a reference and a quotation, both a `<ref>` and a `<qu
 
 ### Rules
 
-- `@ed` **MUST** indicate the source text in which the page break occurs.
-- `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
-- `@type` **MAY**: Indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `type="folio"` is assumed.
+1. `@ed` **MUST** indicate the source text in which the page break occurs.
+2. `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
+- `@type` **MAY** explicitly indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `@type="folio"` is assumed. If an `-` is used the value of `@n`, `folio` is assumed. If no `-` appears in the value of `@n`, type `page` is assumed.
 
 ### Examples
-
-Folio break example:
-
-@type=
-* folio (default)
-* page
 
 page break in folio format
 
