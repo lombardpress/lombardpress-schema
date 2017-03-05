@@ -15,13 +15,9 @@ We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://to
 
 ## Version 1.0.0 (in preparation)
 
-* [1.0.0-critical](1.0/critical/)
-* [1.0.0-diplomatic](1.0/diplomatic/)
+* [1.0.0-critical](critical)
+* [1.0.0-diplomatic](diplomatic)
 
-## Version 0.0.0 (depreciated)
-
-* [0.0.0-critical](0.0/critical/)
-* [0.0.0-diplomatic](0.0/diplomatic/)
 
 To submit a bug report, ask a question about how to encode a particular text, or make a feature request, please submit an issue here: [https://github.com/lombardpress/lombardpress-schema/issues](https://github.com/lombardpress/lombardpress-schema/issues)
 
