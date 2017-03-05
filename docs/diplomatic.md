@@ -777,6 +777,17 @@ Afficionados for medieval font encoding will find glyphs and font suggestions to
 
 ## lb
 
+### Description
+
+`lb` is a milestone element to mark line breaks in a material witness to the edition in question. `lb` elements are used to indicate the *start* of a new line.
+
+### Rules
+
+1. `@ed` **MUST** indicate the source text in which the column break occurs.
+2. `@n` **MAY** be used to indicate the line number
+
+### Examples
+
 ``` xml
 <lb n="1"/> line content word<lb n="2" break="no">break
 new line content
@@ -784,20 +795,18 @@ new line content
 <lb n="4"> new line content
 <lb n="5"> new line content
 
-
-line content word<lb n="1"/>break
-new line content <lb n="2">
-new line content <lb n="3">
-new line content <lb n="4">
-new line content <lb n="5">
 ```
 
 ## `cb`
 
+### Description
+
+`cb` is a milestone element to mark column breaks in material witness to the edition in question. `cb` elements are used to indicate the *start* of a new column.
+
 ### Rules
 
 1. `@ed` **MUST** indicate the source text in which the column break occurs.
-2. `@n` **MUST** indicate the column, e.g. a
+2. `@n` **MUST** be used indicate the start of the column in question, e.g. "a" or "b"
 
 ### Examples
 
@@ -807,21 +816,27 @@ new line content <lb n="5">
 
 ## `pb`
 
+### Description
+
+`pb` is a milestone element to mark page breaks in a material witness to the edition in question. `pb` elements are used to indicate the *start* of a new page.
+
 ### Rules
 
 1. `@ed` **MUST** indicate the source text in which the page break occurs.
 2. `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
-- `@type` **MAY** explicitly indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `@type="folio"` is assumed. If an `-` is used the value of `@n`, `folio` is assumed. If no `-` appears in the value of `@n`, type `page` is assumed.
+  * `@type` **MAY** explicitly indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `@type="folio"` is assumed.
+  * If an `-` is used the value of `@n`, `folio` is assumed.
+  * If no `-` appears in the value of `@n`, type `page` is assumed.
 
 ### Examples
 
-page break in folio format
+Page break in folio format
 
 ```xml
 <pb ed="#W" n="15-v"/>
 ```
 
-page break in paged format
+Page break in paged format
 
 ```xml
 <pb ed="#W" n="15" type="page" />
@@ -831,7 +846,12 @@ page break in paged format
 
 ## Description
 
+Marginalia in a material witness are encoded using the element `note@type='marginal-note'`
+
 ## Rules
+
+1. `note` **MUST** have an `@type='marginal-note'`
+2. `note` **MUST** have an `@place' attribute`
 
 ## Examples
 
@@ -852,7 +872,7 @@ Example where marginal note is simply in the vicinity of a paragraph or line.
 </p>
 ```
 
-Example of where a marginal note is made about a word or phrase in the text, such as in a gloss.
+Example where a marginal note is made about a word or phrase in the text, such as in a gloss.
 
 ``` xml
 <p>
@@ -871,7 +891,7 @@ Example of where a marginal note is made about a word or phrase in the text, suc
 </p>
 ```
 
-Example of where a marginal note that is best seen as a note about a quotation in the text.
+Example where a marginal note that is best seen as a note about a quotation in the text.
 
 ``` xml
 <p>

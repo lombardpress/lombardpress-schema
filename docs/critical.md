@@ -1806,10 +1806,15 @@ When a text contains both a reference and a quotation, both a `<ref>` and a `<qu
 
 ## cb
 
+### Description
+
+`cb` is a milestone element to mark column breaks in a material witness to the edition in question. `cb` elements are used to indicate the *start* of a new column.
+
+
 ### Rules
 
 1. `@ed` **MUST** indicate the source text in which the column break occurs.
-2. `@n` **MUST** indicate the column, e.g. a
+2. `@n` **MUST** be used indicate the start of the column in question, e.g. "a" or "b"
 
 ### Examples
 
@@ -1817,23 +1822,29 @@ When a text contains both a reference and a quotation, both a `<ref>` and a `<qu
 <cb ed="#W" n="a"/>
 ```
 
-### pb
+## pb
+
+### Description
+
+`pb` is a milestone element to mark page breaks in a material witness to the edition in question. `pb` elements are used to indicate the *start* of a new page.
 
 ### Rules
 
 1. `@ed` **MUST** indicate the source text in which the page break occurs.
 2. `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
-- `@type` **MAY** explicitly indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `@type="folio"` is assumed. If an `-` is used the value of `@n`, `folio` is assumed. If no `-` appears in the value of `@n`, type `page` is assumed.
+  * `@type` **MAY** explicitly indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `@type="folio"` is assumed.
+  * If an `-` is used the value of `@n`, `folio` is assumed.
+  * If no `-` appears in the value of `@n`, type `page` is assumed.
 
 ### Examples
 
-page break in folio format
+Page break in folio format
 
 ```xml
 <pb ed="#W" n="15-v"/>
 ```
 
-page break in paged format
+Page break in paged format
 
 ```xml
 <pb ed="#W" n="15" type="page" />

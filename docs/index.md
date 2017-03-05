@@ -13,10 +13,10 @@ categories: schema
 
 We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://tools.ietf.org/html/rfc2119) for key words and definitions indicating compliance to the LombardPress schema specifications.
 
-## Version 1.0.0 (in preparation)
+# Documentations
 
-* [1.0.0-critical](critical)
-* [1.0.0-diplomatic](diplomatic)
+* [critical](critical)
+* [diplomatic](diplomatic)
 
 
 To submit a bug report, ask a question about how to encode a particular text, or make a feature request, please submit an issue here: [https://github.com/lombardpress/lombardpress-schema/issues](https://github.com/lombardpress/lombardpress-schema/issues)
