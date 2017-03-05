@@ -245,11 +245,10 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 2. `encodingDesc` **MUST** contain `variantEncoding`.
 3. `variantEncoding` **MUST** contain `@method` which confirms that the method of variant encoding is *parallel-segmentation*.
 4. `encodingDesc` **MUST** contain a `schemaRef`.
-5. `schemaRef` **MUST** contain a `target` that points to the URL of the LBP schema.
+5. `schemaRef` **MUST** contain a `@url` that points to the URL of the LBP schema.
 6. `schemaRef` **MUST** contain an `@n` pointing to the version number of the LBP schema.
 7. `encodingDesc` **MAY** take an `editorialDecl` that contains a `p` with a prose description of the guidelines followed in the preparation of this edition.
 
-NOTE: The rules concerning the `schemaRef` are subject to revision based on the exact implementation in the TEI schema.
 
 ### Examples
 
@@ -259,7 +258,7 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
     location="internal"/>
   <schemaRef
     n="lbp-critical-1.0.0"
-    target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/critical.rng">
+    url="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/critical.rng">
   </schemaRef>
   <editorialDecl>
     <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a critical edition</p>

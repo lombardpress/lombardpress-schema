@@ -27,53 +27,16 @@
     <body>
       <p>[One or more paragraphs describing the customization.]</p>
       <!-- The <schemaSpec> element is in effect the root element for
-           the schema specification portion of the ODD. 
+           the schema specification portion of the ODD.
               - @ident is required; it is allowed to be any name.
               - @start says what element(s) are allowed as the root element
                   of documents conforming to this schema.  -->
       <schemaSpec ident="lombardpress-schema" start="TEI"
-                  source="http://www.tei-c.org/Vault/P5/3.0.0/xml/tei/odd/p5subset.xml">
+                  source="http://www.tei-c.org/Vault/P5/3.1.0/xml/tei/odd/p5subset.xml">
 
         <!-- Core Module -->
         <moduleRef key="core"/>
-        
-        <!--  BEGIN adding schemaRef element until officiall adopted by TEI -->
-        <!-- this is temporary, it should be deleted once schemaRef is official added by TEI consortium -->
-        <elementSpec ident="schemaRef" mode="add">
-          <gloss>schemaRef</gloss>
-          <desc>A element used to identify the validating schema</desc>
-          <classes mode="replace">
-            <memberOf key="model.encodingDescPart"/>
-          </classes>
-          <content>
-            <rng:empty/>
-          </content>
-          <attList>
-            <attDef ident="n" mode="add" usage="req">
-              <datatype>
-                <rng:ref name="data.text"/>
-              </datatype>
-              <exemplum>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <schemaRef n="lbp-1.0.0-critical"/>
-                </egXML>
-              </exemplum>
-            </attDef>
-            <attDef ident="target" mode="add" usage="req">
-              <datatype>
-                <rng:ref name="data.text"/>
-              </datatype>
-              <exemplum>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <schemaRef target="url-of-validating-schema"/>
-                </egXML>
-              </exemplum>
-            </attDef>
-          </attList>
-        </elementSpec>
-        <!-- END addition of schemaRef element -->
-        
-        
+
         <!-- Begin modifications to del element -->
         <elementSpec ident="del" module="core" mode="change">
           <attList>
@@ -108,7 +71,7 @@
           </attList>
         </elementSpec>
         <!-- end del element -->
-        
+
         <!-- begin add element -->
         <elementSpec ident="add" module="core" mode="change">
           <attList>
@@ -151,7 +114,7 @@
           </attList>
         </elementSpec>
         <!-- end add element -->
-        
+
         <!-- I don't think this is needed in the critial schema; but diplomatic schema can take a note marginal note
         <elementSpec ident="note" module="core" mode="change">
           <classes mode="change">
@@ -173,8 +136,8 @@
                   </rule>
                 </constraint>
               </constraintSpec>
-              
-              
+
+
               <valList type="semi" mode="change">
                 <valItem ident="editorialNote">
                   <gloss>Editorial Note</gloss>
@@ -193,7 +156,7 @@
                 <rng:ref name="data.text"/>
               </datatype>
             </attDef>
-            
+
           </attList>
         </elementSpec>
         -->
@@ -222,10 +185,10 @@
 
         <!-- Name and Date Module -->
         <moduleRef key="namesdates"/>
-        
+
         <!-- Text Criticism Module -->
         <moduleRef key="textcrit"/>
-        
+
         <elementSpec ident="rdg" module="textcrit" mode="change">
           <attList>
             <attDef ident="type" mode="change" usage="rec">
@@ -279,23 +242,23 @@
                   </rule>
                 </constraint>
               </constraintSpec>
-              
+
               <valList type="semi" mode="add">
                 <!-- variation rdg types -->
                 <valItem ident="variation-absent">
                   <gloss>variation-absent</gloss>
-                  <desc>indicates that the witness in question lacks the designated lemma; 
+                  <desc>indicates that the witness in question lacks the designated lemma;
                   often rendered as "omit." or "omitted"</desc>
-                  
+
                 </valItem>
                 <valItem ident="variation-present">
                   <gloss>variation-present</gloss>
-                  <desc>indicates that the witness in question contains a word 
+                  <desc>indicates that the witness in question contains a word
                     or phrase not included in the critical text.</desc>
                 </valItem>
                 <valItem ident="variation-substance">
                   <gloss>variation-substance</gloss>
-                  <desc>This is the default variation type, for a simple variation of 
+                  <desc>This is the default variation type, for a simple variation of
                     words or phrases between witnesses.</desc>
                 </valItem>
                 <valItem ident="variation-orthography">
@@ -313,7 +276,7 @@
                 </valItem>
                 <valItem ident="correction-substitution">
                   <gloss>Correction Substitution</gloss>
-                  <desc>Indicates that the witness in question has deleted a word 
+                  <desc>Indicates that the witness in question has deleted a word
                     and then added a word to replaces the deletion.</desc>
                 </valItem>
                 <!-- correction-cancellation types -->
@@ -331,7 +294,7 @@
                 </valItem>
                 <valItem ident="substitution-of-addition">
                   <gloss>Correction cancellation: substitution of addition</gloss>
-                  <desc>Indicates that a witness has is not only cancelling an addition (as in the case of deletion-of-addition) 
+                  <desc>Indicates that a witness has is not only cancelling an addition (as in the case of deletion-of-addition)
                     but is also supplying a new word or phrase to take the old addition's place.</desc>
                 </valItem>
                 <!-- conjecture types -->
@@ -348,7 +311,7 @@
                   <desc>Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.</desc>
                 </valItem>
               </valList>
-              <!-- example of adding code examples 
+              <!-- example of adding code examples
               <exemplum>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <app>
@@ -363,9 +326,9 @@
               </exemplum>
               -->
             </attDef>
-            
+
           </attList>
-          
+
         </elementSpec>
 
         <!-- The lem element -->
@@ -413,7 +376,7 @@
         <moduleRef key="analysis"/>
 
 <!-- attribute class modifications -->
-        
+
         <classSpec ident="att.placement" type="atts" mode="change">
           <attList>
             <attDef ident="place" mode="change" usage="rec">

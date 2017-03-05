@@ -227,11 +227,10 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 1. `encodingDesc` **MUST** be stated.
 2. `encodingDesc` **MAY NOT** contain `variantEncoding`.
 3. `encodingDesc` **MUST** contain a `schemaRef`.
-4. `schemaRef` **MUST** contain a `target` that points to the URL of the LBP schema.
+4. `schemaRef` **MUST** contain a `@url` that points to the URL of the LBP schema.
 5. `schemaRef` **MUST** contain an `@n` pointing to the version number of the LBP schema.
 6. `encodingDesc` **MAY** take an `editorialDecl` that contains a `p` with a prose description of the guidelines followed in the preparation of this edition.
 
-NOTE: The rules concerning the `schemaRef` are subject to revision based on the exact implementation in the TEI schema.
 
 ### Examples
 
@@ -239,8 +238,7 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 <encodingDesc>
   <schemaRef
     n="lbp-diplomatic-1.0.0"
-    target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/diplomatic.rng"
-    type="diplomatic">
+    url="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/diplomatic.rng">
   </schemaRef>
   <editorialDecl>
     <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a diplomatic edition</p>
