@@ -54,7 +54,7 @@ Document Status: Draft
 
 # Preamble
 
-The goal of the LombardPress Critical Transcription specification is to offer a set of guidelines for the markup of medieval Scholastic Commentaries and Texts that conform, as much as possible, to existing standards. Therefore, these guidelines adopt the rules and conventions of the [TEI guidelines](http://www.tei-c.org/) and, within these constraints, work to proscribe a single encoding practice where TEI offers multiple possibilities.
+The goal of the LombardPress Critical Transcription specification is to offer a set of guidelines for the markup of medieval scholastic commentaries and texts that conform, as much as possible, to existing standards. Therefore, these guidelines adopt the rules and conventions of the [TEI guidelines](http://www.tei-c.org/) and, within these constraints, work to proscribe a single encoding practice where TEI offers multiple possibilities.
 
 
 # teiHeader
@@ -80,10 +80,10 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
-1. **MUST** have a title
-2. **MUST** have an author
-3. **SHOULD** have editor
-4. **MAY** have responseStmt
+1. `titleStmt` **MUST** have a `title`
+2. `titleStmt` **MUST** have an `author`
+3. `titleStmt` **SHOULD** have `editor`
+4. `titleStmt` **MAY** have `responseStmt`
 
 #### Examples
 
@@ -111,8 +111,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 1. `editionStmt` **MUST** contain an `edition` element.
 2. `edition@n` **MUST** be `n=X.X.X-dev`; usually, when starting a new document it should be listed as `n=0.0.0-dev`.
 3. `edition` **MUST** contain a `date` element.
-  * **MUST** include a machine-formatted `date@when` element corresponding to the date in the text node.
-4. `edition` **SHOULD NOT** contain any other children besides the date.
+4. The `date` that is the child of `edition` **MUST** include a machine-formatted `@when` attribute corresponding to the date in the text node.
+5. `edition` **SHOULD NOT** contain any other children besides the date.
 
 
 #### Examples
@@ -134,7 +134,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 #### Rules
 
 1. `publicationStmt` **MUST** contain an `authority` element.
-  * We suggest to let the `authority` state the entity that makes the creation of the current document possible or the context where it belongs. See examples below.
+    * We suggest that `authority` states the entity that makes the creation of the current document possible or the context where it belongs. See examples below.
 2. `authority`  **MAY** contain a `ref` to provide an external link to the authority entity.
 3. **MUST** contain `availability`.
 4. `availability` **MUST** contain `@status`.
@@ -200,6 +200,22 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 ##### Example 1
 
+``` xml
+<listWit>
+  <witness xml:id="P" n="bnf15705">Paris, Lat 15705</witness>
+</listWit>
+```
+
+##### Example 2
+
+``` xml
+<listBibl>
+  <bibl xml:id="Q" n="quaracchi1924">Quaracchi 1924 Edition</bibl>
+</listBibl>
+```
+
+##### Example 3
+
 ```xml
 <listWit>
   <witness xml:id="P" n="bnf15705">Paris, Lat 15705
@@ -215,15 +231,6 @@ The `titleStmt` determines the bibliographical information of the encoded file.
   <witness xml:id="Pb" n="bda446">Paris, Bibliotheque de l'Arsenal, ms. lat. 446</witness>
   <witness xml:id="Z" n="zbsSII72">Solothurn, Zentralbibliothek, Cod. S II 72</witness>
 </listWit>
-```
-
-##### Example 2
-
-``` xml
-<listBibl>
-  <bibl></bibl>
-    <!-- Info about id's for the `@source` goes here-->
-</listBibl>
 ```
 
 ## encodingDesc
@@ -396,7 +403,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 # Inline critical elements
 
-In some situations a note in the critical apparatus is not necessary for indicating a critical evaluation by the editor. The following inline elements will usually have a semantically relevant rendering in the text. 
+In some situations a note in the critical apparatus is not necessary for indicating a critical evaluation by the editor. The following inline elements will usually have a semantically relevant rendering in the text.
 
 In most cases correlated notes in the critical apparatus are also available. In only the most simple situations will this be sufficient for avoiding ambiguities. As soon as the text is not uniformly transmitted or the change is not made by the current editor, one should resort to critical notes.
 
@@ -422,7 +429,7 @@ In a processed text, this could for example result in the following text:
 
 ## surplus
 
-### Description 
+### Description
 
 `surplus` marks text present in the source which the editor believes to be superfluous or redundant. According to the editor, the word(s) marked with `surplus` is therefore not to be considered part of the established text.
 

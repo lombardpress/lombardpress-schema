@@ -23,8 +23,8 @@ Document Status: Draft
     * [editionStmt](#editionstmt)
     * [publicationStmt](#publicationstmt)
     * [sourceDesc](#sourcedesc)
-  * [revisionDesc](#revisiondesc)
   * [encodingDesc](#encodingdesc)
+  * [revisionDesc](#revisiondesc)
 * [Text](#text)
   * [Front](#front)
 * [Editorial Emendations](#editorial-emendations)
@@ -40,11 +40,11 @@ Document Status: Draft
 
 # Preamble
 
-The goal of the LombardPress diplomatic transcription specification is to offer a set of guidelines for the markup of medieval Sentences Commentary (and other genres of texts that may find the specification useful) that conform as much as possible to existing standards. In this case of diplomatic transcriptions, this means following as closely as possible the EpiDoc specification. In most cases, we aim only to expand the EpiDoc specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the EpiDoc guidelines should be followed. Where the EpiDoc does not state a specification, the more general TEI specification should be followed.
+The goal of the LombardPress Diplomatic Transcription specification is to offer a set of guidelines for the markup of medieval scholastic commentary and texts that conform as much as possible to existing standards. In this case of diplomatic transcriptions, this means following as closely as possible the [EpiDoc](https://sourceforge.net/p/epidoc/wiki/Home/) specification. In most cases, we aim only to expand the EpiDoc specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the EpiDoc guidelines should be followed. Where EpiDoc does not state a specification, the more general TEI specification should be followed.
 
-# `teiHeader`
+# teiHeader
 
-## `fileDesc`
+## fileDesc
 
 ### Description
 
@@ -57,7 +57,7 @@ The `fileDesc` contains the full bibliographic description of an electronic file
 3. `fileDesc` **MUST** contain `publicationStmt`.
 
 
-### `titleStmt`
+### titleStmt
 
 #### Description
 
@@ -65,10 +65,9 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
-1. `titleStmt` **MUST** have a title.
-2. `titleStmt` **MUST** have an author.
-3. `titleStmt` **SHOULD** have an editor.
-  * [reconsider this?]
+1. `titleStmt` **MUST** have a `title`.
+2. `titleStmt` **MUST** have an `author`.
+3. `titleStmt` **SHOULD** have an `editor`.
 4. `titleStmt` **MAY** have `responseStmt`.
 
 #### Examples
@@ -86,9 +85,11 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 ```
 
 
-### `editionStmt`
+### editionStmt
 
 #### Description
+
+`editionStmt` indicates the edition of the document within the context of its source history.
 
 #### Rules
 
@@ -109,15 +110,17 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 </editionStmt>
 ```
 
-### `publicationStmt`
+### publicationStmt
 
 #### Description
+
+`publicationStmt` indicates the authority supporting this edition (usually a sponsoring or funding research group). It should also list the license and availability of the text.
 
 #### Rules
 
 1. `publicationStmt` **MUST** contain an `authority` element.
   * We suggest that `authority` states the entity that makes the creation of the current document possible or the context where it belongs. See example below.
-2. The `authority` tag **MAY** contain a `ref` to provide an external link to the authority entity.
+2. `authority` tag **MAY** contain a `ref` to provide an external link to the authority entity.
 3. **MUST** contain `availability`.
 4. `availability` **MUST** containt `@status`.
 5. `availability` **SHOUL** contain a `p` describing the license under which the edition is published.
@@ -162,13 +165,15 @@ The `titleStmt` determines the bibliographical information of the encoded file.
   </publicationStmt>
 ```
 
-## `sourceDesc`
+### sourceDesc
 
-### Description
+`sourceDesc` should list the witnesses and sources used to construct the edition.
 
-### Rules
+#### Description
 
-1. `SourceDesc` **MUST** contain either a `listWit` or `listBibl` not both.
+#### Rules
+
+1. `sourceDesc` **MUST** contain either a `listWit` or `listBibl` not both.
 2. `listWit` **MUST** contain only one `wit`.
 3. `listBibl` **MUST** contain only one `bibl`.
 4. `witness` **MUST** have a `@xml:id`.
@@ -176,9 +181,9 @@ The `titleStmt` determines the bibliographical information of the encoded file.
   * The value of `@n` **SHOULD** correspond to the short id for the manuscript in the SCTA database. If the value is not known, leave it out. It will be added later during processing.
 6. For adding `handDesc`, follow TEI guidelines.
 
-### Examples
+#### Examples
 
-#### Example 1
+##### Example 1
 
 ``` xml
 <listWit>
@@ -190,8 +195,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 ``` xml
 <listBibl>
-  <bibl></bibl>
-    <!-- Info about id's for the `@source` goes here-->
+  <bibl xml:id="Q" n="quaracchi1924">Quaracchi 1924 Edition</bibl>
 </listBibl>
 ```
 
@@ -212,7 +216,39 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 </listWit>
 ```
 
-## `revisionDesc`
+## encodingDesc
+
+### Description
+
+`encodingDesc` provides details about the encoding methods used in the text and the schema followed. In a diplomatic edition the `encodingDesc` only serves to declare which schema the edition should be validated against.
+
+### Rules
+
+1. `encodingDesc` **MUST** be stated.
+2. `encodingDesc` **MAY NOT** contain `variantEncoding`.
+3. `encodingDesc` **MUST** contain a `schemaRef`.
+4. `schemaRef` **MUST** contain a `target` that points to the URL of the LBP schema.
+5. `schemaRef` **MUST** contain an `@n` pointing to the version number of the LBP schema.
+6. `encodingDesc` **MAY** take an `editorialDecl` that contains a `p` with a prose description of the guidelines followed in the preparation of this edition.
+
+NOTE: The rules concerning the `schemaRef` are subject to revision based on the exact implementation in the TEI schema.
+
+### Examples
+
+```xml
+<encodingDesc>
+  <schemaRef
+    n="lbp-diplomatic-1.0.0"
+    target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/diplomatic.rng"
+    type="diplomatic">
+  </schemaRef>
+  <editorialDecl>
+    <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a diplomatic edition</p>
+  </editorialDecl>
+</encodingDesc>
+```
+
+## revisionDesc
 
 ### Description
 
@@ -263,37 +299,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 </revisionDesc>
 ```
 
-## `encodingDesc`
 
-### Description
-
-In a diplomatic edition the `encodingDesc` only serves to declare which schema the edition should be validated against.
-
-### Rules
-
-1. `encodingDesc` **MUST** be stated.
-2. `encodingDesc` **MAY NOT** contain `variantEncoding`.
-3. `encodingDesc` **MUST** contain a `schemaRef`.
-4. `schemaRef` **MUST** contain a `target` that points to the URL of the LBP schema.
-5. `schemaRef` **MUST** contain an `@n` pointing to the version number of the LBP schema.
-6. `encodingDesc` **MAY** take an `editorialDecl` that contains a `p` with a prose description of the guidelines followed in the preparation of this edition.
-
-NOTE: The rules concerning the `schemaRef` are subject to revision based on the exact implementation in the TEI schema.
-
-### Examples
-
-```xml
-<encodingDesc>
-  <schemaRef
-    n="lbp-diplomatic-1.0.0"
-    target="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/diplomatic.rng"
-    type="diplomatic">
-  </schemaRef>
-  <editorialDecl>
-    <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a diplomatic edition</p>
-  </editorialDecl>
-</encodingDesc>
-```
 
 # text
 
@@ -303,9 +309,12 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 
 ## Rules
 
-* `text` **MUST** take an `@type` attribute the value of which is "diplomatic"
-  - the possible values for `text@type` are "critical", "diplomatic", and "translation"
-* `text` **SHOULD** take an `@xml:lang` attribute indicating the dominant language of the edition, usually `la` for "latin"
+1. `text` **SHOULD** take an `@type` attribute the value of which is "diplomatic".
+  * The possible values for `text@type` are:
+    * critical
+    * diplomatic
+    * translation
+2. `text` **SHOULD** take an `@xml:lang` attribute indicating the dominant language of the edition, usually `la` for "latin".
 
 ## front
 
@@ -315,8 +324,8 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 
 ### Rules
 
-* `front` **MUST** take a `div` with the `xml:id="starts-on"`
-  - The content of this div should only be `pb` and `cb` indicating the page and column on which the text begins in the witness of the edition.
+1. `front` **MUST** take a `div` with the `xml:id="starts-on"`.
+  * The content of this div should only be `pb` and `cb` elements indicating the page and column on which the text begins in the different witnesses.
 
 ### Examples
 
@@ -336,8 +345,8 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 
 ### Rules
 
-* `body` **MUST** immediately follow `front`
-* `body` **MUST** take a `div` as an immediate child
+1. `body` **MUST** immediately follow `front`.
+2. `body` **MUST** take a `div` as an immediate child.
 
 ## div
 
@@ -347,9 +356,9 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 
 ### Rules
 
-* There **MUST** be one `div` in each edition as a direct child of `body`
-* `div` **MAY** only contain `head` and `p` as children
-* `div` **MAY NOT** contain any text nodes as direct children
+1. There **MUST** be one `div` in each edition as a direct child of `body`.
+2. `div` **MAY** only contain `head` and `p` as children.
+3. `div` **MAY NOT** contain any text nodes as direct children.
 
 ## head
 
@@ -357,12 +366,12 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 
 ### Rules
 
-* `head` **MUST** be an immediate child of a `div`
-* `head` **MUST** precede `p` elements in parent `div`
-* `head` **MAY** take an `@type` attribute
-  - `@type` values include:
-    - subtitle
-    - question-title
+1. `head` **MUST** be an immediate child of a `div`.
+2. `head` **MUST** precede `p` elements in parent `div`.
+3. `head` **MAY** take an `@type` attribute.
+  * `@type` values include:
+    * subtitle
+    * question-title
 
 ## p
 
@@ -372,8 +381,8 @@ NOTE: The rules concerning the `schemaRef` are subject to revision based on the 
 
 ### Rules
 
-* all text nodes of the edition **MUST** be descendants of a `p` element
-* `p` **MUST** be an immediate child of a `div`
+1. All text nodes of the edition, other than those that are descendants of `head` element, **MUST** be descendants of a `p` element.
+2. `p` **MUST** be an immediate child of a `div`.
 
 # Editorial Emendations
 
@@ -387,11 +396,16 @@ See the examples for the relation between `ex` and `expan`. Generally `ex` only 
 
 ### Rules
 
-Option 2 is preferred in cases dealing with characters glyphs that stand for an entire word.
+1. `expan` **MUST** include an `abbr` an at least on `ex` child.
+2. `abbr` not contained within a `expan` **MUST** be wrapped in a `choice` element
+3. If more than one `ex` is present, they **MUST** be wrapped in a `choice` element
+4. If more than one `expan` is present, they **MUST** be wrapped in a `choice` element
+
+In the examples below, option 2 is preferred in cases dealing with characters glyphs that stand for an entire word.
 
 ### Examples
 
-Options 1
+Option 1
 
 ``` xml
 <expan>
@@ -439,14 +453,20 @@ Option 2
 
 ### Description
 
+Corrections mark places that an erroneous word has been marked as present in the text alongside its corrected form.
+
 ### Rules
+
+1. The form to be corrected **MUST** first be wrapped in a `choice` element.
+2. The form to be corrected **MUST** be wrapped in a `sic` element which is a child of `choice`.
+3. The correct form **MUST** be wrapped in a `corr` element following the `sic` element and a child of the `choice` element.
 
 ### Examples
 
 ```xml
 <choice>
-  <sic></sic>
-  <corr></corr>
+  <sic>fidei</sic>
+  <corr>fide</corr>
 </choice>
 ```
 
@@ -454,14 +474,20 @@ Option 2
 
 ### Description
 
+Normalization mark places that an original orthographic form has been preserved alongside its normalized form.
+
 ### Rules
+
+1. The form to be normalized **MUST** first be wrapped in a `choice` element.
+2. The form to be normalized **MUST** be wrapped in a `orig` element which is a child of `choice`.
+3. The correct form **MUST** be wrapped in a `reg` element following the `orig` element and a child of the `choice` element.
 
 ### Examples
 
 ```xml
 <choice>
-  <orig></orig>
-  <reg></reg>
+  <orig>sicud</orig>
+  <reg>sicut</reg>
 </choice>
 ```
 
@@ -469,7 +495,7 @@ Option 2
 
 ## Description
 
-The situation where the editor has difficulties reading the text, it might either be caused by a physical damage to the manuscript or to the eidtor's inability to interpret the text although it is perfectly visible on the page. The difference between those two situations is indicated with the `@reason` tag.
+The situation where the editor has difficulties reading the text might be caused by a physical damage to the manuscript or by the editor's inability to interpret the text although it is perfectly visible on the page. The difference between those two situations is indicated with the `@reason` tag added to the `unclear` element.
 
 If the editor has a suggestion for a reading, the `unclear` element is used, otherwise the `gap` is used.
 
@@ -481,25 +507,25 @@ If the editor has a suggestion for a reading, the `unclear` element is used, oth
   * `reproduction` (referring to the quality of the reproduction)
 2. Two or more `unclear` elements **MAY** be wrapped in a `choice` element to indicate any number of possible but mutually exclusive suggestions.
 3. In the case of several suggestions, `unclear` **SHOULD** contain `@cert` to indicate the relative certainty of the suggestions.
-  * Available values (pulled from generic TEI guidelines)
+  * Available values are
     * high
     * low
     * medium
     * unknown
 4. In the case of several suggestions, the editor **SHOULD** put the suggestion that she deems most likely at the top of the list.
-5. `gap` **MUST** contain `@quantity` and `@unit` indicating the extent of the gap. The values of `@unit` are given in the appendix. [TODO: check the reference and the values.]
+5. `gap` **MUST** contain `@quantity` and `@unit` indicating the extent of the gap.
 6. `unclear` **MAY** contain `note` for discussing the difficulty.
 7. `choice` **MAY** contain `note` for discussing the different possible suggestions.
 
 ## Examples
 
-Simple case where the editor has a suggestion:
+A simple case where the editor has a suggestion:
 
 ``` xml
 <unclear>suggestion</unclear>
 ```
 
-Simple case where the editor has no suggestion:
+A simple case where the editor has no suggestion:
 
 ``` xml
 <gap extent="5" unit="characters"/>
@@ -517,24 +543,24 @@ Or
 <gap reason="damage" extent="5" unit="characters"/>
 ```
 
-A case where multiple possibilities are noted could look as follows. The `@reason` is assumed to hold for all sibling nodes as the difficulties have the same cause.
+A case where multiple possibilities are noted could appear as follows. The `@reason` is assumed to hold for all sibling nodes as the difficulty has the same cause.
 
 ``` xml
 <choice>
   <unclear cert="high" reason="damage">scilicet</unclear>
-  <unclear cert="mid">sicud</unclear>
+  <unclear cert="medium">sicud</unclear>
   <unclear cert="low">sed</unclear>
 </choice>
 ```
 
-A case where multiple possibilities and the `note` is used:
+A case where multiple possibilities and the `note` element is used:
 
 ```xml
 <choice>
   <unclear cert="high" reason="damage">scilicet
-     <note>If what looks like a descender is a blotch</note>
+     <note>This is the best choice if what looks like a descender is a stray ink mark</note>
   </unclear>
-  <unclear>sicud</unclear>
+  <unclear cert="low">sicud</unclear>
   <note>I prefer the second because ...</note>
 </choice>
 ```
@@ -556,21 +582,39 @@ Or
 
 ## add
 
+### Description
+
+`add` indicates a place that a word or phrase has been inserted, typically inter-linearly or in the margin.
+
+### Rules
+
+1. `add` **MUST** have an `@place` attribute
+
+### Examples
+
 ``` xml
 <add place="above-line" hand="#N1">fides</add>
 ```
 
 ## del
 
-Possible values of `@rend`:
-* erasure
-* expunctuate (alias: expunctuated)
-* underline
-* strike-through (alias: strikethrough, strikeout)
-* black-out (alias: blackout)
-* vacat
-* [Combinations are always possible, e.g. `rend="strikethrough vacat"`]
+### Description
 
+`del` indicates a place that a word or phrase has been deleted.
+
+### Rules
+
+1. `del` **MUST** have an `@rend` attribute
+  * Possible values of `@rend`:
+  * erasure
+  * expunctuate (alias: expunctuated)
+  * underline
+  * strike-through (alias: strikethrough, strikeout)
+  * black-out (alias: blackout)
+  * vacat
+  * [Combinations are always possible, e.g. `rend="strikethrough vacat"`]
+
+### Examples
 ``` xml
 <del rend="erasure" hand="#N1">fides</del>
 ```
@@ -579,16 +623,12 @@ Possible values of `@rend`:
 
 ### Description
 
+`subst` indicates a place that a word has been deleted and another word has been added as a replacement
+
 ### Rules
-Possible values of `@rend`:
-* erasure
-* expunctuate (alias: expunctuated)
-* underline
-* overwrite
-* strike-through (alias: strikethrough, strikeout)
-* blackout (alias: black-out)
-* vacat
-* [Combinations are always possible, e.g. `rend="strikethrough vacat"`]
+
+1. `subst` **MUST** contain an `add` and `del` element as children.
+2. `add` and `del` elements **MUST** follow above outlined rules.
 
 ### Examples
 
@@ -606,15 +646,17 @@ Possible values of `@rend`:
 </subst>
 ```
 
-## `seg@type=correction`
+## seg@type=correction
 
 ### Description
 
-`seg@type` correction is used to wrap word that is being corrected through an addition, deletion, or substitution of only part of the word.
+`seg@type="correction"` is used to wrap word that is being corrected through an addition, deletion, or substitution of only part of the word.
 
 ### Rules
 
-
+1. `seg@type="correction"` **MUST** must contain a `add`, `del`, or `subst` as children element
+2. it **MUST** also contain text nodes as direct children (otherwise `seg` is unnecessary and `add`, `del`, or `subst` alone are sufficient)
+3. `add`, `del`, and `subst` **MUST** be followed.
 
 ### Examples
 
@@ -636,7 +678,6 @@ References and quotations are simply marked `ref` and `quote` elements.
 
 ## References
 
-
 ### Description
 
 Reference is used when the author makes an internal or external reference. The whole reference to the target may contain several elements, which would usually be `title` and `name`, which we support here.
@@ -646,7 +687,7 @@ Reference is used when the author makes an internal or external reference. The w
 1. `ref` **MAY** contain `name` to indicate the author of the referenced work.
 2. `ref` **MAY** contain `title` to indicate the title of the referenced work.
 
-### examples
+### Examples
 
 ```xml
 Ut dicit <ref><name>Augustinus</name> in <title>De civitate dei</title></ref>
@@ -655,12 +696,12 @@ Ut dicit <ref><name>Augustinus</name> in <title>De civitate dei</title></ref>
 ## Quotation
 
 ### Description
-Reference is used when the author makes direct quote from another text (or a different passage of his own text).
 
+Quotation is used when the author makes a direct quote from another text (or a different passage of his own text).
 
 ### Rules
-1. **SHOULD** contain an `@xml:id`.
-2. **MAY** contain an `@ana` to point to external reference targets specifying or describing the passage in question.
+
+1. `quote` element **MUST** surround quoted text.
 
 ### Examples
 
@@ -670,7 +711,7 @@ Simple indication of a quote:
 Librum sic incipitur <quote>In principio Deus creavit caelum</quote> et cetera
 ```
 
-Recommended indication with id:
+Recommended indication with xml:id:
 
 ``` xml
 Librum sic incipitur
@@ -690,9 +731,21 @@ et cetera
 
 # Punctuation
 
-## `pc`
+## pc
+
+### Description
+
+`pc` is reserved for the use of marking punctuation characters within the text.
 
 ### Rules
+
+1. `pc` **MAY** take a `@type` attribute indicating the type of punctuation that corresponds to the punctuation character inserted as a child text node.
+  * Possible values of the `@type` attribute are:
+    * pilcrow
+    * punctus
+    * punctus-elevatus
+    * punctus-medius
+    * virgula
 
 For now, we recommend a small subset of the many possible punctuation marks are included by the unicode glyph. Any unicode code point can be encoded, but not all media will be able to represent the adequately, so here we include some that are in a standard font set.
 
@@ -722,10 +775,9 @@ Afficionados for medieval font encoding will find glyphs and font suggestions to
 
 # Milestones
 
-## `lb`
+## lb
 
 ``` xml
-
 <lb n="1"/> line content word<lb n="2" break="no">break
 new line content
 <lb n="3"> new line content
@@ -743,9 +795,9 @@ new line content <lb n="5">
 ## `cb`
 
 ### Rules
-- `@ed` **MUST** indicate the source text in which the column break occurs.
-- `@n` **MUST** indicate the column, e.g. a
-- `@facs` JEFF TODO: describe how to add IIIF id
+
+1. `@ed` **MUST** indicate the source text in which the column break occurs.
+2. `@n` **MUST** indicate the column, e.g. a
 
 ### Examples
 
@@ -756,18 +808,12 @@ new line content <lb n="5">
 ## `pb`
 
 ### Rules
-- `@ed` **MUST** indicate the source text in which the page break occurs.
-- `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
-- `@corresp` JEFF TODO: describe IIIF id connection here
-- `@type` **MAY**: Indicate the type of numbering as either paginated or foliated. If none is given, `type="folio"` is assumed.
+
+1. `@ed` **MUST** indicate the source text in which the page break occurs.
+2. `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
+- `@type` **MAY** explicitly indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `@type="folio"` is assumed. If an `-` is used the value of `@n`, `folio` is assumed. If no `-` appears in the value of `@n`, type `page` is assumed.
 
 ### Examples
-
-Folio break example:
-
-@type=
-* folio (default)
-* page
 
 page break in folio format
 
