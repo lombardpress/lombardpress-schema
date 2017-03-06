@@ -34,6 +34,7 @@
 
       <schemaSpec ident="lombardpress-schema" start="TEI"
           source="http://www.tei-c.org/Vault/P5/3.1.0/xml/tei/odd/p5subset.xml">
+        
         <!-- Core Module -->
         <moduleRef key="core"/>
 
@@ -141,17 +142,17 @@
                 </valItem>
               </valList>
             </attDef>
-            <attDef ident="hand" mode="add" usage="opt">
+            <!--<attDef ident="hand" mode="add" usage="opt">
               <gloss>hand</gloss>
               <desc>hand responsible for marginal note</desc>
               <datatype>
                 <rng:ref name="data.text"/>
               </datatype>
-            </attDef>
+            </attDef>-->
 
           </attList>
         </elementSpec>
-        -->
+        
 
         <moduleRef key="tei"/>
 
