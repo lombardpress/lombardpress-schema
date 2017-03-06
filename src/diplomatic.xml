@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../../sample/odd4odds.rnc" type="application/relax-ng-compact-syntax"?>
-<?xml-model href="../../sample/odd4odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!-- <?xml-model href="../../sample/odd4odds.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="../../sample/odd4odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?> -->
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xml:lang="en" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" >
   <teiHeader>
     <fileDesc>
@@ -11,9 +14,9 @@
         <author xml:id="NicolasVaughan">Nicolas Vaughan</author>
       </titleStmt>
       <publicationStmt>
-        <availability>
-          <p>[Statement of availability]</p>
-        </availability>
+        <authority>
+          [Statement of availability]
+        </authority>
       </publicationStmt>
       <sourceDesc>
         <p>Born Digital</p>
