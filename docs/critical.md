@@ -59,6 +59,32 @@ The goal of the LombardPress Critical Transcription specification is to offer a 
 
 # teiHeader
 
+The `teiHeader` defines meta data for the document about the file, including data on the author and title of the text as well as information about edition, the basis of the text, as well as important data on the encoding, such as which LBP schema version is used and the history of the file.
+
+## Rules
+
+1. `teiHeader` **MUST** contain `fileDesc`.
+2. `teiHeader` **MUST** contain `encodingDesc`.
+3. `teiHeader` **MUST** contain `revisionDesc`.
+
+## Example
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <!-- Content of `fileDesc` -->
+    </fileDesc>
+    <encodingDesc>
+      <!-- Content of `encodingDesc` -->
+    </encodingDesc>
+    <revisionDesc status="draft">
+      <!-- Content of `revisionDesc` -->
+    </revisionDesc>
+  </teiHeader>
+```
+
 ## fileDesc
 
 ### Description
