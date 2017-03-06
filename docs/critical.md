@@ -40,7 +40,7 @@ Document Status: Draft
   * [Basic Rdg Types](#basic-rdg-types)
     * [variation](#variation)
     * [correction](#correction)
-    * [A Variation with a Correction vs A Correction that Varies](a-variation-with-a-correction-vs-a-correction-that-varies)
+    * [note on variation and correction](#note-on-variation-and-correction)
     * [conjecture](#conjecture)
     * [connected apparatus entries](#connected-apparatus-entries)
     * [manual](#manual)
@@ -1232,7 +1232,7 @@ A cancellation is a correction of a correction. This gives us nine theoretical t
 </rdg>
 ```
 
-## A Variation with a Correction vs A Correction that Varies
+## Note on Variation and Correction
 
 With both variations and corrections discussed, it is important to pause and acknowledge two conceptual categories that should inform editorial work and the choice of reading type used.
 
