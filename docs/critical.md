@@ -40,6 +40,7 @@ Document Status: Draft
   * [Basic Rdg Types](#basic-rdg-types)
     * [variation](#variation)
     * [correction](#correction)
+    * [A Variation with a Correction vs A Correction that Varies](a-variation-with-a-correction-vs-a-correction-that-varies)
     * [conjecture](#conjecture)
     * [connected apparatus entries](#connected-apparatus-entries)
     * [manual](#manual)
@@ -510,7 +511,7 @@ The general rules of any `app` element are:
 6. If `lem` is empty, it **MUST** contain the `@n` element.
 7. A `lem` **MUST** have `@wit` when its parent `app` is contained within another `app` element.
 
-### Note on encoding empty lemmas
+## Note on encoding empty lemmas
 
 When one or more witnesses contain readings that are not adopted in the critical text, the `lem` element **MUST** be left empty. Such an encoding would signify that some readings are present in a part of the tradition, but not included in the established text. When the lemma is left empty, it is more difficult for the processor to anchor the entry in the text, so a label is needed. `@n` gives the processor a label for this purpose. Usually the word preceding the apparatus would be used for that. An example of that could look like this:
 
@@ -555,7 +556,7 @@ The basic structure of the `rdg` typology can be described as follows
 
 ## variation
 
-### General Definition
+### Description
 
 A variation is meant as any reading that varies from the indicated lemma. At present, we have identified five main variation types listed below.
 
@@ -599,7 +600,7 @@ On a positive apparatus:
 
 ### variation-orthography
 
-#### Definition
+#### Description
 
 The `variation-orthography` class is meant to identify a class of variant instances where there is no actual variation in the substance of the word or phrase in question but simply an orthographic difference.
 
@@ -626,7 +627,7 @@ est
 
 ### variation-inversion
 
-#### Definition
+#### Description
 
 `variation-inversion` is meant to indicate a variant reading where two or more words have been inverted relative to the critical text.
 
@@ -671,7 +672,7 @@ principium per quod ostenditur passio de subiecto. Ubi est
 , ibi contingit ponere scientiam.
 ```
 
-### `variation-present`
+### variation-present
 
 #### Description
 
@@ -801,6 +802,8 @@ fides
 
 ### variation-choice
 
+#### Description
+
 The `variation-choice` type can be used when a single witness (however the concept of witness is defined) contains two or more parallel readings, and it is not clear which reading was preferred by the scribe. The distinction between this case and a correction can be difficult to discern, and one editor might feel convinced that the text contains a correction, while another might see it as two readings of potentially equivalent weight or value.
 
 The `seg` elements are used to distinguish the different readings. If the editor wishes to indicate the chronological order of the readings, she may do so by adding the `@n` attribute as described below.
@@ -864,9 +867,10 @@ An apparatus representation of this could look like this:
 
 > instare ] instare MV ; instare *corr. ex.* dicere S ; dicere *et* instare T
 
+
 ## correction
 
-### General Definition
+### Description
 
 A correction is meant as any reading where it is assumed that the witness corrects a perceived error in the transmitted text.
 
@@ -874,7 +878,7 @@ This is *not* used to represent corrections made by the edition. These kinds of 
 
 ### correction-addition
 
-#### Definition
+#### Description
 
 This indicates that a scribe (either the original or a later scribe) has realized that a word or phrase is missing in his text and subsequently added it. This should be clearly distinguished from `variation-present` above where the editor only means to indicate that a word is present in a witness, but has not been added through a conscious correction.
 
@@ -927,7 +931,7 @@ Spiritus Sancti.
 
 ### correction-deletion
 
-#### Definition
+#### Description
 
 This indicates that a scribe (either the original or a later scribe) has realized that a word or phrase is erroneously present in the text and subsequently deleted it.
 
@@ -982,7 +986,7 @@ Aristoteles
 
 ### correction-substitution
 
-#### Definition
+#### Description
 
 This indicates that a scribe (either the original or a later scribe) wants to correct one word or phrase with another.
 
@@ -1111,7 +1115,7 @@ est
 
 ### correction-transposition
 
-#### Definition
+#### Description
 
 A `correction-transposition` is a special kind of `correction-substitution` and should follow the same rules and basic encoding pattern of a `correction-substitution`. The designation `correction-transposition` only serves to further specify the kind of substitution taking place.
 
@@ -1160,9 +1164,9 @@ A correction where a word is moved more than a single word.
 
 > et *ante* spiritus sanctus *transp.* A
 
-### `correction-cancellation`
+### correction-cancellation
 
-#### Definition
+#### Description
 
 *note: correction-cancellation is a particularly complicated variation type and should be considered very likely to recieve change and alteration in the next release of the guidelines*
 
@@ -1228,6 +1232,87 @@ A cancellation is a correction of a correction. This gives us nine theoretical t
 </rdg>
 ```
 
+## A Variation with a Correction vs A Correction that Varies
+
+With both variations and corrections discussed, it is important to pause and acknowledge two conceptual categories that should inform editorial work and the choice of reading type used.
+
+These two categories are:
+
+* A Variation with Correction
+  * If we imagine the main text being a straight line, a variation represents an alternative path. On this "alternative" path it is possible for corrections to made.
+
+* A Correction that Varies
+  * Alternatively, it is possible for a correction to be on the "main" path, but in the course of making this correction to introduce a variation, or to inaugurate an alternative path.
+
+### A Variation with a Correction
+
+When a correction is made on the "alternative path" it becomes difficult to represent this as a simple correction because, with respect to the main line, there is nothing to correct. The very words in need of correction only occur on the alternate path.
+
+To handle these cases, we allow `rdg@type="variation-substance"` to include `add`, `del`, and `subst` as children. But only for the present case, i.e. a correction on an "alternative" stem.
+
+```xml
+<app>
+  <lem>secum compateretur illud</lem>
+  <rdg type="variation-substance" wit="#V">
+      non
+      <subst>
+          <del>idem</del>
+          <add>illud</add>
+        </subst>
+      est
+  </rdg>
+</app>
+```
+
+This will only work, if the `rdg` in question represents one witness or two witness with identical variation AND correction.
+
+Thus, if there is another witness with an identical `rdg` but no correction, then this variation needs to be recorded in a separate reading.
+
+In this case, a processor could be expected, to recognize any `add` `del` or `subst` element within a `varation-substance` and automatically produce the kind of note that would otherwise be manually written in a `witDetail`.
+
+Such a note might look like:
+
+> secum compateretur illud] non illud *nota* illud *corr. ex* idem
+
+As discussed [below](#witDetail), such cases can also continue to be addressed with the use of `witDetail`. In this case, one would simply ignore the correction in the `rdg` and then add a note in `witDetail`. However, since this case is quite common, it is nice to be able to simply add the correction within the `rdg` and not worry about adding an extra `witDetail`.
+
+### A Correction that Varies
+
+A "correction that varies" is only possible in the `correction-addition` and `correction-substitution` cases.
+
+The guidelines above state a simple `correction-addition` should look as follows
+
+```xml
+<app>
+  <lem>Filii et</lem>
+  <rdg type="correction-addition" wit="#V">
+     <add place="above-line">Filii et</add>
+  </rdg>
+</app>
+```
+and it is suggested that this should render as:
+
+>Filii et] *add. s.l* V
+
+But what if the correction was 'Filium etiam'? In such a case, we have not only a correction, but a "correction that varies." In such a case, we would expect that correction to be recorded as follows:
+
+```xml
+<app>
+  <lem>Filii et</lem>
+  <rdg type="correction-addition" wit="#V">
+     <add place="above-line">Filium etiam</add>
+  </rdg>
+</app>
+```
+
+And the processor is expected to render something slightly different, such as:
+
+>Filii et] Filium etiam *add. s.l* V
+
+The difference in rendering is the result of the difference between a simple correction that corrects in agreement with the main stem and correction that offers a variation from the main stem.
+
+In the end, no new requirements are placed on the editor in such a case. An editor should simply follow the rules outlined above for a `correction-addition` or `correction-substitution`. However, it incumbent on the processor to recognize this difference by performing a string comparison on the value of the `add` and the value of the `lem`. When the two strings are identical, a simple correction can be assumed. If the strings are not identical, a "correction that varies" is assumed. If a processor does not wish to perform such a comparison, it is suggested that it should default to the rendering for a "correction that varies."
+
 ## conjecture
 
 ### Description
@@ -1245,7 +1330,7 @@ Notice that both of these attributes are pointers. If they do not point to an ex
 
 ### conjecture-supplied
 
-#### Definition
+#### Description
 
 According to the the judgement of the editor, an expression is missing from the transmitted text. Ideas for improvement of the text may then either be added to the edited text itself or indicated in an apparatus note.
 
@@ -1319,7 +1404,7 @@ sit
 
 ### conjecture-removed
 
-#### Definition
+#### Description
 
 A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.
 
@@ -1369,7 +1454,7 @@ dicit Aristoteles
 
 ### `conjecture-corrected`
 
-#### Definition
+#### Description
 
 Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.
 
@@ -1416,9 +1501,11 @@ acquisita
 
 > 10 semper ] C John, servus AB, sit *conj.*
 
-## connected apparatus entries
+## Connected Apparatus Entries
 
 ### Overlapping Elements
+
+#### Description
 
 While parallel-segmentation encoding comes with a number of advantages, an editor invariably faces the challenge of overlapping lemmas and XML's prohibition against cross-nesting elements. Here we offer guidelines of how to handles such cases.
 
@@ -1621,7 +1708,7 @@ Or
 
 # Apparatus Fontium
 
-## General description
+## Description
 
 Any entry to the *apparatus fontium* is created with the `<cit>` element.
 
@@ -1807,8 +1894,6 @@ sic, cum <name ref="#Aristotle">Philosophus</name> ponit
   </note>
 </cit>
 ```
-
-
 ## Complex cases
 
 When a text contains both a reference and a quotation, both a `<ref>` and a `<quote>` are encoded, but often only the `<ref>` or the `<quote>` should be wrapped in a `<cit>` element and not both. In many cases the reference is separated from the quotation by some amount of words which do not belong in the `<cit>` element. We recommend citing the `<quote>` since we see this as primary. We would then associate the `<ref>` with the `<quote>` it is related to via the `@corresp` attribute. An example:
