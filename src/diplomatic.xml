@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <?xml-model href="../../sample/odd4odds.rnc" type="application/relax-ng-compact-syntax"?>
 <?xml-model href="../../sample/odd4odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?> -->
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng" type="application/xml"
 	schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xml:lang="en" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" >
   <teiHeader>
@@ -23,17 +23,13 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change who="#JW" when="2012-05-08" n="0.0.0-dev"></change>
+      <change who="#JeffreyWitt" when="2012-05-08" n="0.0.0-dev"></change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
       <p>[One or more paragraphs describing the customization.]</p>
-      <!-- The <schemaSpec> element is in effect the root element for
-           the schema specification portion of the ODD.
-              - @ident is required; it is allowed to be any name.
-              - @start says what element(s) are allowed as the root element
-                  of documents conforming to this schema.  -->
+      
 
       <schemaSpec ident="lombardpress-schema" start="TEI"
           source="http://www.tei-c.org/Vault/P5/3.1.0/xml/tei/odd/p5subset.xml">
@@ -41,8 +37,8 @@
         <!-- Core Module -->
         <moduleRef key="core"/>
 
-
         <!-- Begin modifications to del element -->
+        
         <elementSpec ident="del" module="core" mode="change">
           <attList>
             <attDef ident="rend" usage="rec" mode="change">
@@ -75,9 +71,11 @@
             </attDef>
           </attList>
         </elementSpec>
+        
         <!-- end del element -->
 
         <!-- begin add element -->
+        
         <elementSpec ident="add" module="core" mode="change">
           <attList>
             <attDef ident="place" usage="rec" mode="change">
@@ -118,18 +116,12 @@
             </attDef>
           </attList>
         </elementSpec>
+        
         <!-- end add element -->
 
-
         <elementSpec ident="note" module="core" mode="change">
-          <classes mode="change">
-            <memberOf key="att.placement"/>
-          </classes>
           <attList>
             <attDef ident="type" mode="change" usage="rec">
-              <datatype>
-                <rng:ref name="data.enumerated"/>
-              </datatype>
               <constraintSpec ident="note-place-noplace" scheme="isoschematron">
                 <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
                  <constraint>
@@ -145,14 +137,6 @@
                 </valItem>
               </valList>
             </attDef>
-            <!--<attDef ident="hand" mode="add" usage="opt">
-              <gloss>hand</gloss>
-              <desc>hand responsible for marginal note</desc>
-              <datatype>
-                <rng:ref name="data.text"/>
-              </datatype>
-            </attDef>-->
-
           </attList>
         </elementSpec>
         
@@ -161,16 +145,7 @@
 
         <!-- header module -->
         <moduleRef key="header"/>
-
-
-        <!--
-          <elementSpec ident="category" module="header" mode="change">
-          <attList>
-            <attDef ident="xml:id" usage="req" mode="change"/>
-          </attList>
-        </elementSpec>
-        -->
-
+        
         <!-- text structure module -->
         <moduleRef key="textstructure"/>
 
@@ -198,15 +173,12 @@
 
         <!-- analysis module -->
         <moduleRef key="analysis"/>
-
-<!-- attribute class modifications -->
+        
+        <!-- attribute class modifications -->
 
         <classSpec ident="att.placement" type="atts" mode="change">
           <attList>
             <attDef ident="place" mode="change" usage="rec">
-              <datatype>
-                <rng:ref name="data.enumerated"/>
-              </datatype>
               <valList type="semi" mode="replace">
                 <valItem ident="above-line">
                   <gloss>Above Line</gloss>
@@ -241,8 +213,6 @@
             </attDef>
           </attList>
         </classSpec>
-
-
       </schemaSpec>
     </body>
   </text>

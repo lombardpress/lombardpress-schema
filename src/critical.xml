@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../../sample/odd4odds.rnc" type="application/relax-ng-compact-syntax"?>
-<?xml-model href="../../sample/odd4odds.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xml:lang="en" xmlns="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" >
   <teiHeader>
     <fileDesc>
@@ -11,26 +12,22 @@
         <author xml:id="NicolasVaughan">Nicolas Vaughan</author>
       </titleStmt>
       <publicationStmt>
-        <availability>
-          <p>[Statement of availability]</p>
-        </availability>
+        <authority>
+          [Statement of availability]
+        </authority>
       </publicationStmt>
       <sourceDesc>
         <p>Born Digital</p>
       </sourceDesc>
     </fileDesc>
     <revisionDesc status="draft">
-      <change who="#JW" when="2012-05-08" n="0.0.0-dev"></change>
+      <change who="#JeffreyWitt" when="2012-05-08" n="0.0.0-dev"></change>
     </revisionDesc>
   </teiHeader>
   <text>
     <body>
       <p>[One or more paragraphs describing the customization.]</p>
-      <!-- The <schemaSpec> element is in effect the root element for
-           the schema specification portion of the ODD.
-              - @ident is required; it is allowed to be any name.
-              - @start says what element(s) are allowed as the root element
-                  of documents conforming to this schema.  -->
+      
       <schemaSpec ident="lombardpress-schema" start="TEI"
                   source="http://www.tei-c.org/Vault/P5/3.1.0/xml/tei/odd/p5subset.xml">
 
@@ -115,66 +112,11 @@
         </elementSpec>
         <!-- end add element -->
 
-        <!-- I don't think this is needed in the critial schema; but diplomatic schema can take a note marginal note
-        <elementSpec ident="note" module="core" mode="change">
-          <classes mode="change">
-            <memberOf key="att.placement"/>
-          </classes>
-          <attList>
-            <attDef ident="type" mode="change" usage="rec">
-              <datatype>
-                <rng:ref name="data.enumerated"/>
-              </datatype>
-              <constraintSpec ident="note-place-noplace" scheme="isoschematron">
-                <desc>These constraints are used to require a place attribute when a when marginal attribute is used and to forbid a place attribute when an editorial note is used. The reasoning is that an editorial note is an intervention and a new creation, therefore there is no pre-existing place or location that it can be found. A marginal note is just the opposite, it has a physical place is a primary source witness, therefore that place needs to be recorded with a place attribute.</desc>
-                 <constraint>
-                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='marginalNote']">
-                    <report test="not(./@place)">This is a marginal note. This means that it is a note that exist in the primary source. Therefore it has a physical location that needs to be recorded.</report>
-                  </rule>
-                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:note[@type='editorialNote']">
-                    <report test="./@place">This is an editorial note therefore no place attribute should be added.</report>
-                  </rule>
-                </constraint>
-              </constraintSpec>
-
-
-              <valList type="semi" mode="change">
-                <valItem ident="editorialNote">
-                  <gloss>Editorial Note</gloss>
-                  <desc>Any note supplied by modern editors not actually present in the primary source</desc>
-                </valItem>
-                <valItem ident="marginalNote">
-                  <gloss>Marginal Note</gloss>
-                  <desc>A note present in the manuscript witness itself, but clear meant as annotation to the actual text. This note may either be in the same hand as the text or supplied by a latter reader.</desc>
-                </valItem>
-              </valList>
-            </attDef>
-            <attDef ident="hand" mode="add" usage="opt">
-              <gloss>hand</gloss>
-              <desc>hand responsible for marginal note</desc>
-              <datatype>
-                <rng:ref name="data.text"/>
-              </datatype>
-            </attDef>
-
-          </attList>
-        </elementSpec>
-        -->
-
         <moduleRef key="tei"/>
 
         <!-- header module -->
         <moduleRef key="header"/>
-
-
-        <!--
-          <elementSpec ident="category" module="header" mode="change">
-          <attList>
-            <attDef ident="xml:id" usage="req" mode="change"/>
-          </attList>
-        </elementSpec>
-        -->
-
+        
         <!-- text structure module -->
         <moduleRef key="textstructure"/>
 
@@ -192,9 +134,6 @@
         <elementSpec ident="rdg" module="textcrit" mode="change">
           <attList>
             <attDef ident="type" mode="change" usage="rec">
-              <datatype>
-                <rng:ref name="data.enumerated"/>
-              </datatype>
               <!-- here are the rules for reading types -->
               <constraintSpec ident="variation-absent-rule" scheme="isoschematron">
                 <desc>Requires an empty rdg element when rdg has type=variation-absent</desc>
@@ -375,16 +314,14 @@
         <!-- analysis module -->
         <moduleRef key="analysis"/>
 
-<!-- attribute class modifications -->
+        <!-- attribute class modifications -->
 
         <classSpec ident="att.placement" type="atts" mode="change">
           <attList>
             <attDef ident="place" mode="change" usage="rec">
-              <datatype>
-                <rng:ref name="data.enumerated"/>
-              </datatype>
+              
               <valList type="semi" mode="replace">
-                <valItem ident="aboveLine">
+                <valItem ident="above-line">
                   <gloss>Above Line</gloss>
                   <desc>Inter-linearly, above the line in which it is being inserted</desc>
                 </valItem>
