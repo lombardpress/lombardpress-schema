@@ -1601,7 +1601,7 @@ The use of the `manual` type should be avoided at all costs, and in subsequent v
 ### Rules
 
 1. the `rdg` must have an `@type="manual`.
-2. The rdg should include precisely what the editors hope will appear after the lemma
+2. The `rdg` should include precisely what the editors hope will appear after the lemma
 3. The description of the variant (normally the part of the reading placed in italics) should be wrapped in an `desc` element
 4. The sigla should be wrapped in a `wit` element.
 

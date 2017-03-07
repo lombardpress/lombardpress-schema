@@ -26,8 +26,6 @@
   </teiHeader>
   <text>
     <body>
-      <p>[One or more paragraphs describing the customization.]</p>
-      
       <schemaSpec ident="lombardpress-schema" start="TEI"
                   source="http://www.tei-c.org/Vault/P5/3.1.0/xml/tei/odd/p5subset.xml">
 
@@ -112,8 +110,17 @@
         </elementSpec>
         <!-- end add element -->
 
-        <moduleRef key="tei"/>
+        <!-- begin cit element rules -->
+        <constraintSpec ident="cit-must-have-quote-or-ref" scheme="schematron">
+          <desc>cit must contain quote or ref as a direct child</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:text/tei:body//tei:cit">
+              <report test="not(./tei:quote) and not(./tei:ref)">cit must contain quote or ref as a direct child</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
         
+        <moduleRef key="tei"/>
         <!-- header module -->
         <moduleRef key="header"/>
         <!-- header rules -->
@@ -237,7 +244,7 @@
         
        <!-- text structure module -->
         <moduleRef key="textstructure"/>
-        
+        <!-- rules for front -->
         <constraintSpec ident="front-element-must-be-present" scheme="schematron">
           <desc>Front element must be present</desc>
           <constraint>
@@ -254,7 +261,35 @@
             </rule>
           </constraint>
         </constraintSpec>
+        <!-- rules for body -->
+        <constraintSpec ident="body-must-have-immediate-div-and-no-other-direct-children" scheme="schematron">
+          <desc>Body must have immediate div and no other direct children</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:text[1]/tei:body[1]">
+              <report test="not(./tei:div[1])">Body must have immediate div</report>
+            </rule>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:text[1]/tei:body[1]">
+              <report test="count(./*) gt 1">Body must have ONLY child that is a div</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <!-- rules for head -->
+          <!-- head rules are covered by general tei rules -->
         
+        <!-- rules for p -->
+        
+        <!-- not that this rule disallows the use of p as children of any other rules. 
+          Thus Ps are not allowed in notes or cites or quotes. P is a privileged structure, 
+          the "ab" element should be used everywhere else there is not for creating structure block units -->
+          
+        <constraintSpec ident="body-p-is-child-of-div" scheme="schematron">
+          <desc>every body p must be an immediate child of a div</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:text[1]/tei:body[1]//tei:p">
+              <report test="not(./parent::tei:div[1])">every body p must be an immediate child of a div</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
 
         <!-- optional modules -->
 
@@ -271,6 +306,7 @@
           <attList>
             <attDef ident="type" mode="change" usage="rec">
               <!-- here are the rules for reading types -->
+              <!-- variation type rules -->
               <constraintSpec ident="variation-absent-rule" scheme="schematron">
                 <desc>Requires an empty rdg element when rdg has type=variation-absent</desc>
                 <constraint>
@@ -293,6 +329,15 @@
                   </rule>
                 </constraint>
               </constraintSpec>
+              <constraintSpec ident="variation-choice-rule" scheme="schematron">
+                <desc>The reading of a varation-choice must contain a choice element as a direct child</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-choice']">
+                    <report test="not(./tei:choice)">The reading of a varation-choice must contain a choice element as a direct child</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <!-- correction rules -->
               <constraintSpec ident="correction-addition-rule" scheme="schematron">
                 <desc>Requires that rdg have a add child element when rdg has type=correction-addition</desc>
                 <constraint>
@@ -340,66 +385,70 @@
                   <gloss>variation-orthography</gloss>
                   <desc>Indicates a simple orthographic variation.</desc>
                 </valItem>
-                <!-- variation correction types -->
+                <valItem ident="variation-choice">
+                  <gloss>variation-choice</gloss>
+                  <desc>Indicates a choice of more than one reading in the same witness.</desc>
+                </valItem>
+                <valItem ident="variation-inversion">
+                  <gloss>variation-inversion</gloss>
+                  <desc>Indicates a variant reading where two or more words have been inverted relative to the critical text.</desc>
+                </valItem>
+                <!-- correction rdg types -->
                 <valItem ident="correction-addition">
-                  <gloss>addition</gloss>
+                  <gloss>correction-addition</gloss>
                   <desc>indicates that the current lemma was added to the text by some sort of external imposition, either by the same scribe or a later scribe. There are two options here. If the lemma is empty this indicates that, at this point, the witness in question includes a word or phrase that was chosen not to be included the edited text. If a lemma is included then the addition means that the word identified in the lemma is present in the witness, but is inserted in some way (either in the margin or inter-linearly).</desc>
                 </valItem>
                 <valItem ident="correction-deletion">
-                  <gloss>included but then deleted</gloss>
+                  <gloss>correction-deletion</gloss>
                   <desc>indicates that a segment of text was included in the text but then deleted. In such instances the lemma will most likely be left empty.</desc>
                 </valItem>
                 <valItem ident="correction-substitution">
-                  <gloss>Correction Substitution</gloss>
+                  <gloss>correction-substitution</gloss>
                   <desc>Indicates that the witness in question has deleted a word
                     and then added a word to replaces the deletion.</desc>
                 </valItem>
+                <valItem ident="correction-transposition">
+                  <gloss>correction-transposition</gloss>
+                  <desc>Indicates that a special kind of substitution where a phrase of two or more words 
+                    has been corrected from one order to another transposed order.</desc>
+                </valItem>
                 <!-- correction-cancellation types -->
                 <valItem ident="deletion-of-addition">
-                  <gloss>Correction cancellation: deletion of addition</gloss>
+                  <gloss>Correction cancellation: deletion-of-addition</gloss>
                   <desc>Indicates that a witness has deleted (or attempted to undo) a previous addition</desc>
                 </valItem>
                 <valItem ident="deletion-of-deletion">
-                  <gloss>Correction cancellation: deletion of deletion</gloss>
+                  <gloss>Correction cancellation: deletion-of-deletion</gloss>
                   <desc>Indicates that a witness has deleted (or attempted to undo) a previous deletion</desc>
                 </valItem>
                 <valItem ident="deletion-of-substitution">
-                  <gloss>Correction cancellation: deletion of substitution</gloss>
+                  <gloss>Correction cancellation: deletion-of-substitution</gloss>
                   <desc>Indicates that a witness has deleted (or attempted to undo or cancel) a previous substitution</desc>
                 </valItem>
                 <valItem ident="substitution-of-addition">
-                  <gloss>Correction cancellation: substitution of addition</gloss>
+                  <gloss>Correction cancellation: substitution-of-addition</gloss>
                   <desc>Indicates that a witness has is not only cancelling an addition (as in the case of deletion-of-addition)
                     but is also supplying a new word or phrase to take the old addition's place.</desc>
                 </valItem>
                 <!-- conjecture types -->
                 <valItem ident="conjecture-supplied">
-                  <gloss>Conjecture Supplied</gloss>
+                  <gloss>conjecture-supplied</gloss>
                   <desc>According to the the judgement of the editor, an expression is missing from the transmitted text.</desc>
                 </valItem>
                 <valItem ident="conjecture-removed">
-                  <gloss>Conjecture Removed</gloss>
+                  <gloss>conjecture-removed</gloss>
                   <desc>A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.</desc>
                 </valItem>
                 <valItem ident="conjecture-corrected">
-                  <gloss>Conjecture Corrected</gloss>
+                  <gloss>conjecture-corrected</gloss>
                   <desc>Parts of all of the textual tradition supports one reading, but an editor or scholar suggests an alternative reading in its place.</desc>
                 </valItem>
+                <!-- manual rdg type -->
+                <valItem ident="manual">
+                  <gloss>manual</gloss>
+                  <desc>manual rdg type input</desc>
+                </valItem>
               </valList>
-              <!-- example of adding code examples
-              <exemplum>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <app>
-                    <lem>fides</lem>
-                    <rdg with="#V" type="corrDeletion">
-                      <corr>
-                        <del>fides</del>
-                      </corr>
-                    </rdg>
-                  </app>
-                </egXML>
-              </exemplum>
-              -->
             </attDef>
 
           </attList>
@@ -410,18 +459,14 @@
         <elementSpec ident="lem" module="textcrit" mode="change">
           <attList>
             <attDef ident="type" mode="change" usage="opt">
-              <datatype>
-                <rng:ref name="data.enumerated"/>
-              </datatype>
-
               <valList type="semi" mode="add">
                 <!-- conjecture types -->
                 <valItem ident="conjecture-supplied">
-                  <gloss>Conjecture Supplied</gloss>
+                  <gloss>conjecture-supplied</gloss>
                   <desc>According to the the judgement of the editor, an expression is missing from the transmitted text.</desc>
                 </valItem>
                 <valItem ident="conjecture-removed">
-                  <gloss>Conjecture Removed</gloss>
+                  <gloss>conjecture-removed</gloss>
                   <desc>A word or phrase is transmitted in some or all of the textual tradition, but the editor or another scholar has suspected that it does not belong in the text and suggests it be removed.</desc>
                 </valItem>
                 <valItem ident="conjecture-corrected">
