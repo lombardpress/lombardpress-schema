@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2017-03-06T13:30:33Z. .
+Schema generated from ODD source 2017-03-07T21:52:19Z. .
 TEI Edition: Version 3.1.0. Last updated on
 	15th December 2016, revision d3f5e70
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.1.0/
@@ -13643,5 +13643,103 @@ The attributes @to and @from on <name/> may each contain only a single value</re
       <choice>
          <ref name="TEI"/>
       </choice>
-   </start>
+   </start> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-missing-author-rule-constraint-rule-18">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:titleStmt[1]">
+              <report test="not(./tei:author)">An author must be stated. Either the author's name or anonymous should be stated</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-missing-edition-n-constraint-rule-19">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./@n)">Edition element must indicate edition number with n attribute of the form x.x.x or x.x.x-dev</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-missing-edition-date-constraint-rule-20">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./tei:date)">EditionStmt Edition must have an date element as child</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-missing-edition-date-when-attribute-constraint-rule-21">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./tei:date/@when)">EditionStmt Edition Date must have a when attribute</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-pubstmt-must-have-authority-constraint-rule-22">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
+              <report test="not(./tei:authority)">publicationStmt must have an authority element as child</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-pubstmt-must-have-availability-constraint-rule-23">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
+              <report test="not(./tei:availability)">publicationStmt must have an availability element as child</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-src-desc-must-contain-listwit-or-listbibl-constraint-rule-24">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]">
+              <report test="not(./tei:listWit) and not(./tei:listBibl)">Source description must contain either a listWit or listBibl</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-encoding-desc-must-be-present-constraint-rule-25">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]">
+              <report test="not(./tei:encodingDesc)">Encoding description must be present</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-schema-ref-must-be-present-constraint-rule-26">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]">
+              <report test="not(./tei:schemaRef)">SchemaRef must be present</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-schema-ref-must-have-n-attribute-constraint-rule-27">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]/tei:schemaRef[1]">
+              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-critical-1.0.0"</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-revision-desc-must-be-present-constraint-rule-28">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]">
+              <report test="not(./tei:revisionDesc)">Revision description must be present</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-revision-desc-must-have-status-constraint-rule-29">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:revisionDesc[1]">
+              <report test="not(./@status)">Revision description must have a status</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-front-element-must-be-present-constraint-rule-30">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:text[1]">
+              <report test="not(./tei:front)">Front element must be present</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-front-element-starts-on-div-constraint-rule-31">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:text[1]/tei:front[1]">
+              <report test="not(./tei:div[@type='starts-on']) and not(./tei:div[@type='startsOn'])">Front element must contain a div with a "starts-on" type, i.e. @type='starts-on'</report>
+            </rule>
+   </pattern>
 </grammar>

@@ -121,8 +121,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 1. `publicationStmt` **MUST** contain an `authority` element.
   * We suggest that `authority` states the entity that makes the creation of the current document possible or the context where it belongs. See example below.
 2. `authority` tag **MAY** contain a `ref` to provide an external link to the authority entity.
-3. **MUST** contain `availability`.
-4. `availability` **MUST** containt `@status`.
+3. `publicationStmt` **MUST** contain `availability`.
+4. `availability` **SHOULD** contain `@status`.
 5. `availability` **SHOUL** contain a `p` describing the license under which the edition is published.
 
 #### Examples

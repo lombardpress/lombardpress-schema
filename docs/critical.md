@@ -163,8 +163,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 1. `publicationStmt` **MUST** contain an `authority` element.
     * We suggest that `authority` states the entity that makes the creation of the current document possible or the context where it belongs. See examples below.
 2. `authority`  **MAY** contain a `ref` to provide an external link to the authority entity.
-3. **MUST** contain `availability`.
-4. `availability` **MUST** contain `@status`.
+3. `publicationStmt` **MUST** contain `availability`.
+4. `availability` **SHOULD** contain `@status`.
 5. `availability` **SHOULD** contain a `p` describing the license under which the edition is published.
 
 #### Examples
@@ -269,12 +269,13 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 ### Rules
 
 1. `encodingDesc` **MUST** be stated.
-2. `encodingDesc` **MUST** contain `variantEncoding`.
+2. `encodingDesc` **SHOULD** contain a `variantEncoding` element as a direct child.
 3. `variantEncoding` **MUST** contain `@method` which confirms that the method of variant encoding is *parallel-segmentation*.
-4. `encodingDesc` **MUST** contain a `schemaRef`.
+4. `encodingDesc` **MUST** contain a `schemaRef` element as a direct child.
 5. `schemaRef` **MUST** contain a `@url` that points to the URL of the LBP schema.
 6. `schemaRef` **MUST** contain an `@n` pointing to the version number of the LBP schema.
-7. `encodingDesc` **MAY** take an `editorialDecl` that contains a `p` with a prose description of the guidelines followed in the preparation of this edition.
+7. `encodingDesc` **MAY** take an `editorialDecl` as a direct child
+8. `editorialDecl` **SHOULD** contain a `p` element with a prose description of the guidelines followed in the preparation of this edition.
 
 
 ### Examples

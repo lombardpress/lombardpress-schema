@@ -113,12 +113,148 @@
         <!-- end add element -->
 
         <moduleRef key="tei"/>
-
+        
         <!-- header module -->
         <moduleRef key="header"/>
+        <!-- header rules -->
+        <!-- titleStmt rules -->
+        <constraintSpec ident="missing-author-rule" scheme="schematron">
+          <desc>An author must be stated. Either the author's name or anonymous should be stated</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:titleStmt[1]">
+              <report test="not(./tei:author)">An author must be stated. Either the author's name or anonymous should be stated</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <!-- editionStmt rules -->
+        <constraintSpec ident="missing-edition-n" scheme="schematron">
+          <desc>EditionStmt edition must have an n attribute</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./@n)">Edition element must indicate edition number with n attribute of the form x.x.x or x.x.x-dev</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <constraintSpec ident="missing-edition-date" scheme="schematron">
+          <desc>EditionStmt Edition must have an date element as child</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./tei:date)">EditionStmt Edition must have an date element as child</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <constraintSpec ident="missing-edition-date-when-attribute" scheme="schematron">
+          <desc>EditionStmt Edition Date must have a when attribute</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./tei:date/@when)">EditionStmt Edition Date must have a when attribute</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <!-- pub stmt rules -->
+        <constraintSpec ident="pubstmt-must-have-authority" scheme="schematron">
+          <desc>publicationStmt must have an authority element as child</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
+              <report test="not(./tei:authority)">publicationStmt must have an authority element as child</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <constraintSpec ident="pubstmt-must-have-availability" scheme="schematron">
+          <desc>publicationStmt must have an availability element as child</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
+              <report test="not(./tei:availability)">publicationStmt must have an availability element as child</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <!-- this test doesn't seem to be working; but I changed docs to SHOULD, so rule is no longer necessary -->
+        <!--<constraintSpec ident="pubstmt-availability-must-have-status" scheme="schematron">
+          <desc>publicationStmt availability must include a status attribute</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
+              <report test="not(tei:availability/@status)">publicationStmt availability must include a status attribute</report>
+            </rule>
+          </constraint>
+        </constraintSpec>-->
         
-        <!-- text structure module -->
+        <!-- sourceDesc rules -->
+        <constraintSpec ident="src-desc-must-contain-listwit-or-listbibl" scheme="schematron">
+          <desc>Source description must contain either a listWit or listBibl</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]">
+              <report test="not(./tei:listWit) and not(./tei:listBibl)">Source description must contain either a listWit or listBibl</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <!-- encodingDesc rules -->
+        <constraintSpec ident="encoding-desc-must-be-present" scheme="schematron">
+          <desc>Encoding description must be present</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]">
+              <report test="not(./tei:encodingDesc)">Encoding description must be present</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <constraintSpec ident="schema-ref-must-be-present" scheme="schematron">
+          <desc>SchemaRef must be present</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]">
+              <report test="not(./tei:schemaRef)">SchemaRef must be present</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <constraintSpec ident="schema-ref-must-have-n-attribute" scheme="schematron">
+          <desc>SchemaRef must have an n attribute indicating schema version followed</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]/tei:schemaRef[1]">
+              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-critical-1.0.0"</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <!-- revisionDesc rules -->
+        <constraintSpec ident="revision-desc-must-be-present" scheme="schematron">
+          <desc>Revision description must be present</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]">
+              <report test="not(./tei:revisionDesc)">Revision description must be present</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <!-- TODO: I can't get this test to work -->
+        <constraintSpec ident="revision-desc-must-have-status" scheme="schematron">
+          <desc>Revision description must have a status</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:revisionDesc[1]">
+              <report test="not(./@status)">Revision description must have a status</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <!-- TODO: there are more MUST's here, but enforcement is not urgent -->
+        
+        
+        <!-- END Header rules -->
+        
+       <!-- text structure module -->
         <moduleRef key="textstructure"/>
+        
+        <constraintSpec ident="front-element-must-be-present" scheme="schematron">
+          <desc>Front element must be present</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:text[1]">
+              <report test="not(./tei:front)">Front element must be present</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <constraintSpec ident="front-element-starts-on-div" scheme="schematron">
+          <desc>Front element must contain a div with a starts-on type</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:text[1]/tei:front[1]">
+              <report test="not(./tei:div[@type='starts-on']) and not(./tei:div[@type='startsOn'])">Front element must contain a div with a "starts-on" type, i.e. @type='starts-on'</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        
 
         <!-- optional modules -->
 
@@ -135,7 +271,7 @@
           <attList>
             <attDef ident="type" mode="change" usage="rec">
               <!-- here are the rules for reading types -->
-              <constraintSpec ident="variation-absent-rule" scheme="isoschematron">
+              <constraintSpec ident="variation-absent-rule" scheme="schematron">
                 <desc>Requires an empty rdg element when rdg has type=variation-absent</desc>
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-absent']">
@@ -146,7 +282,7 @@
                   </rule>
                 </constraint>
               </constraintSpec>
-              <constraintSpec ident="variation-present-rule" scheme="isoschematron">
+              <constraintSpec ident="variation-present-rule" scheme="schematron">
                 <desc>Requires an empty lem element and rdg that is not empty when rdg has type=variation-present</desc>
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-present']">
@@ -157,7 +293,7 @@
                   </rule>
                 </constraint>
               </constraintSpec>
-              <constraintSpec ident="correction-addition-rule" scheme="isoschematron">
+              <constraintSpec ident="correction-addition-rule" scheme="schematron">
                 <desc>Requires that rdg have a add child element when rdg has type=correction-addition</desc>
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-addition']">
@@ -165,7 +301,7 @@
                   </rule>
                 </constraint>
               </constraintSpec>
-              <constraintSpec ident="correction-deletion-rule" scheme="isoschematron">
+              <constraintSpec ident="correction-deletion-rule" scheme="schematron">
                 <desc>Requires that rdg have a del child element when rdg has type=correction-deletion</desc>
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-deletion']">
@@ -173,7 +309,7 @@
                   </rule>
                 </constraint>
               </constraintSpec>
-              <constraintSpec ident="correction-substitution-rule" scheme="isoschematron">
+              <constraintSpec ident="correction-substitution-rule" scheme="schematron">
                 <desc>Requires that rdg have a del child element when rdg has type=correction-substitution</desc>
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-substitution']">
