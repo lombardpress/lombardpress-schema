@@ -25,8 +25,12 @@ Document Status: Draft
     * [sourceDesc](#sourcedesc)
   * [encodingDesc](#encodingdesc)
   * [revisionDesc](#revisiondesc)
-* [Text](#text)
-  * [Front](#front)
+* [text](#text)
+  * [front](#front)
+  * [body](#body)
+  * [div](#div)
+  * [head](#head)
+  * [p](#p)
 * [Editorial Emendations](#editorial-emendations)
   * [Expansions](#expansions)
   * [Corrections](#corrections)
@@ -40,7 +44,7 @@ Document Status: Draft
 
 # Preamble
 
-The goal of the LombardPress Diplomatic Transcription specification is to offer a set of guidelines for the markup of medieval scholastic commentary and texts that conform as much as possible to existing standards. In this case of diplomatic transcriptions, this means following as closely as possible the [EpiDoc](https://sourceforge.net/p/epidoc/wiki/Home/) specification. In most cases, we aim only to expand the EpiDoc specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the EpiDoc guidelines should be followed. Where EpiDoc does not state a specification, the more general TEI specification should be followed.
+The goal of the LombardPress Diplomatic Transcription specification is to offer a set of guidelines for the markup of medieval scholastic commentaries and texts that conform as much as possible to existing standards. In the case of diplomatic transcriptions, this means following as closely as possible the [EpiDoc](https://sourceforge.net/p/epidoc/wiki/Home/) specification. In most cases, we aim only to expand the EpiDoc specifications and offer a detailed list of available attributes and attribute values. Where specifications are not stated, the EpiDoc guidelines should be followed. Where EpiDoc does not state a specification, the more general [TEI](http://tei-c.org) specification should be followed.
 
 # teiHeader
 
@@ -131,11 +135,11 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 ``` xml
 <publicationStmt>
-  <authority>Sentences Commentary Project</authority>
+  <authority>Scholastic Commentaries and Texts Archive Project</authority>
   <availability status="free">
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
-    </availability>
-  </publicationStmt>
+  </availability>
+</publicationStmt>
 ```
 
 ##### Example 2
@@ -149,8 +153,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
   </authority>
   <availability status="free">
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
-    </availability>
-  </publicationStmt>
+  </availability>
+</publicationStmt>
 ```
 
 ##### Example 3
@@ -161,8 +165,8 @@ The `titleStmt` determines the bibliographical information of the encoded file.
     <ref target="http://petrushispanusproject.po">Petrus Hispanus Project</ref></authority>
   <availability status="free">
     <p>Published under a <ref target="http://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 License</ref></p>
-    </availability>
-  </publicationStmt>
+  </availability>
+</publicationStmt>
 ```
 
 ### sourceDesc
@@ -178,7 +182,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 3. `listBibl` **MUST** contain only one `bibl`.
 4. `witness` **MUST** have a `@xml:id`.
 5. `witness` **SHOULD** have a `n` giving a short id of the witness.
-  * The value of `@n` **SHOULD** correspond to the short id for the manuscript in the SCTA database. If the value is not known, leave it out. It will be added later during processing.
+  * The value of `@n` **SHOULD** correspond to the short id for the manuscript or codex in the SCTA database. If the value is not known, leave it out. It will be added later during processing.
 6. For adding `handDesc`, follow TEI guidelines.
 
 #### Examples
@@ -238,7 +242,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 <encodingDesc>
   <schemaRef
     n="lbp-diplomatic-1.0.0"
-    url="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/1.0/diplomatic.rng">
+    url="https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/diplomatic.rng">
   </schemaRef>
   <editorialDecl>
     <p>Encoding of this text has followed the recommendations of the LombardPress 1.0.0 guidelines for a diplomatic edition</p>
@@ -256,10 +260,10 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ### Rules
 
-1. `revisionDesc` **SHOULD** be stated.
-2. `revisionDesc` **MUST** contain `@status`
-3. `revisionDesc` **MUST** contain `listChange`
-4. `listChange` **MUST** contain at least one `change`
+1. `revisionDesc` **MUST** be stated.
+2. `revisionDesc` **MUST** contain `@status`.
+3. `revisionDesc` **MUST** contain `listChange`.
+4. `listChange` **MUST** contain at least one `change`.
 5. `change` **MUST** contain `@when`.
 6. `change` **MUST** contain `@status`. Possible values of the attribute are:
   * private-draft
@@ -297,8 +301,6 @@ The individual editor would usually not be responsible for maintaining the `revi
 </revisionDesc>
 ```
 
-
-
 # text
 
 ## Description
@@ -323,14 +325,14 @@ The individual editor would usually not be responsible for maintaining the `revi
 ### Rules
 
 1. `front` **MUST** take a `div` with the `xml:id="starts-on"`.
-  * The content of this div should only be `pb` and `cb` elements indicating the page and column on which the text begins in the different witnesses.
+  * The content of this div should only be `pb`, `cb`, and `lb` elements indicating the page, column, and line on which the text begins in the different witnesses.
 
 ### Examples
 
 ```xml
 <front>
   <div xml:id="starts-on">
-    <pb ed="#V" n="5-r" facs="V5r"/><cb ed="#V" n="b"/> <!-- V5rb -->
+    <pb ed="#V" n="5-r"/><cb ed="#V" n="b"/><lb ed="#V" n="13"/> <!-- V5rb -->
   </div>
 </front>
 ```
@@ -390,14 +392,14 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 If it is not a priority to encode every abbreviation and expansion, the editor might want to indicate several possible expansions in cases of doubt.
 
-See the examples for the relation between `ex` and `expan`. Generally `ex` only gives the content that is added by the editor while `expan` gives the whole word, including the characters that constitute the abbreviation.
+See the examples below for the relation between `ex` and `expan`. Generally `ex` only gives the content that is added by the editor while `expan` gives the whole word, including the characters that constitute the abbreviation.
 
 ### Rules
 
-1. `expan` **MUST** include an `abbr` an at least on `ex` child.
-2. `abbr` not contained within a `expan` **MUST** be wrapped in a `choice` element
-3. If more than one `ex` is present, they **MUST** be wrapped in a `choice` element
-4. If more than one `expan` is present, they **MUST** be wrapped in a `choice` element
+1. `expan` **MUST** include an `abbr` and at least one `ex` as children.
+2. `abbr` not contained within a `expan` **MUST** be wrapped in a `choice` element.
+3. If more than one `ex` is present, they **MUST** be wrapped in a `choice` element.
+4. If more than one `expan` is present, they **MUST** be wrapped in a `choice` element.
 
 In the examples below, option 2 is preferred in cases dealing with characters glyphs that stand for an entire word.
 
@@ -472,7 +474,7 @@ Corrections mark places that an erroneous word has been marked as present in the
 
 ### Description
 
-Normalization mark places that an original orthographic form has been preserved alongside its normalized form.
+Normalizations mark places that an original orthographic form has been preserved alongside its normalized form.
 
 ### Rules
 
@@ -563,7 +565,7 @@ A case where multiple possibilities and the `note` element is used:
 </choice>
 ```
 
-Situation where the editor has no suggestion for a difficult reading.
+A case where the editor has no suggestion for a difficult reading.
 
 ```xml
 <gap reason="damage" quantity="5" unit="word"/>
@@ -586,7 +588,7 @@ Or
 
 ### Rules
 
-1. `add` **MUST** have an `@place` attribute
+1. `add` **MUST** have an `@place` attribute.
 
 ### Examples
 
@@ -602,7 +604,7 @@ Or
 
 ### Rules
 
-1. `del` **MUST** have an `@rend` attribute
+1. `del` **MUST** have an `@rend` attribute.
   * Possible values of `@rend`:
     * erasure
     * expunctuation
@@ -610,7 +612,7 @@ Or
     * strikethrough
     * blackout
     * vacat
-    * [Combinations are always possible, e.g. `rend="strikethrough vacat"`]
+    * Combinations are possible, e.g. `rend="strikethrough vacat"`
 
 ### Examples
 ``` xml
@@ -648,13 +650,13 @@ Or
 
 ### Description
 
-`seg@type="correction"` is used to wrap word that is being corrected through an addition, deletion, or substitution of only part of the word.
+`seg@type="correction"` is used to wrap a word that is being corrected through an addition, deletion, or substitution of only part of the word.
 
 ### Rules
 
-1. `seg@type="correction"` **MUST** must contain a `add`, `del`, or `subst` as children element
-2. it **MUST** also contain text nodes as direct children (otherwise `seg` is unnecessary and `add`, `del`, or `subst` alone are sufficient)
-3. `add`, `del`, and `subst` **MUST** be followed.
+1. `seg@type="correction"` **MUST** must contain a `add`, `del`, or `subst` as a child element.
+2. `seg@type="correction"` **MUST** also contain text nodes as direct children (otherwise `seg` is unnecessary and `add`, `del`, or `subst` alone are sufficient).
+3. `add`, `del`, and `subst` **MUST** follow above outlined rules.
 
 ### Examples
 
@@ -665,20 +667,19 @@ carit
     <del>as</del>
     <add>atis</add>
   </subst>
-  <add place="above-line">m</add>
 </seg>
 
 ```
 
 # References and Quotations
 
-References and quotations are simply marked `ref` and `quote` elements.
+References and quotations are marked with `ref` and `quote` elements.
 
-## References
+## ref
 
 ### Description
 
-Reference is used when the author makes an internal or external reference. The whole reference to the target may contain several elements, which would usually be `title` and `name`, which we support here.
+`ref` is used when the author makes an internal or external reference. The whole reference to the target may contain several elements, normally `title` and `name`.
 
 ### Rules
 
@@ -691,15 +692,15 @@ Reference is used when the author makes an internal or external reference. The w
 Ut dicit <ref><name>Augustinus</name> in <title>De civitate dei</title></ref>
 ```
 
-## Quotations
+## quote
 
 ### Description
 
-Quotation is used when the author makes a direct quote from another text (or a different passage of his own text).
+`quote` is used when the author makes a direct quote from another text (or a different passage of his/her own text).
 
 ### Rules
 
-1. `quote` element **MUST** surround quoted text.
+1. `quote` element **MUST** surround the quoted text.
 
 ### Examples
 
@@ -709,7 +710,7 @@ Simple indication of a quote:
 Librum sic incipitur <quote>In principio Deus creavit caelum</quote> et cetera
 ```
 
-Recommended indication with xml:id:
+Recommended indication with `xml:id`:
 
 ``` xml
 Librum sic incipitur
@@ -717,7 +718,7 @@ Librum sic incipitur
 et cetera
 ```
 
-Use of the `ana` attribute:
+Use of the `@ana` attribute:
 
 ``` xml
 Librum sic incipitur
@@ -758,7 +759,7 @@ Names, code points and renderings of the punctuation marks:
 | virgula   | U+002F        | /     | solidus, regular slash |
 | punctus interrogativus | U+003F | ? | regular question mark |
 
-Afficionados for medieval font encoding will find glyphs and font suggestions to satisfy many of their heart's desires at http://folk.uib.no/hnooh/mufi/
+Aficionados for medieval font encoding will find glyphs and font suggestions at http://folk.uib.no/hnooh/mufi/.
 
 ### Examples
 
@@ -777,12 +778,12 @@ Afficionados for medieval font encoding will find glyphs and font suggestions to
 
 ### Description
 
-`lb` is a milestone element to mark line breaks in a material witness to the edition in question. `lb` elements are used to indicate the *start* of a new line.
+`lb` is a milestone element used to mark line breaks in a material witness to the edition in question. `lb` elements are used to indicate the *start* of a new line.
 
 ### Rules
 
-1. `@ed` **MUST** indicate the source text in which the column break occurs.
-2. `@n` **MAY** be used to indicate the line number
+1. `@ed` **MUST** indicate the source text in which the line break occurs.
+2. `@n` **MAY** be used to indicate the line number.
 
 ### Examples
 
@@ -799,12 +800,12 @@ new line content
 
 ### Description
 
-`cb` is a milestone element to mark column breaks in material witness to the edition in question. `cb` elements are used to indicate the *start* of a new column.
+`cb` is a milestone element used to mark column breaks in a material witness to the edition in question. `cb` elements are used to indicate the *start* of a new column.
 
 ### Rules
 
 1. `@ed` **MUST** indicate the source text in which the column break occurs.
-2. `@n` **MUST** be used indicate the start of the column in question, e.g. "a" or "b"
+2. `@n` **MUST** be used indicate the start of the column in question, e.g. "a" or "b".
 
 ### Examples
 
@@ -816,14 +817,14 @@ new line content
 
 ### Description
 
-`pb` is a milestone element to mark page breaks in a material witness to the edition in question. `pb` elements are used to indicate the *start* of a new page.
+`pb` is a milestone element used to mark page breaks in a material witness to the edition in question. `pb` elements are used to indicate the *start* of a new page.
 
 ### Rules
 
 1. `@ed` **MUST** indicate the source text in which the page break occurs.
 2. `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
   * `@type` **MAY** explicitly indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `@type="folio"` is assumed.
-  * If an `-` is used the value of `@n`, `folio` is assumed.
+  * If an `-` is used in the value of `@n`, `folio` is assumed.
   * If no `-` appears in the value of `@n`, type `page` is assumed.
 
 ### Examples
@@ -848,8 +849,10 @@ Marginalia in a material witness are encoded using the element `note@type='margi
 
 ## Rules
 
-1. `note` **MUST** have an `@type='marginal-note'`
-2. `note` **MUST** have an `@place' attribute`
+1. `note` **MUST** have an `@type='marginal-note'`.
+2. `note` **MUST** have an `@place` attribute.
+3. `note` **MAY** have contain `lb` elements to indicate the line breaks of the marginal note.
+  * Note that a processor should ignore all `//note//lb` when attempting to count the lines in a main column.
 
 ## Examples
 
@@ -861,7 +864,7 @@ Example where marginal note is simply in the vicinity of a paragraph or line.
   <note type="marginal-note" place="margin-right" hand="#N1">
     <lb ed="#A"/>this marginal note
     <lb ed="#A"/>is in the right margin
-    <lb ed="#A"/>and spans three liens in the margin
+    <lb ed="#A"/>and spans three lines in the margin
   </note>
   The main text is here and
   <lb ed="#A"/>there is a marginal note
@@ -889,7 +892,7 @@ Example where a marginal note is made about a word or phrase in the text, such a
 </p>
 ```
 
-Example where a marginal note that is best seen as a note about a quotation in the text.
+Example where a marginal note is best seen as a note about a quotation in the text.
 
 ``` xml
 <p>
