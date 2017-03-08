@@ -305,7 +305,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ## Description
 
-`text` is the main wrapper of the edition and sibling to the `teiHeader`
+`text` is the main wrapper of the edition and sibling to the `teiHeader`.
 
 ## Rules
 
@@ -362,7 +362,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ## head
 
-`head` is the wrapper heading declaration for a `div`
+`head` is the wrapper heading declaration for a `div`.
 
 ### Rules
 
@@ -377,11 +377,11 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ### Description
 
-`p` is the wrapper of text nodes
+`p` (along with `head`) is the wrapper of all text nodes within the `body` element.
 
 ### Rules
 
-1. All text nodes of the edition, other than those that are descendants of `head` element, **MUST** be descendants of a `p` element.
+1. All text nodes of the edition, other than those that are descendants of the `head` element, **MUST** be descendants of a `p` element.
 2. `p` **MUST** be an immediate child of a `div`.
 
 # Editorial Emendations
