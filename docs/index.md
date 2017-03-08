@@ -15,18 +15,40 @@ We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://to
 
 # Documentation
 
-* [critical](critical)
-* [diplomatic](diplomatic)
+* current release
+  * [critical](critical)
+  * [diplomatic](diplomatic)
+* current release on github
+  * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/docs/critical.md)
+  * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/docs/diplomatic.md)
+* the bleeding edge
+  * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/docs/critical.md)
+  * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/docs/diplomatic.md)
 
 # ODD Files
 
-* [critical](../src/critical.xml)
-* [diplomatic](../src//diplomatic.xml)
+* current release
+  * [critical](../src/critical.xml)
+  * [diplomatic](../src//diplomatic.xml)
+* current release on github
+  * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/critical.xml)
+  * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/diplomatic.xml)
+* the bleeding edge
+  * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/src/critical.xml)
+  * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/src/diplomatic.xml)
 
 # Schema Files
 
-* [critical](../src/out/critical.rng)
-* [diplomatic](../src/out/diplomatic.rng)
+* current release
+  * [critical](../src/out/critical.rng)
+  * [diplomatic](../src/out/diplomatic.rng)
+* current release on github
+  * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/out/critical.rng)
+  * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/out/diplomatic.rng)
+* the bleeding edge
+  * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/src/out/critical.rng)
+  * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/src/out/diplomatic.rng)
+
 
 To submit a bug report, ask a question about how to encode a particular text, or make a feature request, please submit an issue here: [https://github.com/lombardpress/lombardpress-schema/issues](https://github.com/lombardpress/lombardpress-schema/issues)
 
