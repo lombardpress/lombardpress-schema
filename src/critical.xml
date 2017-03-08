@@ -12,9 +12,7 @@
         <author xml:id="NicolasVaughan">Nicolas Vaughan</author>
       </titleStmt>
       <publicationStmt>
-        <authority>
-          [Statement of availability]
-        </authority>
+        <authority>An SCTA and LombardPress Collaboration Project</authority>
       </publicationStmt>
       <sourceDesc>
         <p>Born Digital</p>
@@ -41,16 +39,12 @@
                   <gloss>strikethrough</gloss>
                   <desc>A deletion indicated by a line through the center of the text</desc>
                 </valItem>
-                <valItem ident="expunctuated">
-                  <gloss>expunctuated</gloss>
-                  <desc>A deletion indicated by dots underneath the text.</desc>
-                </valItem>
                 <valItem ident="expunctuation">
                   <gloss>expunctuated</gloss>
-                  <desc>Alias of expunctuated: A deletion indicated by dots underneath the text</desc>
+                  <desc>A deletion indicated by dots underneath the text</desc>
                 </valItem>
                 <valItem ident="blackout">
-                  <gloss>blacked out</gloss>
+                  <gloss>black out</gloss>
                   <desc>A deletion indicated by blacking out the word or segment</desc>
                 </valItem>
                 <valItem ident="underline">
@@ -120,6 +114,24 @@
           </constraint>
         </constraintSpec>
         
+        <!-- RULES FOR MILESTON ELEMENTS -->
+        <constraintSpec ident="milestones-must-have-ed-attr" scheme="schematron">
+          <desc>Milestones must have ed attribute</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="//tei:lb|tei:cb|tei:pb">
+              <report test="not(./@ed)">Milestones must have ed attribute</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        <constraintSpec ident="cb-and-pb-must-have-n-attr" scheme="schematron">
+          <desc>cb and pb must have n attribute</desc>
+          <constraint>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="//tei:cb|tei:pb">
+              <report test="not(./@n)">cb and pb must have n attribute</report>
+            </rule>
+          </constraint>
+        </constraintSpec>
+        
         <moduleRef key="tei"/>
         <!-- header module -->
         <moduleRef key="header"/>
@@ -175,15 +187,6 @@
             </rule>
           </constraint>
         </constraintSpec>
-        <!-- this test doesn't seem to be working; but I changed docs to SHOULD, so rule is no longer necessary -->
-        <!--<constraintSpec ident="pubstmt-availability-must-have-status" scheme="schematron">
-          <desc>publicationStmt availability must include a status attribute</desc>
-          <constraint>
-            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
-              <report test="not(tei:availability/@status)">publicationStmt availability must include a status attribute</report>
-            </rule>
-          </constraint>
-        </constraintSpec>-->
         
         <!-- sourceDesc rules -->
         <constraintSpec ident="src-desc-must-contain-listwit-or-listbibl" scheme="schematron">
@@ -240,7 +243,7 @@
         <!-- TODO: there are more MUST's here, but enforcement is not urgent -->
         
         
-        <!-- END Header rules -->
+        <!-- END HEADER RULES -->
         
        <!-- text structure module -->
         <moduleRef key="textstructure"/>
@@ -278,7 +281,7 @@
         
         <!-- rules for p -->
         
-        <!-- not that this rule disallows the use of p as children of any other rules. 
+        <!-- note that this rule disallows the use of p as children of any other rules. 
           Thus Ps are not allowed in notes or cites or quotes. P is a privileged structure, 
           the "ab" element should be used everywhere else there is not for creating structure block units -->
           

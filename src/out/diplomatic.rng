@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2017-03-06T13:25:15Z. .
+Schema generated from ODD source 2017-03-08T12:58:28Z. .
 TEI Edition: Version 3.1.0. Last updated on
 	15th December 2016, revision d3f5e70
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.1.0/
@@ -4166,18 +4166,16 @@ Suggested values include: 1] margin(margin) ; 2] margin-right(margin-right) ; 3]
          <optional>
             <attribute name="rend">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(rendition) indicates how the element in question was rendered or presented in the source text.
-Suggested values include: 1] strikethrough(strikethrough) ; 2] expunctuated(expunctuated) ; 3] expunctuation(expunctuated) ; 4] blackout(blacked out) ; 5] underline(underline) ; 6] erasure(erasure) </a:documentation>
+Suggested values include: 1] strikethrough(strikethrough) ; 2] expunctuation(expunctuation) ; 3] blackout(black out) ; 4] underline(underline) ; 5] erasure(erasure) </a:documentation>
                <list>
                   <oneOrMore>
                      <choice>
                         <value>strikethrough</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(strikethrough) A deletion indicated by a line through the center of the text</a:documentation>
-                        <value>expunctuated</value>
-                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(expunctuated) A deletion indicated by dots underneath the text.</a:documentation>
                         <value>expunctuation</value>
-                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(expunctuated) Alias of expunctuated: A deletion indicated by dots underneath the text</a:documentation>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(expunctuation) A deletion indicated by dots underneath the text</a:documentation>
                         <value>blackout</value>
-                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(blacked out) A deletion indicated by blacking out the word or segment</a:documentation>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(black out) A deletion indicated by blacking out the word or segment</a:documentation>
                         <value>underline</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(underline) A deletion indicated by underling the word or segment</a:documentation>
                         <value>erasure</value>
@@ -13419,7 +13417,30 @@ Suggested values include: 1] paper; 2] parch(parchment) ; 3] mixed</a:documentat
          </zeroOrMore>
          <ref name="att.global.attributes"/>
          <ref name="att.segLike.attributes"/>
-         <ref name="att.typed.attributes"/>
+         <ref name="att.typed.attribute.subtype"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.
+Suggested values include: 1] pilcrow(pilcrow) ; 2] virgula(virgula) ; 3] punctus(punctus) ; 4] punctus-medius(punctus medius) ; 5] punctus-elevatus(punctus elevatus) ; 6] punctus-interrogativus(punctus interrogativus) </a:documentation>
+               <choice>
+                  <value>pilcrow</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(pilcrow) A pilcrow punctuation character ¶</a:documentation>
+                  <value>virgula</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(virgula) A virgula punctuation character /</a:documentation>
+                  <value>punctus</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(punctus) A punctus punctuation character .</a:documentation>
+                  <value>punctus-medius</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(punctus medius) A punctus medius punctuation character ·</a:documentation>
+                  <value>punctus-elevatus</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(punctus elevatus) A punctus elevatus punctuation character ;</a:documentation>
+                  <value>punctus-interrogativus</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(punctus interrogativus) A punctus interrogativus punctuation character ?</a:documentation>
+                  <data type="token">
+                     <param name="pattern">(\p{L}|\p{N}|\p{P}|\p{S})+</param>
+                  </data>
+               </choice>
+            </attribute>
+         </optional>
          <optional>
             <attribute name="force">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates the extent to which this punctuation mark conventionally separates words or phrases</a:documentation>
@@ -13554,5 +13575,151 @@ The attributes @to and @from on <name/> may each contain only a single value</re
       <choice>
          <ref name="TEI"/>
       </choice>
-   </start>
+   </start> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-milestones-must-have-ed-attr-constraint-rule-12">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="//tei:lb|tei:cb|tei:pb">
+              <report test="not(./@ed)">Milestones must have ed attribute</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-cb-and-pb-must-have-n-attr-constraint-rule-13">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0" context="//tei:cb|tei:pb">
+              <report test="not(./@n)">cb and pb must have n attribute</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-missing-author-rule-constraint-rule-14">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:titleStmt[1]">
+              <report test="not(./tei:author)">An author must be stated. Either the author's name or anonymous should be stated</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-missing-edition-n-constraint-rule-15">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./@n)">Edition element must indicate edition number with n attribute of the form x.x.x or x.x.x-dev</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-missing-edition-date-constraint-rule-16">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./tei:date)">EditionStmt Edition must have an date element as child</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-missing-edition-date-when-attribute-constraint-rule-17">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:editionStmt[1]/tei:edition[1]">
+              <report test="not(./tei:date/@when)">EditionStmt Edition Date must have a when attribute</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-pubstmt-must-have-authority-constraint-rule-18">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
+              <report test="not(./tei:authority)">publicationStmt must have an authority element as child</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-pubstmt-must-have-availability-constraint-rule-19">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
+              <report test="not(./tei:availability)">publicationStmt must have an availability element as child</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-src-desc-must-contain-listwit-or-listbibl-but-not-both-constraint-rule-20">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]">
+              <report test="not(./tei:listWit) and not(./tei:listBibl)">Source description must contain a listWit or listBibl, but not both</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-src-desc-must-contain-listwit-or-listbibl-but-not-both-constraint-rule-21">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listWit[1]">
+              <report test="./tei:listBibl">Source description must contain a listWit or listBibl, but not both</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-src-desc-must-contain-listwit-or-listbibl-but-not-both-constraint-rule-22">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:sourceDesc[1]/tei:listBibl[1]">
+              <report test="./tei:listWit">Source description must contain a listWit or listBibl, but not both</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-encoding-desc-must-be-present-constraint-rule-23">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]">
+              <report test="not(./tei:encodingDesc)">Encoding description must be present</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-schema-ref-must-be-present-constraint-rule-24">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]">
+              <report test="not(./tei:schemaRef)">SchemaRef must be present</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-schema-ref-must-have-n-attribute-constraint-rule-25">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]/tei:schemaRef[1]">
+              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-diplomatic-1.0.0"</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-revision-desc-must-be-present-constraint-rule-26">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]">
+              <report test="not(./tei:revisionDesc)">Revision description must be present</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-revision-desc-must-have-status-constraint-rule-27">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:teiHeader[1]/tei:revisionDesc[1]">
+              <report test="not(./@status)">Revision description must have a status</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-front-element-must-be-present-constraint-rule-28">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:text[1]">
+              <report test="not(./tei:front)">Front element must be present</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-front-element-starts-on-div-constraint-rule-29">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:text[1]/tei:front[1]">
+              <report test="not(./tei:div[@type='starts-on']) and not(./tei:div[@type='startsOn'])">Front element must contain a div with a "starts-on" type, i.e. @type='starts-on'</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-body-must-have-immediate-div-and-no-other-direct-children-constraint-rule-30">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:text[1]/tei:body[1]">
+              <report test="not(./tei:div[1])">Body must have immediate div</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-body-must-have-immediate-div-and-no-other-direct-children-constraint-rule-31">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:text[1]/tei:body[1]">
+              <report test="count(./*) gt 1">Body must have ONLY child that is a div</report>
+            </rule>
+   </pattern> 
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="lombardpress-schema-body-p-is-child-of-div-constraint-rule-32">
+      <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+            context="/tei:TEI/tei:text[1]/tei:body[1]//tei:p">
+              <report test="not(./parent::tei:div[1])">every body p must be an immediate child of a div</report>
+            </rule>
+   </pattern>
 </grammar>

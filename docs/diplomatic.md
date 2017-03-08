@@ -123,7 +123,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 2. `authority` tag **MAY** contain a `ref` to provide an external link to the authority entity.
 3. `publicationStmt` **MUST** contain `availability`.
 4. `availability` **SHOULD** contain `@status`.
-5. `availability` **SHOUL** contain a `p` describing the license under which the edition is published.
+5. `availability` **SHOULD** contain a `p` describing the license under which the edition is published.
 
 #### Examples
 
@@ -173,7 +173,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
-1. `sourceDesc` **MUST** contain either a `listWit` or `listBibl` not both.
+1. `sourceDesc` **MUST** contain either a `listWit` or `listBibl`, but NOT both.
 2. `listWit` **MUST** contain only one `wit`.
 3. `listBibl` **MUST** contain only one `bibl`.
 4. `witness` **MUST** have a `@xml:id`.
@@ -604,13 +604,13 @@ Or
 
 1. `del` **MUST** have an `@rend` attribute
   * Possible values of `@rend`:
-  * erasure
-  * expunctuate (alias: expunctuated)
-  * underline
-  * strike-through (alias: strikethrough, strikeout)
-  * black-out (alias: blackout)
-  * vacat
-  * [Combinations are always possible, e.g. `rend="strikethrough vacat"`]
+    * erasure
+    * expunctuation
+    * underline
+    * strikethrough
+    * blackout
+    * vacat
+    * [Combinations are always possible, e.g. `rend="strikethrough vacat"`]
 
 ### Examples
 ``` xml
@@ -691,7 +691,7 @@ Reference is used when the author makes an internal or external reference. The w
 Ut dicit <ref><name>Augustinus</name> in <title>De civitate dei</title></ref>
 ```
 
-## Quotation
+## Quotations
 
 ### Description
 
