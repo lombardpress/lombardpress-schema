@@ -930,7 +930,7 @@ This indicates that a scribe (either the original or a later scribe) has realize
 3. `rdg` **MUST** contain a `del` element.
 4. `rdg` **MUST NOT** contain any content outside of the `del` element.
 5. `del` **MAY** have a `@place` attribute.
-  * Generally, it is assumed that a deletion happens `in-line`. A deletion of something not `in-line` should generally be treated as a `correction-cancellation`. [See below](#correction-cancellation).
+  * Generally, it is assumed that a deletion happens `in-line`. A deletion of something not `in-line` should generally be treated as a `correction-cancellation`. [See correction-cancellation below](#correction-cancellation).
 6. `del` **SHOULD** have a `@rend` attribute.
 7. `del` **MAY** have a `@hand` attribute.
 
@@ -1222,14 +1222,14 @@ With both variations and corrections discussed, it is important to pause and ack
 These two categories are:
 
 * A Variation with Correction
-  * If we imagine the main text being a straight line, a variation represents an alternative path. On this "alternative" path it is possible for corrections to made.
+  * If we imagine the main text being a straight line, a variation represents an alternative stem. On this "alternative" stem it is possible for corrections to made: a correction that has no relation to the main stem
 
 * A Correction that Varies
-  * Alternatively, it is possible for a correction to be on the "main" path, but in the course of making this correction to introduce a variation, or to inaugurate an alternative path.
+  * Alternatively, it is possible for a correction to be on the "main" stem but in the course of making this correction to introduce a variation, or to inaugurate an alternative stem.
 
 ### A Variation with a Correction
 
-When a correction is made on the "alternative path" it becomes difficult to represent this as a simple correction because, with respect to the main line, there is nothing to correct. The very words in need of correction only occur on the alternate path.
+When a correction is made on the "alternative" stem it becomes difficult to represent this as a simple correction because, with respect to the main line, there is nothing to correct. The very words in need of correction only occur on the alternate stem.
 
 To handle these cases, we allow `rdg@type="variation-substance"` to include `add`, `del`, and `subst` as children. But only for the present case, i.e. a correction on an "alternative" stem.
 
@@ -1257,7 +1257,7 @@ Such a note might look like:
 
 > secum compateretur illud] non illud *nota* illud *corr. ex* idem
 
-As discussed [below](#witDetail), such cases can also continue to be addressed with the use of `witDetail`. In this case, one would simply ignore the correction in the `rdg` and then add a note in `witDetail`. However, since this case is quite common, it is nice to be able to simply add the correction within the `rdg` and not worry about adding an extra `witDetail`.
+As discussed [below in witDetail](#witDetail), such cases can also continue to be addressed with the use of `witDetail`. In this case, one would simply ignore the correction in the `rdg` and then add a note in `witDetail`. However, since this case is quite common, it is nice to be able to simply add the correction within the `rdg` and not worry about adding an extra `witDetail`.
 
 ### A Correction that Varies
 
@@ -1303,7 +1303,7 @@ In the end, no new requirements are placed on the editor in such a case. An edit
 
 These types refer to the situation where a (current or previous) editor suggests or introduces an emendation to the text that is not supported by the textual tradition.
 
-Terminologically, one might consider an improvement that is adopted in the text (i.e. it is placed in the `<lem>` element) to be an *emendation*, while an improvement that is merely suggested but not adopted in the text (and therefore put in a `<rdg>` element) can be referred to as a *conjecture*. To maintain a higher degree of flexibility and reduce the amount of necessary types, we adopt the term *conjecture* in the typology to signify both emendations and conjectures in the more restricted sense.
+Terminologically, one might consider an improvement that is adopted in the text (i.e. it is placed in the `lem` element) to be an *emendation*, while an improvement that is merely suggested but not adopted in the text (and therefore put in a `rdg` element) can be referred to as a *conjecture*. To maintain a higher degree of flexibility and reduce the amount of necessary types, we adopt the term *conjecture* in the typology to signify both emendations and conjectures in the more restricted sense.
 
 General rules for conjectures:
 
@@ -1371,7 +1371,7 @@ acquisita
 
 ##### Example 3
 
-The editor suspects that a word is missing from the text, but is not certain enough to add it to the text. This might as well have been another scholar, and in that case, the `@source` should be indicated
+The editor suspects that a word is missing from the text, but is not certain enough to add it to the text. This might as well have been another scholar, and in that case, the `@source` should be indicated.
 
 ``` xml
 Utrum fides
@@ -1465,7 +1465,7 @@ acquisita
 
 > 10 sit ] servus PVL
 
-The note might be more explict:
+The note might be more explicit:
 
 > 10 sit ] *scr.*, servus PVL
 
@@ -1579,14 +1579,14 @@ This could be rendered as:
 
 Because we recognize there may be cases where an editor feels that a reading is so unique that it fits into no existing typology, we support the use of a `rdg@type="manual"`, despite highly discouraging its use.
 
-The use of the `manual` type should be avoided at all costs, and in subsequent versions of the lbp schema we aim to identify all instances of `manual` and either explain how these cases fit into the existing typology or expand the typology to encompass this instance.
+The use of the `manual` type should be avoided at all costs, and in subsequent versions of the lbp-schema we aim to identify all instances of `manual` and either explain how these cases fit into the existing typology or expand the typology to encompass this instance.
 
 ### Rules
 
-1. the `rdg` must have an `@type="manual`.
-2. The `rdg` should include precisely what the editors hope will appear after the lemma
+1. `rdg` must have an `@type="manual`.
+2. `rdg` should include precisely what the editors hope will appear after the lemma
 3. The description of the variant (normally the part of the reading placed in italics) should be wrapped in an `desc` element
-4. The sigla should be wrapped in a `wit` element.
+4. The siglum should be wrapped in a `wit` element.
 
 ### Examples
 
@@ -1622,17 +1622,17 @@ This would likely be rendered as:
 
 ### Description
 
-Under normal circumstances the processor will generate, from the above described `rdg` types, text describing the particular reading. But a reading might represent a certain situation that the editor would like to describe, but is not handled by the processor. In that case the `witDetail` is handy (and preferred to resorting to the use of `rdg@type="manual"`), as its content should be added by the processor after the standard text of the reading type, but before the witness siglum.
+Under normal circumstances the processor will generate, from the above described `rdg` types, text describing the particular reading. But a reading might represent a certain situation that the editor would like to describe, but is not handled by the processor. In that case the `witDetail` is handy (and preferred over resorting to the use of `rdg@type="manual"`), as its content should be added by the processor after the standard text of the reading type, but before the witness siglum.
 
 ### Rules
 
-1. The `witDetail` **MAY** take as children only text nodes and the `mentioned` element.
+1. `witDetail` **MAY** take as children only text nodes and the `mentioned` element.
 2. All references to the content of the established text or witness within `witDetail` should be wrapped in a `mentioned` element.
-3. The `witDetail` **MUST** have an `@wit` that points to the reading associated with this `witDetail`.
+3. `witDetail` **MUST** have an `@wit` that points to the reading associated with this `witDetail`.
   * The `witDetail` information should target only one reading. General notes meant to offer detail or information about the entire apparatus should be included in a `note` element which should appear at the end of the `app`.
 4. For ease of processing and clarity, `witDetail` elements should come immediately after the `rdg` with which it is associated.
-5. The `witDetail` **SHOULD** include an `@xml:lang`.
-6. The `witDetail` **SHOULD** be longer than 100 words, since it is expected that this note will be included in a printed *apparatus criticus*. Longer notes should be included in an `app/note`.
+5. `witDetail` **SHOULD** include an `@xml:lang`.
+6. `witDetail` **SHOULD** be longer than 100 words, since it is expected that this note will be included in a printed *apparatus criticus*. Longer notes should be included in an `app/note`.
 
 ### Example
 
@@ -1651,7 +1651,7 @@ A processor could render this as follows:
 
 ### Description
 
-The `note` element used within the app is the appropriate place for an extended prose discussion of the apparatus entry as a whole. Generally, a traditional print rendering of the apparatus does not have room for such notes, and it is not expected that such a note would appear directly in the apparatus. More likely, in a print rendering, these notes would appear in an appendix. Digital representations can offer alternative ways of displaying these notes. For example, see [http://lombardpress.org/conceiving-the-digital-critical-apparatus/](http://lombardpress.org/conceiving-the-digital-critical-apparatus/).
+The `note` element used within the `app` is the appropriate place for an extended prose discussion of the apparatus entry as a whole. Generally, a traditional print rendering of the apparatus does not have room for such notes, and it is not expected that such a note would appear directly in the apparatus. More likely, in a print rendering, these notes would appear in an appendix. Digital representations can offer alternative ways of displaying these notes. For example, see [http://lombardpress.org/conceiving-the-digital-critical-apparatus/](http://lombardpress.org/conceiving-the-digital-critical-apparatus/).
 
 ### Rules
 
@@ -1751,7 +1751,7 @@ A quote, following the TEI guidelines, is intended to identify anything that is 
   * This would be used to indicate segments of a quote that are interrupted by an *inquit*.
   * Note that this can also be encoded by use of the `@next` and `@prev` attributes. See the examples below.
 4. `quote` **MAY** take an `@type` attribute, the values of which can be:
-  * direct (this is the same as simply not declaring an @type)
+  * direct (this is the same as simply not declaring an `@type`)
   * paraphrase
 5. `quote` **MAY** take an `@ana` attribute, used to indicate a canonical reference for the quote.
 
@@ -1811,7 +1811,7 @@ A reference, following the TEI guidelines, is intended to identify anything that
 2. `ref` **MAY** be the immediate child of a `cit` element and thus appear in the *apparatus fontium*.
 3. `ref` **MAY** contain an `@ana` attribute, used to indicate a canonical reference for the reference.
 3. `ref` **MAY** contain a `title`, `name`, and `num` element.
-4. `ref` **MAY** contain a `<seg>` with `@type="incipit"` for references that include an incipit for the referenced section.
+4. `ref` **MAY** contain a `seg` with `@type="incipit"` for references that include an incipit for the referenced section.
 
 ### Examples
 
@@ -1839,19 +1839,19 @@ The following example is expected to generate an *apparatus fontium* entry:
 
 ### Description
 
-The `<note>` element is available for cases where the editor finds it necessary to give a prose discussion of the passage or sources. A limited set of inline elements are available for markup of the text. They can be used to give bibliographical references (`<bibl>`), quotes from the sources (`<quote>`), refer to words in the established text (`<mentioned>`) and references to other parts of the established text (`<ref>`). The `<ab>` can be used for separating the text into paragraph-like blocks.
+The `<note>` element is available for cases where the editor finds it necessary to give a prose discussion of the passage or sources. A limited set of inline elements are available for markup of the text. They can be used to give bibliographical references (`bibl`), quotes from the sources (`quote`), refer to words in the established text (`mentioned`) and references to other parts of the established text (`ref`). The `ab` can be used for separating the text into paragraph-like blocks.
 
 ### Rules
 
-1. `note` **SHOULD** be placed in the last position within the `<cit>` entry.
+1. `note` **SHOULD** be placed in the last position within the `cit` entry.
 2. `note` **SHOULD** include an `@xml:lang` attribute.
-3. `note` **MUST** include either text nodes or `<ab>` elements as direct children.
-4. `note` **MAY** include the following elements: `<bibl>`, `<quote>`, `<mentioned>`, `<ref>`.
-4. `note` **MAY NOT** include `<p>` or `<div>` elements within it descendant nodes.
+3. `note` **MUST** include either text nodes or `ab` elements as direct children.
+4. `note` **MAY** include the following elements: `bibl`, `quote`, `mentioned`, `ref`.
+4. `note` **MAY NOT** include `p` or `div` elements within it descendant nodes.
 
 ### Examples
 
-The simple examples with very short notes are already given above, but to reiterate:
+Here is a simple examples with a short note:
 ```xml
 <cit>
   <quote xml:id="quote1" ana="#gen1_1">In principio creavit Deus caelum</quote>
@@ -1860,6 +1860,7 @@ The simple examples with very short notes are already given above, but to reiter
 ```
 
 A more complex example where most of the allowed elements are used could look like this:
+
 ```xml
 sic, cum <name ref="#Aristotle">Philosophus</name> ponit
 <cit>
@@ -1882,7 +1883,7 @@ sic, cum <name ref="#Aristotle">Philosophus</name> ponit
 ```
 ## Complex cases
 
-When a text contains both a reference and a quotation, both a `<ref>` and a `<quote>` are encoded, but often only the `<ref>` or the `<quote>` should be wrapped in a `<cit>` element and not both. In many cases the reference is separated from the quotation by some amount of words which do not belong in the `<cit>` element. We recommend citing the `<quote>` since we see this as primary. We would then associate the `<ref>` with the `<quote>` it is related to via the `@corresp` attribute. An example:
+When a text contains both a reference and a quotation, both a `ref` and a `quote` are encoded, but often only the `ref` or the `quote` should be wrapped in a `cit` element and not both. In many cases the reference is separated from the quotation by some amount of words which do not belong in the `cit` element. We recommend citing the `quote` since we see this as primary. We would then associate the `ref` with the `quote` it is related to via the `@corresp` attribute. An representative example follows:
 
 ```xml
 <p>Patet per
