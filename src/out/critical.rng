@@ -5,7 +5,7 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2017-03-08T12:58:30Z. .
+Schema generated from ODD source 2017-03-08T15:05:51Z. .
 TEI Edition: Version 3.1.0. Last updated on
 	15th December 2016, revision d3f5e70
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.1.0/
@@ -13774,7 +13774,7 @@ The attributes @to and @from on <name/> may each contain only a single value</re
             id="lombardpress-schema-front-element-starts-on-div-constraint-rule-35">
       <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
             context="/tei:TEI/tei:text[1]/tei:front[1]">
-              <report test="not(./tei:div[@type='starts-on']) and not(./tei:div[@type='startsOn'])">Front element must contain a div with a "starts-on" type, i.e. @type='starts-on'</report>
+              <report test="not(./tei:div[@xml:id='starts-on'])">Front element must contain a div with a "starts-on" xml:id, i.e. @xml:id='starts-on'</report>
             </rule>
    </pattern> 
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"

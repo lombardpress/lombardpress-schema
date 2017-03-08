@@ -257,10 +257,10 @@
           </constraint>
         </constraintSpec>
         <constraintSpec ident="front-element-starts-on-div" scheme="schematron">
-          <desc>Front element must contain a div with a starts-on type</desc>
+          <desc>Front element must contain a div with a starts-on xml:id</desc>
           <constraint>
             <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:text[1]/tei:front[1]">
-              <report test="not(./tei:div[@type='starts-on']) and not(./tei:div[@type='startsOn'])">Front element must contain a div with a "starts-on" type, i.e. @type='starts-on'</report>
+              <report test="not(./tei:div[@xml:id='starts-on'])">Front element must contain a div with a "starts-on" xml:id, i.e. @xml:id='starts-on'</report>
             </rule>
           </constraint>
         </constraintSpec>
