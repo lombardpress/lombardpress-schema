@@ -16,8 +16,8 @@ We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://to
 # Documentation
 
 * current release
-  * [critical](critical)
-  * [diplomatic](diplomatic)
+  * [critical](critical.md)
+  * [diplomatic](diplomatic.md)
 * current release on github
   * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/docs/critical.md)
   * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/docs/diplomatic.md)
@@ -29,7 +29,7 @@ We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://to
 
 * current release
   * [critical](../src/critical.xml)
-  * [diplomatic](../src//diplomatic.xml)
+  * [diplomatic](../src/diplomatic.xml)
 * current release on github
   * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/critical.xml)
   * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/diplomatic.xml)
