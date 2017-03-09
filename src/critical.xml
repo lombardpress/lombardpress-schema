@@ -336,6 +336,14 @@
                   </rule>
                 </constraint>
               </constraintSpec>
+              <constraintSpec ident="rdg-must-not-have-app-as-descendant" scheme="schematron">
+                <desc>rdg must not have app as descendant</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg">
+                    <report test=".//tei:app">rdg must not have app as descendant</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
               <constraintSpec ident="empty-lemma-n-attribute" scheme="schematron">
                 <desc>Empty lem must have an n attribute</desc>
                 <constraint>
