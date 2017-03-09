@@ -240,7 +240,7 @@
             </rule>
           </constraint>
         </constraintSpec>
-        <!-- TODO: there are more MUST's here, but enforcement is not urgent -->
+        <!-- additional header rules should be added here -->
         
         
         <!-- END HEADER RULES -->
@@ -276,8 +276,10 @@
             </rule>
           </constraint>
         </constraintSpec>
+        
         <!-- rules for head -->
-          <!-- head rules are covered by general tei rules -->
+        
+        <!-- head rules are covered by general tei rules -->
         
         <!-- rules for p -->
         
@@ -309,6 +311,39 @@
           <attList>
             <attDef ident="type" mode="change" usage="rec">
               <!-- here are the rules for reading types -->
+              <!-- general app rules -->
+              <constraintSpec ident="app-must-have-lemma" scheme="schematron">
+                <desc>app must have lemma</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:app">
+                    <report test="not(./tei:lem)">app must have lemma</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="app-must-have-rdg" scheme="schematron">
+                <desc>app must have rdg</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:app">
+                    <report test="not(./tei:rdg)">app must have rdg</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="rdg-must-have-wit-or-source" scheme="schematron">
+                <desc>rdg must have wit or source attribute</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg">
+                    <report test="not(./@wit) and not(./@source)">rdg must have wit or source attribute</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="empty-lemma-n-attribute" scheme="schematron">
+                <desc>Empty lem must have an n attribute</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:lem[not(node())]">
+                    <report test="not(./@n)">Empty lem must have an n attribute</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
               <!-- variation type rules -->
               <constraintSpec ident="variation-absent-rule" scheme="schematron">
                 <desc>Requires an empty rdg element when rdg has type=variation-absent</desc>
@@ -333,13 +368,14 @@
                 </constraint>
               </constraintSpec>
               <constraintSpec ident="variation-choice-rule" scheme="schematron">
-                <desc>The reading of a varation-choice must contain a choice element as a direct child</desc>
+                <desc>The reading of a variation-choice must contain a choice element as a direct child</desc>
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='variation-choice']">
-                    <report test="not(./tei:choice)">The reading of a varation-choice must contain a choice element as a direct child</report>
+                    <report test="not(./tei:choice)">The reading of a variation-choice must contain a choice element as a direct child</report>
                   </rule>
                 </constraint>
               </constraintSpec>
+              
               <!-- correction rules -->
               <constraintSpec ident="correction-addition-rule" scheme="schematron">
                 <desc>Requires that rdg have a add child element when rdg has type=correction-addition</desc>
@@ -362,6 +398,31 @@
                 <constraint>
                   <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='correction-substitution']">
                     <report test="not(./tei:subst)">This is a rdg type=correction-substitution. The rdg must contain an subst element</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <!-- conjecture rules -->
+              <constraintSpec ident="conjecture-supplied-rule" scheme="schematron">
+                <desc>lem or rdg that contains conjecture supplied must contain supplied as child</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='conjecture-supplied']|tei:lem[@type='conjecture-supplied']">
+                    <report test="not(./tei:supplied)">lem or rdg that contains conjecture supplied must contain supplied as child</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="conjecture-removed-rule" scheme="schematron">
+                <desc>lem or rdg that contains conjecture removed must contain surplus as child</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='conjecture-removed']|tei:lem[@type='conjecture-removed']">
+                    <report test="not(./tei:surplus)">lem or rdg that contains conjecture removed must contain surplus as child</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="conjecture-corrected-rule" scheme="schematron">
+                <desc>lem or rdg that contains conjecture corrected must contain corr as child</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg[@type='conjecture-corrected']|tei:lem[@type='conjecture-corrected']">
+                    <report test="not(./tei:corr)">lem or rdg that contains conjecture corrected must contain corr as child</report>
                   </rule>
                 </constraint>
               </constraintSpec>
