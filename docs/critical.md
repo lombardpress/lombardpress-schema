@@ -510,8 +510,10 @@ The general rules of any `app` element are:
 4. `app` **MAY** contain a `note` element.
 5. If `lem` is empty, it **MUST** contain the `@n` element.
 6. `lem` **MAY** have `@wit` or `@source`.
-7. `lem` **SHOULD** have `@wit` or `@source` when its parent `app` is contained within another `app` element.
-8. `rdg` **MUST** have `@wit` or `@source`.
+7. `lem` **MAY** take an another `app` element as a descendant
+8. `lem` **SHOULD** have `@wit` or `@source` when its parent `app` is contained within another `app` element.
+9. `rdg` **MUST** have `@wit` or `@source`.
+10. `rdg` **MAY NOT** take an another `app` element as a descendant
 
 ## Note on encoding empty lemmas
 
