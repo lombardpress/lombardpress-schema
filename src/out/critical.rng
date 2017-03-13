@@ -10674,7 +10674,7 @@ Suggested values include: 1] conjecture-supplied(conjecture-supplied) ; 2] conje
 Suggested values include: 1] variation-absent(variation-absent) ; 2] variation-present(variation-present) ; 3] variation-substance(variation-substance) ; 4] variation-orthography(variation-orthography) ; 5] variation-choice(variation-choice) ; 6] variation-inversion(variation-inversion) ; 7] correction-addition(correction-addition) ; 8] correction-deletion(correction-deletion) ; 9] correction-substitution(correction-substitution) ; 10] correction-transposition(correction-transposition) ; 11] deletion-of-addition(Correction cancellation: deletion-of-addition) ; 12] deletion-of-deletion(Correction cancellation: deletion-of-deletion) ; 13] deletion-of-substitution(Correction cancellation: deletion-of-substitution) ; 14] substitution-of-addition(Correction cancellation: substitution-of-addition) ; 15] conjecture-supplied(conjecture-supplied) ; 16] conjecture-removed(conjecture-removed) ; 17] conjecture-corrected(conjecture-corrected) ; 18] manual(manual) </a:documentation>
                <choice>
                   <value>variation-absent</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(variation-absent) indicates that the witness in question lacks the designated lemma; often rendered as "omit." or "omitted"</a:documentation>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(variation-absent) indicates that the witness in question lacks the designated lemma; often rendered as "omit." or "omitted" </a:documentation>
                   <value>variation-present</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(variation-present) indicates that the witness in question contains a word or phrase not included in the critical text.</a:documentation>
                   <value>variation-substance</value>
@@ -13798,7 +13798,7 @@ The attributes @to and @from on <name/> may each contain only a single value</re
             id="lombardpress-schema-schema-ref-must-have-n-attribute-constraint-rule-39">
       <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
             context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]/tei:schemaRef[1]">
-              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-critical-1.0.0"</report>
+              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-critical-1.0.0" </report>
             </rule>
    </pattern> 
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
