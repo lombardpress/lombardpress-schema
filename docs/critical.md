@@ -158,7 +158,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
-1. `publicationStmt` **MUST** have EITHER an `authority` and `availability` elements as children OR a general `p` element.
+1. `publicationStmt` **MUST** have EITHER `authority` and `availability` elements as children OR a general `p` element.
     * We highly encourage using `authority` and `availability` to identify the entity that makes the creation of the current document possible. See examples below.
 2. `p` **MAY** contain a `ref` to provide an external link to the authority-like entity.
 3. `authority` **MAY** contain a `ref` to provide an external link to the authority entity.
