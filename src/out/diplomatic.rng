@@ -13670,7 +13670,7 @@ The attributes @to and @from on <name/> may each contain only a single value</re
             id="lombardpress-schema-schema-ref-must-have-n-attribute-constraint-rule-25">
       <rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
             context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]/tei:schemaRef[1]">
-              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-diplomatic-1.0.0"</report>
+              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-diplomatic-1.0.0" </report>
             </rule>
    </pattern> 
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
