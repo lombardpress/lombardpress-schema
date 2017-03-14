@@ -325,8 +325,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 ### Rules
 
 1. `front` **MUST** take a `div` with the `xml:id="starts-on"`.
-  * The content of this div should only be `pb`, `cb`, and `lb` elements indicating the page, column, and line on which the text begins in the different witnesses. For the encoding of `pb` and `cb`
- see [the relevant section below](#milestones).
+  * The content of this div should only be `pb`, `cb`, and `lb` elements indicating the page, column, and line on which the text begins in the different witnesses. For the encoding of `pb`, `cb` and `lb` see [the relevant section below](#milestones).
 
 ### Examples
 

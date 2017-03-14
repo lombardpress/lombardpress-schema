@@ -573,7 +573,7 @@ A `variation-substance` is generally the most common type of variant, in which a
 
 This kind of variant is most commonly seen in an apparatus as something like:
 
-> 10 fides] spes A
+> 10 fides] spes *A*
 
 #### Rules
 
@@ -594,11 +594,11 @@ This kind of variant is most commonly seen in an apparatus as something like:
 
 On a negative apparatus:
 
-> 10 fides] spes A
+> 10 fides] spes *A*
 
 On a positive apparatus:
 
-> 10 fides] BCD spes A
+> 10 fides] *BCD* spes *A*
 
 ### variation-orthography
 
@@ -622,7 +622,7 @@ The `variation-orthography` class is meant to identify a class of variant instan
 est
 ```
 
-> 10 sicut] sicud A
+> 10 sicut] sicud *A*
 
 ### variation-inversion
 
@@ -1131,7 +1131,7 @@ A correction that simply inverts the order of two words.
 </app>
 ```
 
-> sanctus *ante* spiritus *transp.* A
+> sanctus *ante* spiritus *transp.* *A*
 
 ##### Example 2
 
@@ -1487,7 +1487,7 @@ Utrum fides
 acquisita
 ```
 
-> 10 semper ] C John, servus *AB*, sit *conj.*
+> 10 semper ] *C* John, servus *AB*, sit *conj.*
 
 ## Connected Apparatus Entries
 
@@ -1759,7 +1759,7 @@ A quote, following the TEI guidelines, is intended to identify anything that is 
 
 ### Rules
 
-1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of a `cit` element. In such a case it is generally expected that it would not appear in the *apparatus fonitum*.
+1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of a `cit` element. In such a case it is generally expected that it would not appear in the *apparatus fontium*.
 2. `quote` **MAY** be the immediate child of a `cit` element. In such a case, the quote is expected to appear in the *apparatus fontium*.
 3. `quote` **MAY** contain `seg` elements.
   * This would be used to indicate segments of a quote that are interrupted by an *inquit*.
