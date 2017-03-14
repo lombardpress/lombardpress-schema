@@ -325,7 +325,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 ### Rules
 
 1. `front` **MUST** take a `div` with the `xml:id="starts-on"`.
-  * The content of this div should only be `pb`, `cb`, and `lb` elements indicating the page, column, and line on which the text begins in the different witnesses.
+  * The content of this div should only be `pb`, `cb`, and `lb` elements indicating the page, column, and line on which the text begins in the different witnesses. For the encoding of `pb`, `cb` and `lb` see [the relevant section below](#milestones).
 
 ### Examples
 
@@ -453,7 +453,7 @@ Option 2
 
 ### Description
 
-Corrections mark places that an erroneous word has been marked as present in the text alongside its corrected form.
+Corrections mark places where an erroneous word has been marked as present in the text alongside its corrected form.
 
 ### Rules
 
@@ -474,7 +474,7 @@ Corrections mark places that an erroneous word has been marked as present in the
 
 ### Description
 
-Normalizations mark places that an original orthographic form has been preserved alongside its normalized form.
+Normalizations mark places where an original orthographic form has been preserved alongside its normalized form.
 
 ### Rules
 
@@ -584,7 +584,7 @@ Or
 
 ### Description
 
-`add` indicates a place that a word or phrase has been inserted, typically inter-linearly or in the margin.
+`add` indicates a place where a word or phrase has been inserted, typically inter-linearly or in the margin.
 
 ### Rules
 
@@ -600,7 +600,7 @@ Or
 
 ### Description
 
-`del` indicates a place that a word or phrase has been deleted.
+`del` indicates a place where a word or phrase has been deleted.
 
 ### Rules
 
@@ -623,7 +623,7 @@ Or
 
 ### Description
 
-`subst` indicates a place that a word has been deleted and another word has been added as a replacement
+`subst` indicates a place where a word has been deleted and another word has been added as a replacement
 
 ### Rules
 
@@ -744,6 +744,7 @@ et cetera
     * punctus
     * punctus-elevatus
     * punctus-medius
+    * punctus-interrogativus
     * virgula
 
 For now, we recommend a small subset of the many possible punctuation marks are included by the unicode glyph. Any unicode code point can be encoded, but not all media will be able to represent the adequately, so here we include some that are in a standard font set.
@@ -771,6 +772,19 @@ Aficionados for medieval font encoding will find glyphs and font suggestions at 
 <pc type="punctus-interrogativus">?</pc>
 <pc type="punctus-medius">·</pc>
 ```
+
+Alternative examples that do not write the glyphs explicitly but only encode their presence:
+``` xml
+<pc type="pilcrow"/>
+<pc type="virgula"/>
+<pc type="punctus"/>
+<pc type="punctus-elevatus"/>
+<pc type="punctus-interrogativus"/>
+<pc type="punctus-medius"/>
+```
+
+
+
 
 # Milestones
 
