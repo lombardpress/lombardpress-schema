@@ -213,7 +213,7 @@ The `titleStmt` determines the bibliographical information of the encoded file.
 
 #### Rules
 
-1. `sourceDesc` **MUST** contain either a `listWit` or `listBibl` or both.
+1. `sourceDesc` **MUST** contain `listWit`, `listBibl` or both.
 2. `listWit` **MUST** contain at least one `wit`.
 3. `listBibl` **MUST** contain at least one `bibl`.
 4. `witness` **MUST** have a `@xml:id`.
@@ -348,7 +348,7 @@ The individual editor would usually not be responsible for maintaining the `revi
 
 ## Rules
 
-1. `text` **SHOULD** take an `@type` attribute the value of which is "critical".
+1. `text` **SHOULD** take a `@type` attribute the value of which is "critical".
   * The possible values for `text@type` are:
     * critical
     * diplomatic
@@ -364,8 +364,8 @@ The individual editor would usually not be responsible for maintaining the `revi
 ### Rules
 
 1. `front` **MUST** take a `div` with the `xml:id="starts-on"`.
-  * The content of this div should only be `pb`, `cb`, and `lb` elements indicating the page, column, and lb on which the text begins in the different witnesses.
-
+  * The content of this div should only be `pb`, `cb`, and `lb` elements indicating the page, column, and lb on which the text begins in the different witnesses. For the encoding of `pb` and `cb`
+ see [the relevant section below](#milestones).
 ### Examples
 
 ```xml
@@ -452,7 +452,7 @@ Utrum fides semper <supplied>sit</supplied> acquisita
 
 In a processed text, this could result in the following text:
 
-> Utrum fides semper <sit> acquisita
+> Utrum fides semper \<sit\> acquisita
 
 ## surplus
 
@@ -530,7 +530,7 @@ ad lumen solis
 
 This would make it easy to create the following apparatus entry:
 
-> nicticoracis *post* oculus A
+> nicticoracis *post* oculus *B*
 
 ## Basic rdg types
 
@@ -573,7 +573,7 @@ A `variation-substance` is generally the most common type of variant, in which a
 
 This kind of variant is most commonly seen in an apparatus as something like:
 
-> 10 fides] spes *A*
+> 10 fides] spes A
 
 #### Rules
 
@@ -594,11 +594,11 @@ This kind of variant is most commonly seen in an apparatus as something like:
 
 On a negative apparatus:
 
-> 10 fides] spes *A*
+> 10 fides] spes A
 
 On a positive apparatus:
 
-> 10 fides] *BCD* spes *A*
+> 10 fides] BCD spes A
 
 ### variation-orthography
 
@@ -622,7 +622,7 @@ The `variation-orthography` class is meant to identify a class of variant instan
 est
 ```
 
-> 10 sicut] sicud *A*
+> 10 sicut] sicud A
 
 ### variation-inversion
 
@@ -662,12 +662,14 @@ principium per quod ostenditur passio de subiecto. Ubi est
   <lem>ista tria invenire</lem>
   <rdg wit="#B">ista tria invenire</rdg>
   <rdg wit="#O" type="variation-inversion">
-    <seg n="1">invenire</seg>
-    <seg n="2">ista tria</seg>
+    <seg>invenire</seg>
+    <seg>ista tria</seg>
   </rdg>
 </app>
 , ibi contingit ponere scientiam.
 ```
+
+> 10 ista tria invenire ] invenire *et* ista tria *inv* *O*
 
 ### variation-present
 
@@ -679,9 +681,8 @@ The `variation-present` type should be used to indicate that a word or phrase is
 
 1. `lem` **MUST** be an empty node.
   * As stated above in the general rules, when a `lem` is empty it should have an `@n="suggested-lemma-value"` attribute, the value of which should be the word to appear in the critical text that immediately proceeds the `app`.
-2.
-3. `rdg` **MUST** have `@type=present`.
-4. `rdg` **MAY** include `@cause` with the following available enumerated values:
+2. `rdg` **MUST** have `@type=variation-present`.
+3. `rdg` **MAY** include `@cause` with the following available enumerated values:
   * repetition
 
 #### Examples
@@ -725,7 +726,7 @@ A word or phrase is absent from a witness but present in the transmitted text. T
 
 #### Rules
 
-1. `rdg` **MUST** have no descendant text nodes.
+1. `rdg` **MUST NOT** have any descendant text nodes.
 2. `rdg` **MAY** have a child `space` element.
   * A `space` may be used when attempting to indicate a space left by the scribe intended to be filled in later.
 3. `rdg` **SHOULD** include `@type=variation-absent`.
@@ -748,7 +749,7 @@ A word or phrase is absent from a witness but present in the transmitted text. T
 
 In a positive apparatus this could be presented like this:
 
-> 10 fides] *B* *om.* *A*
+> 10 fides] *B* ; *om.* *A*
 
 In a negative apparatus it would be like this:
 
@@ -789,13 +790,13 @@ fides
 </app>
 ```
 
-> 10 fides] *lac. (5 litt.)* *A*
+> 10 fides] *spat. vac. (5 litt.)* *A*
 
 ### variation-choice
 
 #### Description
 
-The `variation-choice` type can be used when a single witness (however the concept of witness is defined) contains two or more parallel readings, and it is not clear which reading was preferred by the scribe. The distinction between this case and a correction can be difficult to discern, and one editor might feel convinced that the text contains a correction, while another might see it as two readings of potentially equivalent weight or value.
+The `variation-choice` type can be used when a single witness (however the concept of witness is defined) contains two or more parallel readings, and it is not clear which reading is preferred. The distinction between this case and a correction can be difficult to discern, and one editor might feel convinced that the text contains a correction, while another might see it as two readings of potentially equivalent weight or value.
 
 The `seg` elements are used to distinguish the different readings. If the editor wishes to indicate the chronological order of the readings, she may do so by adding the `@n` attribute as described below.
 
@@ -827,7 +828,7 @@ A simple example could look like this:
 
 The representation in the apparatus would depend on the processor. But one suggestion is:
 
-> vel ] et *et* vel (s.l.)
+> vel ] et *et* vel (*s.l.*) *B*
 
 ##### Example 2
 
@@ -855,7 +856,7 @@ Since this is the critical encoding, and the editor interprets the “vel” in 
 
 An apparatus representation of this could look like this:
 
-> instare ] instare MV ; instare *corr. ex.* dicere S ; dicere *et* instare T
+> instare ] instare *MV* ; instare *corr. ex.* dicere *S* ; dicere *et* instare *T*
 
 
 ## correction
@@ -916,7 +917,7 @@ Spiritus Sancti.
 
 > Filii et] *add. s.l. alia manu* *L*
 
-> Filli et] *om.* *L* *(corr. L1)*
+> Filli et] *om.* *L* *(corr. *L1*)*
 
 ### correction-deletion
 
@@ -993,9 +994,9 @@ This indicates that a scribe (either the original or a later scribe) wants to co
 
 #### Extended Commentary
 
-A possible argument against rule 9 is that an editor might desire to produce the following rendering for a correction to a particular word.
+A possible argument against rule 6 is that an editor might desire to produce the following rendering for a correction to a particular word.
 
-> insidia N (s *add.* *N1*)
+> insidia *N* (s *add.* *N1*)
 
 However, we find this rendering ambiguous and therefore somewhat problematic.
 
@@ -1041,7 +1042,7 @@ By adding "s" the scribe, did not meant to simply add an "s", but rather meant t
 
 In its rendering, it looks equivalent to the addition of a missing word or letter, but the effect or meaning of the correction is to substitute one word with another.
 
-In our view, complex detail about a how correction was precisely made is best left recorded in a `witDetail` ([see below](#witDetail)) and in an accompanying diplomatic transcriptions of the witness.
+In our view, complex details about how a correction was precisely made is best left recorded in a `witDetail` ([see below](#witDetail)) and in an accompanying diplomatic transcriptions of the witness.
 
 #### Examples
 
@@ -1055,6 +1056,7 @@ In our view, complex detail about a how correction was precisely made is best le
       <del>spem</del>
       <add>fidem</add>
     </subst>
+  </rdg>
 </app>
 ```
 
@@ -1109,7 +1111,7 @@ A `correction-transposition` is a special kind of `correction-substitution` and 
 1. See the above rules for `correction-substitution`.
 2. The `del` element within the `rdg/subst` element **MAY** take `seg` elements with `@n` attributes indicating the boundaries of the transposed words or phrases. This is necessary for proper processing when the `add` element contains more than two words.
   * The `@n` indicates the relative order of the segments *after* the transposition has taken place.
-  * This is required for a more complicated rendering such as "sanctus *ante* spiritus *transp.* A"
+  * This is required rendering more complicated transpositions a word is moved more than one position.
 
 #### Examples
 
@@ -1147,7 +1149,7 @@ A correction where a word is moved more than a single word.
 </app>
 ```
 
-> et *ante* spiritus sanctus *transp.* A
+> et *ante* spiritus sanctus *transp.* *A*
 
 ### correction-cancellation
 
@@ -1224,7 +1226,7 @@ With both variations and corrections discussed, it is important to pause and ack
 These two categories are:
 
 * A Variation with Correction
-  * If we imagine the main text being a straight line, a variation represents an alternative stem. On this "alternative" stem it is possible for corrections to made: a correction that has no relation to the main stem
+  * If we imagine the main text being a straight line, a variation represents an alternative stem. On this "alternative" stem it is possible for corrections to be made: a correction that has no relation to the main stem
 
 * A Correction that Varies
   * Alternatively, it is possible for a correction to be on the "main" stem but in the course of making this correction to introduce a variation, or to inaugurate an alternative stem.
@@ -1239,17 +1241,17 @@ To handle these cases, we allow `rdg@type="variation-substance"` to include `add
 <app>
   <lem>secum compateretur illud</lem>
   <rdg type="variation-substance" wit="#V">
-      non
-      <subst>
-          <del>idem</del>
-          <add>illud</add>
-        </subst>
-      est
+    non
+    <subst>
+      <del>idem</del>
+      <add>illud</add>
+    </subst>
+    est
   </rdg>
 </app>
 ```
 
-This will only work if the `rdg` in question represents one witness or two witnesses with an identical variation AND correction.
+This will only work if the `rdg` in question represents a single witness (or two witnesses with an identical variation AND correction).
 
 Thus, if there is another witness with an identical `rdg` but no correction, then this variation needs to be recorded in a separate reading.
 
@@ -1257,7 +1259,7 @@ In this case, a processor could be expected, to recognize any `add`, `del`, or `
 
 Such a note might look like:
 
-> secum compateretur illud] non illud *nota* illud *corr. ex* idem
+> secum compateretur illud] non illud *nota* illud *corr. ex* idem *V*
 
 As discussed [below in witDetail](#witDetail), such cases can also continue to be addressed with the use of `witDetail`. In this case, one would simply ignore the correction in the `rdg` and then add a note in `witDetail`. However, since this case is quite common, it is nice to be able to simply add the correction within the `rdg` and not worry about adding an extra `witDetail`.
 
@@ -1278,7 +1280,7 @@ The guidelines above state that a simple `correction-addition` should look as fo
 
 and it is suggested that this should render as:
 
->Filii et] *add. s.l* V
+>Filii et] *add. s.l* *V*
 
 But what if the correction was 'Filium etiam'? Here we have not only a correction, but a "correction that varies." In such a case, we would expect that correction to be recorded as follows:
 
@@ -1293,7 +1295,7 @@ But what if the correction was 'Filium etiam'? Here we have not only a correctio
 
 And the processor is expected to render something slightly different, such as:
 
->Filii et] Filium etiam *add. s.l* V
+>Filii et] Filium etiam *add. s.l* *V*
 
 The difference in rendering is the result of the difference between a simple correction that corrects in agreement with the main stem and correction that offers a variation from the main stem.
 
@@ -1320,7 +1322,7 @@ Notice that both of these attributes are pointers. If they do not point to an ex
 
 According to the the judgement of the editor, an expression is missing from the transmitted text. Ideas for improvement of the text may then either be added to the edited text itself or indicated in an apparatus note.
 
-Notice this reading type is only relevant if a note in the apparatus is desired or required. If the addition of some material is sufficiently reflected by appropriate symbols in the text (such as <added> or {added}), the `supplied` element can simply be put in the main text.
+Notice this reading type is only relevant if a note in the apparatus is desired or required. If the addition of some material is sufficiently reflected by appropriate symbols in the text (such as <added> or {added}), the `supplied` element can simply be put in the main text, as detailed in the [section above](#supplied).
 
 #### Rules
 
@@ -1337,7 +1339,7 @@ An emendation is introduced into the edited text. The text is absent from the te
 ``` xml
 Utrum fides semper
 <app>
-  <lem type="conjecture-supplied" source="#Michael">
+  <lem type="conjecture-supplied">
     <supplied>sit</supplied>
   </lem>
   <rdg type="variation-absent" wit="#P #V #L"/>
@@ -1349,11 +1351,11 @@ acquisita
 
 Note: If the reading of the other witnesses had been `variation-absent`, a processor could render it like so:
 
-> 10 sit ] *suppl.*, *om.* PVL
+> 10 sit ] *suppl.*, *om.* *PVL*
 
 ##### Example 2
 
-A scholar has suggested one conjecture for the passage, but the editor suggests another conjecture, which is adopted.
+Two scholars have suggested different solutions to the problem, and the solution by the scholar refered to by the `@xml:id`#John is is adopted in the text.
 
 ``` xml
 Utrum fides semper
@@ -1369,7 +1371,7 @@ Utrum fides semper
 acquisita
 ```
 
-> 10 sit ] *suppl.* John, *om.* PVL, erit *suppl.* James
+> 10 sit ] *suppl.* John, *om.* *PVL*, erit *suppl.* James
 
 ##### Example 3
 
@@ -1397,7 +1399,7 @@ A word or phrase is transmitted in some or all of the textual tradition, but the
 #### Rules
 
 1. Either a `lem` or a `rdg` **MUST** contain `@type="conjecture-removed"`.
-2. `lem` or `rdg` element **MUST** contain a `surplus` element as its first child.
+2. `lem` or `rdg` element **MUST** contain a `surplus` element as its only child.
 3. `surplus` element **MUST** contain the removed text.
 
 #### Examples
@@ -1417,11 +1419,11 @@ dicit Aristoteles
 
 If the printed text reads "ut [cum] dicit Aristoteles":
 
-> 10 [cum] ] *del.*, cum *in textu* ABC
+> 10 [cum] ] *del.*, cum *in textu* *ABC*
 
 Alternative, if the printed text reads "ut dicit Aristoteles":
 
-> 10 cum *post* ut *del.*, cum *in textu* ABC
+> 10 cum *post* ut *del.*, cum *in textu* *ABC*
 
 ##### Example 2
 
@@ -1436,7 +1438,7 @@ ut
 dicit Aristoteles
 ```
 
-> 10 cum ] ABC, *del.* James
+> 10 cum ] *ABC*, *del.* James
 
 ### `conjecture-corrected`
 
@@ -1447,7 +1449,7 @@ Parts of all of the textual tradition supports one reading, but an editor or sch
 #### Rules
 
 1. Either a `lem` or a `rdg` **MUST** contain `@type="conjecture-corrected"`.
-2. `lem` or `rdg` element **MUST** contain a `corr` element as its first child.
+2. `lem` or `rdg` element **MUST** contain a `corr` element as its only child.
 3. `corr` element **MUST** contain the corrected text.
 
 #### Examples
@@ -1459,17 +1461,17 @@ The tradition is unambiguous, but the editor deems it useless and prints an emen
 ``` xml
 Utrum fides
 <app>
-  <lem type="conjecture-corrected">sit</lem>
+  <lem type="conjecture-corrected"><corr>sit</corr></lem>
   <rdg wit="#P #V #L">servus</rdg>
 </app>
 acquisita
 ```
 
-> 10 sit ] servus PVL
+> 10 sit ] servus *PVL*
 
 The note might be more explicit:
 
-> 10 sit ] *scr.*, servus PVL
+> 10 sit ] *scr.*, servus *PVL*
 
 ##### Example 2
 
@@ -1485,7 +1487,7 @@ Utrum fides
 acquisita
 ```
 
-> 10 semper ] C John, servus AB, sit *conj.*
+> 10 semper ] C John, servus *AB*, sit *conj.*
 
 ## Connected Apparatus Entries
 
@@ -1499,7 +1501,8 @@ While parallel-segmentation encoding comes with a number of advantages, an edito
 
 1. All connected `apps` **MUST** have an `@xml:id`.
 2. The first `app` **MUST** contain a `@next` pointing to the next connected `app` element.
-3. The last `app` **MUST** contain a `@prev` pointing to the last connected `app`.
+3. The last `app` **MUST** contain a `@prev` pointing to the previous connected `app`.
+4. Any `app` that is neither first nor last **MUST** contain a `@next` and a `@prev` element indicating its position in the list.
 
 #### Examples
 
@@ -1556,7 +1559,7 @@ Sometimes it is desirable to connect readings even if an editor is not trying to
 
 This could render as:
 
->10 ars] ars artium E + et scientia scientiarum *add. interl.* E1 ars artium et scientia scientiarum Y H
+>10 ars] ars artium *E* + et scientia scientiarum *add. interl.* *E1* ars artium et scientia scientiarum *YH*
 
 ```xml
 non
@@ -1569,11 +1572,12 @@ non
   <rdg wit="#E" type="correction-addition">
     <add place="above-line" hand="#E1">artium</add>
   <rdg>
+</app>
 ```
 
 This could be rendered as:
 
->10 non] ars *in textu* E + artium *add. interl.* E1 ars artium *in textu* Y H
+>10 non] ars *in textu* *E* + artium *add. interl.* *E1* ars artium *in textu* *YH*
 
 ## Manual
 
@@ -1605,7 +1609,7 @@ The use of the `manual` type should be avoided at all costs, and in subsequent v
 
 This would likely be rendered as:
 
-> 10 fides] fides *corr. interl. ex* fide V
+> 10 fides] fides *corr. interl. ex* fide *V*
 
 ```xml
 <app>
@@ -1618,7 +1622,7 @@ This would likely be rendered as:
 
 This would likely be rendered as:
 
-> 10 fides] *om.* V
+> 10 fides] *om.* *V*
 
 ## witDetail
 
@@ -1634,7 +1638,7 @@ Under normal circumstances the processor will generate, from the above described
   * The `witDetail` information should target only one reading. General notes meant to offer detail or information about the entire apparatus should be included in a `note` element which should appear at the end of the `app`.
 4. For ease of processing and clarity, `witDetail` elements should come immediately after the `rdg` with which it is associated.
 5. `witDetail` **SHOULD** include an `@xml:lang`.
-6. `witDetail` **SHOULD** be longer than 100 words, since it is expected that this note will be included in a printed *apparatus criticus*. Longer notes should be included in an `app/note`.
+6. `witDetail` **SHOULD NOT** be longer than 100 words, since it is expected that this note will be included in a printed *apparatus criticus*. Longer notes should be included in an `app/note`.
 
 ### Example
 
@@ -1642,12 +1646,12 @@ Under normal circumstances the processor will generate, from the above described
 <app>
   <lem type="conjecture-correction">quae</lem>
   <rdg wit="#V">q</rdg>
-  <witDetail wit="#V">cum 3 litteris rasibus</witDetail>
+  <witDetail wit="#V" xml:lang="la">cum 3 litteris rasibus</witDetail>
 </app>
 ```
 A processor could render this as follows:
 
-> quae ] conj., q *cum 3 litteris rasibus* V
+> quae ] conj., q *cum 3 litteris rasibus* *V*
 
 ## App/Note
 
@@ -1670,7 +1674,10 @@ The `note` element used within the `app` is the appropriate place for an extende
   <lem>quae</lem>
   <rdg wit="#V">qod</rdg>
   <note xml:lang="la">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
   </note>
 </app>
 ```xml
@@ -1683,10 +1690,15 @@ Or
   <rdg wit="#V">qod</rdg>
   <note xml:lang="la">
     <ab>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
     </ab>
     <ab>
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     <ab>
   </note>
 </app>
@@ -1743,11 +1755,11 @@ A `cit` element that has a `quote` as well as a `bibl` and `note`:
 
 ### Description
 
-A quote, following the TEI guidelines, is intended to identify anything that is considered a quotation of another source or test. The value of quotation is most often rendered within quotation marks, i.e. "This is a quote".
+A quote, following the TEI guidelines, is intended to identify anything that is considered a quotation of another source or text. The value of quotation is most often rendered within quotation marks, i.e. "This is a quote".
 
 ### Rules
 
-1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of a `cit` element. In such a case it is generally expect that it would not appear in the *apparatus fonitum*.
+1. `quote` **MAY** stand alone, i.e. it **MAY** not be a child of a `cit` element. In such a case it is generally expected that it would not appear in the *apparatus fonitum*.
 2. `quote` **MAY** be the immediate child of a `cit` element. In such a case, the quote is expected to appear in the *apparatus fontium*.
 3. `quote` **MAY** contain `seg` elements.
   * This would be used to indicate segments of a quote that are interrupted by an *inquit*.
@@ -1782,6 +1794,7 @@ A `cit` element with just a `quote` tag, but where the quote consists of two quo
     <seg type="qs">lorum</seg>, <!-- Is @type="qs" the best way to do this? -->
     inquit,
     <seg type="qs">ipsum</seg>
+  </quote>
   <bibl>Sample text</bibl>
 <cit>
 ```
@@ -1857,7 +1870,7 @@ Here is a simple examples with a short note:
 ```xml
 <cit>
   <quote xml:id="quote1" ana="#gen1_1">In principio creavit Deus caelum</quote>
-  <note>I can't find this.</note>
+  <note xml:lang="en">I can't find this.</note>
 </cit>
 ```
 
@@ -1869,7 +1882,7 @@ sic, cum <name ref="#Aristotle">Philosophus</name> ponit
   <quote type="paraphrase">
     species abstractas a phantasmatibus intelligibiles
   </quote>
-  <note>
+  <note xml:lang="en">
     <ab>
       This is probably based on <bibl><title ref="#Arist.DA">De anima</title>
       III.8 432a8-9</bibl> cf. <bibl><name ref="#Aquinas">Aquinas</name>, <title
@@ -1932,7 +1945,7 @@ When a text contains both a reference and a quotation, both a `ref` and a `quote
 1. `@ed` **MUST** indicate the source text in which the page break occurs.
 2. `@n` **MUST** indicate the page or folio number (determined by `@type`). In the case of `type="folio"`, the side of the folio is delimited by a `-`.
   * `@type` **MAY** explicitly indicate the type of numbering as either paginated ("page") or foliated ("folio"). If none is given, `@type="folio"` is assumed.
-  * If an `-` is used the value of `@n`, `folio` is assumed.
+  * If an `-` is used in the value of `@n`, `folio` is assumed.
   * If no `-` appears in the value of `@n`, type `page` is assumed.
 
 ### Examples
