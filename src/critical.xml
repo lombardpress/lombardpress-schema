@@ -172,18 +172,18 @@
         </constraintSpec>
         <!-- pub stmt rules -->
         <constraintSpec ident="pubstmt-must-have-authority" scheme="schematron">
-          <desc>publicationStmt must have an authority element as child</desc>
+          <desc>publicationStmt must have an authority if p is not used</desc>
           <constraint>
-            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
-              <report test="not(./tei:authority)">publicationStmt must have an authority element as child</report>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1][not(./tei:p)]">
+              <report test="not(./tei:authority)">publicationStmt must have an authority as child if p is not used</report>
             </rule>
           </constraint>
         </constraintSpec>
         <constraintSpec ident="pubstmt-must-have-availability" scheme="schematron">
-          <desc>publicationStmt must have an availability element as child</desc>
+          <desc>publicationStmt must have an availability element as child if p is not used</desc>
           <constraint>
-            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1]">
-              <report test="not(./tei:availability)">publicationStmt must have an availability element as child</report>
+            <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:fileDesc[1]/tei:publicationStmt[1][not(./tei:p)]">
+              <report test="not(./tei:availability)">publicationStmt must have an availability element as child if p is not used</report>
             </rule>
           </constraint>
         </constraintSpec>
@@ -218,7 +218,7 @@
           <desc>SchemaRef must have an n attribute indicating schema version followed</desc>
           <constraint>
             <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="/tei:TEI/tei:teiHeader[1]/tei:encodingDesc[1]/tei:schemaRef[1]">
-              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-critical-1.0.0"</report>
+              <report test="not(./@n)">SchemaRef must have an n attribute indicating the schema version followed, e.g. "lbp-critical-1.0.0" </report>
             </rule>
           </constraint>
         </constraintSpec>
@@ -336,6 +336,14 @@
                   </rule>
                 </constraint>
               </constraintSpec>
+              <constraintSpec ident="rdg-must-not-have-app-as-descendant" scheme="schematron">
+                <desc>rdg must not have app as descendant</desc>
+                <constraint>
+                  <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tei:rdg">
+                    <report test=".//tei:app">rdg must not have app as descendant</report>
+                  </rule>
+                </constraint>
+              </constraintSpec>
               <constraintSpec ident="empty-lemma-n-attribute" scheme="schematron">
                 <desc>Empty lem must have an n attribute</desc>
                 <constraint>
@@ -432,7 +440,7 @@
                 <valItem ident="variation-absent">
                   <gloss>variation-absent</gloss>
                   <desc>indicates that the witness in question lacks the designated lemma;
-                  often rendered as "omit." or "omitted"</desc>
+                  often rendered as "omit." or "omitted" </desc>
 
                 </valItem>
                 <valItem ident="variation-present">

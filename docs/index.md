@@ -9,19 +9,18 @@ categories: schema
 
 * [Introduction to the LombardPress-Schema](intro-to-lbp-schema.md)
 * [Statement on Versioning](statement-on-versioning.md)
-* [Schema Change Log](changelog.md)
 
-We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://tools.ietf.org/html/rfc2119) for key words and definitions indicating compliance to the LombardPress schema specifications.
+We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://tools.ietf.org/html/rfc2119) for key words and definitions indicating compliance to the LombardPress-Schema specifications.
 
 # Documentation
 
 * current release
   * [critical](critical.md)
   * [diplomatic](diplomatic.md)
-* current release on github
+* current release on github (master branch)
   * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/docs/critical.md)
   * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/docs/diplomatic.md)
-* the bleeding edge
+* the bleeding edge (develop branch)
   * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/docs/critical.md)
   * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/docs/diplomatic.md)
 
@@ -30,10 +29,10 @@ We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://to
 * current release
   * [critical](../src/critical.xml)
   * [diplomatic](../src/diplomatic.xml)
-* current release on github
+* current release on github (master branch)
   * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/critical.xml)
   * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/diplomatic.xml)
-* the bleeding edge
+* the bleeding edge (develop branch)
   * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/src/critical.xml)
   * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/src/diplomatic.xml)
 
@@ -42,10 +41,10 @@ We adopt the following standard [https://tools.ietf.org/html/rfc2119](https://to
 * current release
   * [critical](../src/out/critical.rng)
   * [diplomatic](../src/out/diplomatic.rng)
-* current release on github
+* current release on github (master branch)
   * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/out/critical.rng)
   * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/master/src/out/diplomatic.rng)
-* the bleeding edge
+* the bleeding edge (develop branch)
   * [critical](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/src/out/critical.rng)
   * [diplomatic](https://raw.githubusercontent.com/lombardpress/lombardpress-schema/develop/src/out/diplomatic.rng)
 

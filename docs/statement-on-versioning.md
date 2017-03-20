@@ -9,7 +9,7 @@ In general, LombardPress-Schema version numbers follow the standards for semanti
 
 Following the principles of semantic version, backward breaking changes should increment the first number (from 1.0.0 to 2.0.0), while any backward compatible changes should only increment the second number (from 1.0.0 to 1.1.0). Patch fixes, such as typos or minor points of clarifications will increment the third number (from 1.0.0 to 1.0.1).
 
-With this in mind, some clarity is need on precisely what constitutes a backward breaking change. The best way to describe this is by discussing a concrete example of a processing client that aims to support text editions according to the the LombardPress-Schema. Once such example is the LombardPress-Web application.
+With this in mind, some clarity is needed on precisely what constitutes a backward breaking change. The best way to describe this is by discussing a concrete example of a processing client that aims to support text editions according to the LombardPress-Schema. One such example is the LombardPress-Web application.
 
 The LombardPress-Web application makes different sets of stylesheets for each XML schema that the platform supports. These stylesheets transform the source edition to a common HTML format used for display within the framework and manipulation by the framework's javascript code. This allows the framework to support multiple XML schemas while at the same time allowing javascript code to be written in expectation of a single uniform DOM.
 
