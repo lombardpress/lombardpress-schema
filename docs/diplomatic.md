@@ -37,7 +37,7 @@ Document Status: Draft
   * [Normalizations](#normalizations)
 * [Unclear and Illegible Readings](#unclear-and-illegible-readings)
 * [Scribal Corrections](#scribal-corrections)
-* [References and Quotations](references-and-quotations)
+* [References and Quotations](#references-and-quotations)
 * [Punctuation](#punctuation)
 * [Milestones](#milestones)
 * [Marginalia](#marginalia)

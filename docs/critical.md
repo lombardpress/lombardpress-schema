@@ -43,13 +43,13 @@ Document Status: Draft
     * [conjecture](#conjecture)
     * [connected apparatus entries](#connected-apparatus-entries)
     * [manual](#manual)
-  * [witDetail](#witDetail)
-  * [note](#note)
+  * [witDetail](#witdetail)
+  * [note](#appnote)
 * [Apparatus Fontium](#apparatus-fontium)
   * [cit](#cite)
   * [ref](#ref)
   * [quote](#quote)
-  * [note](#note)
+  * [note](#citenote)
 * [Milestones](#milestones)
 
 
@@ -1850,7 +1850,7 @@ The following example is expected to generate an *apparatus fontium* entry:
 </cit>
 ```
 
-## note
+## cit/note
 
 ### Description
 
