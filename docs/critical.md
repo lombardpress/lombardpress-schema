@@ -49,7 +49,7 @@ Document Status: Draft
   * [cit](#cite)
   * [ref](#ref)
   * [quote](#quote)
-  * [note](#citenote)
+  * [note](#citnote)
 * [Milestones](#milestones)
 
 
