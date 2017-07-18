@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  "Lombard Press Schema 1.0.0 - Critical Transcription Guidelines"
+title:  "Lombard Press Schema 1.0.1 - Critical Transcription Guidelines"
 date:   2016-07-15
 categories: schema
 ---
@@ -1027,7 +1027,7 @@ It is true that with something like
     <subst>
       <del>insidia</del>
       <add>insidias</add>
-    <subst>
+    </subst>
   </rdg>
 </app>
 ```  
@@ -1091,7 +1091,7 @@ est
     <subst hand="#N1">
       <del>insidia</del>
       <add>insidias</add>
-    <subst>
+    </subst>
   </rdg>
 </app>
 ```
@@ -1440,7 +1440,7 @@ dicit Aristoteles
 
 > 10 cum ] *ABC*, *del.* James
 
-### `conjecture-corrected`
+### conjecture-corrected
 
 #### Description
 
