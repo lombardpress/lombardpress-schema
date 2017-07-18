@@ -1027,7 +1027,7 @@ It is true that with something like
     <subst>
       <del>insidia</del>
       <add>insidias</add>
-    <subst>
+    </subst>
   </rdg>
 </app>
 ```  
@@ -1091,7 +1091,7 @@ est
     <subst hand="#N1">
       <del>insidia</del>
       <add>insidias</add>
-    <subst>
+    </subst>
   </rdg>
 </app>
 ```
@@ -1440,7 +1440,7 @@ dicit Aristoteles
 
 > 10 cum ] *ABC*, *del.* James
 
-### `conjecture-corrected`
+### conjecture-corrected
 
 #### Description
 
