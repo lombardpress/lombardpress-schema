@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  "Lombard Press Schema 1.0.0 - Diplomatic Transcription Guidelines"
+title:  "Lombard Press Schema 1.0.1 - Diplomatic Transcription Guidelines"
 date:   2016-07-15
 categories: schema
 ---

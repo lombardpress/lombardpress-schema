@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  "Lombard Press Schema 1.0.0 - Critical Transcription Guidelines"
+title:  "Lombard Press Schema 1.0.1 - Critical Transcription Guidelines"
 date:   2016-07-15
 categories: schema
 ---
