@@ -495,7 +495,7 @@ Normalizations mark places where an original orthographic form has been preserve
 
 ## Description
 
-The situation where the editor has difficulties reading the text might be caused by a physical damage to the manuscript or by the editor's inability to interpret the text although it is perfectly visible on the page. The difference between those two situations is indicated with the `@reason` tag added to the `unclear` element.
+The situation where the editor has difficulties reading the text might be caused by a physical damage to the manuscript or by the editor's inability to interpret the text although it is perfectly visible on the page. The difference between those two situations is indicated with the `@reason` tag added to the `unclear` or `gap` element.
 
 If the editor has a suggestion for a reading, the `unclear` element is used, otherwise the `gap` is used.
 
